@@ -9,12 +9,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Require & Import API routes
-const users = require("./routes/users");
-const articles = require("./routes/articles");
+const Users = require("./routes/Users");
+const TelusurBahanMasuk = require("./routes/TelusurBahanMasuk");
 
 // Use API Routes
-app.use(users);
-app.use(articles);
+app.use(Users);
+app.use(TelusurBahanMasuk);
 
 // Export the server middleware
 module.exports = {

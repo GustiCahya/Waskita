@@ -4,15 +4,15 @@ require('../config')
 const router = Router()
 
 // Initialize Controller
-const usersController = require('../controllers/usersController')
+const Users = require('../controllers/Users')
 
 // Register
-router.post('/users/register', usersController.register)
+router.post('/Users/register', Users.register)
 
 // Login
-router.post('/users/login', usersController.login)
+router.post('/Users/login', Users.login)
 
 // Get User
-router.get('/users/user', usersController.user)
+router.get('/Users/user', Users.user)
 
 module.exports = router

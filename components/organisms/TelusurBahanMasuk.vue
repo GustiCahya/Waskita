@@ -12,7 +12,6 @@
       <v-btn
         color="primary"
         nuxt
-        @click="test"
       >
         Continue
       </v-btn>
