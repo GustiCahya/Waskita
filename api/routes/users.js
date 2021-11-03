@@ -1,5 +1,5 @@
 const { Router } = require('express')
-require('../config')
+require('../services/auth')
 
 const router = Router()
 

@@ -14,7 +14,7 @@ const TelusurBahanMasuk = require("./routes/TelusurBahanMasuk");
 
 // Use API Routes
 app.use(Users);
-app.use(TelusurBahanMasuk);
+app.use("/TelusurBahanMasuk", TelusurBahanMasuk);
 
 // Export the server middleware
 module.exports = {

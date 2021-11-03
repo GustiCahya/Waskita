@@ -2,9 +2,8 @@ const mongoose = require("mongoose");
 
 const TelusurBendaUji = new mongoose.Schema(
   {
-    _id: { type: String }, // Based on uuid.v4()
+    _id: { type: String }, // nomor identitas
     globalId: { type: String },
-    no: { type: String },
     jumlahBendaUji: { type: Number },
     dimensi: { type: String },
     personil: [

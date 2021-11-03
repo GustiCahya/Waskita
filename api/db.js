@@ -1,9 +1,7 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/Waskita", {
+mongoose.connect("mongodb://127.0.0.1:27017/Waskita", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
 });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));

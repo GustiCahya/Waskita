@@ -1,23 +1,43 @@
 const express = require("express");
 const router = express.Router();
-const WorkerDetails = require("../controllers/WorkerDetails");
+const TelusurBahanMasuk = require("../controllers/TelusurBahanMasuk");
 
+//* Parent
 router.get(
   "/get",
-  WorkerDetails.get
+  TelusurBahanMasuk.get
 );
+router.get("/count", TelusurBahanMasuk.count);
 router.post(
   "/create",
-  WorkerDetails.create
+  TelusurBahanMasuk.create
 );
 router.patch(
   "/update",
-  WorkerDetails.update
+  TelusurBahanMasuk.update
 );
 router.delete(
   "/remove",
-  WorkerDetails.remove
+  TelusurBahanMasuk.remove
 );
-router.get("/count", WorkerDetails.count);
+
+//* Items
+router.get(
+  "/getItems",
+  TelusurBahanMasuk.getItems
+);
+router.get("/count", TelusurBahanMasuk.count);
+router.post(
+  "/bulkSaveItems",
+  TelusurBahanMasuk.bulkSaveItems
+);
+router.patch(
+  "/updateItem",
+  TelusurBahanMasuk.updateItem
+);
+router.delete(
+  "/removeItem",
+  TelusurBahanMasuk.removeItem
+);
 
 module.exports = router;

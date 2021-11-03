@@ -1,7 +1,7 @@
 const validator = require("express-validator");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const config = require("../config");
+const config = require("../services/auth");
 const User = require("../models/Users");
 
 // Register
