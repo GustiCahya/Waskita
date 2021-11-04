@@ -3,8 +3,7 @@
     <v-card-title class="headline"> Telusur Hasil Test </v-card-title>
     <v-card-text>
       <p>
-        Vuetify is a progressive Material Design component framework for Vue.js.
-        It was designed to empower developers to create amazing applications.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus dolores veritatis adipisci veniam, tempore corporis? Sint, sed ad? Accusantium, fugit.
       </p>
     </v-card-text>
     <v-card-actions>
