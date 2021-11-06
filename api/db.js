@@ -4,17 +4,17 @@ const mongoose = require("mongoose");
 const Fawn = require('fawn');
 const Grid = require('gridfs-stream');
 const multer = require('multer');
-const GridFsStorage = require('multer-gridfs-storage');
+const {GridFsStorage} = require('multer-gridfs-storage');
 
 // init mongoose
 const mongoURI = "mongodb://127.0.0.1:27017/Waskita";
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  useUnifiedTopology: true
 });
 const connection = mongoose.connection;
 // init Fawn
-Fawn.init(mongoose);
+Fawn.init(mongoURI);
 // Declare gfs
 let gfs;
 connection.on("error", console.error.bind(console, "connection error:"));

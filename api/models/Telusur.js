@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const Telusur = new mongoose.Schema(
   {
     _id: { type: String }, // Based on uuid.v4()
+    bisnisUnit: { type: String },
+    proyek: { type: String },
+    form: { type: String },
+    rev: { type: Date },
     tbmId: { type: String }, // reference to Telusur Bahan Masuk
     tbuId: { type: String }, // reference to Telusur Benda Uji
     thtId: { type: String }, // reference to Telusur Hasil Tes

@@ -10,7 +10,7 @@ const TelusurBahanMasuk_Items = require("../models/TelusurBahanMasuk_Items");
 const telusurBahanMasuk = require("../services/crud/mongo")(TelusurBahanMasuk);
 const tbmItems = require("../services/crud/mongo")(TelusurBahanMasuk_Items);
 // tasking
-const task = Fawn.task();
+const task = Fawn.Task();
 
 //* parent
 const get = async (req, res) => {

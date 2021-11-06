@@ -1,5 +1,3 @@
-const wix = require("../services/crud/wix");
-
 const pagination = async (Model, query, pageNumber = 1, limitPerPage) => {
   const skip = Number((pageNumber - 1) * limitPerPage);
   const limit = Number(limitPerPage);
@@ -45,39 +43,6 @@ const pagination = async (Model, query, pageNumber = 1, limitPerPage) => {
   return { result, pagesLength };
 };
 
-const paginationWix = async (
-  collection,
-  query,
-  pageNumber = 1,
-  limitPerPage
-) => {
-  const skip = Number((pageNumber - 1) * limitPerPage);
-  const limit = Number(limitPerPage);
-  const result = await wix
-    .get({
-      query: {
-        collection,
-        jsonQuery: JSON.stringify({
-          ...query,
-          $skip: skip,
-          $limit: limit,
-        }),
-      },
-    })
-    .then((data) => data.result);
-  const count = await wix
-    .count({
-      query: {
-        collection,
-        jsonQuery: JSON.stringify(query),
-      },
-    })
-    .then((data) => data.result);
-  const pagesLength = Math.ceil(count / limit);
-  return { result, pagesLength };
-};
-
 module.exports = {
   pagination,
-  paginationWix,
 };
