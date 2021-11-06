@@ -5,11 +5,7 @@ const mongo = (Model) => {
     try {
       const query = req.query;
       const result = await Model.aggregate(query);
-      return {
-        success: true,
-        result,
-        message: "",
-      };
+      return result;
     } catch (err) {
       throw new Error(err.message);
     }
@@ -19,11 +15,7 @@ const mongo = (Model) => {
       req.body._createdDate = new Date();
       req.body._updatedDate = new Date();
       const result = await Model.create(req.body);
-      return {
-        success: true,
-        result,
-        message: "",
-      };
+      return result;
     } catch (err) {
       throw new Error(err.message);
     }
@@ -40,11 +32,7 @@ const mongo = (Model) => {
       const result = await Model.findOneAndUpdate(query, req.body, {
         new: true,
       });
-      return {
-        success: true,
-        result,
-        message: "",
-      };
+      return result;
     } catch (err) {
       throw new Error(err.message);
     }
@@ -60,11 +48,7 @@ const mongo = (Model) => {
           new: true,
         }
       );
-      return {
-        success: true,
-        result,
-        message: "",
-      };
+      return result;
     } catch (err) {
       throw new Error(err.message);
     }
@@ -79,11 +63,7 @@ const mongo = (Model) => {
         })
       );
       return {
-        success: true,
-        result: {
-          upserted: arrBody.length,
-        },
-        message: "",
+        upserted: arrBody.length
       };
     } catch (err) {
       throw new Error(err.message);
@@ -93,11 +73,7 @@ const mongo = (Model) => {
     try {
       const query = req.query;
       const result = await Model.remove(query, { justOne: true });
-      return {
-        success: true,
-        result,
-        message: "",
-      };
+      return result;
     } catch (err) {
       throw new Error(err.message);
     }
@@ -106,16 +82,9 @@ const mongo = (Model) => {
     try {
       const query = req.query;
       const count = await Model.countDocuments(query);
-      res.json({
-        success: true,
-        result: count >= 1,
-        message: "",
-      });
+      return count >= 1;
     } catch (err) {
-      res.status(500).send({
-        success: false,
-        message: err.message,
-      });
+      throw new Error(err.message);
     }
   };
   return {

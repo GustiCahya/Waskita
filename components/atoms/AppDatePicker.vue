@@ -12,6 +12,7 @@
       <template v-slot:activator="{ on, attrs }">
         <v-text-field
           :label="label"
+          :placeholder="placeholder"
           append-icon="mdi-calendar"
           :value="dateDisplay"
           :rules="rules"
@@ -33,11 +34,14 @@
   </div>
 </template>
 <script>
-import dateFormat from "~/static/utils/dateformat";
 export default {
   name: "AppDatePicker",
   props: {
     label: {
+      type: String,
+      default: "Date",
+    },
+    placeholder: {
       type: String,
       default: "Date",
     },
@@ -46,6 +50,10 @@ export default {
       default: null,
     },
     rules: Array,
+    format: {
+      type: String,
+      default: "DD MMMM YYYY",
+    },
   },
   data() {
     return {
@@ -64,9 +72,9 @@ export default {
     },
     dateDisplay() {
       return this?.value
-        ? dateFormat(this.value, "dd mmmm yyyy")
+        ? this.$moment(this.value).format(this.format)
         : "";
     },
-  },
+  }
 };
 </script>

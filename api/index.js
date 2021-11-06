@@ -10,11 +10,13 @@ app.use(express.urlencoded({ extended: true }));
 
 // Require & Import API routes
 const Users = require("./routes/Users");
+const Telusur = require("./routes/Telusur");
 const TelusurBahanMasuk = require("./routes/TelusurBahanMasuk");
 const Uploads = require("./routes/Uploads");
 
 // Use API Routes
 app.use(Users);
+app.use("/Telusur", Telusur);
 app.use("/TelusurBahanMasuk", TelusurBahanMasuk);
 app.use("/Uploads", Uploads);
 

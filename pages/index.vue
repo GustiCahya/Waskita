@@ -1,9 +1,9 @@
 <template>
-  <v-row justify="center" align="center">
+  <v-row justify="center" align="center" class="mb-10">
     <v-col cols="12">
-      <telusur />
+      <telusur :id-telusur="idTelusur" @updateIdTelusur="updateIdTelusur" />
     </v-col>
-    <v-col cols="12">
+    <v-col v-if="idTelusur" cols="12">
       <v-card>
         <v-stepper v-model="step">
           <v-stepper-header>
@@ -51,7 +51,21 @@ export default {
   },
   data() {
     return {
+      idTelusur: "",
       step: "1"
+    }
+  },
+  watch: {
+    idTelusur(val){
+      alert(val);
+    }
+  },
+  mounted() {
+    console.log(this.idTelusur);
+  },
+  methods: {
+    updateIdTelusur(id){
+      this.idTelusur = id;
     }
   }
 }

@@ -33,10 +33,7 @@ const get = async (req, res) => {
       message: "",
     });
   } catch (err) {
-    res.status(500).send({
-      success: false,
-      message: err.message,
-    });
+    res.status(500).send(new Error(err.message));
   }
 };
 const count = async (req, res) => {
@@ -49,10 +46,7 @@ const count = async (req, res) => {
       message: "",
     });
   } catch (err) {
-    res.status(500).send({
-      success: false,
-      message: err.message,
-    });
+    res.status(500).send(new Error(err.message));
   }
 };
 const create = async (req, res) => {
@@ -72,10 +66,7 @@ const create = async (req, res) => {
       message: "",
     });
   } catch (err) {
-    res.status(500).send({
-      success: false,
-      message: err.message,
-    });
+    res.status(500).send(new Error(err.message));
   }
 };
 const update = async (req, res) => {
@@ -95,10 +86,7 @@ const update = async (req, res) => {
       message: "",
     });
   } catch (err) {
-    res.status(500).send({
-      success: false,
-      message: err.message,
-    });
+    res.status(500).send(new Error(err.message));
   }
 };
 const remove = async (req, res) => {
@@ -111,10 +99,7 @@ const remove = async (req, res) => {
       message: "",
     });
   } catch (err) {
-    res.status(500).send({
-      success: false,
-      message: err.message,
-    });
+    res.status(500).send(new Error(err.message));
   }
 };
 
@@ -139,10 +124,7 @@ const getItems = async (req, res) => {
       message: "",
     });
   } catch (err) {
-    res.status(500).send({
-      success: false,
-      message: err.message,
-    });
+    res.status(500).send(new Error(err.message));
   }
 };
 const countItems = async (req, res) => {
@@ -155,10 +137,7 @@ const countItems = async (req, res) => {
       message: "",
     });
   } catch (err) {
-    res.status(500).send({
-      success: false,
-      message: err.message,
-    });
+    res.status(500).send(new Error(err.message));
   }
 };
 const bulkSaveItems = async (req, res) => {
@@ -173,10 +152,7 @@ const bulkSaveItems = async (req, res) => {
       message: "",
     });
   } catch (err) {
-    res.status(500).send({
-      success: false,
-      message: err.message,
-    });
+    res.status(500).send(new Error(err.message));
   }
 };
 const updateItem = async (req, res) => {
@@ -195,10 +171,7 @@ const updateItem = async (req, res) => {
       message: "",
     });
   } catch (err) {
-    res.status(500).send({
-      success: false,
-      message: err.message,
-    });
+    res.status(500).send(new Error(err.message));
   }
 };
 const removeItem = async (req, res) => {
@@ -211,10 +184,7 @@ const removeItem = async (req, res) => {
       message: "",
     });
   } catch (err) {
-    res.status(500).send({
-      success: false,
-      message: err.message,
-    });
+    res.status(500).send(new Error(err.message));
   }
 };
 

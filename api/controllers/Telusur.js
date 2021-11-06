@@ -26,10 +26,7 @@ const get = async (req, res) => {
       message: "",
     });
   } catch (err) {
-    res.status(500).send({
-      success: false,
-      message: err.message,
-    });
+    res.status(500).send(new Error(err.message));
   }
 };
 const count = async (req, res) => {
@@ -42,10 +39,7 @@ const count = async (req, res) => {
       message: "",
     });
   } catch (err) {
-    res.status(500).send({
-      success: false,
-      message: err.message,
-    });
+    res.status(500).send(new Error(err.message));
   }
 };
 const create = async (req, res) => {
@@ -56,19 +50,16 @@ const create = async (req, res) => {
       _id,
       ...body,
     };
-    await telusur.create({
+    const result = await telusur.create({
       body: insertMongo,
     });
     res.json({
       success: true,
-      result: "",
+      result,
       message: "",
     });
   } catch (err) {
-    res.status(500).send({
-      success: false,
-      message: err.message,
-    });
+    res.status(500).send(new Error(err.message));
   }
 };
 const update = async (req, res) => {
@@ -76,7 +67,7 @@ const update = async (req, res) => {
     const body = req.body;
     const _id = body._id;
     // send data
-    await telusur.update({
+    const result = await telusur.update({
       body: {
         _id,
         ...body,
@@ -84,30 +75,24 @@ const update = async (req, res) => {
     });
     res.json({
       success: true,
-      result: "",
+      result,
       message: "",
     });
   } catch (err) {
-    res.status(500).send({
-      success: false,
-      message: err.message,
-    });
+    res.status(500).send(new Error(err.message));
   }
 };
 const remove = async (req, res) => {
   try {
     const { _id } = req.query;
-    await telusur.remove({ query: { _id } });
+    const result = await telusur.remove({ query: { _id } });
     res.json({
       success: true,
-      result: "",
+      result,
       message: "",
     });
   } catch (err) {
-    res.status(500).send({
-      success: false,
-      message: err.message,
-    });
+    res.status(500).send(new Error(err.message));
   }
 };
 
