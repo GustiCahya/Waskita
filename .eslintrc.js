@@ -45,6 +45,9 @@ module.exports = {
     'arrow-parens': 'off',
     'no-void': 'off',
     'object-shorthand': 'off',
-    'array-callback-return': 'off'
+    'array-callback-return': 'off',
+    'vue/v-slot-style': 'off',
+    'vue/require-default-prop': 'off',
+    'import/no-named-as-default-member': 'off'
   }
 }

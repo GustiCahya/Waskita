@@ -1,6 +1,9 @@
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12">
+      <telusur />
+    </v-col>
+    <v-col cols="12">
       <v-card>
         <v-stepper v-model="step">
           <v-stepper-header>
@@ -40,6 +43,7 @@
 <script>
 export default {
   components: {
+    Telusur: () => import("@/components/organisms/Telusur.vue"),
     TelusurBahanMasuk: () => import("@/components/organisms/TelusurBahanMasuk.vue"),
     TelusurBendaUji: () => import("@/components/organisms/TelusurBendaUji.vue"),
     TelusurHasilTest: () => import("@/components/organisms/TelusurHasilTest.vue"),

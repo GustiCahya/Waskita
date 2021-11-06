@@ -61,7 +61,7 @@ export default {
         {
           icon: 'mdi-chart-bubble',
           title: 'Review Telusur',
-          to: '/inspire'
+          to: '/review'
         }
       ],
       miniVariant: false,
