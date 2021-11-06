@@ -41,6 +41,10 @@ module.exports = {
     //
     'no-unused-vars': 'warn',
     'prefer-promise-reject-errors': 'off',
-    'node/handle-callback-err': 'off'
+    'node/handle-callback-err': 'off',
+    'arrow-parens': 'off',
+    'no-void': 'off',
+    'object-shorthand': 'off',
+    'array-callback-return': 'off'
   }
 }

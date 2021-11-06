@@ -1,4 +1,5 @@
 const uuid = require("uuid");
+const Fawn = require("fawn");
 const { pagination } = require("../utils/pagination");
 const parseJsonQuery = require("../utils/parseJsonQuery");
 
@@ -8,6 +9,8 @@ const TelusurBahanMasuk_Items = require("../models/TelusurBahanMasuk_Items");
 // crud
 const telusurBahanMasuk = require("../services/crud/mongo")(TelusurBahanMasuk);
 const tbmItems = require("../services/crud/mongo")(TelusurBahanMasuk_Items);
+// tasking
+const task = Fawn.task();
 
 //* parent
 const get = async (req, res) => {

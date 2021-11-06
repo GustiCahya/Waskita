@@ -1,28 +1,19 @@
-const pagination = async (
-  Model,
-  query,
-  pageNumber = 1,
-  limitPerPage,
-  sortBy,
-  lookups,
-  addFields
-) => {
+const wix = require("../services/crud/wix");
+
+const pagination = async (Model, query, pageNumber = 1, limitPerPage) => {
   const skip = Number((pageNumber - 1) * limitPerPage);
   const limit = Number(limitPerPage);
-  const sort = sortBy ? JSON.parse(sortBy) : undefined;
   const aggregate = [];
   if (query) {
-    // divide pipeline and ordinary match
-    const [pipeline, match] = Object.entries(query).reduce(
-      ([p, m], d) =>
-        /^\$/gi.test(d[0])
-          ? [[...p, { [d[0]]: d[1] }], m]
-          : [p, { ...m, [d[0]]: d[1] }],
-      [[], {}]
+    const arrMatch = Object.entries(query).filter(
+      (item) => item[0] !== "pipeline"
     );
-    aggregate.push({ $match: match });
-    if (pipeline.length >= 1) {
-      aggregate.push(...pipeline);
+    if (arrMatch.length >= 1) {
+      const match = arrMatch.reduce(
+        (total, item) => ({ ...total, [item[0]]: item[1] }),
+        {}
+      );
+      aggregate.push({ $match: match });
     }
   }
   if (skip) {
@@ -31,16 +22,22 @@ const pagination = async (
   if (limit) {
     aggregate.push({ $limit: limit });
   }
-  if (sort) {
-    aggregate.push({ $sort: sort });
+  // handle pipeline
+  let _query;
+  let _query$pipeline;
+  if (
+    (_query = query) === null || _query === void 0
+      ? void 0
+      : (_query$pipeline = _query.pipeline) === null ||
+        _query$pipeline === void 0
+      ? void 0
+      : _query$pipeline.length >= 1
+  ) {
+    aggregate.push(...query.pipeline);
   }
-  if (lookups) {
-    lookups.forEach((lookup) => {
-      aggregate.push({ $lookup: lookup });
-    });
-  }
-  if (addFields) {
-    aggregate.push({ $addFields: addFields });
+  // if aggregate empty
+  if (aggregate.length <= 0) {
+    aggregate.push({ $match: {} });
   }
   const result = await Model.aggregate(aggregate);
   const count = await Model.countDocuments(query);
@@ -48,6 +45,39 @@ const pagination = async (
   return { result, pagesLength };
 };
 
+const paginationWix = async (
+  collection,
+  query,
+  pageNumber = 1,
+  limitPerPage
+) => {
+  const skip = Number((pageNumber - 1) * limitPerPage);
+  const limit = Number(limitPerPage);
+  const result = await wix
+    .get({
+      query: {
+        collection,
+        jsonQuery: JSON.stringify({
+          ...query,
+          $skip: skip,
+          $limit: limit,
+        }),
+      },
+    })
+    .then((data) => data.result);
+  const count = await wix
+    .count({
+      query: {
+        collection,
+        jsonQuery: JSON.stringify(query),
+      },
+    })
+    .then((data) => data.result);
+  const pagesLength = Math.ceil(count / limit);
+  return { result, pagesLength };
+};
+
 module.exports = {
   pagination,
+  paginationWix,
 };

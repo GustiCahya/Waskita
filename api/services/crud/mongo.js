@@ -11,10 +11,7 @@ const mongo = (Model) => {
         message: "",
       };
     } catch (err) {
-      return {
-        success: false,
-        message: err.message,
-      };
+      throw new Error(err.message);
     }
   };
   const create = async (req) => {
@@ -28,10 +25,7 @@ const mongo = (Model) => {
         message: "",
       };
     } catch (err) {
-      return {
-        success: false,
-        message: err.message,
-      };
+      throw new Error(err.message);
     }
   };
   const update = async (req) => {
@@ -52,10 +46,7 @@ const mongo = (Model) => {
         message: "",
       };
     } catch (err) {
-      return {
-        success: false,
-        message: err.message,
-      };
+      throw new Error(err.message);
     }
   };
   const upsert = async (req) => {
@@ -75,10 +66,7 @@ const mongo = (Model) => {
         message: "",
       };
     } catch (err) {
-      return {
-        success: false,
-        message: err.message,
-      };
+      throw new Error(err.message);
     }
   };
   const bulkUpsert = async (req) => {
@@ -98,10 +86,7 @@ const mongo = (Model) => {
         message: "",
       };
     } catch (err) {
-      return {
-        success: false,
-        message: err.message,
-      };
+      throw new Error(err.message);
     }
   };
   const remove = async (req) => {
@@ -114,10 +99,7 @@ const mongo = (Model) => {
         message: "",
       };
     } catch (err) {
-      return {
-        success: false,
-        message: err.message,
-      };
+      throw new Error(err.message);
     }
   };
   const isExist = async (req, res) => {
