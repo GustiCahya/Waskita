@@ -31,10 +31,22 @@
           </v-stepper-header>
         </v-stepper>
         <v-container>
-          <telusur-bahan-masuk v-if="step === '1'" />
-          <telusur-benda-uji v-if="step === '2'" />
-          <telusur-hasil-test v-if="step === '3'" />
-          <telusur-proses v-if="step === '4'" />
+          <telusur-bahan-masuk
+            v-if="step === '1'"
+            :id-telusur="idTelusur"
+          />
+          <telusur-benda-uji
+            v-if="step === '2'"
+            :id-telusur="idTelusur"
+          />
+          <telusur-hasil-test
+            v-if="step === '3'"
+            :id-telusur="idTelusur"
+          />
+          <telusur-proses
+            v-if="step === '4'"
+            :id-telusur="idTelusur"
+          />
         </v-container>
       </v-card>
     </v-col>
@@ -44,29 +56,31 @@
 export default {
   components: {
     Telusur: () => import("@/components/organisms/Telusur.vue"),
-    TelusurBahanMasuk: () => import("@/components/organisms/TelusurBahanMasuk.vue"),
+    TelusurBahanMasuk: () =>
+      import("@/components/organisms/TelusurBahanMasuk.vue"),
     TelusurBendaUji: () => import("@/components/organisms/TelusurBendaUji.vue"),
-    TelusurHasilTest: () => import("@/components/organisms/TelusurHasilTest.vue"),
+    TelusurHasilTest: () =>
+      import("@/components/organisms/TelusurHasilTest.vue"),
     TelusurProses: () => import("@/components/organisms/TelusurProses.vue"),
   },
   data() {
     return {
       idTelusur: "",
-      step: "1"
-    }
+      step: "1",
+    };
   },
   watch: {
-    idTelusur(val){
+    idTelusur(val) {
       alert(val);
-    }
+    },
   },
   mounted() {
     console.log(this.idTelusur);
   },
   methods: {
-    updateIdTelusur(id){
+    updateIdTelusur(id) {
       this.idTelusur = id;
-    }
-  }
-}
+    },
+  },
+};
 </script>

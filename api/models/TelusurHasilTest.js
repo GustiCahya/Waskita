@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const TelusurHasilTest = new mongoose.Schema(
   {
     _id: { type: String }, // nomor identitas
-    globalId: { type: String },
+    idTelusur: { type: String },
     hasilTest: [
       {
         judul: { type: String },

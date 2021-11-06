@@ -4,7 +4,7 @@ const TelusurHasilTest_Items = new mongoose.Schema(
   {
     _id: { type: String }, // Based on uuid.v4()
     parentId: { type: String },
-    globalId: { type: String },
+    idTelusur: { type: String },
     kodeSilinder: { type: String },
     tanggalPembuatan: { type: Date },
     tanggalPengetesan: { type: Date },

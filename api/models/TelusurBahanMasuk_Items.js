@@ -4,7 +4,7 @@ const TelusurBahanMasuk_Items = new mongoose.Schema(
   {
     _id: { type: String }, // Based on uuid.v4()
     parentId: { type: String },
-    globalId: { type: String },
+    idTelusur: { type: String },
     noKendaraan: { type: String },
     noDocket: { type: String },
     jamKeluar: { type: Date },

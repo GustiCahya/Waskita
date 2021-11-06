@@ -15,22 +15,71 @@
           </v-col>
           <v-col cols="12" md="6" class="py-0">
             <v-text-field
-              v-model="noForm"
-              label="No. Formulir"
-              placeholder="No. Formulir"
+              v-model="noIzin"
+              label="No. Izin"
+              placeholder="No. Izin"
               outlined
               dense
             />
           </v-col>
         </v-row>
+        <v-row>
+          <v-col cols="12" md="6" class="py-0">
+            <v-text-field
+              v-model="tanggalMasuk"
+              label="Tanggal Masuk"
+              placeholder="Tanggal Masuk"
+              outlined
+              dense
+            />
+          </v-col>
+          <v-col cols="12" md="6" class="py-0">
+            <v-text-field
+              v-model="pemasok"
+              label="Pemasok"
+              placeholder="Pemasok"
+              outlined
+              dense
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="6" class="py-0">
+            <v-text-field
+              v-model="lokasiPengecoran"
+              label="Lokasi Pengecoran"
+              placeholder="Lokasi Pengecoran"
+              outlined
+              dense
+            />
+          </v-col>
+          <v-col cols="12" md="6" class="py-0">
+            <v-text-field
+              v-model="mutuBeton"
+              label="Mutu Beton"
+              placeholder="Mutu Beton"
+              outlined
+              dense
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="6" class="py-0">
+            <v-text-field
+              v-model="personil"
+              label="Personil"
+              placeholder="Personil"
+              outlined
+              dense
+            />
+          </v-col>
+          <v-col cols="12" md="6" class="py-0">
+          </v-col>
+        </v-row>
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn
-          color="primary"
-          nuxt
-          :loading="loadingGenerate"
-        >
+        <v-btn color="primary" nuxt :loading="loadingGenerate">
           Generate
         </v-btn>
       </v-card-actions>
@@ -39,9 +88,20 @@
 </template>
 <script>
 export default {
+  props: {
+    idTelusur: String
+  },
   data() {
     return {
+      // form
       id: "",
+      noIzin: "",
+      tanggalMasuk: null,
+      pemasok: [],
+      lokasiPengecoran: "",
+      mutuBeton: [],
+      personil: [],
+      // others
       loadingGenerate: false,
     };
   },
@@ -49,10 +109,11 @@ export default {
     async generate() {
       this.loadingGenerate = true;
       try {
-        const res = await this.$axios.post("/api/TelusurBahanMasuk/create", {
-          _id: this.id,
-        });
-        alert(res?.data);
+        const sendData = {};
+        const result = await this.$axios
+          .post("/api/TelusurBahanMasuk/create", sendData)
+          .then((res) => res?.data?.result);
+        alert(result);
       } catch (err) {
         alert(err?.response?.data?.message || err?.message);
       }
