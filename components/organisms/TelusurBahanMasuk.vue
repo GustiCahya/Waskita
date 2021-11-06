@@ -1,51 +1,63 @@
 <template>
   <div>
     <v-card-title class="headline"> Telusur Bahan Masuk </v-card-title>
-    <v-card-text>
-      <v-form @submit.prevent="generate">
-        <v-text-field
-          v-model="noForm"
-          label="No. Formulir"
-          outlined
-          dense
-        />
-      </v-form>
-    </v-card-text>
-    <v-card-actions>
-      <v-spacer />
-      <v-btn
-        color="primary"
-        nuxt
-        :loading="loadingGenerate"
-      >
-        Generate
-      </v-btn>
-    </v-card-actions>
+    <v-form @submit.prevent="generate">
+      <v-card-text>
+        <v-row>
+          <v-col cols="12" md="6" class="py-0">
+            <v-text-field
+              v-model="id"
+              label="No. Formulir"
+              placeholder="No. Formulir"
+              outlined
+              dense
+            />
+          </v-col>
+          <v-col cols="12" md="6" class="py-0">
+            <v-text-field
+              v-model="noForm"
+              label="No. Formulir"
+              placeholder="No. Formulir"
+              outlined
+              dense
+            />
+          </v-col>
+        </v-row>
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer />
+        <v-btn
+          color="primary"
+          nuxt
+          :loading="loadingGenerate"
+        >
+          Generate
+        </v-btn>
+      </v-card-actions>
+    </v-form>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      noForm: "",
+      id: "",
       loadingGenerate: false,
-    }
+    };
   },
   methods: {
     async generate() {
-      console.log(this.noForm);
       this.loadingGenerate = true;
-      try{
+      try {
         const res = await this.$axios.post("/api/TelusurBahanMasuk/create", {
-          _id: this.noForm
+          _id: this.id,
         });
-        console.log(res?.data)
         alert(res?.data);
-      }catch(err){
+      } catch (err) {
         alert(err?.response?.data?.message || err?.message);
       }
       this.loadingGenerate = false;
-    }
+    },
   },
-}
+};
 </script>

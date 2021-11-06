@@ -57,12 +57,12 @@ const create = async (req, res) => {
       _id,
       ...body,
     };
-    const data = await telusurBahanMasuk.create({
+    const result = await telusurBahanMasuk.create({
       body: insertMongo,
     });
     res.json({
       success: true,
-      result: data.result,
+      result,
       message: "",
     });
   } catch (err) {
@@ -74,7 +74,7 @@ const update = async (req, res) => {
     const body = req.body;
     const _id = body._id;
     // send data
-    const data = await telusurBahanMasuk.update({
+    const result = await telusurBahanMasuk.update({
       body: {
         _id,
         ...body,
@@ -82,7 +82,7 @@ const update = async (req, res) => {
     });
     res.json({
       success: true,
-      result: data.result,
+      result,
       message: "",
     });
   } catch (err) {
@@ -92,10 +92,10 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
   try {
     const { _id } = req.query;
-    const data = await telusurBahanMasuk.remove({ query: { _id } });
+    const result = await telusurBahanMasuk.remove({ query: { _id } });
     res.json({
       success: true,
-      result: data.result,
+      result,
       message: "",
     });
   } catch (err) {
@@ -143,12 +143,12 @@ const countItems = async (req, res) => {
 const bulkSaveItems = async (req, res) => {
   try {
     const body = req.body;
-    const data = await tbmItems.bulkUpsert({
+    const result = await tbmItems.bulkUpsert({
       body,
     });
     res.json({
       success: true,
-      result: data.result,
+      result,
       message: "",
     });
   } catch (err) {
@@ -159,7 +159,7 @@ const updateItem = async (req, res) => {
   try {
     const body = req.body;
     const _id = body._id;
-    const data = await tbmItems.update({
+    const result = await tbmItems.update({
       body: {
         _id,
         ...body,
@@ -167,7 +167,7 @@ const updateItem = async (req, res) => {
     });
     res.json({
       success: true,
-      result: data.result,
+      result,
       message: "",
     });
   } catch (err) {
@@ -177,10 +177,10 @@ const updateItem = async (req, res) => {
 const removeItem = async (req, res) => {
   try {
     const { _id } = req.query;
-    const data = await tbmItems.remove({ query: { _id } });
+    const result = await tbmItems.remove({ query: { _id } });
     res.json({
       success: true,
-      result: data.result,
+      result,
       message: "",
     }); // test
   } catch (err) {
