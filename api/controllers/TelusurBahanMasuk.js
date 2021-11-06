@@ -182,7 +182,7 @@ const removeItem = async (req, res) => {
       success: true,
       result: data.result,
       message: "",
-    });
+    }); // test
   } catch (err) {
     res.status(500).send(new Error(err.message));
   }
