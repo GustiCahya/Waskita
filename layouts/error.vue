@@ -6,9 +6,9 @@
     <h1 v-else>
       {{ otherError }}
     </h1>
-    <NuxtLink to="/">
+    <a @click.prevent="handleRedirect">
       Home page
-    </NuxtLink>
+    </a>
   </v-app>
 </template>
 
@@ -32,6 +32,15 @@ export default {
       this.error.statusCode === 404 ? this.pageNotFound : this.otherError
     return {
       title
+    }
+  },
+  methods: {
+    handleRedirect() {
+      if(this.error.statusCode === 404){
+        window.location = '/';
+      }else {
+        window.location.reload();
+      }
     }
   }
 }
