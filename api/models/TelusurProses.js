@@ -16,6 +16,20 @@ const TelusurProses = new mongoose.Schema(
     ],
     jumlahPekerja: { type: Number },
     cuaca: { type: String },
+    items: [
+      {
+        _id: { type: String },
+        jamMulai: { type: Date },
+        jamSelesai: { type: Date },
+        jumlahPekerja: { type: String },
+        cuaca: { type: String },
+        penggetarTipe: { type: String },
+        penggetarJumlah: { type: String },
+        finishing: { type: String },
+        curingSistem: { type: String },
+        curingLama: { type: String },
+      }
+    ],
     _createdDate: { type: Date },
     _updatedDate: { type: Date },
   },
