@@ -103,6 +103,32 @@ export default {
       loadingSubmit: false,
     };
   },
+  async mounted() {
+    // fetch telusur data
+    const id = this.$route.query.id;
+    if (id) {
+      try {
+        const result = await this.$axios
+          .get("/api/Telusur/get", {
+            params: {
+              jsonQuery: JSON.stringify({
+                _id: id,
+              }),
+            },
+          })
+          .then((res) => res?.data?.result);
+        if (result.length >= 1) {
+          const item = result[0];
+          this.businessUnit = item.businessUnit;
+          this.proyek = item.proyek;
+          this.form = item.form;
+          this.rev = item.rev;
+        }
+      } catch (err) {
+        this.$swal(err.message, "", "error");
+      }
+    }
+  },
   methods: {
     async submitTelusur() {
       this.$refs.telusurForm.validate();

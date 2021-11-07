@@ -31,22 +31,10 @@
           </v-stepper-header>
         </v-stepper>
         <v-container>
-          <telusur-bahan-masuk
-            v-if="step === '1'"
-            :id-telusur="idTelusur"
-          />
-          <telusur-benda-uji
-            v-if="step === '2'"
-            :id-telusur="idTelusur"
-          />
-          <telusur-hasil-test
-            v-if="step === '3'"
-            :id-telusur="idTelusur"
-          />
-          <telusur-proses
-            v-if="step === '4'"
-            :id-telusur="idTelusur"
-          />
+          <telusur-bahan-masuk v-if="step === '1'" :id-telusur="idTelusur" />
+          <telusur-benda-uji v-if="step === '2'" :id-telusur="idTelusur" />
+          <telusur-hasil-test v-if="step === '3'" :id-telusur="idTelusur" />
+          <telusur-proses v-if="step === '4'" :id-telusur="idTelusur" />
         </v-container>
       </v-card>
     </v-col>
@@ -74,8 +62,29 @@ export default {
       alert(val);
     },
   },
-  mounted() {
-    console.log(this.idTelusur);
+  async mounted() {
+    // check availability of id telusur
+    const id = this.$route.query.id;
+    if (id) {
+      try {
+        const count = await this.$axios
+          .get("/api/Telusur/count", {
+            params: {
+              jsonQuery: JSON.stringify({
+                _id: id,
+              }),
+            },
+          })
+          .then((res) => res?.data?.result);
+        if (count >= 1) {
+          this.idTelusur = id;
+        } else {
+          this.$swal("Maaf, id telusur tidak ditemukan", "", "warning");
+        }
+      } catch (err) {
+        this.$swal(err.message, "", "error");
+      }
+    }
   },
   methods: {
     updateIdTelusur(id) {
