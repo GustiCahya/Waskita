@@ -237,8 +237,8 @@ export default {
       this.id = undefined;
       this.noKendaraan = "";
       this.noDocket = "";
-      this.jamKeluar = null;
-      this.jamDituang = null;
+      this.jamKeluar = "";
+      this.jamDituang = "";
       this.volAktual = null;
       this.volKumulatif = null;
       this.tempMasuk = "";

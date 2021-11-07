@@ -11,7 +11,7 @@
   >
     <template v-slot:activator="{ on, attrs }">
       <v-text-field
-        :value="time"
+        :value="value"
         :label="label"
         :placeholder="placeholder"
         :rules="rules"
@@ -25,7 +25,7 @@
     </template>
     <v-time-picker
       v-if="timeMenu"
-      v-model="time"
+      v-model="model"
       color="white--text"
       full-width
     ></v-time-picker>
@@ -33,10 +33,6 @@
 </template>
 <script>
 export default {
-  model: {
-    prop: "value",
-    event: "input"
-  },
   props: {
     value: String,
     label: {
@@ -51,7 +47,6 @@ export default {
   },
   data() {
     return {
-      time: this.value,
       timeMenu: false,
     };
   },
@@ -60,8 +55,8 @@ export default {
       get() {
         return this?.value; // Returning String "##:##"
       },
-      set() {
-        this.$emit("input", this.time);
+      set(value) {
+        this.$emit("input", value);
       },
     }
   }
