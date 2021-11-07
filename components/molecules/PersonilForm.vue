@@ -80,11 +80,11 @@ export default {
       };
       if (!this.id) {
         // if adding
-        const pemasok = {
+        const addedData = {
           _id: uuidv4(),
           ...send,
         };
-        this.items.push(pemasok);
+        this.items.push(addedData);
       } else {
         // if editing
         const idx = this.items.findIndex((item) => item._id === this.id);
