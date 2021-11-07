@@ -7,14 +7,14 @@
     >
       <v-text-field
         v-model="nama"
-        label="Mutu Beton"
+        label="Nama"
         :rules="rules.nama"
         outlined
         dense
       />
       <v-text-field
         v-model="ttd"
-        label="Mutu Beton"
+        label="TTD"
         :rules="rules.ttd"
         outlined
         dense

@@ -27,6 +27,20 @@ const TelusurBahanMasuk = new mongoose.Schema(
         ttd: { type: String }, // image
       }
     ],
+    items: [
+      {
+        _id: { type: String },
+        noKendaraan: { type: String },
+        noDocket: { type: String },
+        jamKeluar: { type: Date },
+        jamDituang: { type: Date },
+        volAktual: { type: Number },
+        volKumulatif: { type: Number },
+        tempMasuk: { type: String },
+        slumpBeton: { type: String },
+        syaratSlump: { type: String },
+      }
+    ],
     _createdDate: { type: Date },
     _updatedDate: { type: Date },
   },
