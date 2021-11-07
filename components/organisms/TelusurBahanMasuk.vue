@@ -63,7 +63,7 @@
               outlined
               dense
             >
-              <pemasok-form :items="mutuBeton" />
+              <mutu-beton-form :items="mutuBeton" />
             </app-bulk-input>
           </v-col>
         </v-row>
@@ -93,12 +93,14 @@
 <script>
 import AppBulkInput from '../atoms/AppBulkInput.vue';
 import AppDatePicker from '../atoms/AppDatePicker.vue';
-import PemasokForm from '~/components/molecules/PemasokForm.vue';
+import MutuBetonForm from '../molecules/MutuBetonForm.vue';
+import PemasokForm from '../molecules/PemasokForm.vue';
 export default {
   components: {
     AppDatePicker,
     AppBulkInput,
     PemasokForm,
+    MutuBetonForm,
   },
   props: {
     idTelusur: String
