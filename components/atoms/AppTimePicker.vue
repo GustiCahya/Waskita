@@ -1,42 +1,44 @@
 <template>
-  <div>
-    <v-menu
-      v-model="dateMenu"
-      :close-on-content-click="false"
-      :nudge-right="40"
-      transition="scale-transition"
-      offset-y
-      max-width="290px"
-      min-width="290px"
-    >
-      <template v-slot:activator="{ on, attrs }">
-        <v-text-field
-          :label="label"
-          :placeholder="placeholder"
-          append-icon="mdi-clock-time-four-outline"
-          :value="dateDisplay"
-          :rules="rules"
-          readonly
-          outlined
-          dense
-          v-bind="attrs"
-          v-on="on"
-        ></v-text-field>
-      </template>
-      <v-date-picker
-        v-model="model"
-        locale="en-in"
-        no-title
-        color="primary"
-        @input="dateMenu = false"
-      ></v-date-picker>
-    </v-menu>
-  </div>
+  <v-menu
+    ref="menu"
+    v-model="timeMenu"
+    :close-on-content-click="false"
+    :nudge-right="40"
+    transition="scale-transition"
+    offset-y
+    max-width="290px"
+    min-width="290px"
+  >
+    <template v-slot:activator="{ on, attrs }">
+      <v-text-field
+        :value="time"
+        :label="label"
+        :placeholder="placeholder"
+        :rules="rules"
+        append-icon="mdi-clock-time-four-outline"
+        readonly
+        dense
+        outlined
+        v-bind="attrs"
+        v-on="on"
+      ></v-text-field>
+    </template>
+    <v-time-picker
+      v-if="timeMenu"
+      v-model="time"
+      color="white--text"
+      full-width
+    ></v-time-picker>
+  </v-menu>
 </template>
 <script>
 export default {
-  name: "AppTimePicker",
+  model: {
+    prop: "value",
+    event: "input"
+  },
   props: {
+    value: String,
     label: {
       type: String,
       default: "Time",
@@ -45,36 +47,23 @@ export default {
       type: String,
       default: "Time",
     },
-    value: {
-      type: [String, Date],
-      default: null,
-    },
     rules: Array,
-    format: {
-      type: String,
-      default: "DD MMMM YYYY",
-    },
   },
   data() {
     return {
-      dateMenu: false,
+      time: this.value,
+      timeMenu: false,
     };
   },
   computed: {
     model: {
       get() {
-        return this?.value ? new Date(this.value)?.toISOString()?.substr(0, 10) : "";
+        return this?.value; // Returning String "##:##"
       },
-      set(value) {
-        const dateValue = new Date(value);
-        this.$emit("input", dateValue);
+      set() {
+        this.$emit("input", this.time);
       },
-    },
-    dateDisplay() {
-      return this?.value
-        ? this.$moment(this.value).format(this.format)
-        : "";
-    },
+    }
   }
 };
 </script>

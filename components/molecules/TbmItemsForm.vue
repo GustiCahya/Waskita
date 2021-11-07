@@ -25,7 +25,7 @@
         </v-row>
         <v-row>
           <v-col cols="12" md="6" class="py-0">
-            <v-text-field
+            <app-time-picker
               v-model="jamKeluar"
               label="Jam Keluar"
               :rules="rules.jamKeluar"
@@ -34,7 +34,7 @@
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
-            <v-text-field
+            <app-time-picker
               v-model="jamDituang"
               label="Jam Dituang"
               :rules="rules.jamDituang"
@@ -94,7 +94,6 @@
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
-            <test-time />
           </v-col>
         </v-row>
         <div class="d-flex justify-end mb-4">
@@ -133,10 +132,10 @@
 </template>
 <script>
 import { v4 as uuidv4 } from "uuid";
-import TestTime from '../atoms/TestTime.vue';
+import AppTimePicker from '../atoms/AppTimePicker.vue';
 export default {
   components: {
-    TestTime
+    AppTimePicker
   },
   props: {
     items: Array,
@@ -145,8 +144,8 @@ export default {
     return {
       noKendaraan: "",
       noDocket: "",
-      jamKeluar: null,
-      jamDituang: null,
+      jamKeluar: "",
+      jamDituang: "",
       volAktual: null,
       volKumulatif: null,
       tempMasuk: "",
@@ -155,8 +154,14 @@ export default {
       rules: {
         noKendaraan: [(v) => !!v || "Harap diisi"],
         noDocket: [(v) => !!v || "Harap diisi"],
-        jamKeluar: [(v) => !!v || "Harap diisi"],
-        jamDituang: [(v) => !!v || "Harap diisi"],
+        jamKeluar: [
+          (v) => !!v || "Harap diisi",
+          (v) => /^\d\d:\d\d$/gi.test(v) || "Harus berupa jam (contoh: 11:31)"
+        ],
+        jamDituang: [
+          (v) => !!v || "Harap diisi",
+          (v) => /^\d\d:\d\d$/gi.test(v) || "Harus berupa jam (contoh: 11:31)"
+        ],
         volAktual: [
           (v) => !!v || "Harap diisi",
           (v) => /^\d*\.?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16.5)"
