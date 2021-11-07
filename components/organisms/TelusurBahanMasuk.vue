@@ -81,63 +81,15 @@
           </v-col>
           <v-col cols="12" md="6" class="py-0"> </v-col>
         </v-row>
-        <v-card>
-          <v-card-title> Kelola Detail </v-card-title>
-          <v-card-text>
-            <v-form ref="form" v-model="form" @submit.prevent="submit">
-              <v-text-field
-                v-model="nama"
-                label="Nama"
-                :rules="rules.nama"
-                outlined
-                dense
-              />
-              <v-text-field
-                v-model="ttd"
-                label="TTD"
-                :rules="rules.ttd"
-                outlined
-                dense
-              />
-              <div class="d-flex justify-end mb-4">
-                <v-btn type="submit" class="text-right" color="primary">
-                  {{ !id ? "Tambah" : "Edit" }}
-                </v-btn>
-              </div>
-            </v-form>
-            <v-simple-table v-if="items.length >= 1" dense>
-              <template v-slot:default>
-                <thead>
-                  <tr>
-                    <th class="text-left">Nama</th>
-                    <th class="text-left">TTD</th>
-                    <th class="text-left">Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="(item, idx) in items" :key="item._id">
-                    <td>{{ item.nama }}</td>
-                    <td>{{ item.ttd }}</td>
-                    <td>
-                      <v-btn color="yellow darken-3" icon @click="select(item)">
-                        <v-icon>mdi-pencil</v-icon>
-                      </v-btn>
-                      <v-btn color="red" icon @click="remove(idx)">
-                        <v-icon>mdi-delete</v-icon>
-                      </v-btn>
-                    </td>
-                  </tr>
-                </tbody>
-              </template>
-            </v-simple-table>
-          </v-card-text>
-        </v-card>
+        <!-- items -->
+        <tbm-items-form :items="items" />
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn color="primary" nuxt :loading="loadingGenerate">
+        <v-btn color="blue darken-3" nuxt :loading="loadingGenerate">
           Generate
         </v-btn>
+        <v-spacer />
       </v-card-actions>
     </v-form>
   </div>
@@ -148,6 +100,7 @@ import AppDatePicker from "../atoms/AppDatePicker.vue";
 import MutuBetonForm from "../molecules/MutuBetonForm.vue";
 import PemasokForm from "../molecules/PemasokForm.vue";
 import PersonilForm from "../molecules/PersonilForm.vue";
+import TbmItemsForm from '../molecules/TbmItemsForm.vue';
 export default {
   components: {
     AppDatePicker,
@@ -155,6 +108,7 @@ export default {
     PemasokForm,
     MutuBetonForm,
     PersonilForm,
+    TbmItemsForm,
   },
   props: {
     idTelusur: String,
