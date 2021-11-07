@@ -25,7 +25,7 @@
         </v-row>
         <v-row>
           <v-col cols="12" md="6" class="py-0">
-            <v-text-field
+            <app-date-picker
               v-model="tanggalMasuk"
               label="Tanggal Masuk"
               placeholder="Tanggal Masuk"
@@ -34,13 +34,15 @@
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
-            <v-text-field
+            <app-bulk-input
               v-model="pemasok"
               label="Pemasok"
               placeholder="Pemasok"
               outlined
               dense
-            />
+            >
+              <pemasok-form :items="pemasok" />
+            </app-bulk-input>
           </v-col>
         </v-row>
         <v-row>
@@ -87,7 +89,15 @@
   </div>
 </template>
 <script>
+import AppBulkInput from '../atoms/AppBulkInput.vue';
+import AppDatePicker from '../atoms/AppDatePicker.vue';
+import PemasokForm from '~/components/molecules/PemasokForm.vue';
 export default {
+  components: {
+    AppDatePicker,
+    AppBulkInput,
+    PemasokForm,
+  },
   props: {
     idTelusur: String
   },
@@ -104,6 +114,16 @@ export default {
       // others
       loadingGenerate: false,
     };
+  },
+  computed: {
+    display() {
+      return `${this.items.length} ${this.label}`;
+    }
+  },
+  watch: {
+    pemasok(val){
+      console.log(val);
+    }
   },
   methods: {
     async generate() {

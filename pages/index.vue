@@ -57,11 +57,6 @@ export default {
       step: "1",
     };
   },
-  watch: {
-    idTelusur(val) {
-      alert(val);
-    },
-  },
   async mounted() {
     // check availability of id telusur
     const id = this.$route.query.id;
