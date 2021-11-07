@@ -93,7 +93,9 @@
               dense
             />
           </v-col>
-          <v-col cols="12" md="6" class="py-0"> </v-col>
+          <v-col cols="12" md="6" class="py-0">
+            <test-time />
+          </v-col>
         </v-row>
         <div class="d-flex justify-end mb-4">
           <v-btn type="submit" class="text-right" color="primary">
@@ -131,7 +133,11 @@
 </template>
 <script>
 import { v4 as uuidv4 } from "uuid";
+import TestTime from '../atoms/TestTime.vue';
 export default {
+  components: {
+    TestTime
+  },
   props: {
     items: Array,
   },
@@ -151,10 +157,18 @@ export default {
         noDocket: [(v) => !!v || "Harap diisi"],
         jamKeluar: [(v) => !!v || "Harap diisi"],
         jamDituang: [(v) => !!v || "Harap diisi"],
-        volAktual: [(v) => !!v || "Harap diisi"],
-        volKumulatif: [(v) => !!v || "Harap diisi"],
+        volAktual: [
+          (v) => !!v || "Harap diisi",
+          (v) => /^\d*\.?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16.5)"
+        ],
+        volKumulatif: [
+          (v) => !!v || "Harap diisi",
+          (v) => /^\d*\.?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16.5)"
+        ],
         tempMasuk: [],
-        slumpBeton: [],
+        slumpBeton: [
+          (v) => /^\d*\.?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16.5)"
+        ],
         syaratSlump: [(v) => !!v || "Harap diisi"],
       },
       id: undefined,

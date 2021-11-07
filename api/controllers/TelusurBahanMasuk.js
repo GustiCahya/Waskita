@@ -31,7 +31,7 @@ const get = async (req, res) => {
       message: "",
     });
   } catch (err) {
-    res.status(500).send(new Error(err.message));
+    res.status(500).send(err.message);
   }
 };
 const count = async (req, res) => {
@@ -44,7 +44,7 @@ const count = async (req, res) => {
       message: "",
     });
   } catch (err) {
-    res.status(500).send(new Error(err.message));
+    res.status(500).send(err.message);
   }
 };
 const create = async (req, res) => {
@@ -64,7 +64,7 @@ const create = async (req, res) => {
       message: "",
     });
   } catch (err) {
-    res.status(500).send(new Error(err.message));
+    res.status(500).send(err.message);
   }
 };
 const update = async (req, res) => {
@@ -84,7 +84,7 @@ const update = async (req, res) => {
       message: "",
     });
   } catch (err) {
-    res.status(500).send(new Error(err.message));
+    res.status(500).send(err.message);
   }
 };
 const remove = async (req, res) => {
@@ -97,7 +97,7 @@ const remove = async (req, res) => {
       message: "",
     });
   } catch (err) {
-    res.status(500).send(new Error(err.message));
+    res.status(500).send(err.message);
   }
 };
 

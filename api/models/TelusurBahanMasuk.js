@@ -37,7 +37,7 @@ const TelusurBahanMasuk = new mongoose.Schema(
         volAktual: { type: Number },
         volKumulatif: { type: Number },
         tempMasuk: { type: String },
-        slumpBeton: { type: String },
+        slumpBeton: { type: Number },
         syaratSlump: { type: String },
       }
     ],

@@ -86,18 +86,10 @@ export default {
       form: "PW-QTY-07-02-01",
       rev: "2021-06-02",
       rules: {
-        businessUnit: [
-          (v) => !!v || "Harus Diisi"
-        ],
-        proyek: [
-          (v) => !!v || "Harus Diisi"
-        ],
-        form: [
-          (v) => !!v || "Harus Diisi"
-        ],
-        rev: [
-          (v) => !!v || "Harus Diisi"
-        ],
+        businessUnit: [(v) => !!v || "Harus Diisi"],
+        proyek: [(v) => !!v || "Harus Diisi"],
+        form: [(v) => !!v || "Harus Diisi"],
+        rev: [(v) => !!v || "Harus Diisi"],
       },
       telusurForm: false,
       loadingSubmit: false,
@@ -125,7 +117,7 @@ export default {
           this.rev = item.rev;
         }
       } catch (err) {
-        this.$swal(err.message, "", "error");
+        this.$swal(err?.response?.data || err?.message, "", "error");
       }
     }
   },
@@ -162,7 +154,7 @@ export default {
           this.$swal("Edit Berhasil", "", "success");
         }
       } catch (err) {
-        this.$swal(err.message);
+        this.$swal(err?.response?.data || err?.message, "", "error");
       }
       this.loadingSubmit = false;
     },

@@ -1,12 +1,13 @@
 <template>
   <div>
     <v-card-title class="headline"> Telusur Bahan Masuk </v-card-title>
-    <v-form @submit.prevent="generate">
+    <v-form ref="form" v-model="form" @submit.prevent="generate">
       <v-card-text>
         <v-row>
           <v-col cols="12" md="6" class="py-0">
             <v-text-field
               v-model="id"
+              :rules="rules.id"
               label="No. Formulir"
               placeholder="No. Formulir"
               outlined
@@ -16,6 +17,7 @@
           <v-col cols="12" md="6" class="py-0">
             <v-text-field
               v-model="noIzin"
+              :rules="rules.noIzin"
               label="No. Izin"
               placeholder="No. Izin"
               outlined
@@ -27,6 +29,7 @@
           <v-col cols="12" md="6" class="py-0">
             <app-date-picker
               v-model="tanggalMasuk"
+              :rules="rules.tanggalMasuk"
               label="Tanggal Masuk"
               placeholder="Tanggal Masuk"
               outlined
@@ -36,6 +39,7 @@
           <v-col cols="12" md="6" class="py-0">
             <app-bulk-input
               v-model="pemasok"
+              :rules="rules.pemasok"
               label="Pemasok"
               placeholder="Pemasok"
               outlined
@@ -49,6 +53,7 @@
           <v-col cols="12" md="6" class="py-0">
             <v-text-field
               v-model="lokasiPengecoran"
+              :rules="rules.lokasiPengecoran"
               label="Lokasi Pengecoran"
               placeholder="Lokasi Pengecoran"
               outlined
@@ -58,6 +63,7 @@
           <v-col cols="12" md="6" class="py-0">
             <app-bulk-input
               v-model="mutuBeton"
+              :rules="rules.mutuBeton"
               label="Mutu Beton"
               placeholder="Mutu Beton"
               outlined
@@ -71,6 +77,7 @@
           <v-col cols="12" md="6" class="py-0">
             <app-bulk-input
               v-model="personil"
+              :rules="rules.personil"
               label="Personil"
               placeholder="Personil"
               outlined
@@ -86,7 +93,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn color="blue darken-3" nuxt :loading="loadingGenerate">
+        <v-btn type="submit" color="blue darken-3" nuxt :loading="loadingGenerate">
           Generate
         </v-btn>
         <v-spacer />
@@ -123,8 +130,19 @@ export default {
       lokasiPengecoran: "",
       mutuBeton: [],
       personil: [],
+      rules: {
+        id: [(v) => !!v || "Harap diisi"],
+        noIzin: [(v) => !!v || "Harap diisi"],
+        tanggalMasuk: [(v) => !!v || "Harap diisi"],
+        pemasok: [(v) => v.length >= 1 || "Harap diisi"],
+        lokasiPengecoran: [(v) => !!v || "Harap diisi"],
+        mutuBeton: [(v) => v.length >= 1 || "Harap diisi"],
+        personil: [(v) => v.length >= 1 || "Harap diisi"],
+      },
       // items
       items: [],
+      // validity form
+      form: false,
       // others
       loadingGenerate: false,
     };
@@ -136,15 +154,43 @@ export default {
   },
   methods: {
     async generate() {
+      this.$refs.form.validate();
+      if (!this.form) {
+        this.$swal("Harap perhatikan inputan", "", "warning");
+        window.scroll({
+          top: +this.$refs.form.$el.offsetTop + 100,
+          behavior: "smooth",
+        });
+        return;
+      };
+      if (this.items.length < 1) {
+        this.$swal("Harap isi detail minimal satu", "", "warning");
+        window.scroll({
+          top: +this.$refs.form.$el.offsetTop + 300,
+          behavior: "smooth",
+        });
+        return;
+      };
       this.loadingGenerate = true;
       try {
-        const sendData = {};
+        const sendData = {
+          _id: this.id,
+          idTelusur: this.idTelusur,
+          noIzin: this.noIzin,
+          tanggalMasuk: this.tanggalMasuk,
+          pemasok: this.pemasok,
+          lokasiPengecoran: this.lokasiPengecoran,
+          mutuBeton: this.mutuBeton,
+          personil: this.personil,
+          items: this.items
+        };
         const result = await this.$axios
           .post("/api/TelusurBahanMasuk/create", sendData)
           .then((res) => res?.data?.result);
-        alert(result);
+        console.log(result);
+        this.$swal("Berhasil", "", "success");
       } catch (err) {
-        alert(err?.response?.data?.message || err?.message);
+        this.$swal(err?.response?.data || err?.message, "", "error");
       }
       this.loadingGenerate = false;
     },
