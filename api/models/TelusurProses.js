@@ -19,8 +19,8 @@ const TelusurProses = new mongoose.Schema(
     items: [
       {
         _id: { type: String },
-        jamMulai: { type: Date },
-        jamSelesai: { type: Date },
+        jamMulai: { type: String },
+        jamSelesai: { type: String },
         jumlahPekerja: { type: String },
         cuaca: { type: String },
         penggetarTipe: { type: String },
