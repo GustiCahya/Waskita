@@ -9,6 +9,7 @@ const TelusurProses = new mongoose.Schema(
     noDetail: { type: String },
     personil: [
       {
+        _id: { type: String },
         nama: { type: String },
         ttd: { type: String }, // image
       }

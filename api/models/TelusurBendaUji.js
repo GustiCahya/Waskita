@@ -8,6 +8,7 @@ const TelusurBendaUji = new mongoose.Schema(
     dimensi: { type: String },
     personil: [
       {
+        _id: { type: String },
         nama: { type: String },
         ttd: { type: String }, // image
       }

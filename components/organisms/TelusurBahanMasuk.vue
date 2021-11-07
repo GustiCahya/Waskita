@@ -56,13 +56,15 @@
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
-            <v-text-field
+            <app-bulk-input
               v-model="mutuBeton"
               label="Mutu Beton"
               placeholder="Mutu Beton"
               outlined
               dense
-            />
+            >
+              <pemasok-form :items="mutuBeton" />
+            </app-bulk-input>
           </v-col>
         </v-row>
         <v-row>

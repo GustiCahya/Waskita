@@ -8,16 +8,21 @@ const TelusurBahanMasuk = new mongoose.Schema(
     tanggalMasuk: { type: Date },
     pemasok: [
       {
+        _id: { type: String },
         nama: { type: String },
         alamat: { type: String }
       }
     ],
     lokasiPengecoran: { type: String },
     mutuBeton: [
-      { type: String }
+      {
+        _id: { type: String },
+        value: { type: String },
+      }
     ],
     personil: [
       {
+        _id: { type: String },
         nama: { type: String },
         ttd: { type: String }, // image
       }
