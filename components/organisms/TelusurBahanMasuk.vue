@@ -69,13 +69,15 @@
         </v-row>
         <v-row>
           <v-col cols="12" md="6" class="py-0">
-            <v-text-field
+            <app-bulk-input
               v-model="personil"
               label="Personil"
               placeholder="Personil"
               outlined
               dense
-            />
+            >
+              <personil-form :items="personil" />
+            </app-bulk-input>
           </v-col>
           <v-col cols="12" md="6" class="py-0">
           </v-col>
@@ -95,12 +97,14 @@ import AppBulkInput from '../atoms/AppBulkInput.vue';
 import AppDatePicker from '../atoms/AppDatePicker.vue';
 import MutuBetonForm from '../molecules/MutuBetonForm.vue';
 import PemasokForm from '../molecules/PemasokForm.vue';
+import PersonilForm from '../molecules/PersonilForm.vue';
 export default {
   components: {
     AppDatePicker,
     AppBulkInput,
     PemasokForm,
     MutuBetonForm,
+    PersonilForm
   },
   props: {
     idTelusur: String

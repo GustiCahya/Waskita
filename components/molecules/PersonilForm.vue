@@ -6,9 +6,16 @@
       @submit.prevent="submit"
     >
       <v-text-field
-        v-model="value"
+        v-model="nama"
         label="Mutu Beton"
-        :rules="rules.value"
+        :rules="rules.nama"
+        outlined
+        dense
+      />
+      <v-text-field
+        v-model="ttd"
+        label="Mutu Beton"
+        :rules="rules.ttd"
         outlined
         dense
       />
@@ -22,13 +29,15 @@
       <template v-slot:default>
         <thead>
           <tr>
-            <th class="text-left">Mutu Beton</th>
+            <th class="text-left">Nama</th>
+            <th class="text-left">TTD</th>
             <th class="text-left">Aksi</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(item, idx) in items" :key="item._id">
-            <td>{{ item.value }}</td>
+            <td>{{ item.nama }}</td>
+            <td>{{ item.ttd }}</td>
             <td>
               <v-btn color="yellow darken-3" icon @click="select(item)">
                 <v-icon>mdi-pencil</v-icon>
@@ -51,9 +60,11 @@ export default {
   },
   data() {
     return {
-      value: "",
+      nama: "",
+      ttd: "",
       rules: {
-        value: [(v) => !!v || "Harap diisi"],
+        nama: [(v) => !!v || "Harap diisi"],
+        ttd: [(v) => !!v || "Harap diisi"],
       },
       id: undefined,
       form: false,
@@ -64,7 +75,8 @@ export default {
       this.$refs.form.validate();
       if (!this.form) return;
       const send = {
-        value: this.value,
+        nama: this.nama,
+        ttd: this.ttd,
       };
       if (!this.id) {
         // if adding
@@ -76,20 +88,23 @@ export default {
       } else {
         // if editing
         const idx = this.items.findIndex((item) => item._id === this.id);
-        this.items[idx].value = send.value;
+        this.items[idx].nama = send.nama;
+        this.items[idx].ttd = send.ttd;
       }
       this.clearInput();
     },
     select(item) {
       this.id = item._id;
-      this.value = item.value;
+      this.nama = item.nama;
+      this.ttd = item.ttd;
     },
     remove(idx) {
       this.items.splice(idx, 1);
       this.clearInput();
     },
     clearInput() {
-      this.value = "";
+      this.nama = "";
+      this.ttd = "";
       this.id = undefined;
       this.$refs.form.resetValidation();
     },
