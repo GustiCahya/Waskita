@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 
 const TelusurBahanMasuk = new mongoose.Schema(
   {
-    _id: { type: String }, // nomor identitas
+    _id: { type: String },
     idTelusur: { type: String },
+    no: { type: String },
     noIzin: { type: String },
     tanggalMasuk: { type: Date },
     pemasok: [

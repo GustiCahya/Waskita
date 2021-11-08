@@ -4,6 +4,7 @@ const TelusurHasilTest = new mongoose.Schema(
   {
     _id: { type: String }, // nomor identitas
     idTelusur: { type: String },
+    no: { type: String },
     hasilTest: [
       {
         _id: { type: String },

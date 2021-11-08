@@ -6,8 +6,8 @@
         <v-row>
           <v-col cols="12" md="6" class="py-0">
             <v-text-field
-              v-model="id"
-              :rules="rules.id"
+              v-model="no"
+              :rules="rules.no"
               label="No. Formulir"
               placeholder="No. Formulir"
               outlined
@@ -94,7 +94,7 @@
       <v-card-actions>
         <v-spacer />
         <v-btn type="submit" color="blue darken-3" nuxt :loading="loadingGenerate">
-          Generate
+          {{ !localId ? "Generate" : "Edit" }}
         </v-btn>
         <v-spacer />
       </v-card-actions>
@@ -123,7 +123,8 @@ export default {
   data() {
     return {
       // form
-      id: "",
+      localId: "",
+      no: "",
       noIzin: "",
       tanggalMasuk: null,
       pemasok: [],
@@ -131,7 +132,7 @@ export default {
       mutuBeton: [],
       personil: [],
       rules: {
-        id: [(v) => !!v || "Harap diisi"],
+        no: [(v) => !!v || "Harap diisi"],
         noIzin: [(v) => !!v || "Harap diisi"],
         tanggalMasuk: [(v) => !!v || "Harap diisi"],
         pemasok: [(v) => v.length >= 1 || "Harap diisi"],
@@ -151,6 +152,48 @@ export default {
     display() {
       return `${this.items.length} ${this.label}`;
     },
+  },
+  async mounted() {
+    // fetch telusur data
+    const id = this.$route.query.id;
+    if (id) {
+      try {
+        const result = await this.$axios
+          .get("/api/Telusur/get", {
+            params: {
+              jsonQuery: JSON.stringify({
+                _id: id,
+                pipeline: [
+                  {
+                    $lookup: {
+                      from: "TelusurBahanMasuk",
+                      localField: "idTbm",
+                      foreignField: "_id",
+                      as: "tbm"
+                    }
+                  }
+                ]
+              }),
+            },
+          })
+          .then((res) => res?.data?.result);
+        if (result.length >= 1) {
+          const item = result?.[0]?.tbm?.[0];
+          if(!item) return;
+          this.localId = item._id;
+          this.no = item.no;
+          this.noIzin = item.noIzin;
+          this.tanggalMasuk = item.tanggalMasuk;
+          this.pemasok = item.pemasok;
+          this.lokasiPengecoran = item.lokasiPengecoran;
+          this.mutuBeton = item.mutuBeton;
+          this.personil = item.personil;
+          this.items = item.items;
+        }
+      } catch (err) {
+        this.$swal(err?.response?.data || err?.message, "", "error");
+      }
+    }
   },
   methods: {
     async generate() {
@@ -174,7 +217,7 @@ export default {
       this.loadingGenerate = true;
       try {
         const sendData = {
-          _id: this.id,
+          no: this.no,
           idTelusur: this.idTelusur,
           noIzin: this.noIzin,
           tanggalMasuk: this.tanggalMasuk,
@@ -184,10 +227,28 @@ export default {
           personil: this.personil,
           items: this.items
         };
-        const result = await this.$axios
-          .post("/api/TelusurBahanMasuk/create", sendData)
+        let result;
+        if(!this.localId){
+          // if added
+          result = await this.$axios
+            .post("/api/TelusurBahanMasuk/create", sendData)
+            .then((res) => res?.data?.result);
+        }else{
+          // if edit
+          result = await this.$axios
+            .patch("/api/TelusurBahanMasuk/update", {
+              _id: this.localId,
+              ...sendData
+            })
+            .then((res) => res?.data?.result);
+        }
+        this.localId = result._id;
+        await this.$axios
+          .patch("/api/Telusur/update", {
+            _id: this.idTelusur,
+            idTbm: this.localId
+          })
           .then((res) => res?.data?.result);
-        console.log(result);
         this.$swal("Berhasil", "", "success");
       } catch (err) {
         this.$swal(err?.response?.data || err?.message, "", "error");
