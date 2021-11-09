@@ -91,12 +91,32 @@
         <!-- items -->
         <tbm-items-form :items="items" />
       </v-card-text>
-      <v-card-actions>
-        <v-spacer />
-        <v-btn type="submit" color="blue darken-3" nuxt :loading="loadingGenerate">
-          {{ !localId ? "Generate" : "Edit" }}
-        </v-btn>
-        <v-spacer />
+      <v-card-actions class="d-block">
+        <div class="d-flex justify-center" style="width:100%;">
+          <v-btn
+            type="submit"
+            color="blue darken-3"
+            nuxt
+            :loading="loadingGenerate"
+          >
+            {{ !localId ? "Generate" : "Edit" }}
+          </v-btn>
+        </div>
+        <div v-if="localId" class="d-flex justify-center mt-3" style="width:100%;">
+          <v-btn
+            color="grey darken-3"
+            nuxt
+            @click="redirectPrint"
+          >
+          <v-icon
+            left
+            dark
+          >
+            mdi-printer
+          </v-icon>
+            Printout
+          </v-btn>
+        </div>
       </v-card-actions>
     </v-form>
   </div>
@@ -107,7 +127,7 @@ import AppDatePicker from "../atoms/AppDatePicker.vue";
 import MutuBetonForm from "../molecules/MutuBetonForm.vue";
 import PemasokForm from "../molecules/PemasokForm.vue";
 import PersonilForm from "../molecules/PersonilForm.vue";
-import TbmItemsForm from '../molecules/TbmItemsForm.vue';
+import TbmItemsForm from "../molecules/TbmItemsForm.vue";
 export default {
   components: {
     AppDatePicker,
@@ -169,17 +189,17 @@ export default {
                       from: "TelusurBahanMasuk",
                       localField: "idTbm",
                       foreignField: "_id",
-                      as: "tbm"
-                    }
-                  }
-                ]
+                      as: "tbm",
+                    },
+                  },
+                ],
               }),
             },
           })
           .then((res) => res?.data?.result);
         if (result.length >= 1) {
           const item = result?.[0]?.tbm?.[0];
-          if(!item) return;
+          if (!item) return;
           this.localId = item._id;
           this.no = item.no;
           this.noIzin = item.noIzin;
@@ -205,7 +225,7 @@ export default {
           behavior: "smooth",
         });
         return;
-      };
+      }
       if (this.items.length < 1) {
         this.$swal("Harap isi detail minimal satu", "", "warning");
         window.scroll({
@@ -213,7 +233,7 @@ export default {
           behavior: "smooth",
         });
         return;
-      };
+      }
       this.loadingGenerate = true;
       try {
         const sendData = {
@@ -225,20 +245,20 @@ export default {
           lokasiPengecoran: this.lokasiPengecoran,
           mutuBeton: this.mutuBeton,
           personil: this.personil,
-          items: this.items
+          items: this.items,
         };
         let result;
-        if(!this.localId){
+        if (!this.localId) {
           // if added
           result = await this.$axios
             .post("/api/TelusurBahanMasuk/create", sendData)
             .then((res) => res?.data?.result);
-        }else{
+        } else {
           // if edit
           result = await this.$axios
             .patch("/api/TelusurBahanMasuk/update", {
               _id: this.localId,
-              ...sendData
+              ...sendData,
             })
             .then((res) => res?.data?.result);
         }
@@ -246,7 +266,7 @@ export default {
         await this.$axios
           .patch("/api/Telusur/update", {
             _id: this.idTelusur,
-            idTbm: this.localId
+            idTbm: this.localId,
           })
           .then((res) => res?.data?.result);
         this.$swal("Berhasil", "", "success");
@@ -255,6 +275,9 @@ export default {
       }
       this.loadingGenerate = false;
     },
+    redirectPrint() {
+      window.open(`print/tbm?id=${this.localId}`, "_blank");
+    }
   },
 };
 </script>
