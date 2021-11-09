@@ -1,10 +1,6 @@
 <template>
   <div>
-    <v-form
-      ref="form"
-      v-model="form"
-      @submit.prevent="submit"
-    >
+    <v-form ref="form" v-model="form" @submit.prevent="submit">
       <v-text-field
         v-model="value"
         label="Mutu Beton"
@@ -13,6 +9,14 @@
         dense
       />
       <div class="d-flex justify-end mb-4">
+        <v-btn
+          v-if="id"
+          class="text-right mx-2"
+          color="grey darken-2"
+          @click="clearInput"
+        >
+          Batal
+        </v-btn>
         <v-btn type="submit" class="text-right" color="primary">
           {{ !id ? "Tambah" : "Edit" }}
         </v-btn>
@@ -47,7 +51,7 @@
 import { v4 as uuidv4 } from "uuid";
 export default {
   props: {
-    items: Array
+    items: Array,
   },
   data() {
     return {

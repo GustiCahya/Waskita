@@ -1,10 +1,6 @@
 <template>
   <div>
-    <v-form
-      ref="form"
-      v-model="form"
-      @submit.prevent="submit"
-    >
+    <v-form ref="form" v-model="form" @submit.prevent="submit">
       <v-text-field
         v-model="nama"
         label="Nama"
@@ -12,14 +8,24 @@
         outlined
         dense
       />
-      <v-text-field
+      <v-file-input
         v-model="ttd"
-        label="TTD"
         :rules="rules.ttd"
+        accept="image/png, image/jpeg, image/bmp"
+        label="TTD (max: 3mb)"
+        prepend-icon="mdi-image"
         outlined
         dense
-      />
+      ></v-file-input>
       <div class="d-flex justify-end mb-4">
+        <v-btn
+          v-if="id"
+          class="text-right mx-2"
+          color="grey darken-2"
+          @click="clearInput"
+        >
+          Batal
+        </v-btn>
         <v-btn type="submit" class="text-right" color="primary">
           {{ !id ? "Tambah" : "Edit" }}
         </v-btn>
@@ -37,7 +43,9 @@
         <tbody>
           <tr v-for="(item, idx) in items" :key="item._id">
             <td>{{ item.nama }}</td>
-            <td>{{ item.ttd }}</td>
+            <td>
+              <v-img max-width="30" :src="item.ttd"></v-img>
+            </td>
             <td>
               <v-btn color="yellow darken-3" icon @click="select(item)">
                 <v-icon>mdi-pencil</v-icon>
@@ -54,29 +62,34 @@
 </template>
 <script>
 import { v4 as uuidv4 } from "uuid";
+import toBase64 from "~/static/utils/toBase64";
 export default {
   props: {
-    items: Array
+    items: Array,
   },
   data() {
     return {
       nama: "",
-      ttd: "",
+      ttd: {},
       rules: {
         nama: [(v) => !!v || "Harap diisi"],
-        ttd: [(v) => !!v || "Harap diisi"],
+        ttd: [
+          (v) => !!v || "Harap diisi",
+          (v) => v?.size < 3000000 || "Harus kurang dari 3MB!",
+        ],
       },
       id: undefined,
       form: false,
     };
   },
   methods: {
-    submit() {
+    async submit() {
       this.$refs.form.validate();
       if (!this.form) return;
+      const encodedImg = await toBase64(this.ttd);
       const send = {
         nama: this.nama,
-        ttd: this.ttd,
+        ttd: encodedImg,
       };
       if (!this.id) {
         // if adding
@@ -96,7 +109,6 @@ export default {
     select(item) {
       this.id = item._id;
       this.nama = item.nama;
-      this.ttd = item.ttd;
     },
     remove(idx) {
       this.items.splice(idx, 1);
@@ -104,7 +116,7 @@ export default {
     },
     clearInput() {
       this.nama = "";
-      this.ttd = "";
+      this.ttd = {};
       this.id = undefined;
       this.$refs.form.resetValidation();
     },

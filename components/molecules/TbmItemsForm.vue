@@ -93,10 +93,17 @@
               dense
             />
           </v-col>
-          <v-col cols="12" md="6" class="py-0">
-          </v-col>
+          <v-col cols="12" md="6" class="py-0"> </v-col>
         </v-row>
         <div class="d-flex justify-end mb-4">
+          <v-btn
+            v-if="id"
+            class="text-right mx-2"
+            color="grey darken-2"
+            @click="clearInput"
+          >
+            Batal
+          </v-btn>
           <v-btn type="submit" class="text-right" color="primary">
             {{ !id ? "Tambah" : "Edit" }}
           </v-btn>
@@ -132,10 +139,10 @@
 </template>
 <script>
 import { v4 as uuidv4 } from "uuid";
-import AppTimePicker from '../atoms/AppTimePicker.vue';
+import AppTimePicker from "../atoms/AppTimePicker.vue";
 export default {
   components: {
-    AppTimePicker
+    AppTimePicker,
   },
   props: {
     items: Array,
@@ -156,23 +163,26 @@ export default {
         noDocket: [(v) => !!v || "Harap diisi"],
         jamKeluar: [
           (v) => !!v || "Harap diisi",
-          (v) => /^\d\d:\d\d$/gi.test(v) || "Harus berupa jam (contoh: 11:31)"
+          (v) => /^\d\d:\d\d$/gi.test(v) || "Harus berupa jam (contoh: 11:31)",
         ],
         jamDituang: [
           (v) => !!v || "Harap diisi",
-          (v) => /^\d\d:\d\d$/gi.test(v) || "Harus berupa jam (contoh: 11:31)"
+          (v) => /^\d\d:\d\d$/gi.test(v) || "Harus berupa jam (contoh: 11:31)",
         ],
         volAktual: [
           (v) => !!v || "Harap diisi",
-          (v) => /^\d*\.?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16.5)"
+          (v) =>
+            /^\d*\.?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16.5)",
         ],
         volKumulatif: [
           (v) => !!v || "Harap diisi",
-          (v) => /^\d*\.?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16.5)"
+          (v) =>
+            /^\d*\.?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16.5)",
         ],
         tempMasuk: [],
         slumpBeton: [
-          (v) => /^\d*\.?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16.5)"
+          (v) =>
+            /^\d*\.?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16.5)",
         ],
         syaratSlump: [(v) => !!v || "Harap diisi"],
       },
@@ -243,7 +253,7 @@ export default {
       this.volKumulatif = null;
       this.tempMasuk = "";
       this.slumpBeton = "";
-    //   this.syaratSlump = "";
+      //   this.syaratSlump = "";
       this.$refs.form.resetValidation();
     },
   },

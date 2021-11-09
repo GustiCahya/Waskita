@@ -20,6 +20,14 @@
         dense
       />
       <div class="d-flex justify-end mb-4">
+        <v-btn
+          v-if="idPemasok"
+          class="text-right mx-2"
+          color="grey darken-2"
+          @click="clearInputPemasok"
+        >
+          Batal
+        </v-btn>
         <v-btn type="submit" class="text-right" color="primary">
           {{ !idPemasok ? "Tambah" : "Edit" }}
         </v-btn>
@@ -56,7 +64,7 @@
 import { v4 as uuidv4 } from "uuid";
 export default {
   props: {
-    items: Array
+    items: Array,
   },
   data() {
     return {
