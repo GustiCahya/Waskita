@@ -3,15 +3,16 @@
     <v-card-title>
       Telusur Bahan Masuk
       <v-spacer />
-      <v-btn color="grey darken-3" nuxt>
+      <v-btn color="grey darken-3" nuxt @click="print">
         <v-icon left dark> mdi-printer </v-icon>
         Print
       </v-btn>
     </v-card-title>
-    <v-card-text>
+    <v-card-text class="white" style="overflow: scroll">
       <div
+        id="printPaper"
         class="white black--text pa-5"
-        style="word-wrap: break-word; overflow: scroll"
+        style="word-wrap: break-word;"
       >
         <div class="WordSection1">
           <table
@@ -2537,13 +2538,13 @@
                     line-height: normal;
                   "
                 >
-                  <span lang="EN-US"
+                  <!-- <span lang="EN-US"
                     ><img
                       id="Picture 13324"
                       width="61"
                       height="50"
                       :src="require('~/static/assets/tbm/image002.png')"
-                  /></span>
+                  /></span> -->
                 </p>
               </td>
               <td style="border: none; padding: 0cm 0cm 0cm 0cm" width="1">
@@ -11561,6 +11562,11 @@ export default {
   mounted() {
     console.log("testing");
   },
+  methods: {
+    print() {
+      alert("print");
+    }
+  }
 };
 </script>
 <style scoped>
