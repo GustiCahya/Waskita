@@ -44,7 +44,7 @@
           <tr v-for="(item, idx) in items" :key="item._id">
             <td>{{ item.nama }}</td>
             <td>
-              <v-img max-width="30" :src="item.ttd"></v-img>
+              <v-img class="white rounded-sm" max-width="30" :src="item.ttd"></v-img>
             </td>
             <td>
               <v-btn color="yellow darken-3" icon @click="select(item)">

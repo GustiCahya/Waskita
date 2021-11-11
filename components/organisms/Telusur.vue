@@ -64,7 +64,7 @@
           :loading="loadingSubmit"
           @click="submitTelusur"
         >
-          {{ !idTelusur ? "Submit" : "Edit" }}
+          {{ !idTelusur ? "Generate" : "Edit" }}
         </v-btn>
         <v-spacer />
       </v-card-actions>

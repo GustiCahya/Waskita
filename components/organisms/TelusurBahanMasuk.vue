@@ -138,22 +138,28 @@
             <v-card class="mt-3" color="grey darken-4">
               <h5 class="pa-3">Dibuat oleh</h5>
               <div class="px-3 pt-0 pb-5">
-                <v-text-field
-                  v-model="dibuatOlehLokasi"
-                  :rules="rules.dibuatOlehLokasi"
-                  label="Lokasi"
-                  placeholder="Lokasi"
-                  outlined
-                  dense
-                />
-                <app-date-picker
-                  v-model="dibuatOlehTanggal"
-                  :rules="rules.dibuatOlehTanggal"
-                  label="Tanggal"
-                  placeholder="Tanggal"
-                  outlined
-                  dense
-                />
+                <v-row>
+                  <v-col cols="12" md="6" class="pb-0">
+                    <v-text-field
+                      v-model="dibuatOlehLokasi"
+                      :rules="rules.dibuatOlehLokasi"
+                      label="Lokasi"
+                      placeholder="Lokasi"
+                      outlined
+                      dense
+                    />
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <app-date-picker
+                      v-model="dibuatOlehTanggal"
+                      :rules="rules.dibuatOlehTanggal"
+                      label="Tanggal"
+                      placeholder="Tanggal"
+                      outlined
+                      dense
+                    />
+                  </v-col>
+                </v-row>
                 <v-text-field
                   v-model="dibuatOlehJabatan"
                   :rules="rules.dibuatOlehJabatan"
@@ -195,7 +201,7 @@
         </v-row>
       </v-card-text>
       <v-card-actions class="d-block">
-        <div class="d-flex justify-center" style="width:100%;">
+        <div class="d-flex justify-center" style="width: 100%">
           <v-btn
             type="submit"
             color="blue darken-3"
@@ -205,18 +211,13 @@
             {{ !localId ? "Generate" : "Edit" }}
           </v-btn>
         </div>
-        <div v-if="localId" class="d-flex justify-center mt-3" style="width:100%;">
-          <v-btn
-            color="grey darken-3"
-            nuxt
-            @click="redirectPrint"
-          >
-          <v-icon
-            left
-            dark
-          >
-            mdi-printer
-          </v-icon>
+        <div
+          v-if="localId"
+          class="d-flex justify-center mt-3"
+          style="width: 100%"
+        >
+          <v-btn color="grey darken-3" nuxt @click="redirectPrint">
+            <v-icon left dark> mdi-printer </v-icon>
             Printout
           </v-btn>
         </div>
@@ -265,14 +266,16 @@ export default {
         mengetahuiJabatan: [(v) => !!v || "Harap diisi"],
         mengetahuiNama: [(v) => !!v || "Harap diisi"],
         mengetahuiTtdFile: [
-          (v) => v?.size ? v?.size < 3000000 || "Harus kurang dari 3MB!" : undefined,
+          (v) =>
+            v?.size ? v?.size < 3000000 || "Harus kurang dari 3MB!" : undefined,
         ],
         dibuatOlehLokasi: [(v) => !!v || "Harap diisi"],
         dibuatOlehTanggal: [(v) => !!v || "Harap diisi"],
         dibuatOlehJabatan: [(v) => !!v || "Harap diisi"],
         dibuatOlehNama: [(v) => !!v || "Harap diisi"],
         dibuatOlehTtdFile: [
-          (v) => v?.size ? v?.size < 3000000 || "Harus kurang dari 3MB!" : undefined,
+          (v) =>
+            v?.size ? v?.size < 3000000 || "Harus kurang dari 3MB!" : undefined,
         ],
       },
       // items
@@ -392,14 +395,14 @@ export default {
           mengetahui: {
             nama: this.mengetahuiNama,
             jabatan: this.mengetahuiJabatan,
-            ttd: this.mengetahuiTtd
+            ttd: this.mengetahuiTtd,
           },
           dibuatOleh: {
             lokasi: this.dibuatOlehLokasi,
             tanggal: this.dibuatOlehTanggal,
             nama: this.dibuatOlehNama,
             jabatan: this.dibuatOlehJabatan,
-            ttd: this.dibuatOlehTtd
+            ttd: this.dibuatOlehTtd,
           },
         };
         let result;
@@ -432,7 +435,7 @@ export default {
     },
     redirectPrint() {
       window.open(`print/tbm?id=${this.idTelusur}`, "_blank");
-    }
+    },
   },
 };
 </script>

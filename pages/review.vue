@@ -1,14 +1,268 @@
 <template>
-  <v-row>
-    <v-col class="text-center">
-      <blockquote class="blockquote">
-        &#8220;Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, autem!&#8221;
-        <footer>
-          <small>
-            <em>&mdash;John Johnson</em>
-          </small>
-        </footer>
-      </blockquote>
-    </v-col>
-  </v-row>
+  <div>
+    <!-- Filter -->
+    <v-row justify="center">
+      <v-col cols="12" md="8">
+        <v-card class="text-center">
+          <v-card-text class="text-center">
+            <h4
+              class="text-h4 mb-5 text-left text--primary font-weight-medium"
+            >
+              Filter Telusur
+            </h4>
+            <v-form
+              ref="filterTelusur"
+              v-model="filterTelusurValid"
+              @submit.prevent="getTelusur"
+            >
+              <v-text-field
+                v-model.trim="filter.businessUnit"
+                label="Bisnis Unit"
+                dense
+                outlined
+              />
+              <v-text-field
+                v-model.trim="filter.proyek"
+                label="Proyek"
+                dense
+                outlined
+              />
+              <app-date-picker
+                v-model="filter.dateStart"
+                label="Dari Tanggal (Tanggal Dibuat)"
+                dense
+                outlined
+              />
+              <app-date-picker
+                v-model="filter.dateEnd"
+                label="Sampai Tanggal (Tanggal Dibuat)"
+                dense
+                outlined
+              />
+              <v-btn
+                type="submit"
+                class="mr-0"
+                color="primary"
+                min-width="100"
+                rounded
+                :loading="isLoading"
+              >
+                Filter
+              </v-btn>
+            </v-form>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-card class="my-4 pt-8 pb-4">
+      <div class="cards mx-5">
+        <p v-if="items.length <= 0 && !isLoading" class="text-center mt-3">
+          Kosong
+        </p>
+        <v-row v-else>
+          <v-col v-for="(item, i) in items" :key="i" cols="12" sm="6">
+            <v-card class="grey darken-4">
+              <v-card-text class="pb-0 white--text">
+                <v-row>
+                  <v-col class="py-0 text-center mb-5" cols="12">
+                    <h2 class="pt-4 pb-2">{{ item.businessUnit }}</h2>
+                    <h4 class="font-weight-medium">{{ item.proyek }}</h4>
+                  </v-col>
+                  <v-col class="py-0 text-left " cols="12">
+                    <div>
+                      <h4 class="font-weight-medium ma-0 pa-0">
+                        Telusur Bahan Masuk :
+                      </h4>
+                      <h5 class="ma-0 pa-0 mb-2 ml-2">
+                        {{ item.tbmNo }}
+                      </h5>
+                    </div>
+                  </v-col>
+                  <v-col class="py-0 text-left " cols="12">
+                    <div>
+                      <h4 class="font-weight-medium ma-0 pa-0">
+                        Telusur Benda Uji :
+                      </h4>
+                      <h5 class="text-caption ma-0 pa-0 mb-2 ml-2">
+                        {{ item.tbuNo }}
+                      </h5>
+                    </div>
+                  </v-col>
+                  <v-col class="py-0 text-left " cols="12">
+                    <div>
+                      <h4 class="font-weight-medium ma-0 pa-0">
+                        Telusur Hasil Test :
+                      </h4>
+                      <h5 class="text-caption ma-0 pa-0 mb-2 ml-2">
+                        {{ item.thtNo }}
+                      </h5>
+                    </div>
+                  </v-col>
+                  <v-col class="py-0 text-left " cols="12">
+                    <div>
+                      <h4 class="font-weight-medium ma-0 pa-0">
+                        Telusur Proses :
+                      </h4>
+                      <h5 class="text-caption ma-0 pa-0 mb-2 ml-2">
+                        {{ item.tpNo }}
+                      </h5>
+                    </div>
+                  </v-col>
+                </v-row>
+                <v-divider class="my-3" />
+                <v-row class="d-flex py-1 px-3">
+                  <div class="d-block text-left">
+                    <h6 class="pa-0 ma-0">Tanggal Dibuat :</h6>
+                  </div>
+                  <v-spacer></v-spacer>
+                  <div class="d-block text-right">
+                    <h6 class="pa-0 ma-0">
+                      {{ $moment(item._createdDate).fromNow() }}
+                    </h6>
+                  </div>
+                </v-row>
+                <v-divider class="my-3" />
+              </v-card-text>
+              <v-card-actions style="padding-top:0;">
+                <v-spacer />
+                <v-btn icon color="grey lighten-2" @click.native="() => openTelusur(item)">
+                  <v-icon>mdi-monitor</v-icon>
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </div>
+      <div v-if="isLoading" class="d-flex justify-center">
+        <v-progress-circular
+          class="my-4"
+          indeterminate
+          color="primary"
+          size="30"
+        />
+      </div>
+      <div class="text-center pt-3 pb-1">
+        <v-pagination v-model="page" :length="pagesLength" :total-visible="7" />
+      </div>
+    </v-card>
+  </div>
 </template>
+<script>
+import AppDatePicker from "~/components/atoms/AppDatePicker.vue";
+export default {
+  components: { AppDatePicker },
+  data() {
+    return {
+      filter: {
+        businessUnit: "",
+        proyek: "",
+        dateStart: null,
+        dateEnd: null,
+      },
+      items: [],
+      filterTelusurValid: false,
+      isLoading: true,
+      page: 1,
+      limit: 10,
+      pagesLength: 1,
+    };
+  },
+  mounted() {
+    // adjust date
+    const date = new Date();
+    const y = date.getFullYear();
+    const m = date.getMonth();
+    const startMonth = new Date(y, m, 1);
+    const endMonth = new Date(y, m + 1, 0);
+    this.filter.dateStart = startMonth;
+    this.filter.dateEnd = endMonth;
+    // fetch data
+    this.getTelusur();
+  },
+  methods: {
+    async getTelusur() {
+      this.$refs.filterTelusur.validate();
+      if (!this.filterTelusurValid) return;
+      this.isLoading = true;
+      try {
+        this.items = [];
+        const filterMongo = {
+          businessUnit: { $regex: this.filter?.businessUnit || "", $options: "i" },
+          proyek: { $regex: this.filter?.proyek || "", $options: "i" },
+          _createdDate: undefined,
+          pipeline: [
+            {
+              $sort: { _createdDate: -1 },
+            },
+            {
+              $lookup: {
+                from: "TelusurBahanMasuk",
+                localField: "idTbm",
+                foreignField: "_id",
+                as: "tbm",
+              },
+            },
+            {
+              $lookup: {
+                from: "TelusurBendaUji",
+                localField: "idTbu",
+                foreignField: "_id",
+                as: "tbu",
+              },
+            },
+            {
+              $lookup: {
+                from: "TelusurHasilTest",
+                localField: "idTht",
+                foreignField: "_id",
+                as: "tht",
+              },
+            },
+            {
+              $lookup: {
+                from: "TelusurProses",
+                localField: "idTp",
+                foreignField: "_id",
+                as: "tp",
+              },
+            },
+          ],
+        };
+        // if (this.filter?.dateStart) {
+        //   filterMongo._createdDate = {
+        //     $gte: this.filter?.dateStart,
+        //     $lte: this.filter?.dateEnd,
+        //   };
+        // }
+        const data = await this.$axios.get(
+          `/api/Telusur/get`,
+          {
+            params: {
+              jsonQuery: JSON.stringify(filterMongo),
+              page: this.page,
+              limit: this.limit,
+            },
+          }
+        ).then((res) => res?.data || {});
+        this.pagesLength = data.pagesLength;
+        this.items = data.result.map((item) => {
+          return {
+            ...item,
+            tbmNo: item?.tbm?.[0]?.no || "Belum ada",
+            tbuNo: item?.tbu?.[0]?.no || "Belum ada",
+            thtNo: item?.tht?.[0]?.no || "Belum ada",
+            tpNo: item?.tp?.[0]?.no || "Belum ada",
+          };
+        });
+        console.log(this.items);
+      } catch (err) {
+        this.$swal(err?.response?.data?.message || err?.message);
+      }
+      this.isLoading = false;
+    },
+    openTelusur(item){
+      window.open(`/?id=${item._id}`);
+    }
+  },
+};
+</script>
