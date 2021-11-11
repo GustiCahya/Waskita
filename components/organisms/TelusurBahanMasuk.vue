@@ -94,40 +94,102 @@
         <v-row>
           <v-col cols="12" md="6">
             <v-card class="mt-3" color="grey darken-4">
-              <h5 class="pa-2">Mengetahui</h5>
-              <v-text-field
-                v-model="mengetahuiJabatan"
-                :rules="rules.mengetahuiJabatan"
-                label="Jabatan"
-                placeholder="Jabatan"
-                outlined
-                dense
-              />
-              <v-text-field
-                v-model="mengetahuiNama"
-                :rules="rules.mengetahuiNama"
-                label="Nama"
-                placeholder="Nama"
-                outlined
-                dense
-              />
-              <v-file-input
-                v-model="mengetahuiTtd"
-                :rules="rules.mengetahuiTtd"
-                accept="image/png, image/jpeg, image/bmp"
-                label="TTD (max: 3mb)"
-                prepend-icon="mdi-image"
-                outlined
-                dense
-              ></v-file-input>
+              <h5 class="pa-3">Mengetahui</h5>
+              <div class="px-3 pt-0 pb-5">
+                <v-text-field
+                  v-model="mengetahuiJabatan"
+                  :rules="rules.mengetahuiJabatan"
+                  label="Jabatan"
+                  placeholder="Jabatan"
+                  outlined
+                  dense
+                />
+                <v-text-field
+                  v-model="mengetahuiNama"
+                  :rules="rules.mengetahuiNama"
+                  label="Nama"
+                  placeholder="Nama"
+                  outlined
+                  dense
+                />
+                <v-file-input
+                  v-model="mengetahuiTtdFile"
+                  :rules="rules.mengetahuiTtdFile"
+                  accept="image/png, image/jpeg, image/bmp"
+                  label="TTD (max: 3mb)"
+                  prepend-icon="mdi-image"
+                  outlined
+                  dense
+                ></v-file-input>
+                <div class="d-flex justify-center">
+                  <v-img
+                    v-if="mengetahuiTtd"
+                    class="white rounded-sm"
+                    max-width="150"
+                    max-height="150"
+                    contain
+                    :src="mengetahuiTtd"
+                  />
+                </div>
+              </div>
             </v-card>
           </v-col>
           <v-col cols="12" md="6">
             <v-card class="mt-3" color="grey darken-4">
-              <h5 class="pa-2">Dibuat oleh</h5>
-              <v-form ref="formDibuatOleh" v-model="formDibuatOleh">
-
-              </v-form>
+              <h5 class="pa-3">Dibuat oleh</h5>
+              <div class="px-3 pt-0 pb-5">
+                <v-text-field
+                  v-model="dibuatOlehLokasi"
+                  :rules="rules.dibuatOlehLokasi"
+                  label="Lokasi"
+                  placeholder="Lokasi"
+                  outlined
+                  dense
+                />
+                <app-date-picker
+                  v-model="dibuatOlehTanggal"
+                  :rules="rules.dibuatOlehTanggal"
+                  label="Tanggal"
+                  placeholder="Tanggal"
+                  outlined
+                  dense
+                />
+                <v-text-field
+                  v-model="dibuatOlehJabatan"
+                  :rules="rules.dibuatOlehJabatan"
+                  label="Jabatan"
+                  placeholder="Jabatan"
+                  outlined
+                  dense
+                />
+                <v-text-field
+                  v-model="dibuatOlehNama"
+                  :rules="rules.dibuatOlehNama"
+                  label="Nama"
+                  placeholder="Nama"
+                  outlined
+                  dense
+                />
+                <v-file-input
+                  v-model="dibuatOlehTtdFile"
+                  :rules="rules.dibuatOlehTtdFile"
+                  accept="image/png, image/jpeg, image/bmp"
+                  label="TTD (max: 3mb)"
+                  prepend-icon="mdi-image"
+                  outlined
+                  dense
+                ></v-file-input>
+                <div class="d-flex justify-center">
+                  <v-img
+                    v-if="dibuatOlehTtd"
+                    class="white darken-2 rounded-sm"
+                    max-width="150"
+                    max-height="150"
+                    contain
+                    :src="dibuatOlehTtd"
+                  />
+                </div>
+              </div>
             </v-card>
           </v-col>
         </v-row>
@@ -200,9 +262,33 @@ export default {
         lokasiPengecoran: [(v) => !!v || "Harap diisi"],
         mutuBeton: [(v) => v.length >= 1 || "Harap diisi"],
         personil: [(v) => v.length >= 1 || "Harap diisi"],
+        mengetahuiJabatan: [(v) => !!v || "Harap diisi"],
+        mengetahuiNama: [(v) => !!v || "Harap diisi"],
+        mengetahuiTtdFile: [
+          (v) => v?.size ? v?.size < 3000000 || "Harus kurang dari 3MB!" : undefined,
+        ],
+        dibuatOlehLokasi: [(v) => !!v || "Harap diisi"],
+        dibuatOlehTanggal: [(v) => !!v || "Harap diisi"],
+        dibuatOlehJabatan: [(v) => !!v || "Harap diisi"],
+        dibuatOlehNama: [(v) => !!v || "Harap diisi"],
+        dibuatOlehTtdFile: [
+          (v) => v?.size ? v?.size < 3000000 || "Harus kurang dari 3MB!" : undefined,
+        ],
       },
       // items
       items: [],
+      // footer mengetahui
+      mengetahuiJabatan: "QC Officer",
+      mengetahuiNama: "",
+      mengetahuiTtdFile: null,
+      mengetahuiTtd: "",
+      // footer dibuatOleh
+      dibuatOlehLokasi: "Bekasi",
+      dibuatOlehTanggal: new Date(),
+      dibuatOlehJabatan: "SPLEM",
+      dibuatOlehNama: "",
+      dibuatOlehTtdFile: null,
+      dibuatOlehTtd: "",
       // validity form
       form: false,
       // others
@@ -212,6 +298,14 @@ export default {
   computed: {
     display() {
       return `${this.items.length} ${this.label}`;
+    },
+  },
+  watch: {
+    async mengetahuiTtdFile(val) {
+      this.mengetahuiTtd = await this.toBase64(val);
+    },
+    async dibuatOlehTtdFile(val) {
+      this.dibuatOlehTtd = await this.toBase64(val);
     },
   },
   async mounted() {
@@ -287,6 +381,18 @@ export default {
           mutuBeton: this.mutuBeton,
           personil: this.personil,
           items: this.items,
+          mengetahui: {
+            nama: this.mengetahuiNama,
+            jabatan: this.mengetahuiJabatan,
+            ttd: this.mengetahuiTtd
+          },
+          dibuatOleh: {
+            lokasi: this.dibuatOlehLokasi,
+            tanggal: this.dibuatOlehTanggal,
+            nama: this.dibuatOlehNama,
+            jabatan: this.dibuatOlehJabatan,
+            ttd: this.dibuatOlehTtd
+          },
         };
         let result;
         if (!this.localId) {

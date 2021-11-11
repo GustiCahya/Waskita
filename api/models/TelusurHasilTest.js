@@ -46,6 +46,7 @@ const TelusurHasilTest = new mongoose.Schema(
         hasilTekan: { type: Number },
       }
     ],
+    dibuatOleh: Object,
     _createdDate: { type: Date },
     _updatedDate: { type: Date },
   },

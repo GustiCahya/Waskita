@@ -42,6 +42,8 @@ const TelusurBahanMasuk = new mongoose.Schema(
         syaratSlump: { type: String },
       }
     ],
+    mengetahui: Object,
+    dibuatOleh: Object,
     _createdDate: { type: Date },
     _updatedDate: { type: Date },
   },
