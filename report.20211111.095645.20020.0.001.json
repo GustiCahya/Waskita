@@ -1,0 +1,369 @@
+
+{
+  "header": {
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20211111.095645.20020.0.001.json",
+    "dumpEventTime": "2021-11-11T09:56:45Z",
+    "dumpEventTimeStamp": "1636595805078",
+    "processId": 20020,
+    "cwd": "D:\\1. PROJECT\\WaskitaProject\\Waskita",
+    "commandLine": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\1. PROJECT\\WaskitaProject\\Waskita\\node_modules\\.bin\\\\..\\nuxt\\bin\\nuxt.js"
+    ],
+    "nodejsVersion": "v12.0.0",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "12.0.0",
+      "v8": "7.4.288.21-node.16",
+      "uv": "1.28.0",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.38.0",
+      "napi": "4",
+      "llhttp": "1.1.1",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1b",
+      "cldr": "34.0",
+      "icu": "63.1",
+      "tz": "2018e",
+      "unicode": "11.0"
+    },
+    "release": {
+      "name": "node",
+      "headersUrl": "https://nodejs.org/download/release/v12.0.0/node-v12.0.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.0.0/node-v12.0.0.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v12.0.0/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.19043",
+    "osVersion": "Windows 10 Pro",
+    "osMachine": "x86_64",
+    "host": "DESKTOP-4E6GKTQ"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00007ff740fa4f99",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+9161"
+    },
+    {
+      "pc": "0x00007ff740fa8986",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+23990"
+    },
+    {
+      "pc": "0x00007ff740fa7915",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+19781"
+    },
+    {
+      "pc": "0x00007ff74108f852",
+      "symbol": "uv_loop_fork+47890"
+    },
+    {
+      "pc": "0x00007ff7413bc7ae",
+      "symbol": "v8::internal::Parser::ReportMessageAt+206"
+    },
+    {
+      "pc": "0x00007ff74139082a",
+      "symbol": "v8::internal::wasm::StreamingDecoder::Fail+666"
+    },
+    {
+      "pc": "0x00007ff741426c9c",
+      "symbol": "v8::internal::Heap::CreateFillerObjectAt+2972"
+    },
+    {
+      "pc": "0x00007ff74142ea0f",
+      "symbol": "v8::internal::LocalEmbedderHeapTracer::NotifyV8MarkingWorklistWasEmpty+5375"
+    },
+    {
+      "pc": "0x00007ff741425083",
+      "symbol": "v8::internal::Heap::CollectGarbage+1235"
+    },
+    {
+      "pc": "0x00007ff741423784",
+      "symbol": "v8::internal::GCTracer::AddScopeSample+1316"
+    },
+    {
+      "pc": "0x00007ff7414643b3",
+      "symbol": "v8::internal::Factory::NewFillerObject+67"
+    },
+    {
+      "pc": "0x00007ff74178ad06",
+      "symbol": "v8::internal::OptimizingCompileDispatcher::Unblock+116966"
+    },
+    {
+      "pc": "0x00007ff741c23916",
+      "symbol": "v8::internal::NativesCollection<0>::GetScriptsSource+660214"
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 2153164800,
+    "totalCommittedMemory": 2153164800,
+    "usedMemory": 2132794464,
+    "availableMemory": 54123384,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 524288,
+        "committedMemory": 524288,
+        "capacity": 523976,
+        "used": 31712,
+        "available": 492264
+      },
+      "new_space": {
+        "memorySize": 3145728,
+        "committedMemory": 3145728,
+        "capacity": 1571928,
+        "used": 630816,
+        "available": 941112
+      },
+      "old_space": {
+        "memorySize": 1859248128,
+        "committedMemory": 1859248128,
+        "capacity": 1852039672,
+        "used": 1845572088,
+        "available": 6467584
+      },
+      "code_space": {
+        "memorySize": 3833856,
+        "committedMemory": 3833856,
+        "capacity": 3378528,
+        "used": 3378528,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 11538432,
+        "committedMemory": 11538432,
+        "capacity": 8994320,
+        "used": 8994320,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 273670144,
+        "committedMemory": 273670144,
+        "capacity": 273086680,
+        "used": 273086680,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 1204224,
+        "committedMemory": 1204224,
+        "capacity": 1100320,
+        "used": 1100320,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 1571928,
+        "used": 0,
+        "available": 1571928
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 338.718,
+    "kernelCpuSeconds": 19.078,
+    "cpuConsumptionPercent": 24.7267,
+    "maxRss": 2341072896,
+    "pageFaults": {
+      "IORequired": 3107908,
+      "IONotRequired": 0
+    },
+    "fsActivity": {
+      "reads": 9007,
+      "writes": 185
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "=C:": "C:\\",
+    "=D:": "D:\\1. PROJECT\\WaskitaProject\\Waskita",
+    "ALLUSERSPROFILE": "C:\\ProgramData",
+    "ANDROID_HOME": "C:\\Users\\HayoKerja\\AppData\\Local\\Android\\Sdk",
+    "APPDATA": "C:\\Users\\HayoKerja\\AppData\\Roaming",
+    "ChocolateyInstall": "C:\\ProgramData\\chocolatey",
+    "ChocolateyLastPathUpdate": "132511836939341885",
+    "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_37380_CQJCUREARQXHFWXU",
+    "COLORTERM": "truecolor",
+    "CommonProgramFiles": "C:\\Program Files\\Common Files",
+    "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
+    "CommonProgramW6432": "C:\\Program Files\\Common Files",
+    "COMPUTERNAME": "DESKTOP-4E6GKTQ",
+    "ComSpec": "C:\\WINDOWS\\system32\\cmd.exe",
+    "DokanLibrary1": "C:\\Program Files\\Dokan\\Dokan Library-1.4.1\\",
+    "DokanLibrary1_LibraryPath_x64": "C:\\Program Files\\Dokan\\Dokan Library-1.4.1\\lib\\",
+    "DokanLibrary1_LibraryPath_x86": "C:\\Program Files\\Dokan\\Dokan Library-1.4.1\\x86\\lib\\",
+    "DriverData": "C:\\Windows\\System32\\Drivers\\DriverData",
+    "EMULATOR": "C:\\Users\\HayoKerja\\AppData\\Local\\Android\\Sdk\\emulator",
+    "GIT_ASKPASS": "c:\\Users\\HayoKerja\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass.sh",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\HayoKerja",
+    "INIT_CWD": "D:\\1. PROJECT\\WaskitaProject\\Waskita",
+    "JAVA_HOME": "C:\\Program Files\\OpenJDK\\openjdk-8u275-b01",
+    "LANG": "en_US.UTF-8",
+    "LOCALAPPDATA": "C:\\Users\\HayoKerja\\AppData\\Local",
+    "LOGONSERVER": "\\\\DESKTOP-4E6GKTQ",
+    "MOZ_PLUGIN_PATH": "C:\\Program Files (x86)\\Foxit Software\\Foxit Reader\\plugins\\",
+    "NODE": "C:\\Program Files\\nodejs\\node.exe",
+    "NODE_ENV": "development",
+    "npm_config_argv": "{\"remain\":[],\"cooked\":[\"run\",\"start\"],\"original\":[\"start\"]}",
+    "npm_config_bin_links": "true",
+    "npm_config_ignore_optional": "",
+    "npm_config_ignore_scripts": "",
+    "npm_config_init_license": "MIT",
+    "npm_config_init_version": "1.0.0",
+    "npm_config_registry": "https://registry.yarnpkg.com",
+    "npm_config_save_prefix": "^",
+    "npm_config_strict_ssl": "true",
+    "npm_config_user_agent": "yarn/1.22.10 npm/? node/v12.0.0 win32 x64",
+    "npm_config_version_commit_hooks": "true",
+    "npm_config_version_git_message": "v%s",
+    "npm_config_version_git_sign": "",
+    "npm_config_version_git_tag": "true",
+    "npm_config_version_tag_prefix": "v",
+    "npm_config_wrap_output": "",
+    "npm_execpath": "C:\\Users\\HayoKerja\\AppData\\Roaming\\npm\\node_modules\\yarn\\bin\\yarn.js",
+    "npm_lifecycle_event": "dev",
+    "npm_lifecycle_script": "nuxt",
+    "npm_node_execpath": "C:\\Program Files\\nodejs\\node.exe",
+    "npm_package_dependencies_bcryptjs": "^2.4.3",
+    "npm_package_dependencies_core_js": "^3.15.1",
+    "npm_package_dependencies_express": "^4.17.1",
+    "npm_package_dependencies_express_validator": "^6.13.0",
+    "npm_package_dependencies_fawn": "^2.1.5",
+    "npm_package_dependencies_gridfs_stream": "^1.1.1",
+    "npm_package_dependencies_jsonwebtoken": "^8.5.1",
+    "npm_package_dependencies_mongoose": "^6.0.12",
+    "npm_package_dependencies_multer": "^1.4.3",
+    "npm_package_dependencies_multer_gridfs_storage": "^5.0.2",
+    "npm_package_dependencies_nuxt": "^2.15.7",
+    "npm_package_dependencies_nuxt_sweetalert2": "^1.0.0",
+    "npm_package_dependencies_uuid": "^8.3.2",
+    "npm_package_dependencies_vuetify": "^2.5.5",
+    "npm_package_dependencies_v_mask": "^2.3.0",
+    "npm_package_dependencies__nuxtjs_axios": "^5.13.6",
+    "npm_package_dependencies__nuxtjs_moment": "^1.6.1",
+    "npm_package_dependencies__nuxtjs_pwa": "^3.3.5",
+    "npm_package_description": "## Build Setup",
+    "npm_package_devDependencies_babel_core": "7.0.0-bridge.0",
+    "npm_package_devDependencies_babel_jest": "^27.0.5",
+    "npm_package_devDependencies_eslint": "^7.29.0",
+    "npm_package_devDependencies_eslint_plugin_nuxt": "^2.0.0",
+    "npm_package_devDependencies_eslint_plugin_vue": "^7.12.1",
+    "npm_package_devDependencies_jest": "^27.0.5",
+    "npm_package_devDependencies_vue_jest": "^3.0.4",
+    "npm_package_devDependencies__babel_eslint_parser": "^7.14.7",
+    "npm_package_devDependencies__nuxtjs_eslint_config": "^6.0.1",
+    "npm_package_devDependencies__nuxtjs_eslint_module": "^3.0.2",
+    "npm_package_devDependencies__nuxtjs_vuetify": "^1.12.1",
+    "npm_package_devDependencies__vue_test_utils": "^1.2.1",
+    "npm_package_name": "waskita",
+    "npm_package_private": "true",
+    "npm_package_readmeFilename": "README.md",
+    "npm_package_scripts_build": "nuxt build",
+    "npm_package_scripts_dev": "nuxt",
+    "npm_package_scripts_generate": "nuxt generate",
+    "npm_package_scripts_lint": "yarn lint:js",
+    "npm_package_scripts_lint_js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
+    "npm_package_scripts_start": "yarn dev",
+    "npm_package_scripts_test": "jest",
+    "npm_package_type": "module",
+    "npm_package_version": "1.0.0",
+    "NUMBER_OF_PROCESSORS": "4",
+    "NVM_HOME": "C:\\Users\\HayoKerja\\AppData\\Roaming\\nvm",
+    "NVM_SYMLINK": "C:\\Program Files\\nodejs",
+    "OneDrive": "C:\\Users\\HayoKerja\\OneDrive",
+    "OneDriveConsumer": "C:\\Users\\HayoKerja\\OneDrive",
+    "ORIGINAL_XDG_CURRENT_DESKTOP": "undefined",
+    "OS": "Windows_NT",
+    "Path": "C:\\Users\\HAYOKE~1\\AppData\\Local\\Temp\\yarn--1636594357588-0.1024642011456327;D:\\1. PROJECT\\WaskitaProject\\Waskita\\node_modules\\.bin;C:\\Users\\HayoKerja\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;C:\\Program Files\\libexec\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Users\\HAYOKE~1\\AppData\\Local\\Temp\\yarn--1636594357326-0.3160536951440531;D:\\1. PROJECT\\WaskitaProject\\Waskita\\node_modules\\.bin;C:\\Users\\HayoKerja\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;C:\\Users\\HayoKerja\\AppData\\Local\\Yarn\\bin;C:\\Program Files\\libexec\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\node-gyp-bin;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files\\ImageMagick-7.0.11-Q16-HDRI;C:\\Python27\\Scripts\\;C:\\Python27\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\OpenJDK\\openjdk-8u275-b01\\bin;C:\\Users\\HayoKerja\\AppData\\Roaming\\nvm;C:\\Program Files\\nodejs;C:\\Program Files (x86)\\AOMEI Backupper\\AOMEI Backupper 5.7.0;C:\\Program Files\\Docker\\Docker\\resources\\bin;C:\\ProgramData\\DockerDesktop\\version-bin;C:\\Program Files\\MongoDB\\Tools\\100\\bin;C:\\Users\\HayoKerja\\AppData\\Local\\Programs\\Python\\Python37\\Scripts\\;C:\\Users\\HayoKerja\\AppData\\Local\\Programs\\Python\\Python37\\;C:\\Users\\HayoKerja\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\HayoKerja\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\HayoKerja\\AppData\\Local\\Android\\Sdk\\platform-tools;C:\\Users\\HayoKerja\\AppData\\Local\\Android\\Sdk\\emulator;C:\\Program Files (x86)\\Nmap;C:\\Users\\HayoKerja\\AppData\\Roaming\\npm",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JSE;.WSF;.WSH;.MSC;.CPL",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "PROCESSOR_IDENTIFIER": "Intel64 Family 6 Model 78 Stepping 3, GenuineIntel",
+    "PROCESSOR_LEVEL": "6",
+    "PROCESSOR_REVISION": "4e03",
+    "ProgramData": "C:\\ProgramData",
+    "ProgramFiles": "C:\\Program Files",
+    "ProgramFiles(x86)": "C:\\Program Files (x86)",
+    "ProgramW6432": "C:\\Program Files",
+    "PROMPT": "$P$G",
+    "PSModulePath": "C:\\Users\\HayoKerja\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules",
+    "PUBLIC": "C:\\Users\\Public",
+    "SystemDrive": "C:",
+    "SystemRoot": "C:\\WINDOWS",
+    "TEMP": "C:\\Users\\HAYOKE~1\\AppData\\Local\\Temp",
+    "TERM_PROGRAM": "vscode",
+    "TERM_PROGRAM_VERSION": "1.62.0",
+    "TMP": "C:\\Users\\HAYOKE~1\\AppData\\Local\\Temp",
+    "USERDOMAIN": "DESKTOP-4E6GKTQ",
+    "USERDOMAIN_ROAMINGPROFILE": "DESKTOP-4E6GKTQ",
+    "USERNAME": "HayoKerja",
+    "USERPROFILE": "C:\\Users\\HayoKerja",
+    "VBOX_MSI_INSTALL_PATH": "C:\\Program Files\\Oracle\\VirtualBox\\",
+    "VSCODE_GIT_ASKPASS_MAIN": "c:\\Users\\HayoKerja\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass-main.js",
+    "VSCODE_GIT_ASKPASS_NODE": "C:\\Users\\HayoKerja\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
+    "VSCODE_GIT_IPC_HANDLE": "\\\\.\\pipe\\vscode-git-0b46abb4b6-sock",
+    "VUE_ENV": "server",
+    "windir": "C:\\WINDOWS",
+    "YARN_WRAP_OUTPUT": "false",
+    "_applied": "true",
+    "_AXIOS_BASE_URL_": "http://localhost:3000/"
+  },
+  "sharedObjects": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+    "C:\\Program Files\\Avast Software\\Avast\\aswhook.dll",
+    "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+    "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+    "C:\\WINDOWS\\System32\\WS2_32.dll",
+    "C:\\WINDOWS\\System32\\RPCRT4.dll",
+    "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+    "C:\\WINDOWS\\System32\\msvcrt.dll",
+    "C:\\WINDOWS\\System32\\sechost.dll",
+    "C:\\WINDOWS\\System32\\USER32.dll",
+    "C:\\WINDOWS\\System32\\win32u.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+    "C:\\WINDOWS\\System32\\GDI32.dll",
+    "C:\\WINDOWS\\System32\\ucrtbase.dll",
+    "C:\\WINDOWS\\System32\\gdi32full.dll",
+    "C:\\WINDOWS\\System32\\msvcp_win.dll",
+    "C:\\WINDOWS\\System32\\PSAPI.DLL",
+    "C:\\WINDOWS\\System32\\CRYPT32.dll",
+    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\WINDOWS\\System32\\bcrypt.dll",
+    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
+    "C:\\WINDOWS\\System32\\IMM32.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\powrprof.dll",
+    "C:\\WINDOWS\\SYSTEM32\\UMPDC.dll",
+    "C:\\WINDOWS\\system32\\uxtheme.dll",
+    "C:\\WINDOWS\\System32\\combase.dll",
+    "C:\\WINDOWS\\system32\\mswsock.dll",
+    "C:\\WINDOWS\\SYSTEM32\\kernel.appcore.dll",
+    "C:\\WINDOWS\\System32\\bcryptprimitives.dll",
+    "C:\\WINDOWS\\SYSTEM32\\CRYPTBASE.DLL",
+    "C:\\WINDOWS\\System32\\NSI.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc6.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\DNSAPI.dll",
+    "C:\\WINDOWS\\system32\\napinsp.dll",
+    "C:\\WINDOWS\\system32\\pnrpnsp.dll",
+    "C:\\WINDOWS\\system32\\wshbth.dll",
+    "C:\\WINDOWS\\system32\\NLAapi.dll",
+    "C:\\WINDOWS\\System32\\winrnr.dll",
+    "C:\\Windows\\System32\\rasadhlp.dll",
+    "C:\\WINDOWS\\System32\\fwpuclnt.dll"
+  ]
+}

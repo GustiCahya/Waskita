@@ -276,7 +276,7 @@ export default {
       this.loadingGenerate = false;
     },
     redirectPrint() {
-      window.open(`print/tbm?id=${this.localId}`, "_blank");
+      window.open(`print/tbm?id=${this.idTelusur}`, "_blank");
     }
   },
 };
