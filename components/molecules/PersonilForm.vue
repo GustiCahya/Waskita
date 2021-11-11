@@ -73,8 +73,7 @@ export default {
       rules: {
         nama: [(v) => !!v || "Harap diisi"],
         ttd: [
-          (v) => !!v || "Harap diisi",
-          (v) => v?.size < 3000000 || "Harus kurang dari 3MB!",
+          (v) => v?.size ? v?.size < 3000000 || "Harus kurang dari 3MB!" : undefined,
         ],
       },
       id: undefined,
