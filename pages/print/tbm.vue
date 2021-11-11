@@ -3508,7 +3508,7 @@
                     lang="EN-US"
                     style="font-size: 7pt; font-family: 'Arial', sans-serif"
                     >Mengetahui<br />
-                    {{ mengetahui.nama }}</span
+                    {{ mengetahui.jabatan }}</span
                   >
                 </p>
               </td>
@@ -3575,9 +3575,10 @@
                 <p
                   class="MsoNormal"
                   align="center"
-                  style="margin: 0; text-align: center; line-height: normal"
+                  style="margin: 0; text-align: center; line-height: normal; min-height: 62px"
                 >
                   <img
+                    v-if="mengetahui.ttd"
                     width="76"
                     height="75"
                     :src="mengetahui.ttd"
@@ -3621,9 +3622,10 @@
                 <p
                   class="MsoNormal"
                   align="center"
-                  style="margin: 0; text-align: center; line-height: normal"
+                  style="margin: 0; text-align: center; line-height: normal: min-height: 62px"
                 >
                   <img
+                    v-if="dibuatOleh.ttd"
                     width="72"
                     height="62"
                     :src="dibuatOleh.ttd"

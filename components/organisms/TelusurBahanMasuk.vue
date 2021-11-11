@@ -344,6 +344,14 @@ export default {
           this.mutuBeton = item.mutuBeton;
           this.personil = item.personil;
           this.items = item.items;
+          this.mengetahuiJabatan = item.mengetahui?.jabatan;
+          this.mengetahuiNama = item.mengetahui?.nama;
+          this.mengetahuiTtd = item.mengetahui?.ttd;
+          this.dibuatOlehLokasi = item.dibuatOleh?.lokasi;
+          this.dibuatOlehTanggal = item.dibuatOleh?.tanggal;
+          this.dibuatOlehJabatan = item.dibuatOleh?.jabatan;
+          this.dibuatOlehNama = item.dibuatOleh?.nama;
+          this.dibuatOlehTtd = item.dibuatOleh?.ttd;
         }
       } catch (err) {
         this.$swal(err?.response?.data || err?.message, "", "error");
