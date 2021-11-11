@@ -3508,7 +3508,7 @@
                     lang="EN-US"
                     style="font-size: 7pt; font-family: 'Arial', sans-serif"
                     >Mengetahui<br />
-                    QC Officer</span
+                    {{ mengetahui.nama }}</span
                   >
                 </p>
               </td>
@@ -3557,7 +3557,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Bekasi, 16 September 2021<br />
+                    >{{ dibuatOleh.lokasi }}, {{ $moment(dibuatOleh.tanggal).format("DD MMMM YYYY") }}<br />
                     Dibuat oleh,</span
                   >
                 </p>
@@ -3580,7 +3580,7 @@
                   <img
                     width="76"
                     height="75"
-                    :src="require('~/static/assets/tbm/image003.png')"
+                    :src="mengetahui.ttd"
                     align="center"
                     hspace="12"
                   />
@@ -3626,7 +3626,7 @@
                   <img
                     width="72"
                     height="62"
-                    :src="require('~/static/assets/tbm/image004.png')"
+                    :src="dibuatOleh.ttd"
                     align="center"
                     hspace="12"
                   />
@@ -3654,7 +3654,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >( Ahdian Agus. H )</span
+                    >( {{ mengetahui.nama }} )</span
                   >
                 </p>
               </td>
@@ -3703,8 +3703,8 @@
                   <span
                     lang="EN-US"
                     style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >SPLEM<br />
-                    ( M. Immamul Mujahidin, ST )</span
+                    >{{ dibuatOleh.jabatan }}<br />
+                    ( {{ dibuatOleh.nama }} )</span
                   >
                 </p>
               </td>
@@ -3723,6 +3723,8 @@ export default {
       data: {},
       detail: {},
       items: [],
+      mengetahui: {},
+      dibuatOleh: {},
       loadingFetch: false,
     };
   },
@@ -3759,10 +3761,12 @@ export default {
           })
           .then((res) => res?.data?.result);
         if (result.length >= 1) {
-          const item = result[0];
-          const tbm = item?.tbm?.[0] || {};
-          this.data = item;
+          const telusur = result[0];
+          const tbm = telusur?.tbm?.[0] || {};
+          this.data = telusur;
           this.detail = tbm;
+          this.mengetahui = tbm?.mengetahui || {};
+          this.dibuatOleh = tbm?.dibuatOleh || {};
           this.items = tbm?.items?.map((item, idx) => {
             return {
               ...item,
