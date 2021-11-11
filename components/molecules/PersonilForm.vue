@@ -62,7 +62,6 @@
 </template>
 <script>
 import { v4 as uuidv4 } from "uuid";
-import toBase64 from "~/static/utils/toBase64";
 export default {
   props: {
     items: Array,
@@ -86,7 +85,7 @@ export default {
     async submit() {
       this.$refs.form.validate();
       if (!this.form) return;
-      const encodedImg = await toBase64(this.ttd);
+      const encodedImg = await this.toBase64(this.ttd);
       const send = {
         nama: this.nama,
         ttd: encodedImg,

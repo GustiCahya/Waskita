@@ -90,6 +90,47 @@
         </v-row>
         <!-- items -->
         <tbm-items-form :items="items" />
+        <!-- footer input -->
+        <v-row>
+          <v-col cols="12" md="6">
+            <v-card class="mt-3" color="grey darken-4">
+              <h5 class="pa-2">Mengetahui</h5>
+              <v-text-field
+                v-model="mengetahuiJabatan"
+                :rules="rules.mengetahuiJabatan"
+                label="Jabatan"
+                placeholder="Jabatan"
+                outlined
+                dense
+              />
+              <v-text-field
+                v-model="mengetahuiNama"
+                :rules="rules.mengetahuiNama"
+                label="Nama"
+                placeholder="Nama"
+                outlined
+                dense
+              />
+              <v-file-input
+                v-model="mengetahuiTtd"
+                :rules="rules.mengetahuiTtd"
+                accept="image/png, image/jpeg, image/bmp"
+                label="TTD (max: 3mb)"
+                prepend-icon="mdi-image"
+                outlined
+                dense
+              ></v-file-input>
+            </v-card>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-card class="mt-3" color="grey darken-4">
+              <h5 class="pa-2">Dibuat oleh</h5>
+              <v-form ref="formDibuatOleh" v-model="formDibuatOleh">
+
+              </v-form>
+            </v-card>
+          </v-col>
+        </v-row>
       </v-card-text>
       <v-card-actions class="d-block">
         <div class="d-flex justify-center" style="width:100%;">
