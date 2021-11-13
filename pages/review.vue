@@ -27,18 +27,6 @@
                 dense
                 outlined
               />
-              <app-date-picker
-                v-model="filter.dateStart"
-                label="Dari Tanggal (Tanggal Dibuat)"
-                dense
-                outlined
-              />
-              <app-date-picker
-                v-model="filter.dateEnd"
-                label="Sampai Tanggal (Tanggal Dibuat)"
-                dense
-                outlined
-              />
               <v-btn
                 type="submit"
                 class="mr-0"
@@ -148,16 +136,12 @@
   </div>
 </template>
 <script>
-import AppDatePicker from "~/components/atoms/AppDatePicker.vue";
 export default {
-  components: { AppDatePicker },
   data() {
     return {
       filter: {
         businessUnit: "",
         proyek: "",
-        dateStart: null,
-        dateEnd: null,
       },
       items: [],
       filterTelusurValid: false,
@@ -168,14 +152,6 @@ export default {
     };
   },
   mounted() {
-    // adjust date
-    const date = new Date();
-    const y = date.getFullYear();
-    const m = date.getMonth();
-    const startMonth = new Date(y, m, 1);
-    const endMonth = new Date(y, m + 1, 0);
-    this.filter.dateStart = startMonth;
-    this.filter.dateEnd = endMonth;
     // fetch data
     this.getTelusur();
   },
@@ -189,7 +165,6 @@ export default {
         const filterMongo = {
           businessUnit: { $regex: this.filter?.businessUnit || "", $options: "i" },
           proyek: { $regex: this.filter?.proyek || "", $options: "i" },
-          _createdDate: undefined,
           pipeline: [
             {
               $sort: { _createdDate: -1 },
@@ -228,12 +203,6 @@ export default {
             },
           ],
         };
-        // if (this.filter?.dateStart) {
-        //   filterMongo._createdDate = {
-        //     $gte: this.filter?.dateStart,
-        //     $lte: this.filter?.dateEnd,
-        //   };
-        // }
         const data = await this.$axios.get(
           `/api/Telusur/get`,
           {
