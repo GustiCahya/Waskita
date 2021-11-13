@@ -267,7 +267,7 @@ export default {
         mengetahuiNama: [(v) => !!v || "Harap diisi"],
         mengetahuiTtdFile: [
           (v) =>
-            v?.size ? v?.size < 3000000 || "Harus kurang dari 3MB!" : undefined,
+            v?.size ? v?.size < 3000000 || "Harus kurang dari 3MB!" : true,
         ],
         dibuatOlehLokasi: [(v) => !!v || "Harap diisi"],
         dibuatOlehTanggal: [(v) => !!v || "Harap diisi"],
@@ -275,7 +275,7 @@ export default {
         dibuatOlehNama: [(v) => !!v || "Harap diisi"],
         dibuatOlehTtdFile: [
           (v) =>
-            v?.size ? v?.size < 3000000 || "Harus kurang dari 3MB!" : undefined,
+            v?.size ? v?.size < 3000000 || "Harus kurang dari 3MB!" : true,
         ],
       },
       // items
