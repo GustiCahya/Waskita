@@ -8,7 +8,7 @@
             <h4
               class="text-h4 mb-5 text-left text--primary font-weight-medium"
             >
-              Filter Telusur
+              Review Telusur
             </h4>
             <v-form
               ref="filterTelusur"
@@ -35,7 +35,7 @@
                 rounded
                 :loading="isLoading"
               >
-                Filter
+                Cari
               </v-btn>
             </v-form>
           </v-card-text>
