@@ -5,9 +5,7 @@
       <v-col cols="12" md="8">
         <v-card class="text-center">
           <v-card-text class="text-center">
-            <h4
-              class="text-h4 mb-5 text-left text--primary font-weight-medium"
-            >
+            <h4 class="text-h4 mb-5 text-left text--primary font-weight-medium">
               Review Telusur
             </h4>
             <v-form
@@ -56,7 +54,7 @@
                     <h2 class="pt-4 pb-2">{{ item.businessUnit }}</h2>
                     <h4 class="font-weight-medium">{{ item.proyek }}</h4>
                   </v-col>
-                  <v-col class="py-0 text-left " cols="12">
+                  <v-col class="py-0 text-left" cols="12">
                     <div>
                       <h4 class="font-weight-medium ma-0 pa-0">
                         Telusur Bahan Masuk :
@@ -66,7 +64,7 @@
                       </h5>
                     </div>
                   </v-col>
-                  <v-col class="py-0 text-left " cols="12">
+                  <v-col class="py-0 text-left" cols="12">
                     <div>
                       <h4 class="font-weight-medium ma-0 pa-0">
                         Telusur Benda Uji :
@@ -76,7 +74,7 @@
                       </h5>
                     </div>
                   </v-col>
-                  <v-col class="py-0 text-left " cols="12">
+                  <v-col class="py-0 text-left" cols="12">
                     <div>
                       <h4 class="font-weight-medium ma-0 pa-0">
                         Telusur Hasil Test :
@@ -86,7 +84,7 @@
                       </h5>
                     </div>
                   </v-col>
-                  <v-col class="py-0 text-left " cols="12">
+                  <v-col class="py-0 text-left" cols="12">
                     <div>
                       <h4 class="font-weight-medium ma-0 pa-0">
                         Telusur Proses :
@@ -111,9 +109,20 @@
                 </v-row>
                 <v-divider class="my-3" />
               </v-card-text>
-              <v-card-actions style="padding-top:0;">
+              <v-card-actions style="padding-top: 0">
+                <v-btn
+                  icon
+                  color="red darken-2"
+                  @click.native="() => removeTelusur(item)"
+                >
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
                 <v-spacer />
-                <v-btn icon color="grey lighten-2" @click.native="() => openTelusur(item)">
+                <v-btn
+                  icon
+                  color="grey lighten-2"
+                  @click.native="() => openTelusur(item)"
+                >
                   <v-icon>mdi-monitor</v-icon>
                 </v-btn>
               </v-card-actions>
@@ -163,7 +172,10 @@ export default {
       try {
         this.items = [];
         const filterMongo = {
-          businessUnit: { $regex: this.filter?.businessUnit || "", $options: "i" },
+          businessUnit: {
+            $regex: this.filter?.businessUnit || "",
+            $options: "i",
+          },
           proyek: { $regex: this.filter?.proyek || "", $options: "i" },
           pipeline: [
             {
@@ -203,16 +215,15 @@ export default {
             },
           ],
         };
-        const data = await this.$axios.get(
-          `/api/Telusur/get`,
-          {
+        const data = await this.$axios
+          .get(`/api/Telusur/get`, {
             params: {
               jsonQuery: JSON.stringify(filterMongo),
               page: this.page,
               limit: this.limit,
             },
-          }
-        ).then((res) => res?.data || {});
+          })
+          .then((res) => res?.data || {});
         this.pagesLength = data.pagesLength;
         this.items = data.result.map((item) => {
           return {
@@ -223,15 +234,38 @@ export default {
             tpNo: item?.tp?.[0]?.no || "Belum ada",
           };
         });
-        console.log(this.items);
       } catch (err) {
         this.$swal(err?.response?.data?.message || err?.message);
       }
       this.isLoading = false;
     },
-    openTelusur(item){
+    openTelusur(item) {
       window.open(`/?id=${item._id}`);
-    }
+    },
+    async removeTelusur(item) {
+      const result = await this.$swal({
+        title: "Yakin ingin menghapus proyek ini?",
+        text: "Anda tidak akan bisa mengembalikannya kembali, setelah dihapus!",
+        icon: "warning",
+        focusCancel: true,
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#808080",
+        confirmButtonText: "Iya, hapus",
+        cancelButtonText: "Batal",
+      });
+      if(!result.value) return;
+      const data = await this.$axios
+        .delete(`/api/Telusur/remove`, {
+          params: {
+            _id: item._id,
+          },
+        })
+        .then((res) => res?.data);
+      if (data?.success) {
+        this.getTelusur();
+      }
+    },
   },
 };
 </script>
