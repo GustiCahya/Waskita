@@ -3790,7 +3790,7 @@ export default {
   methods: {
     print() {
       const content = document.getElementById("printPaper").cloneNode(true);
-      const w = window.open();
+      const w = window.open("", "", "width=1123,height=794");
       w.document.head.innerHTML =
         document.getElementsByTagName("head")[0].innerHTML;
       w.document.body.append(content);
