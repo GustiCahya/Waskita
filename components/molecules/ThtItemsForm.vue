@@ -7,6 +7,7 @@
           <v-col cols="12" md="6" class="py-0">
             <v-select
               v-model="kodeSilinder"
+              :rules="rules.kodeSilinder"
               :items="listKodeSilinder"
               :menu-props="{ offsetY: true }"
               label="Kode Silinder"
@@ -111,14 +112,16 @@
           <thead>
             <tr>
               <th class="text-left">Kode Silinder</th>
-              <th class="text-left">Umur Hari</th>
+              <th class="text-left">Hasil Density</th>
+              <th class="text-left">Hasil Tekan</th>
               <th class="text-left">Aksi</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(item, idx) in items" :key="item._id">
               <td>{{ item.kodeSilinder }}</td>
-              <td>{{ item.umurHari }}</td>
+              <td>{{ item.hasilDensity }}</td>
+              <td>{{ item.hasilTekan }}</td>
               <td>
                 <v-btn color="yellow darken-3" icon @click="select(item)">
                   <v-icon>mdi-pencil</v-icon>
@@ -156,11 +159,11 @@ export default {
       hasilTekan: null,
       rules: {
         kodeSilinder: [(v) => !!v || "Harap diisi"],
-        tanggalPembuatan: [(v) => !!v || "Harap diisi"],
-        tanggalPengetesan: [(v) => !!v || "Harap diisi"],
-        umurHari: [(v) => !!v || "Harap diisi"],
-        perkiraanDensity: [(v) => !!v || "Harap diisi"],
-        perkiraanTekan: [(v) => !!v || "Harap diisi"],
+        tanggalPembuatan: [],
+        tanggalPengetesan: [],
+        umurHari: [],
+        perkiraanDensity: [],
+        perkiraanTekan: [],
         hasilDensity: [
           (v) => !!v || "Harap diisi",
           (v) =>

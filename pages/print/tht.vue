@@ -2211,7 +2211,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >16-Sep-21</span
+                    >{{ item.tanggalPembuatan ? $moment(item.tanggalPembuatan).format("DD-MMM-YY") : "" }}</span
                   >
                 </p>
               </td>
@@ -2235,7 +2235,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >23-Sep-21</span
+                    >{{ item.tanggalPengetesan ? $moment(item.tanggalPengetesan).format("DD-MMM-YY") : "" }}</span
                   >
                 </p>
               </td>
@@ -2261,7 +2261,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >7 Hari</span
+                    >{{ item.umurHari }}</span
                   >
                 </p>
               </td>
@@ -2287,7 +2287,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >Min 2,2</span
+                    >{{ item.perkiraanDensity }}</span
                   >
                 </p>
               </td>
@@ -2313,7 +2313,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >Min. 65%</span
+                    >{{ item.perkiraanTekan }}</span
                   >
                 </p>
               </td>
@@ -2337,7 +2337,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >2,332</span
+                    >{{ item.hasilDensity }}</span
                   >
                 </p>
               </td>
@@ -2363,7 +2363,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >85,46 %</span
+                    >{{ item.hasilTekan }}</span
                   >
                 </p>
               </td>
@@ -2389,7 +2389,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >Hasil Tes Terlampir</span
+                    >{{ item.txtHasilTest }}</span
                   >
                 </p>
               </td>
@@ -2415,7 +2415,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >PT.WBP</span
+                    >{{ item.laboratoriumNama }}</span
                   >
                 </p>
               </td>
@@ -2441,7 +2441,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >Lampiri</span
+                    >{{ item.laboratoriumAlamat }}</span
                   >
                 </p>
               </td>
@@ -2467,7 +2467,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >Khaerul. S</span
+                    >{{ item.saksiWaskitaNama }}</span
                   >
                 </p>
               </td>
@@ -2492,10 +2492,11 @@
                 >
                   <span lang="EN-US"
                     ><img
+                      v-if="item.saksiWaskitaTtd"
                       id="Picture 1767"
                       width="44"
                       height="39"
-                      src="2.3%20Form%20PW-QTY-07-02-03%20MAMPU%20TELUSUR%20HASIL%20TES%20BENDA%20UJI_files/image002.png"
+                      :src="item.saksiWaskitaTtd"
                   /></span>
                 </p>
               </td>
@@ -2521,7 +2522,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >Lutfi. E</span
+                    >{{ item.saksiPemberiKerjaNama }}</span
                   >
                 </p>
               </td>
@@ -2546,10 +2547,11 @@
                 >
                   <span lang="EN-US"
                     ><img
+                      v-if="item.saksiPemberiKerjaTtd"
                       id="Picture 1769"
                       width="53"
                       height="45"
-                      src="2.3%20Form%20PW-QTY-07-02-03%20MAMPU%20TELUSUR%20HASIL%20TES%20BENDA%20UJI_files/image003.png"
+                      :src="item.saksiPemberiKerjaTtd"
                   /></span>
                 </p>
               </td>
