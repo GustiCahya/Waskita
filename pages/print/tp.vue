@@ -1757,7 +1757,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >: B2-333/WK/IMTP01/BCKKY-2AU/2021</span
+                    >{{ tbm.no }}</span
                   >
                 </p>
               </td>
@@ -1786,37 +1786,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >: B2-333</span
-                  >
-                </p>
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >/WK/IMTP02/BC</span
-                  >
-                </p>
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >KY-2AU/2021</span
+                    >{{ tbu.no }}</span
                   >
                 </p>
               </td>
@@ -1871,22 +1841,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >Boredpile PEB/PWB</span
-                  >
-                </p>
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >357 Titik No. 11</span
+                    >{{ tbm.lokasiPengecoran }}</span
                   >
                 </p>
               </td>
@@ -1915,22 +1870,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >SD-2AU-ST-02-L-</span
-                  >
-                </p>
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >003</span
+                    >{{ detail.noDetail }}</span
                   >
                 </p>
               </td>
@@ -2245,7 +2185,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >16-Sep-21</span
+                    >{{ item.tanggalPengecoran }}</span
                   >
                 </p>
               </td>
@@ -2271,7 +2211,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >Wisnu</span
+                    >{{ item.personilNama }}</span
                   >
                 </p>
               </td>
@@ -2297,10 +2237,10 @@
                 >
                   <span lang="EN-US"
                     ><img
+                      v-if="item.personilTtd"
                       id="Picture 1788"
-                      width="57"
-                      height="41"
-                      src="2.4%20Form%20PW-QTY-07-02-04%20MAMPU%20TELUSUR%20PROSES_files/image002.jpg"
+                      width="45"
+                      :src="item.personilTtd"
                   /></span>
                 </p>
               </td>
@@ -2326,7 +2266,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >20.13</span
+                    >{{ item.jamMulai }}</span
                   >
                 </p>
               </td>
@@ -2352,7 +2292,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >20.16</span
+                    >{{ item.jamSelesai }}</span
                   >
                 </p>
               </td>
@@ -2378,7 +2318,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >6</span
+                    >{{ item.jumlahPekerja }}</span
                   >
                 </p>
               </td>
@@ -2404,7 +2344,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >Cerah</span
+                    >{{ item.cuaca }}</span
                   >
                 </p>
               </td>
@@ -2430,7 +2370,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >-</span
+                    >{{ item.penggetarTipe }}</span
                   >
                 </p>
               </td>
@@ -2456,7 +2396,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >-</span
+                    >{{ item.penggetarJumlah }}</span
                   >
                 </p>
               </td>
@@ -2482,7 +2422,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >-</span
+                    >{{ item.finishing }}</span
                   >
                 </p>
               </td>
@@ -2508,7 +2448,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >-</span
+                    >{{ item.curingSistem }}</span
                   >
                 </p>
               </td>
@@ -2534,7 +2474,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >-</span
+                    >{{ item.curingLama }}</span
                   >
                 </p>
               </td>
@@ -3135,6 +3075,8 @@ export default {
       baseUrl: "",
       data: {},
       detail: {},
+      tbm: {},
+      tbu: {},
       items: [],
       dibuatOleh: {},
       loadingFetch: false,
@@ -3167,6 +3109,22 @@ export default {
                       as: "tp",
                     },
                   },
+                  {
+                    $lookup: {
+                      from: "TelusurBahanMasuk",
+                      localField: "idTbm",
+                      foreignField: "_id",
+                      as: "tbm",
+                    },
+                  },
+                  {
+                    $lookup: {
+                      from: "TelusurBendaUji",
+                      localField: "idTbu",
+                      foreignField: "_id",
+                      as: "tbu",
+                    },
+                  },
                 ],
               }),
             },
@@ -3175,8 +3133,12 @@ export default {
         if (result.length >= 1) {
           const telusur = result[0];
           const tp = telusur?.tp?.[0] || {};
+          const tbm = telusur?.tbm?.[0] || {};
+          const tbu = telusur?.tbu?.[0] || {};
           this.data = telusur;
           this.detail = tp;
+          this.tbm = tbm;
+          this.tbu = tbu;
           this.dibuatOleh = tp?.dibuatOleh || {};
           this.items = tp?.items?.map((item, idx) => {
             return {
