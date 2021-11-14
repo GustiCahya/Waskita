@@ -1776,19 +1776,25 @@
               </td>
               <td
                 width="78"
+                rowspan="999999999"
                 style="
-                  width: 58.5pt;
-                  border: none;
+                  width: 99pt;
+                  border-top: none;
+                  border-left: none;
+                  border-bottom: solid windowtext 1pt;
                   border-right: solid windowtext 1pt;
-                  padding: 0.7pt 0cm 0cm 0cm;
-                  height: 1.25pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 7.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -1796,7 +1802,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >&nbsp;</span
+                    >{{ tbu.no }}</span
                   >
                 </p>
               </td>
@@ -2161,7 +2167,7 @@
               </td>
             </tr>
             <!-- main content -->
-            <tr v-for="item in items" :key="item._id" style="height: 1.25pt">
+            <tr v-for="(item) in items" :key="item._id" style="height: 1.25pt; text-align: center;">
               <td
                 width="114"
                 style="
@@ -2181,33 +2187,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >BP/B2/WBP/BCKYS2AU/1</span
-                  >
-                </p>
-              </td>
-              <td
-                width="78"
-                style="
-                  width: 58.5pt;
-                  border: none;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.7pt 0cm 0cm 0cm;
-                  height: 1.25pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >&nbsp;</span
+                    >{{ item.kodeSilinder }}</span
                   >
                 </p>
               </td>
@@ -2223,10 +2203,8 @@
               >
                 <p
                   class="MsoNormal"
-                  align="right"
                   style="
                     margin-bottom: 0cm;
-                    text-align: right;
                     line-height: normal;
                   "
                 >
@@ -2249,10 +2227,8 @@
               >
                 <p
                   class="MsoNormal"
-                  align="right"
                   style="
                     margin-bottom: 0cm;
-                    text-align: right;
                     line-height: normal;
                   "
                 >
@@ -2353,10 +2329,8 @@
               >
                 <p
                   class="MsoNormal"
-                  align="right"
                   style="
                     margin-bottom: 0cm;
-                    text-align: right;
                     line-height: normal;
                   "
                 >
@@ -2498,14 +2472,10 @@
                 </p>
               </td>
               <td
-                width="54"
-                rowspan="26"
-                valign="top"
+                width="42"
                 style="
-                  width: 40.5pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
+                  width: 31.5pt;
+                  border: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.7pt 0cm 0cm 0cm;
                   height: 1.25pt;
@@ -2522,9 +2492,9 @@
                 >
                   <span lang="EN-US"
                     ><img
+                      id="Picture 1767"
                       width="44"
                       height="39"
-                      id="Picture 1767"
                       src="2.3%20Form%20PW-QTY-07-02-03%20MAMPU%20TELUSUR%20HASIL%20TES%20BENDA%20UJI_files/image002.png"
                   /></span>
                 </p>
@@ -2556,11 +2526,9 @@
                 </p>
               </td>
               <td
-                width="61"
-                rowspan="24"
-                valign="top"
+                width="48"
                 style="
-                  width: 45.5pt;
+                  width: 36pt;
                   border: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.7pt 0cm 0cm 0cm;
@@ -2578,9 +2546,9 @@
                 >
                   <span lang="EN-US"
                     ><img
+                      id="Picture 1769"
                       width="53"
                       height="45"
-                      id="Picture 1769"
                       src="2.3%20Form%20PW-QTY-07-02-03%20MAMPU%20TELUSUR%20HASIL%20TES%20BENDA%20UJI_files/image003.png"
                   /></span>
                 </p>
@@ -2594,34 +2562,6 @@
                   width: 85.2pt;
                   border: solid windowtext 1pt;
                   border-top: none;
-                  padding: 0.7pt 0cm 0cm 0cm;
-                  height: 1.25pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >&nbsp;</span
-                  >
-                </p>
-              </td>
-              <td
-                width="78"
-                style="
-                  width: 58.5pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
                   padding: 0.7pt 0cm 0cm 0cm;
                   height: 1.25pt;
                 "
@@ -2954,6 +2894,34 @@
                 width="48"
                 style="
                   width: 36pt;
+                  border-top: none;
+                  border-left: none;
+                  border-bottom: solid windowtext 1pt;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.7pt 0cm 0cm 0cm;
+                  height: 1.25pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-bottom: 0cm;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >&nbsp;</span
+                  >
+                </p>
+              </td>
+              <td
+                width="61"
+                style="
+                  width: 45.5pt;
                   border-top: none;
                   border-left: none;
                   border-bottom: solid windowtext 1pt;
@@ -3302,8 +3270,8 @@ export default {
       baseUrl: "",
       data: {},
       detail: {},
+      tbu: {},
       items: [],
-      mengetahui: {},
       dibuatOleh: {},
       loadingFetch: false,
     };
@@ -3335,6 +3303,14 @@ export default {
                       as: "tht",
                     },
                   },
+                  {
+                    $lookup: {
+                      from: "TelusurBendaUji",
+                      localField: "idTbu",
+                      foreignField: "_id",
+                      as: "tbu",
+                    },
+                  },
                 ],
               }),
             },
@@ -3343,22 +3319,21 @@ export default {
         if (result.length >= 1) {
           const telusur = result[0];
           const tht = telusur?.tht?.[0] || {};
+          const tbu = telusur?.tbu?.[0] || {};
           this.data = telusur;
           this.detail = tht;
-          this.mengetahui = tht?.mengetahui || {};
+          this.tbu = tbu;
           this.dibuatOleh = tht?.dibuatOleh || {};
           this.items = tht?.items?.map((item, idx) => {
             return {
               ...item,
-              tanggalMasuk:
-                tht?.tanggalMasuk && idx === 0
-                  ? this.$moment(tht.tanggalMasuk).format("DD-MMM-YYYY")
-                  : null,
-              pemasokNama: tht?.pemasok?.[idx]?.nama,
-              pemasokAlamat: tht?.pemasok?.[idx]?.alamat,
-              mutuBeton: tht?.mutuBeton?.[idx]?.value,
-              personilNama: tht?.personil?.[idx]?.nama,
-              personilTtd: tht?.personil?.[idx]?.ttd,
+              txtHasilTest: idx === 0 && tht?.hasilTest?.length >= 1 ? "Hasil Tes Terlampir" : "",
+              laboratoriumNama: tht?.laboratorium?.[idx]?.nama,
+              laboratoriumAlamat: tht?.laboratorium?.[idx]?.alamat,
+              saksiWaskitaNama: tht?.saksiWaskita?.[idx]?.nama,
+              saksiWaskitaTtd: tht?.saksiWaskita?.[idx]?.ttd,
+              saksiPemberiKerjaNama: tht?.saksiPemberiKerja?.[idx]?.nama,
+              saksiPemberiKerjaTtd: tht?.saksiPemberiKerja?.[idx]?.ttd,
             };
           });
         }
