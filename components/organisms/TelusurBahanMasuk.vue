@@ -427,7 +427,6 @@ export default {
             idTbm: this.localId,
           })
           .then((res) => res?.data?.result);
-        this.$swal("Berhasil", "", "success");
       } catch (err) {
         this.$swal(err?.response?.data || err?.message, "", "error");
       }

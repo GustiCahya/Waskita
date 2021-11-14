@@ -90,7 +90,7 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
   try {
     const { _id } = req.query;
-    const result = await telusurProses.remove({ query: { _id } });
+    const result = await telusurProses.deleteOne({ query: { _id } });
     res.json({
       success: true,
       result,
