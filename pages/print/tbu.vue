@@ -1432,7 +1432,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >B2-233/WK/IMTP01/BCKY-2AU/2021</span
+                    >{{ tbm.no }}</span
                   >
                 </p>
               </td>
@@ -1611,14 +1611,10 @@
                 </p>
               </td>
               <td
-                width="109"
-                rowspan="17"
-                valign="top"
+                width="84"
                 style="
-                  width: 81.8pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
+                  width: 63pt;
+                  border: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 7.2pt;
@@ -1626,26 +1622,26 @@
               >
                 <p
                   class="MsoNormal"
+                  align="center"
                   style="
                     margin-top: 0cm;
                     margin-right: 15.85pt;
                     margin-bottom: 0cm;
-                    margin-left: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
                     line-height: normal;
                   "
                 >
-                  <span lang="EN-US"
-                    ><img
-                      width="107"
-                      height="72"
-                      id="Picture 1753"
-                      src="2.2%20Form%20PW-QTY-07-02-02%20MAMPU%20TELUSUR%20BENDA%20UJI_files/image002.png"
-                  /></span>
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >&nbsp;</span
+                  >
                 </p>
               </td>
             </tr>
             <!-- main content -->
-            <tr v-for="item in items" :key="item._id" style="height: 7.2pt">
+            <tr v-for="(item, idx) in items" :key="item._id" style="height: 7.2pt">
               <td
                 width="50"
                 style="
@@ -1673,7 +1669,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >1</span
+                    >{{ idx + 1 }}</span
                   >
                 </p>
               </td>
@@ -1702,7 +1698,9 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >280</span
+                    >
+                    {{ item.noKendaraan }}
+                  </span
                   >
                 </p>
               </td>
@@ -1731,7 +1729,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >16-Sep-21</span
+                    >{{ item.tanggalPembuatan ? $moment(item.tanggalPembuatan).format("DD-MMM-YY") : "" }}</span
                   >
                 </p>
               </td>
@@ -1760,7 +1758,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >20.13</span
+                    >{{ item.jamPembuatan }}</span
                   >
                 </p>
               </td>
@@ -1789,7 +1787,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    ></span
+                    >{{ item.jumlahBendaUji }}</span
                   >
                 </p>
               </td>
@@ -1818,7 +1816,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >BP/W2/WBP/WK/BCKYS2AU/1</span
+                    >{{ item.kodeSilinder }}</span
                   >
                 </p>
               </td>
@@ -1847,7 +1845,9 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >Silinder</span
+                    >
+                    {{ item.dimensi }}
+                  </span
                   >
                 </p>
               </td>
@@ -1876,8 +1876,38 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >E. Kusnadi</span
+                    >{{ item.personilNama }}</span
                   >
+                </p>
+              </td>
+              <td
+                width="84"
+                style="
+                  position: relative;
+                  width: 63pt;
+                  border: none;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 7.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  style="
+                    position: absolute;
+                    top: -10px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                  "
+                >
+                  <span lang="EN-US"
+                    ><img
+                      v-if="item.personilTtd"
+                      id="Picture 13324"
+                      width="61"
+                      height="50"
+                      :src="item.personilTtd"
+                  /></span>
                 </p>
               </td>
             </tr>
@@ -1905,7 +1935,8 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    ></span
+                    >
+                    </span
                   >
                 </p>
               </td>
@@ -2061,6 +2092,37 @@
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
                     ></span
+                  >
+                </p>
+              </td>
+              <td
+                width="84"
+                style="
+                  width: 63pt;
+                  border-top: none;
+                  border-left: none;
+                  border-bottom: solid windowtext 1pt;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 7.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >&nbsp;</span
                   >
                 </p>
               </td>
@@ -2146,7 +2208,7 @@
                   line-height: 107%;
                   font-family: 'Arial', sans-serif;
                 "
-                >�<br />
+                >
                 Keterangan :</span
               >
             </p>
@@ -2167,7 +2229,7 @@
                   line-height: 107%;
                   font-family: 'Arial', sans-serif;
                 "
-                >*) Benda Uji silinder ukuran �15 x 30 cm</span
+                >*) Benda Uji silinder ukuran Ø15 x 30 cm</span
               >
             </p>
 
@@ -2187,7 +2249,7 @@
                   line-height: 107%;
                   font-family: 'Arial', sans-serif;
                 "
-                >��� Benda Uji Kubus ukuran 15 x 15 cm, 20 x 20 cm, 25 x 25
+                >&nbsp;&nbsp;&nbsp;Benda Uji Kubus ukuran 15 x 15 cm, 20 x 20 cm, 25 x 25
                 cm</span
               >
             </p>
@@ -2424,8 +2486,8 @@ export default {
       baseUrl: "",
       data: {},
       detail: {},
+      tbm: {},
       items: [],
-      mengetahui: {},
       dibuatOleh: {},
       loadingFetch: false,
     };
@@ -2457,6 +2519,14 @@ export default {
                       as: "tbu",
                     },
                   },
+                  {
+                    $lookup: {
+                      from: "TelusurBahanMasuk",
+                      localField: "idTbm",
+                      foreignField: "_id",
+                      as: "tbm",
+                    },
+                  },
                 ],
               }),
             },
@@ -2465,20 +2535,17 @@ export default {
         if (result.length >= 1) {
           const telusur = result[0];
           const tbu = telusur?.tbu?.[0] || {};
+          const tbm = telusur?.tbm?.[0] || {};
           this.data = telusur;
           this.detail = tbu;
+          this.tbm = tbm;
           this.mengetahui = tbu?.mengetahui || {};
           this.dibuatOleh = tbu?.dibuatOleh || {};
           this.items = tbu?.items?.map((item, idx) => {
             return {
               ...item,
-              tanggalMasuk:
-                tbu?.tanggalMasuk && idx === 0
-                  ? this.$moment(tbu.tanggalMasuk).format("DD-MMM-YYYY")
-                  : null,
-              pemasokNama: tbu?.pemasok?.[idx]?.nama,
-              pemasokAlamat: tbu?.pemasok?.[idx]?.alamat,
-              mutuBeton: tbu?.mutuBeton?.[idx]?.value,
+              jumlahBendaUji: tbu?.jumlahBendaUji,
+              dimensi: tbu?.dimensi?.[idx]?.value,
               personilNama: tbu?.personil?.[idx]?.nama,
               personilTtd: tbu?.personil?.[idx]?.ttd,
             };
