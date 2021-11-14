@@ -72,7 +72,7 @@ const mongo = (Model) => {
   const remove = async (req) => {
     try {
       const query = req.query;
-      const result = await Model.remove(query, { justOne: true });
+      const result = await Model.deleteOne(query, { justOne: true });
       return result;
     } catch (err) {
       throw new Error(err.message);

@@ -1,5 +1,9 @@
 const uuid = require("uuid");
 const Telusur = require("../models/Telusur");
+const TelusurBahanMasuk = require("../models/TelusurBahanMasuk");
+const TelusurBendaUji = require("../models/TelusurBendaUji");
+const TelusurHasilTest = require("../models/TelusurHasilTest");
+const TelusurProses = require("../models/TelusurProses");
 const { pagination } = require("../utils/pagination");
 const parseJsonQuery = require("../utils/parseJsonQuery");
 
@@ -85,7 +89,11 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
   try {
     const { _id } = req.query;
-    const result = await telusur.deleteOne({ query: { _id } });
+    const result = await Telusur.deleteOne({ _id });
+    await TelusurBahanMasuk.deleteOne({ telusurId: _id });
+    await TelusurBendaUji.deleteOne({ telusurId: _id });
+    await TelusurHasilTest.deleteOne({ telusurId: _id });
+    await TelusurProses.deleteOne({ telusurId: _id });
     res.json({
       success: true,
       result,
