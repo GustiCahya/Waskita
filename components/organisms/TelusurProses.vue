@@ -15,65 +15,27 @@
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
-            <v-text-field
-              v-model="noIzin"
-              :rules="rules.noIzin"
-              label="No. Izin"
-              placeholder="No. Izin"
-              outlined
-              dense
-            />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" md="6" class="py-0">
             <app-date-picker
-              v-model="tanggalMasuk"
-              :rules="rules.tanggalMasuk"
-              label="Tanggal Masuk"
-              placeholder="Tanggal Masuk"
+              v-model="tanggalPengecoran"
+              :rules="rules.tanggalPengecoran"
+              label="Tanggal Pengecoran"
+              placeholder="Tanggal Pengecoran"
               outlined
               dense
             />
-          </v-col>
-          <v-col cols="12" md="6" class="py-0">
-            <app-bulk-input
-              v-model="pemasok"
-              :rules="rules.pemasok"
-              label="Pemasok"
-              placeholder="Pemasok"
-              outlined
-              dense
-            >
-              <pemasok-form :items="pemasok" />
-            </app-bulk-input>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" md="6" class="py-0">
             <v-text-field
-              v-model="lokasiPengecoran"
-              :rules="rules.lokasiPengecoran"
-              label="Lokasi Pengecoran"
-              placeholder="Lokasi Pengecoran"
+              v-model="noDetail"
+              :rules="rules.noDetail"
+              label="No. Detail"
+              placeholder="Detail No./Kode Gambar Lokasi Pengecoran"
               outlined
               dense
             />
           </v-col>
-          <v-col cols="12" md="6" class="py-0">
-            <app-bulk-input
-              v-model="mutuBeton"
-              :rules="rules.mutuBeton"
-              label="Mutu Beton"
-              placeholder="Mutu Beton"
-              outlined
-              dense
-            >
-              <regular-bulk-form label="Mutu Beton" :items="mutuBeton" />
-            </app-bulk-input>
-          </v-col>
-        </v-row>
-        <v-row>
           <v-col cols="12" md="6" class="py-0">
             <app-bulk-input
               v-model="personil"
@@ -86,54 +48,11 @@
               <personil-form :items="personil" />
             </app-bulk-input>
           </v-col>
-          <v-col cols="12" md="6" class="py-0"> </v-col>
         </v-row>
         <!-- items -->
         <tp-items-form :items="items" />
         <!-- footer input -->
         <v-row>
-          <v-col cols="12" md="6">
-            <v-card class="mt-3" color="grey darken-4">
-              <h5 class="pa-3">Mengetahui</h5>
-              <div class="px-3 pt-0 pb-5">
-                <v-text-field
-                  v-model="mengetahuiJabatan"
-                  :rules="rules.mengetahuiJabatan"
-                  label="Jabatan"
-                  placeholder="Jabatan"
-                  outlined
-                  dense
-                />
-                <v-text-field
-                  v-model="mengetahuiNama"
-                  :rules="rules.mengetahuiNama"
-                  label="Nama"
-                  placeholder="Nama"
-                  outlined
-                  dense
-                />
-                <v-file-input
-                  v-model="mengetahuiTtdFile"
-                  :rules="rules.mengetahuiTtdFile"
-                  accept="image/png, image/jpeg, image/bmp"
-                  label="TTD (max: 3mb)"
-                  prepend-icon="mdi-image"
-                  outlined
-                  dense
-                ></v-file-input>
-                <div class="d-flex justify-center">
-                  <v-img
-                    v-if="mengetahuiTtd"
-                    class="white rounded-sm"
-                    max-width="150"
-                    max-height="150"
-                    contain
-                    :src="mengetahuiTtd"
-                  />
-                </div>
-              </div>
-            </v-card>
-          </v-col>
           <v-col cols="12" md="6">
             <v-card class="mt-3" color="grey darken-4">
               <h5 class="pa-3">Dibuat oleh</h5>
@@ -228,16 +147,12 @@
 <script>
 import AppBulkInput from "../atoms/AppBulkInput.vue";
 import AppDatePicker from "../atoms/AppDatePicker.vue";
-import RegularBulkForm from "../molecules/RegularBulkForm.vue";
-import PemasokForm from "../molecules/LocationBulkForm.vue";
 import PersonilForm from "../molecules/PersonilForm.vue";
 import TpItemsForm from "../molecules/TpItemsForm.vue";
 export default {
   components: {
     AppDatePicker,
     AppBulkInput,
-    PemasokForm,
-    RegularBulkForm,
     PersonilForm,
     TpItemsForm,
   },
@@ -249,26 +164,14 @@ export default {
       // form
       localId: "",
       no: "",
-      noIzin: "",
-      tanggalMasuk: null,
-      pemasok: [],
-      lokasiPengecoran: "",
-      mutuBeton: [],
+      tanggalPengecoran: null,
+      noDetail: "",
       personil: [],
       rules: {
         no: [(v) => !!v || "Harap diisi"],
-        noIzin: [(v) => !!v || "Harap diisi"],
-        tanggalMasuk: [(v) => !!v || "Harap diisi"],
-        pemasok: [(v) => v.length >= 1 || "Harap diisi"],
-        lokasiPengecoran: [(v) => !!v || "Harap diisi"],
-        mutuBeton: [(v) => v.length >= 1 || "Harap diisi"],
+        tanggalPengecoran: [(v) => !!v || "Harap diisi"],
+        noDetail: [(v) => !!v || "Harap diisi"],
         personil: [(v) => v.length >= 1 || "Harap diisi"],
-        mengetahuiJabatan: [(v) => !!v || "Harap diisi"],
-        mengetahuiNama: [(v) => !!v || "Harap diisi"],
-        mengetahuiTtdFile: [
-          (v) =>
-            v?.size ? v?.size < 3000000 || "Harus kurang dari 3mb!" : true,
-        ],
         dibuatOlehLokasi: [(v) => !!v || "Harap diisi"],
         dibuatOlehTanggal: [(v) => !!v || "Harap diisi"],
         dibuatOlehJabatan: [(v) => !!v || "Harap diisi"],
@@ -340,16 +243,9 @@ export default {
           if (!item) return;
           this.localId = item._id;
           this.no = item.no;
-          this.noIzin = item.noIzin;
-          this.tanggalMasuk = item.tanggalMasuk;
-          this.pemasok = item.pemasok;
-          this.lokasiPengecoran = item.lokasiPengecoran;
-          this.mutuBeton = item.mutuBeton;
+          this.tanggalPengecoran = item.tanggalPengecoran;
+          this.noDetail = item.noDetail;
           this.personil = item.personil;
-          this.items = item.items;
-          this.mengetahuiJabatan = item.mengetahui?.jabatan;
-          this.mengetahuiNama = item.mengetahui?.nama;
-          this.mengetahuiTtd = item.mengetahui?.ttd;
           this.dibuatOlehLokasi = item.dibuatOleh?.lokasi;
           this.dibuatOlehTanggal = item.dibuatOleh?.tanggal;
           this.dibuatOlehJabatan = item.dibuatOleh?.jabatan;
@@ -385,18 +281,10 @@ export default {
         const sendData = {
           idTelusur: this.idTelusur,
           no: this.no,
-          noIzin: this.noIzin,
-          tanggalMasuk: this.tanggalMasuk,
-          pemasok: this.pemasok,
-          lokasiPengecoran: this.lokasiPengecoran,
-          mutuBeton: this.mutuBeton,
+          tanggalPengecoran: this.tanggalPengecoran,
+          noDetail: this.noDetail,
           personil: this.personil,
           items: this.items,
-          mengetahui: {
-            nama: this.mengetahuiNama,
-            jabatan: this.mengetahuiJabatan,
-            ttd: this.mengetahuiTtd,
-          },
           dibuatOleh: {
             lokasi: this.dibuatOlehLokasi,
             tanggal: this.dibuatOlehTanggal,
