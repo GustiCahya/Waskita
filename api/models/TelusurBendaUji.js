@@ -6,7 +6,12 @@ const TelusurBendaUji = new mongoose.Schema(
     idTelusur: { type: String },
     no: { type: String },
     jumlahBendaUji: { type: Number },
-    dimensi: { type: String },
+    dimensi: [
+      {
+        _id: { type: String },
+        value: { type: String }
+      }
+    ],
     personil: [
       {
         _id: { type: String },
@@ -19,7 +24,7 @@ const TelusurBendaUji = new mongoose.Schema(
         _id: { type: String },
         noKendaraan: { type: String },
         tanggalPembuatan: { type: Date },
-        jamPembuatan: { type: Date },
+        jamPembuatan: { type: String },
         kodeSilinder: { type: String },
       }
     ],

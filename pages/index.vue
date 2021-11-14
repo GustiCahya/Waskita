@@ -60,6 +60,7 @@ export default {
   async mounted() {
     // check availability of id telusur
     const id = this.$route.query.id;
+    const step = this.$route.query?.step;
     if (id) {
       try {
         const count = await this.$axios
@@ -73,6 +74,7 @@ export default {
           .then((res) => res?.data?.result);
         if (count >= 1) {
           this.idTelusur = id;
+          this.step = step || "1";
         } else {
           this.$swal("Maaf, id telusur tidak ditemukan", "", "warning");
         }

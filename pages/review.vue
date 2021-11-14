@@ -59,7 +59,11 @@
                       <h4 class="font-weight-medium ma-0 pa-0">
                         Telusur Bahan Masuk :
                       </h4>
-                      <h5 class="ma-0 pa-0 mb-2 ml-2">
+                      <h5
+                        class="ma-0 pa-0 mb-2 ml-2"
+                        style="cursor:pointer;"
+                        @click="redirectTelusur(item, 1)"
+                      >
                         {{ item.tbmNo }}
                       </h5>
                     </div>
@@ -69,7 +73,11 @@
                       <h4 class="font-weight-medium ma-0 pa-0">
                         Telusur Benda Uji :
                       </h4>
-                      <h5 class="text-caption ma-0 pa-0 mb-2 ml-2">
+                      <h5
+                        class="text-caption ma-0 pa-0 mb-2 ml-2"
+                        style="cursor:pointer;"
+                        @click="redirectTelusur(item, 2)"
+                      >
                         {{ item.tbuNo }}
                       </h5>
                     </div>
@@ -79,7 +87,11 @@
                       <h4 class="font-weight-medium ma-0 pa-0">
                         Telusur Hasil Test :
                       </h4>
-                      <h5 class="text-caption ma-0 pa-0 mb-2 ml-2">
+                      <h5
+                        class="text-caption ma-0 pa-0 mb-2 ml-2"
+                        style="cursor:pointer;"
+                        @click="redirectTelusur(item, 3)"
+                      >
                         {{ item.thtNo }}
                       </h5>
                     </div>
@@ -89,7 +101,11 @@
                       <h4 class="font-weight-medium ma-0 pa-0">
                         Telusur Proses :
                       </h4>
-                      <h5 class="text-caption ma-0 pa-0 mb-2 ml-2">
+                      <h5
+                        class="text-caption ma-0 pa-0 mb-2 ml-2"
+                        style="cursor:pointer;"
+                        @click="redirectTelusur(item, 4)"
+                      >
                         {{ item.tpNo }}
                       </h5>
                     </div>
@@ -242,6 +258,9 @@ export default {
     openTelusur(item) {
       window.open(`/?id=${item._id}`);
     },
+    redirectTelusur(item, step) {
+      window.open(`/?id=${item._id}&step=${step}`);
+    },
     async removeTelusur(item) {
       const result = await this.$swal({
         title: "Yakin ingin menghapus proyek ini?",
@@ -254,7 +273,7 @@ export default {
         confirmButtonText: "Iya, hapus",
         cancelButtonText: "Batal",
       });
-      if(!result.value) return;
+      if (!result.value) return;
       const data = await this.$axios
         .delete(`/api/Telusur/remove`, {
           params: {

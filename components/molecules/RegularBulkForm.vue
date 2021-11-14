@@ -3,7 +3,7 @@
     <v-form ref="form" v-model="form" @submit.prevent="submit">
       <v-text-field
         v-model="value"
-        label="Mutu Beton"
+        :label="label"
         :rules="rules.value"
         outlined
         dense
@@ -26,7 +26,7 @@
       <template v-slot:default>
         <thead>
           <tr>
-            <th class="text-left">Mutu Beton</th>
+            <th class="text-left">{{ label }}</th>
             <th class="text-left">Aksi</th>
           </tr>
         </thead>
@@ -51,6 +51,7 @@
 import { v4 as uuidv4 } from "uuid";
 export default {
   props: {
+    label: String,
     items: Array,
   },
   data() {

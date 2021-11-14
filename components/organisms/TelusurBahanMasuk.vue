@@ -69,7 +69,7 @@
               outlined
               dense
             >
-              <mutu-beton-form :items="mutuBeton" />
+              <regular-bulk-form label="Mutu Beton" :items="mutuBeton" />
             </app-bulk-input>
           </v-col>
         </v-row>
@@ -228,7 +228,7 @@
 <script>
 import AppBulkInput from "../atoms/AppBulkInput.vue";
 import AppDatePicker from "../atoms/AppDatePicker.vue";
-import MutuBetonForm from "../molecules/MutuBetonForm.vue";
+import RegularBulkForm from "../molecules/RegularBulkForm.vue";
 import PemasokForm from "../molecules/PemasokForm.vue";
 import PersonilForm from "../molecules/PersonilForm.vue";
 import TbmItemsForm from "../molecules/TbmItemsForm.vue";
@@ -237,7 +237,7 @@ export default {
     AppDatePicker,
     AppBulkInput,
     PemasokForm,
-    MutuBetonForm,
+    RegularBulkForm,
     PersonilForm,
     TbmItemsForm,
   },
@@ -383,8 +383,8 @@ export default {
       this.loadingGenerate = true;
       try {
         const sendData = {
-          no: this.no,
           idTelusur: this.idTelusur,
+          no: this.no,
           noIzin: this.noIzin,
           tanggalMasuk: this.tanggalMasuk,
           pemasok: this.pemasok,
