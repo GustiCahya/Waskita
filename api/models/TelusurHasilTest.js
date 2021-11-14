@@ -42,7 +42,7 @@ const TelusurHasilTest = new mongoose.Schema(
         umurHari: { type: String },
         perkiraanDensity: { type: String },
         perkiraanTekan: { type: String },
-        hasilDensity: { type: Number },
+        hasilDensity: { type: String },
         hasilTekan: { type: String },
       }
     ],

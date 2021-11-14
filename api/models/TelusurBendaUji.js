@@ -5,7 +5,7 @@ const TelusurBendaUji = new mongoose.Schema(
     _id: { type: String }, // nomor identitas
     idTelusur: { type: String },
     no: { type: String },
-    jumlahBendaUji: { type: Number },
+    jumlahBendaUji: { type: String },
     dimensi: [
       {
         _id: { type: String },

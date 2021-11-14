@@ -35,10 +35,10 @@ const TelusurBahanMasuk = new mongoose.Schema(
         noDocket: { type: String },
         jamKeluar: { type: String },
         jamDituang: { type: String },
-        volAktual: { type: Number },
-        volKumulatif: { type: Number },
+        volAktual: { type: String },
+        volKumulatif: { type: String },
         tempMasuk: { type: String },
-        slumpBeton: { type: Number },
+        slumpBeton: { type: String },
         syaratSlump: { type: String },
       }
     ],
