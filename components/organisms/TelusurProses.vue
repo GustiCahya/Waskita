@@ -52,7 +52,7 @@
         <!-- items -->
         <tp-items-form :items="items" />
         <!-- footer input -->
-        <v-row>
+        <v-row justify="end">
           <v-col cols="12" md="6">
             <v-card class="mt-3" color="grey darken-4">
               <h5 class="pa-3">Dibuat oleh</h5>
@@ -183,15 +183,10 @@ export default {
       },
       // items
       items: [],
-      // footer mengetahui
-      mengetahuiJabatan: "QC Officer",
-      mengetahuiNama: "",
-      mengetahuiTtdFile: null,
-      mengetahuiTtd: "",
       // footer dibuatOleh
       dibuatOlehLokasi: "Bekasi",
       dibuatOlehTanggal: new Date(),
-      dibuatOlehJabatan: "SPLEM",
+      dibuatOlehJabatan: "Site Operasional Manager",
       dibuatOlehNama: "",
       dibuatOlehTtdFile: null,
       dibuatOlehTtd: "",
