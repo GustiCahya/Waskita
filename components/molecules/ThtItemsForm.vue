@@ -164,12 +164,12 @@ export default {
         hasilDensity: [
           (v) => !!v || "Harap diisi",
           (v) =>
-            /^\d*\.?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16.5)",
+            /^\d*,?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16,5)",
         ],
         hasilTekan: [
           (v) => !!v || "Harap diisi",
           (v) =>
-            /^\d*\.?\d*%$/gi.test(v) || "Harus Persen (contoh: 23% atau 23.5%)",
+            /^\d*,?\d*%$/gi.test(v) || "Harus Persen (contoh: 23% atau 23,5%)",
         ],
       },
       id: undefined,
