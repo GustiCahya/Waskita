@@ -171,18 +171,17 @@ export default {
         ],
         volAktual: [
           (v) => !!v || "Harap diisi",
-          (v) =>
-            /^\d*,?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16,5)",
+          (v) => /^\d*,?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16,5)",
         ],
         volKumulatif: [
           (v) => !!v || "Harap diisi",
-          (v) =>
-            /^\d*,?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16,5)",
+          (v) => /^\d*,?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16,5)",
         ],
         tempMasuk: [],
         slumpBeton: [
           (v) =>
-            /^\d*\.?\d*$/gi.test(v === null ? "" : v) || "Harus Angka (contoh: 16 atau 16.5)",
+            /^\d*,?\d*$/gi.test(v === null ? "" : v) ||
+            "Harus Angka (contoh: 16 atau 16,5)",
         ],
         syaratSlump: [(v) => !!v || "Harap diisi"],
       },

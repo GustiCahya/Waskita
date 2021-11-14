@@ -5,39 +5,19 @@
       <v-form ref="form" v-model="form" @submit.prevent="submit">
         <v-row>
           <v-col cols="12" md="6" class="py-0">
-            <v-text-field
-              v-model="noKendaraan"
-              label="Nomor Kendaraan"
-              :rules="rules.noKendaraan"
-              outlined
-              dense
-            />
-          </v-col>
-          <v-col cols="12" md="6" class="py-0">
-            <v-text-field
-              v-model="noDocket"
-              label="Nomor Docket"
-              :rules="rules.noDocket"
-              outlined
-              dense
-            />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" md="6" class="py-0">
             <app-time-picker
-              v-model="jamKeluar"
-              label="Jam Keluar"
-              :rules="rules.jamKeluar"
+              v-model="jamMulai"
+              label="Jam Mulai"
+              :rules="rules.jamMulai"
               outlined
               dense
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
             <app-time-picker
-              v-model="jamDituang"
-              label="Jam Dituang"
-              :rules="rules.jamDituang"
+              v-model="jamSelesai"
+              label="Jam Selesai"
+              :rules="rules.jamSelesai"
               outlined
               dense
             />
@@ -46,18 +26,18 @@
         <v-row>
           <v-col cols="12" md="6" class="py-0">
             <v-text-field
-              v-model="volAktual"
-              label="Vol Aktual"
-              :rules="rules.volAktual"
+              v-model="jumlahPekerja"
+              label="Jumlah Pekerja"
+              :rules="rules.jumlahPekerja"
               outlined
               dense
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
             <v-text-field
-              v-model="volKumulatif"
-              label="Vol Kumulatif"
-              :rules="rules.volKumulatif"
+              v-model="cuaca"
+              label="Cuaca"
+              :rules="rules.cuaca"
               outlined
               dense
             />
@@ -66,18 +46,18 @@
         <v-row>
           <v-col cols="12" md="6" class="py-0">
             <v-text-field
-              v-model="tempMasuk"
-              label="Temp Masuk"
-              :rules="rules.tempMasuk"
+              v-model="penggetarTipe"
+              label="Tipe Penggetar"
+              :rules="rules.penggetarTipe"
               outlined
               dense
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
             <v-text-field
-              v-model="slumpBeton"
-              label="Slump Beton"
-              :rules="rules.slumpBeton"
+              v-model="penggetarJumlah"
+              label="Jumlah Penggetar"
+              :rules="rules.penggetarJumlah"
               outlined
               dense
             />
@@ -86,14 +66,33 @@
         <v-row>
           <v-col cols="12" md="6" class="py-0">
             <v-text-field
-              v-model="syaratSlump"
-              label="Syarat Slump"
-              :rules="rules.syaratSlump"
+              v-model="finishing"
+              label="Finishing"
+              :rules="rules.finishing"
               outlined
               dense
             />
           </v-col>
-          <v-col cols="12" md="6" class="py-0"> </v-col>
+          <v-col cols="12" md="6" class="py-0">
+            <v-text-field
+              v-model="curingSistem"
+              label="Curing Sistem"
+              :rules="rules.curingSistem"
+              outlined
+              dense
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="6" class="py-0">
+            <v-text-field
+              v-model="curingLama"
+              label="Curing Lama"
+              :rules="rules.curingLama"
+              outlined
+              dense
+            />
+          </v-col>
         </v-row>
         <div class="d-flex justify-end mb-4">
           <v-btn
@@ -113,15 +112,15 @@
         <template v-slot:default>
           <thead>
             <tr>
-              <th class="text-left">No. Kendaraan</th>
-              <th class="text-left">No. Docket</th>
+              <th class="text-left">Jam Mulai</th>
+              <th class="text-left">Jam Selesai</th>
               <th class="text-left">Aksi</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(item, idx) in items" :key="item._id">
-              <td>{{ item.noKendaraan }}</td>
-              <td>{{ item.noDocket }}</td>
+              <td>{{ item.jamMulai }}</td>
+              <td>{{ item.jamSelesai }}</td>
               <td>
                 <v-btn color="yellow darken-3" icon @click="select(item)">
                   <v-icon>mdi-pencil</v-icon>
@@ -149,42 +148,39 @@ export default {
   },
   data() {
     return {
-      noKendaraan: "",
-      noDocket: "",
-      jamKeluar: "",
-      jamDituang: "",
-      volAktual: null,
-      volKumulatif: null,
-      tempMasuk: "",
-      slumpBeton: "",
-      syaratSlump: "18 ± 2",
+      jamMulai: "",
+      jamSelesai: "",
+      jumlahPekerja: "",
+      cuaca: "",
+      penggetarTipe: "",
+      penggetarJumlah: "",
+      finishing: "",
+      curingSistem: "",
+      curingLama: "",
       rules: {
-        noKendaraan: [(v) => !!v || "Harap diisi"],
-        noDocket: [(v) => !!v || "Harap diisi"],
-        jamKeluar: [
+        jamMulai: [
           (v) => !!v || "Harap diisi",
           (v) => /^\d\d:\d\d$/gi.test(v) || "Harus berupa jam (contoh: 11:31)",
         ],
-        jamDituang: [
+        jamSelesai: [
           (v) => !!v || "Harap diisi",
           (v) => /^\d\d:\d\d$/gi.test(v) || "Harus berupa jam (contoh: 11:31)",
         ],
-        volAktual: [
-          (v) => !!v || "Harap diisi",
+        jumlahPekerja: [
           (v) =>
-            /^\d*,?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16,5)",
+            /^\d*,?\d*$/gi.test(v === null ? "" : v) ||
+            "Harus Angka (contoh: 16 atau 16,5)",
         ],
-        volKumulatif: [
-          (v) => !!v || "Harap diisi",
+        cuaca: [],
+        penggetarTipe: [],
+        penggetarJumlah: [
           (v) =>
-            /^\d*,?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16,5)",
+            /^\d*,?\d*$/gi.test(v === null ? "" : v) ||
+            "Harus Angka (contoh: 16 atau 16,5)",
         ],
-        tempMasuk: [],
-        slumpBeton: [
-          (v) =>
-            /^\d*,?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16,5)",
-        ],
-        syaratSlump: [(v) => !!v || "Harap diisi"],
+        finishing: [],
+        curingSistem: [],
+        curingLama: [],
       },
       id: undefined,
       form: false,
@@ -195,15 +191,15 @@ export default {
       this.$refs.form.validate();
       if (!this.form) return;
       const send = {
-        noKendaraan: this.noKendaraan,
-        noDocket: this.noDocket,
-        jamKeluar: this.jamKeluar,
-        jamDituang: this.jamDituang,
-        volAktual: this.volAktual,
-        volKumulatif: this.volKumulatif,
-        tempMasuk: this.tempMasuk,
-        slumpBeton: this.slumpBeton,
-        syaratSlump: this.syaratSlump,
+        jamMulai: this.jamMulai,
+        jamSelesai: this.jamSelesai,
+        jumlahPekerja: this.jumlahPekerja,
+        cuaca: this.cuaca,
+        penggetarTipe: this.penggetarTipe,
+        penggetarJumlah: this.penggetarJumlah,
+        finishing: this.finishing,
+        curingSistem: this.curingSistem,
+        curingLama: this.curingLama,
       };
       if (!this.id) {
         // if adding
@@ -215,29 +211,29 @@ export default {
       } else {
         // if editing
         const idx = this.items.findIndex((item) => item._id === this.id);
-        this.items[idx].noKendaraan = send.noKendaraan;
-        this.items[idx].noDocket = send.noDocket;
-        this.items[idx].jamKeluar = send.jamKeluar;
-        this.items[idx].jamDituang = send.jamDituang;
-        this.items[idx].volAktual = send.volAktual;
-        this.items[idx].volKumulatif = send.volKumulatif;
-        this.items[idx].tempMasuk = send.tempMasuk;
-        this.items[idx].slumpBeton = send.slumpBeton;
-        this.items[idx].syaratSlump = send.syaratSlump;
+        this.items[idx].jamMulai = send.jamMulai;
+        this.items[idx].jamSelesai = send.jamSelesai;
+        this.items[idx].jumlahPekerja = send.jumlahPekerja;
+        this.items[idx].cuaca = send.cuaca;
+        this.items[idx].penggetarTipe = send.penggetarTipe;
+        this.items[idx].penggetarJumlah = send.penggetarJumlah;
+        this.items[idx].finishing = send.finishing;
+        this.items[idx].curingSistem = send.curingSistem;
+        this.items[idx].curingLama = send.curingLama;
       }
       this.clearInput();
     },
     select(item) {
       this.id = item._id;
-      this.noKendaraan = item.noKendaraan;
-      this.noDocket = item.noDocket;
-      this.jamKeluar = item.jamKeluar;
-      this.jamDituang = item.jamDituang;
-      this.volAktual = item.volAktual;
-      this.volKumulatif = item.volKumulatif;
-      this.tempMasuk = item.tempMasuk;
-      this.slumpBeton = item.slumpBeton;
-      this.syaratSlump = item.syaratSlump;
+      this.jamMulai = item.jamMulai;
+      this.jamSelesai = item.jamSelesai;
+      this.jumlahPekerja = item.jumlahPekerja;
+      this.cuaca = item.cuaca;
+      this.penggetarTipe = item.penggetarTipe;
+      this.penggetarJumlah = item.penggetarJumlah;
+      this.finishing = item.finishing;
+      this.curingSistem = item.curingSistem;
+      this.curingLama = item.curingLama;
     },
     remove(idx) {
       this.items.splice(idx, 1);
@@ -245,15 +241,15 @@ export default {
     },
     clearInput() {
       this.id = undefined;
-      this.noKendaraan = "";
-      this.noDocket = "";
-      this.jamKeluar = "";
-      this.jamDituang = "";
-      this.volAktual = null;
-      this.volKumulatif = null;
-      this.tempMasuk = "";
-      this.slumpBeton = "";
-      //   this.syaratSlump = "";
+      this.jamMulai = "";
+      this.jamSelesai = "";
+      this.jumlahPekerja = "";
+      this.cuaca = "";
+      this.penggetarTipe = "";
+      this.penggetarJumlah = "";
+      this.finishing = "";
+      this.curingSistem = "";
+      this.curingLama = "";
       this.$refs.form.resetValidation();
     },
   },
