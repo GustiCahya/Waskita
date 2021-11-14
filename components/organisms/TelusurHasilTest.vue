@@ -15,20 +15,20 @@
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
-            <!-- change to bulk input -->
-            <v-text-field
+            <app-bulk-input
               v-model="hasilTest"
               :rules="rules.hasilTest"
               label="Hasil Test"
               placeholder="Hasil Test"
               outlined
               dense
-            />
+            >
+              <hasil-test-form :items="hasilTest" />
+            </app-bulk-input>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" md="6" class="py-0">
-            <!-- change to bulk input -->
             <app-bulk-input
               v-model="laboratorium"
               :rules="rules.laboratorium"
@@ -168,6 +168,7 @@ import AppBulkInput from "../atoms/AppBulkInput.vue";
 import AppDatePicker from "../atoms/AppDatePicker.vue";
 import PersonilForm from "../molecules/PersonilForm.vue";
 import LocationBulkForm from "../molecules/LocationBulkForm.vue";
+import HasilTestForm from "../molecules/HasilTestForm.vue";
 import ThtItemsForm from "../molecules/ThtItemsForm.vue";
 export default {
   components: {
@@ -175,6 +176,7 @@ export default {
     AppBulkInput,
     PersonilForm,
     LocationBulkForm,
+    HasilTestForm,
     ThtItemsForm,
   },
   props: {
