@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
     <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" fixed app>
-      <v-list-item>
+      <v-list-item v-if="!miniVariant">
         <v-list-item-content class="text-center">
           <v-list-item-title class="text-h6">
             <img
