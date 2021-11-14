@@ -1889,23 +1889,17 @@
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 7.2pt;
+                  text-align: center;
                 "
               >
                 <p
                   class="MsoNormal"
-                  style="
-                    position: absolute;
-                    top: -10px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                  "
                 >
                   <span lang="EN-US"
                     ><img
                       v-if="item.personilTtd"
                       id="Picture 13324"
-                      width="61"
-                      height="50"
+                      width="45"
                       :src="item.personilTtd"
                   /></span>
                 </p>

@@ -519,6 +519,7 @@
                 height="26"
               ></td>
             </tr>
+            <!-- real header -->
             <tr style="height: 12.75pt">
               <td
                 width="74"
@@ -2926,23 +2927,19 @@
                   border: none;
                   padding: 0cm 0cm 0cm 0cm;
                   border-right: solid windowtext 1pt;
+                  text-align: center;
+                  height: 7.2pt;
                 "
                 width="1"
               >
                 <p
                   class="MsoNormal"
-                  style="
-                    position: absolute;
-                    top: -10px;
-                    left: 0;
-                  "
                 >
                   <span lang="EN-US"
                     ><img
                       v-if="item.personilTtd"
                       id="Picture 13324"
-                      width="61"
-                      height="50"
+                      width="45"
                       :src="item.personilTtd"
                   /></span>
                 </p>
