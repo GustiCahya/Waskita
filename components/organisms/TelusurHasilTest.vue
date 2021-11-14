@@ -29,14 +29,16 @@
         <v-row>
           <v-col cols="12" md="6" class="py-0">
             <!-- change to bulk input -->
-            <v-text-field
+            <app-bulk-input
               v-model="laboratorium"
               :rules="rules.laboratorium"
-              label="Laboratorium"
+              label="Lokasi Laboratorium"
               placeholder="Laboratorium"
               outlined
               dense
-            />
+            >
+              <location-bulk-form :items="laboratorium" />
+            </app-bulk-input>
           </v-col>
           <v-col cols="12" md="6" class="py-0">
             <app-bulk-input
@@ -165,12 +167,14 @@
 import AppBulkInput from "../atoms/AppBulkInput.vue";
 import AppDatePicker from "../atoms/AppDatePicker.vue";
 import PersonilForm from "../molecules/PersonilForm.vue";
+import LocationBulkForm from "../molecules/LocationBulkForm.vue";
 import ThtItemsForm from "../molecules/ThtItemsForm.vue";
 export default {
   components: {
     AppDatePicker,
     AppBulkInput,
     PersonilForm,
+    LocationBulkForm,
     ThtItemsForm,
   },
   props: {
@@ -197,7 +201,7 @@ export default {
         dibuatOlehNama: [(v) => !!v || "Harap diisi"],
         dibuatOlehTtdFile: [
           (v) =>
-            v?.size ? v?.size < 3000000 || "Harus kurang dari 3MB!" : true,
+            v?.size ? v?.size < 3000000 || "Harus kurang dari 3mb!" : true,
         ],
       },
       // items

@@ -9,7 +9,7 @@ const TelusurHasilTest = new mongoose.Schema(
       {
         _id: { type: String },
         judul: { type: String },
-        ref: { type: String }, // path to file or image
+        gambar: { type: String },
       }
     ],
     laboratorium: [

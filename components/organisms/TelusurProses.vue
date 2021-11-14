@@ -229,7 +229,7 @@
 import AppBulkInput from "../atoms/AppBulkInput.vue";
 import AppDatePicker from "../atoms/AppDatePicker.vue";
 import RegularBulkForm from "../molecules/RegularBulkForm.vue";
-import PemasokForm from "../molecules/PemasokForm.vue";
+import PemasokForm from "../molecules/LocationBulkForm.vue";
 import PersonilForm from "../molecules/PersonilForm.vue";
 import TpItemsForm from "../molecules/TpItemsForm.vue";
 export default {
@@ -267,7 +267,7 @@ export default {
         mengetahuiNama: [(v) => !!v || "Harap diisi"],
         mengetahuiTtdFile: [
           (v) =>
-            v?.size ? v?.size < 3000000 || "Harus kurang dari 3MB!" : true,
+            v?.size ? v?.size < 3000000 || "Harus kurang dari 3mb!" : true,
         ],
         dibuatOlehLokasi: [(v) => !!v || "Harap diisi"],
         dibuatOlehTanggal: [(v) => !!v || "Harap diisi"],
@@ -275,7 +275,7 @@ export default {
         dibuatOlehNama: [(v) => !!v || "Harap diisi"],
         dibuatOlehTtdFile: [
           (v) =>
-            v?.size ? v?.size < 3000000 || "Harus kurang dari 3MB!" : true,
+            v?.size ? v?.size < 3000000 || "Harus kurang dari 3mb!" : true,
         ],
       },
       // items

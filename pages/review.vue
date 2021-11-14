@@ -60,7 +60,7 @@
                         Telusur Bahan Masuk :
                       </h4>
                       <h5
-                        class="ma-0 pa-0 mb-2 ml-2"
+                        class="text-caption ma-0 pa-0 mb-2 ml-2"
                         style="cursor:pointer;"
                         @click="redirectTelusur(item, 1)"
                       >
