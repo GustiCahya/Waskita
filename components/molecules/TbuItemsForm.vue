@@ -110,10 +110,14 @@ export default {
         noKendaraan: [],
         tanggalPembuatan: [],
         jamPembuatan: [
-          (v) => !!v || "Harap diisi",
-          (v) =>
-            /^\d\d:\d\d$/gi.test(v) ||
-            "Harus berupa jam (contoh: 11:31)",
+          (v) => {
+            if (v === "" || v === null) {
+              return true;
+            }
+            return (
+              /^\d\d:\d\d$/gi.test(v) || "Harus berupa jam (contoh: 11:31)"
+            );
+          },
         ],
         kodeSilinder: [(v) => !!v || "Harap diisi"],
       },
@@ -141,7 +145,7 @@ export default {
           const item = result?.[0] || {};
           if (!item) return;
           const items = item?.items || [];
-          this.listNoKendaraan = items.map(item => item.noKendaraan);
+          this.listNoKendaraan = items.map((item) => item.noKendaraan);
         }
       } catch (err) {
         this.$swal(err?.response?.data || err?.message, "", "error");

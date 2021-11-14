@@ -322,7 +322,8 @@ export default {
       }
       this.loadingGenerate = false;
     },
-    redirectPrint() {
+    async redirectPrint() {
+      await this.generate();
       window.open(`print/tbu?id=${this.idTelusur}`, "_blank");
     },
   },
