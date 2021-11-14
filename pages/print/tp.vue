@@ -3751,10 +3751,10 @@ export default {
                 pipeline: [
                   {
                     $lookup: {
-                      from: "TelusurBahanMasuk",
-                      localField: "idTbm",
+                      from: "TelusurProses",
+                      localField: "idTp",
                       foreignField: "_id",
-                      as: "tbm"
+                      as: "tp"
                     }
                   }
                 ]
@@ -3764,20 +3764,20 @@ export default {
           .then((res) => res?.data?.result);
         if (result.length >= 1) {
           const telusur = result[0];
-          const tbm = telusur?.tbm?.[0] || {};
+          const tp = telusur?.tp?.[0] || {};
           this.data = telusur;
-          this.detail = tbm;
-          this.mengetahui = tbm?.mengetahui || {};
-          this.dibuatOleh = tbm?.dibuatOleh || {};
-          this.items = tbm?.items?.map((item, idx) => {
+          this.detail = tp;
+          this.mengetahui = tp?.mengetahui || {};
+          this.dibuatOleh = tp?.dibuatOleh || {};
+          this.items = tp?.items?.map((item, idx) => {
             return {
               ...item,
-              tanggalMasuk: tbm?.tanggalMasuk && idx === 0 ? this.$moment(tbm.tanggalMasuk).format("DD-MMM-YYYY") : null,
-              pemasokNama: tbm?.pemasok?.[idx]?.nama,
-              pemasokAlamat: tbm?.pemasok?.[idx]?.alamat,
-              mutuBeton: tbm?.mutuBeton?.[idx]?.value,
-              personilNama: tbm?.personil?.[idx]?.nama,
-              personilTtd: tbm?.personil?.[idx]?.ttd,
+              tanggalMasuk: tp?.tanggalMasuk && idx === 0 ? this.$moment(tp.tanggalMasuk).format("DD-MMM-YYYY") : null,
+              pemasokNama: tp?.pemasok?.[idx]?.nama,
+              pemasokAlamat: tp?.pemasok?.[idx]?.alamat,
+              mutuBeton: tp?.mutuBeton?.[idx]?.value,
+              personilNama: tp?.personil?.[idx]?.nama,
+              personilTtd: tp?.personil?.[idx]?.ttd,
             }
           });
         }

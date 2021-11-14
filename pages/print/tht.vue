@@ -3751,10 +3751,10 @@ export default {
                 pipeline: [
                   {
                     $lookup: {
-                      from: "TelusurBahanMasuk",
-                      localField: "idTbm",
+                      from: "TelusurHasilTest",
+                      localField: "idTht",
                       foreignField: "_id",
-                      as: "tbm"
+                      as: "tht"
                     }
                   }
                 ]
@@ -3764,20 +3764,20 @@ export default {
           .then((res) => res?.data?.result);
         if (result.length >= 1) {
           const telusur = result[0];
-          const tbm = telusur?.tbm?.[0] || {};
+          const tht = telusur?.tht?.[0] || {};
           this.data = telusur;
-          this.detail = tbm;
-          this.mengetahui = tbm?.mengetahui || {};
-          this.dibuatOleh = tbm?.dibuatOleh || {};
-          this.items = tbm?.items?.map((item, idx) => {
+          this.detail = tht;
+          this.mengetahui = tht?.mengetahui || {};
+          this.dibuatOleh = tht?.dibuatOleh || {};
+          this.items = tht?.items?.map((item, idx) => {
             return {
               ...item,
-              tanggalMasuk: tbm?.tanggalMasuk && idx === 0 ? this.$moment(tbm.tanggalMasuk).format("DD-MMM-YYYY") : null,
-              pemasokNama: tbm?.pemasok?.[idx]?.nama,
-              pemasokAlamat: tbm?.pemasok?.[idx]?.alamat,
-              mutuBeton: tbm?.mutuBeton?.[idx]?.value,
-              personilNama: tbm?.personil?.[idx]?.nama,
-              personilTtd: tbm?.personil?.[idx]?.ttd,
+              tanggalMasuk: tht?.tanggalMasuk && idx === 0 ? this.$moment(tht.tanggalMasuk).format("DD-MMM-YYYY") : null,
+              pemasokNama: tht?.pemasok?.[idx]?.nama,
+              pemasokAlamat: tht?.pemasok?.[idx]?.alamat,
+              mutuBeton: tht?.mutuBeton?.[idx]?.value,
+              personilNama: tht?.personil?.[idx]?.nama,
+              personilTtd: tht?.personil?.[idx]?.ttd,
             }
           });
         }
