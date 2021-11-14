@@ -14,14 +14,12 @@ const TelusurProses = new mongoose.Schema(
         ttd: { type: String }, // image
       }
     ],
-    jumlahPekerja: { type: Number },
-    cuaca: { type: String },
     items: [
       {
         _id: { type: String },
         jamMulai: { type: String },
         jamSelesai: { type: String },
-        jumlahPekerja: { type: String },
+        jumlahPekerja: { type: Number },
         cuaca: { type: String },
         penggetarTipe: { type: String },
         penggetarJumlah: { type: String },

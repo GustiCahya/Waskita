@@ -5,12 +5,14 @@
       <v-form ref="form" v-model="form" @submit.prevent="submit">
         <v-row>
           <v-col cols="12" md="6" class="py-0">
-            <v-text-field
+            <v-select
               v-model="kodeSilinder"
+              :items="listKodeSilinder"
+              :menu-props="{ offsetY: true }"
               label="Kode Silinder"
-              :rules="rules.kodeSilinder"
-              outlined
+              placeholder="Kode Silinder"
               dense
+              outlined
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0"></v-col>
@@ -167,11 +169,13 @@ export default {
         hasilTekan: [
           (v) => !!v || "Harap diisi",
           (v) =>
-            /^\d*\.?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16.5)",
+            /^\d*\.?\d*%$/gi.test(v) || "Harus Persen (contoh: 23% atau 23.5%)",
         ],
       },
       id: undefined,
       form: false,
+      // additional information
+      listKodeSilinder: []
     };
   },
   watch: {
@@ -181,6 +185,31 @@ export default {
     tanggalPengetesan() {
       this.getDaysDiff();
     },
+  },
+  async mounted() {
+    // fetch telusur data
+    const id = this.$route.query.id;
+    if (id) {
+      try {
+        const result = await this.$axios
+          .get("/api/TelusurBendaUji/get", {
+            params: {
+              jsonQuery: JSON.stringify({
+                idTelusur: id,
+              }),
+            },
+          })
+          .then((res) => res?.data?.result);
+        if (result.length >= 1) {
+          const item = result?.[0] || {};
+          if (!item) return;
+          const items = item?.items || [];
+          this.listKodeSilinder = items.map((item) => item.kodeSilinder);
+        }
+      } catch (err) {
+        this.$swal(err?.response?.data || err?.message, "", "error");
+      }
+    }
   },
   methods: {
     getDaysDiff() {
