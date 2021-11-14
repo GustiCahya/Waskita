@@ -43,7 +43,7 @@ const TelusurHasilTest = new mongoose.Schema(
         perkiraanDensity: { type: String },
         perkiraanTekan: { type: String },
         hasilDensity: { type: Number },
-        hasilTekan: { type: Number },
+        hasilTekan: { type: String },
       }
     ],
     dibuatOleh: Object,

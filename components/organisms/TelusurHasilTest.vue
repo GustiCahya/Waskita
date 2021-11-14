@@ -15,11 +15,12 @@
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
+            <!-- change to bulk input -->
             <v-text-field
-              v-model="noIzin"
-              :rules="rules.noIzin"
-              label="No. Izin"
-              placeholder="No. Izin"
+              v-model="hasilTest"
+              :rules="rules.hasilTest"
+              label="Hasil Test"
+              placeholder="Hasil Test"
               outlined
               dense
             />
@@ -27,113 +28,48 @@
         </v-row>
         <v-row>
           <v-col cols="12" md="6" class="py-0">
-            <app-date-picker
-              v-model="tanggalMasuk"
-              :rules="rules.tanggalMasuk"
-              label="Tanggal Masuk"
-              placeholder="Tanggal Masuk"
-              outlined
-              dense
-            />
-          </v-col>
-          <v-col cols="12" md="6" class="py-0">
-            <app-bulk-input
-              v-model="pemasok"
-              :rules="rules.pemasok"
-              label="Pemasok"
-              placeholder="Pemasok"
-              outlined
-              dense
-            >
-              <pemasok-form :items="pemasok" />
-            </app-bulk-input>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" md="6" class="py-0">
+            <!-- change to bulk input -->
             <v-text-field
-              v-model="lokasiPengecoran"
-              :rules="rules.lokasiPengecoran"
-              label="Lokasi Pengecoran"
-              placeholder="Lokasi Pengecoran"
+              v-model="laboratorium"
+              :rules="rules.laboratorium"
+              label="Laboratorium"
+              placeholder="Laboratorium"
               outlined
               dense
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
             <app-bulk-input
-              v-model="mutuBeton"
-              :rules="rules.mutuBeton"
-              label="Mutu Beton"
-              placeholder="Mutu Beton"
+              v-model="saksiWaskita"
+              :rules="rules.saksiWaskita"
+              label="Saksi Waskita"
+              placeholder="Saksi Waskita"
               outlined
               dense
             >
-              <regular-bulk-form label="Mutu Beton" :items="mutuBeton" />
+              <personil-form :items="saksiWaskita" />
             </app-bulk-input>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" md="6" class="py-0">
             <app-bulk-input
-              v-model="personil"
-              :rules="rules.personil"
-              label="Personil"
-              placeholder="Personil"
+              v-model="saksiPemberiKerja"
+              :rules="rules.saksiPemberiKerja"
+              label="Saksi Pemberi Kerja"
+              placeholder="Saksi Pemberi Kerja"
               outlined
               dense
             >
-              <personil-form :items="personil" />
+              <personil-form :items="saksiPemberiKerja" />
             </app-bulk-input>
           </v-col>
-          <v-col cols="12" md="6" class="py-0"> </v-col>
+          <v-col cols="12" md="6" class="py-0"></v-col>
         </v-row>
         <!-- items -->
-        <tbm-items-form :items="items" />
+        <tht-items-form :items="items" />
         <!-- footer input -->
-        <v-row>
-          <v-col cols="12" md="6">
-            <v-card class="mt-3" color="grey darken-4">
-              <h5 class="pa-3">Mengetahui</h5>
-              <div class="px-3 pt-0 pb-5">
-                <v-text-field
-                  v-model="mengetahuiJabatan"
-                  :rules="rules.mengetahuiJabatan"
-                  label="Jabatan"
-                  placeholder="Jabatan"
-                  outlined
-                  dense
-                />
-                <v-text-field
-                  v-model="mengetahuiNama"
-                  :rules="rules.mengetahuiNama"
-                  label="Nama"
-                  placeholder="Nama"
-                  outlined
-                  dense
-                />
-                <v-file-input
-                  v-model="mengetahuiTtdFile"
-                  :rules="rules.mengetahuiTtdFile"
-                  accept="image/png, image/jpeg, image/bmp"
-                  label="TTD (max: 3mb)"
-                  prepend-icon="mdi-image"
-                  outlined
-                  dense
-                ></v-file-input>
-                <div class="d-flex justify-center">
-                  <v-img
-                    v-if="mengetahuiTtd"
-                    class="white rounded-sm"
-                    max-width="150"
-                    max-height="150"
-                    contain
-                    :src="mengetahuiTtd"
-                  />
-                </div>
-              </div>
-            </v-card>
-          </v-col>
+        <v-row justify="end">
           <v-col cols="12" md="6">
             <v-card class="mt-3" color="grey darken-4">
               <h5 class="pa-3">Dibuat oleh</h5>
@@ -228,18 +164,14 @@
 <script>
 import AppBulkInput from "../atoms/AppBulkInput.vue";
 import AppDatePicker from "../atoms/AppDatePicker.vue";
-import RegularBulkForm from "../molecules/RegularBulkForm.vue";
-import PemasokForm from "../molecules/PemasokForm.vue";
 import PersonilForm from "../molecules/PersonilForm.vue";
-import TbmItemsForm from "../molecules/TbmItemsForm.vue";
+import ThtItemsForm from "../molecules/ThtItemsForm.vue";
 export default {
   components: {
     AppDatePicker,
     AppBulkInput,
-    PemasokForm,
-    RegularBulkForm,
     PersonilForm,
-    TbmItemsForm,
+    ThtItemsForm,
   },
   props: {
     idTelusur: String,
@@ -249,26 +181,16 @@ export default {
       // form
       localId: "",
       no: "",
-      noIzin: "",
-      tanggalMasuk: null,
-      pemasok: [],
-      lokasiPengecoran: "",
-      mutuBeton: [],
-      personil: [],
+      hasilTest: [],
+      laboratorium: [],
+      saksiWaskita: [],
+      saksiPemberiKerja: [],
       rules: {
         no: [(v) => !!v || "Harap diisi"],
-        noIzin: [(v) => !!v || "Harap diisi"],
-        tanggalMasuk: [(v) => !!v || "Harap diisi"],
-        pemasok: [(v) => v.length >= 1 || "Harap diisi"],
-        lokasiPengecoran: [(v) => !!v || "Harap diisi"],
-        mutuBeton: [(v) => v.length >= 1 || "Harap diisi"],
-        personil: [(v) => v.length >= 1 || "Harap diisi"],
-        mengetahuiJabatan: [(v) => !!v || "Harap diisi"],
-        mengetahuiNama: [(v) => !!v || "Harap diisi"],
-        mengetahuiTtdFile: [
-          (v) =>
-            v?.size ? v?.size < 3000000 || "Harus kurang dari 3MB!" : true,
-        ],
+        hasilTest: [(v) => v.length >= 1 || "Harap diisi"],
+        laboratorium: [(v) => v.length >= 1 || "Harap diisi"],
+        saksiWaskita: [(v) => v.length >= 1 || "Harap diisi"],
+        saksiPemberiKerja: [(v) => v.length >= 1 || "Harap diisi"],
         dibuatOlehLokasi: [(v) => !!v || "Harap diisi"],
         dibuatOlehTanggal: [(v) => !!v || "Harap diisi"],
         dibuatOlehJabatan: [(v) => !!v || "Harap diisi"],
@@ -280,15 +202,10 @@ export default {
       },
       // items
       items: [],
-      // footer mengetahui
-      mengetahuiJabatan: "QC Officer",
-      mengetahuiNama: "",
-      mengetahuiTtdFile: null,
-      mengetahuiTtd: "",
       // footer dibuatOleh
       dibuatOlehLokasi: "Bekasi",
       dibuatOlehTanggal: new Date(),
-      dibuatOlehJabatan: "SPLEM",
+      dibuatOlehJabatan: "Quality Control Officer",
       dibuatOlehNama: "",
       dibuatOlehTtdFile: null,
       dibuatOlehTtd: "",
@@ -325,9 +242,9 @@ export default {
                   {
                     $lookup: {
                       from: "TelusurHasilTest",
-                      localField: "idTbm",
+                      localField: "idTht",
                       foreignField: "_id",
-                      as: "tbm",
+                      as: "tht",
                     },
                   },
                 ],
@@ -336,20 +253,15 @@ export default {
           })
           .then((res) => res?.data?.result);
         if (result.length >= 1) {
-          const item = result?.[0]?.tbm?.[0];
+          const item = result?.[0]?.tht?.[0];
           if (!item) return;
           this.localId = item._id;
           this.no = item.no;
-          this.noIzin = item.noIzin;
-          this.tanggalMasuk = item.tanggalMasuk;
-          this.pemasok = item.pemasok;
-          this.lokasiPengecoran = item.lokasiPengecoran;
-          this.mutuBeton = item.mutuBeton;
-          this.personil = item.personil;
+          this.hasilTest = item.hasilTest;
+          this.laboratorium = item.laboratorium;
+          this.saksiWaskita = item.saksiWaskita;
+          this.saksiPemberiKerja = item.saksiPemberiKerja;
           this.items = item.items;
-          this.mengetahuiJabatan = item.mengetahui?.jabatan;
-          this.mengetahuiNama = item.mengetahui?.nama;
-          this.mengetahuiTtd = item.mengetahui?.ttd;
           this.dibuatOlehLokasi = item.dibuatOleh?.lokasi;
           this.dibuatOlehTanggal = item.dibuatOleh?.tanggal;
           this.dibuatOlehJabatan = item.dibuatOleh?.jabatan;
@@ -385,18 +297,11 @@ export default {
         const sendData = {
           idTelusur: this.idTelusur,
           no: this.no,
-          noIzin: this.noIzin,
-          tanggalMasuk: this.tanggalMasuk,
-          pemasok: this.pemasok,
-          lokasiPengecoran: this.lokasiPengecoran,
-          mutuBeton: this.mutuBeton,
-          personil: this.personil,
+          hasilTest: this.hasilTest,
+          laboratorium: this.laboratorium,
+          saksiWaskita: this.saksiWaskita,
+          saksiPemberiKerja: this.saksiPemberiKerja,
           items: this.items,
-          mengetahui: {
-            nama: this.mengetahuiNama,
-            jabatan: this.mengetahuiJabatan,
-            ttd: this.mengetahuiTtd,
-          },
           dibuatOleh: {
             lokasi: this.dibuatOlehLokasi,
             tanggal: this.dibuatOlehTanggal,
@@ -424,7 +329,7 @@ export default {
         await this.$axios
           .patch("/api/Telusur/update", {
             _id: this.idTelusur,
-            idTbm: this.localId,
+            idTht: this.localId,
           })
           .then((res) => res?.data?.result);
         this.$swal("Berhasil", "", "success");
@@ -435,7 +340,7 @@ export default {
     },
     async redirectPrint() {
       await this.generate();
-      window.open(`print/tbm?id=${this.idTelusur}`, "_blank");
+      window.open(`print/tht?id=${this.idTelusur}`, "_blank");
     },
   },
 };

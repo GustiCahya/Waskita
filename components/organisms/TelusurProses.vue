@@ -89,7 +89,7 @@
           <v-col cols="12" md="6" class="py-0"> </v-col>
         </v-row>
         <!-- items -->
-        <tbm-items-form :items="items" />
+        <tp-items-form :items="items" />
         <!-- footer input -->
         <v-row>
           <v-col cols="12" md="6">
@@ -231,7 +231,7 @@ import AppDatePicker from "../atoms/AppDatePicker.vue";
 import RegularBulkForm from "../molecules/RegularBulkForm.vue";
 import PemasokForm from "../molecules/PemasokForm.vue";
 import PersonilForm from "../molecules/PersonilForm.vue";
-import TbmItemsForm from "../molecules/TbmItemsForm.vue";
+import TpItemsForm from "../molecules/TpItemsForm.vue";
 export default {
   components: {
     AppDatePicker,
@@ -239,7 +239,7 @@ export default {
     PemasokForm,
     RegularBulkForm,
     PersonilForm,
-    TbmItemsForm,
+    TpItemsForm,
   },
   props: {
     idTelusur: String,
@@ -325,9 +325,9 @@ export default {
                   {
                     $lookup: {
                       from: "TelusurProses",
-                      localField: "idTbm",
+                      localField: "idTp",
                       foreignField: "_id",
-                      as: "tbm",
+                      as: "tp",
                     },
                   },
                 ],
@@ -336,7 +336,7 @@ export default {
           })
           .then((res) => res?.data?.result);
         if (result.length >= 1) {
-          const item = result?.[0]?.tbm?.[0];
+          const item = result?.[0]?.tp?.[0];
           if (!item) return;
           this.localId = item._id;
           this.no = item.no;
@@ -424,7 +424,7 @@ export default {
         await this.$axios
           .patch("/api/Telusur/update", {
             _id: this.idTelusur,
-            idTbm: this.localId,
+            idTp: this.localId,
           })
           .then((res) => res?.data?.result);
         this.$swal("Berhasil", "", "success");
@@ -435,7 +435,7 @@ export default {
     },
     async redirectPrint() {
       await this.generate();
-      window.open(`print/tbm?id=${this.idTelusur}`, "_blank");
+      window.open(`print/tp?id=${this.idTelusur}`, "_blank");
     },
   },
 };
