@@ -141,7 +141,7 @@ export default {
             })
             .then((res) => res?.data?.result);
           this.$emit("updateIdTelusur", createdTelusur._id);
-          this.$swal("Submit Berhasil", "", "success");
+          this.$swal("Berhasil", "", "success");
         } else {
           // if update
           const updatedTelusur = await this.$axios

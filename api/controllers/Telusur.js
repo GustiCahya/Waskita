@@ -21,7 +21,7 @@ const get = async (req, res) => {
       jsonQuery,
       page,
       limit,
-      sort,
+      sort
     );
     res.json({
       success: true,
@@ -89,11 +89,16 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
   try {
     const { _id } = req.query;
-    const result = await Telusur.deleteOne({ _id });
-    await TelusurBahanMasuk.deleteOne({ telusurId: _id });
-    await TelusurBendaUji.deleteOne({ telusurId: _id });
-    await TelusurHasilTest.deleteOne({ telusurId: _id });
-    await TelusurProses.deleteOne({ telusurId: _id });
+    const session = await Telusur.startSession();
+    const result = await session.withTransaction(async () => {
+      const result = await Telusur.deleteOne({ _id });
+      await TelusurBahanMasuk.deleteOne({ idTelusur: _id });
+      await TelusurBendaUji.deleteOne({ idTelusur: _id });
+      await TelusurHasilTest.deleteOne({ idTelusur: _id });
+      await TelusurProses.deleteOne({ idTelusur: _id });
+      return result;
+    });
+    session.endSession();
     res.json({
       success: true,
       result,
