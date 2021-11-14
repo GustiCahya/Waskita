@@ -38,7 +38,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="12">
+          <v-col cols="12" class="py-0">
             <v-text-field
               v-model="umurHari"
               label="Umur Hari Saat Pengetesan"
