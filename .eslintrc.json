@@ -52,6 +52,7 @@
     "import/no-named-as-default-member": "off",
     "vue/no-mutating-props": "off",
     "curly": "off",
-    "vue/no-unused-components": "warn"
+    "vue/no-unused-components": "warn",
+    "no-useless-escape": "off"
   }
 }
