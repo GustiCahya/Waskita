@@ -23,6 +23,7 @@ const createToken = (account) => {
 const register = async (req, res) => {
   try {
     const email = req.body.email.toLowerCase();
+    const fullName = req.body.fullName;
     const password = req.body.password;
     const role = req.body.role;
     // Check if user exist
@@ -40,6 +41,7 @@ const register = async (req, res) => {
     const roles = [role];
     const saveUser = {
       email: email,
+      fullName: fullName,
       password: hashedPassword,
       $addToSet: { roles: roles },
       $setOnInsert: { _id: uuid.v4() },
