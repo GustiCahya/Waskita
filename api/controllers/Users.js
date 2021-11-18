@@ -207,11 +207,7 @@ const getUsers = async (req, res) => {
     const page = req.query.page;
     const limit = req.query.limit;
     const { result, pagesLength } = await pagination(Users, query, page, limit);
-    const users = result.map(({ _id, email, roles }) => ({
-      _id,
-      email,
-      roles,
-    }));
+    const users = result;
     res.json({
       success: true,
       result: users,

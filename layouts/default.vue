@@ -69,6 +69,11 @@ export default {
           title: "Review Telusur",
           to: "/review",
         },
+        {
+          icon: "mdi-account-multiple",
+          title: "Kelola Akun",
+          to: "/manage-users",
+        },
       ],
       miniVariant: false,
       title: "Waskita",
