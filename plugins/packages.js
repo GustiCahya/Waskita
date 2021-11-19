@@ -1,3 +1,4 @@
-// import Vue from 'vue'
-// import printJS from 'print-js'
-// Vue.use(printJS);
+import Vue from 'vue';
+import VueCookies from 'vue-cookies';
+Vue.use(VueCookies);
+Vue.$cookies.config('7d');

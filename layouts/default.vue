@@ -41,6 +41,10 @@
         <v-icon>mdi-{{ `chevron-${miniVariant ? "right" : "left"}` }}</v-icon>
       </v-btn>
       <v-toolbar-title v-text="title" />
+      <v-spacer></v-spacer>
+      <v-btn icon title="Logout" @click="logout">
+        <v-icon>mdi-door-open</v-icon>
+      </v-btn>
     </v-app-bar>
     <v-main>
       <v-container style="min-height: 100vh">
@@ -79,5 +83,11 @@ export default {
       title: "Waskita",
     };
   },
+  methods: {
+    logout() {
+      this.$cookies.remove("token");
+      this.$router.replace("/login");
+    }
+  }
 };
 </script>

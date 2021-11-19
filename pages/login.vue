@@ -84,7 +84,8 @@ export default {
           email: this.email,
           password: this.password
         }).then((res) => res?.data?.result);
-        console.log(result);
+        this.$cookies.set("token", result?.key?.accessToken);
+        this.$router.replace("/");
       } catch (err) {
         this.$swal(err?.response?.data?.message || err.message, "", "warning");
       }
