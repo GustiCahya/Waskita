@@ -127,6 +127,7 @@
               </v-card-text>
               <v-card-actions style="padding-top: 0">
                 <v-btn
+                  v-if="isSuperAdmin"
                   icon
                   color="red darken-2"
                   @click.native="() => removeTelusur(item)"
@@ -175,7 +176,13 @@ export default {
       page: 1,
       limit: 10,
       pagesLength: 1,
+      // roles
+      isSuperAdmin: false
     };
+  },
+  async beforeMount() {
+    const roles = await this.$getUserRoles();
+    this.isSuperAdmin = roles?.includes("Super Admin");
   },
   mounted() {
     // fetch data
