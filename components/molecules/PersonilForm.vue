@@ -84,7 +84,7 @@ export default {
     async submit() {
       this.$refs.form.validate();
       if (!this.form) return;
-      const encodedImg = await this.toBase64(this.ttd);
+      const encodedImg = await this.$toBase64(this.ttd);
       const send = {
         nama: this.nama,
         ttd: encodedImg,

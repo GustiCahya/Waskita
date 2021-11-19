@@ -162,6 +162,7 @@
 </template>
 <script>
 export default {
+  layout: "dashboard",
   data() {
     return {
       filter: {
@@ -256,10 +257,10 @@ export default {
       this.isLoading = false;
     },
     openTelusur(item) {
-      window.open(`/?id=${item._id}`);
+      window.open(`/telusur?id=${item._id}`);
     },
     redirectTelusur(item, step) {
-      window.open(`/?id=${item._id}&step=${step}`);
+      window.open(`/telusur?id=${item._id}&step=${step}`);
     },
     async removeTelusur(item) {
       const result = await this.$swal({

@@ -2475,6 +2475,7 @@
 </template>
 <script>
 export default {
+  layout: "dashboard",
   data() {
     return {
       baseUrl: "",

@@ -14,6 +14,7 @@ const generateAccessToken = (userJWT) => {
 const createToken = (account) => {
   const userJWT = {
     email: account.email,
+    fullName: account.fullName,
     roles: account.roles,
   };
   const accessToken = generateAccessToken(userJWT);
@@ -53,19 +54,11 @@ const register = async (req, res) => {
       saveUser,
       { upsert: true, new: true }
     );
-    // Generate Token
-    const account = {
-      userId: createdUser._id,
-      email: createdUser.email,
-      roles: createdUser.roles,
-    };
-    const key = await createToken(account);
     res.status(201).send({
       success: true,
       result: {
-        userId: account.userId,
-        key,
-        roles: account.roles,
+        userId: createdUser.userId,
+        roles: createdUser.roles,
       },
       message: "Daftar berhasil !",
     });
@@ -97,6 +90,7 @@ const login = async (req, res) => {
       const roles = user.roles;
       const account = {
         userId: user._id,
+        fullName: user.fullName,
         email: user.email,
         roles: roles,
       };
@@ -116,6 +110,30 @@ const login = async (req, res) => {
         message: "Maaf password yang anda masukan tidak sesuai",
       });
     }
+  } catch (err) {
+    res.status(500).send({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
+const isLogin = (req, res) => {
+  try {
+    const token = req.query.token;
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err) => {
+      if (err) {
+        return res.status(403).send({
+          success: false,
+          message: "Harap login dahulu",
+        });
+      }
+      res.json({
+        success: true,
+        result: true,
+        message: "",
+      });
+    });
   } catch (err) {
     res.status(500).send({
       success: false,
@@ -272,6 +290,7 @@ module.exports = {
   register,
   login,
   resetPassword,
+  isLogin,
   isExist,
   getUsers,
   getRoles,

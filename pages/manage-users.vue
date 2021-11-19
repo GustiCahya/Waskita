@@ -140,6 +140,7 @@
 </template>
 <script>
 export default {
+  layout: "dashboard",
   data() {
     return {
       // Table
@@ -169,6 +170,12 @@ export default {
     async page() {
       await this.getUsers();
     },
+  },
+  async beforeMount() {
+    const roles = await this.$getUserRoles();
+    if(!roles?.includes('Super Admin')){
+      this.$router.replace('/telusur')
+    }
   },
   async mounted() {
     await this.getUsers();

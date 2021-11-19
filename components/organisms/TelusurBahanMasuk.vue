@@ -305,10 +305,10 @@ export default {
   },
   watch: {
     async mengetahuiTtdFile(val) {
-      this.mengetahuiTtd = await this.toBase64(val);
+      this.mengetahuiTtd = await this.$toBase64(val);
     },
     async dibuatOlehTtdFile(val) {
-      this.dibuatOlehTtd = await this.toBase64(val);
+      this.dibuatOlehTtd = await this.$toBase64(val);
     },
   },
   async mounted() {

@@ -1,91 +1,95 @@
 <template>
-  <v-row justify="center" align="center" class="mb-10">
-    <v-col cols="12">
-      <telusur :id-telusur="idTelusur" @updateIdTelusur="updateIdTelusur" />
-    </v-col>
-    <v-col v-if="idTelusur" cols="12">
-      <v-card>
-        <v-stepper v-model="step">
-          <v-stepper-header>
-            <v-stepper-step step="1" :editable="true" edit-icon="mdi-check">
-              Telusur Bahan Masuk
-            </v-stepper-step>
-
-            <v-divider></v-divider>
-
-            <v-stepper-step step="2" :editable="true" edit-icon="mdi-check">
-              Telusur Benda Uji
-            </v-stepper-step>
-
-            <v-divider></v-divider>
-
-            <v-stepper-step step="3" :editable="true" edit-icon="mdi-check">
-              Telusur Hasil Test
-            </v-stepper-step>
-
-            <v-divider></v-divider>
-
-            <v-stepper-step step="4" :editable="true" edit-icon="mdi-check">
-              Telusur Proses
-            </v-stepper-step>
-          </v-stepper-header>
-        </v-stepper>
-        <v-container>
-          <telusur-bahan-masuk v-if="step === '1'" :id-telusur="idTelusur" />
-          <telusur-benda-uji v-if="step === '2'" :id-telusur="idTelusur" />
-          <telusur-hasil-test v-if="step === '3'" :id-telusur="idTelusur" />
-          <telusur-proses v-if="step === '4'" :id-telusur="idTelusur" />
-        </v-container>
-      </v-card>
-    </v-col>
-  </v-row>
+  <v-app>
+    <v-main>
+      <v-container class="fill-height" fluid>
+        <v-row align="center" justify="center">
+          <v-col cols="12" sm="8" md="4">
+            <v-card class="elevation-12">
+              <v-toolbar dark color="primary">
+                <v-toolbar-title>Waskita Login</v-toolbar-title>
+              </v-toolbar>
+              <v-form
+                ref="authForm"
+                v-model="authForm"
+                @submit.prevent="submit"
+              >
+                <v-card-text>
+                  <v-text-field
+                    v-model.trim="email"
+                    :rules="rules.email"
+                    prepend-icon="mdi-account"
+                    name="email"
+                    label="Email"
+                    type="email"
+                    required
+                  />
+                  <v-text-field
+                    id="password"
+                    v-model.trim="password"
+                    :rules="rules.password"
+                    prepend-icon="mdi-lock"
+                    name="password"
+                    label="Password"
+                    type="password"
+                    required
+                  />
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer />
+                  <v-btn
+                    color="primary"
+                    type="submit"
+                    :loading="isLoading"
+                    :disabled="isLoading"
+                  >
+                    Login
+                  </v-btn>
+                </v-card-actions>
+              </v-form>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 <script>
 export default {
-  components: {
-    Telusur: () => import("@/components/organisms/Telusur.vue"),
-    TelusurBahanMasuk: () =>
-      import("@/components/organisms/TelusurBahanMasuk.vue"),
-    TelusurBendaUji: () => import("@/components/organisms/TelusurBendaUji.vue"),
-    TelusurHasilTest: () =>
-      import("@/components/organisms/TelusurHasilTest.vue"),
-    TelusurProses: () => import("@/components/organisms/TelusurProses.vue"),
-  },
+  layout: "default",
   data() {
     return {
-      idTelusur: "",
-      step: "1",
+      email: "",
+      password: "",
+      rules: {
+        email: [
+          (v) => !!v || "Harap Diisi",
+          (v) =>
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+              v
+            ) || "Harus email",
+        ],
+        password: [(v) => !!v || "Harap Diisi"],
+      },
+      authForm: false,
+      isLoading: false,
     };
   },
-  async mounted() {
-    // check availability of id telusur
-    const id = this.$route.query.id;
-    const step = this.$route.query?.step;
-    if (id) {
-      try {
-        const count = await this.$axios
-          .get("/api/Telusur/count", {
-            params: {
-              jsonQuery: JSON.stringify({
-                _id: id,
-              }),
-            },
-          })
-          .then((res) => res?.data?.result);
-        if (count >= 1) {
-          this.idTelusur = id;
-          this.step = step || "1";
-        } else {
-          this.$swal("Maaf, id telusur tidak ditemukan", "", "warning");
-        }
-      } catch (err) {
-        this.$swal(err.message, "", "error");
-      }
-    }
-  },
   methods: {
-    updateIdTelusur(id) {
-      this.idTelusur = id;
+    async submit() {
+      this.$refs.authForm.validate();
+      if (!this.authForm) return;
+      this.isLoading = true;
+      try {
+        const result = await this.$axios.post("/api/Users/login", {
+          email: this.email,
+          password: this.password
+        }).then((res) => res?.data?.result);
+        this.$cookies.set("token", result?.key?.accessToken);
+        this.$router.replace("/telusur");
+      } catch (err) {
+        this.$swal(err?.response?.data?.message || err.message, "", "warning");
+      }
+      this.isLoading = false;
     },
   },
 };

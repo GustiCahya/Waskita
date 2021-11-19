@@ -211,7 +211,7 @@ export default {
   },
   watch: {
     async dibuatOlehTtdFile(val) {
-      this.dibuatOlehTtd = await this.toBase64(val);
+      this.dibuatOlehTtd = await this.$toBase64(val);
     },
   },
   async mounted() {

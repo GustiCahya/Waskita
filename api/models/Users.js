@@ -4,6 +4,7 @@ const Users = new mongoose.Schema(
   {
     _id: { type: String },
     email: { type: String, required: true },
+    fullName: { type: String, required: true },
     password: { type: String, required: true },
     roles: { type: Array, required: true },
     _createdDate: { type: Date },
