@@ -80,7 +80,7 @@ export default {
           this.$swal("Maaf, id telusur tidak ditemukan", "", "warning");
         }
       } catch (err) {
-        this.$swal(err.message, "", "error");
+        this.$swal(err.message, "", "warning");
       }
     }
   },

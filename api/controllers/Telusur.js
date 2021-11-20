@@ -49,6 +49,11 @@ const count = async (req, res) => {
 const create = async (req, res) => {
   try {
     const body = req.body;
+    const proyek = body.proyek;
+    const isExist = await Telusur.exists({ proyek: { $regex: `^${proyek}$`, $options: "i" } });
+    if(isExist){
+      throw new Error("Proyek sudah pernah dibuat");
+    }
     const _id = uuid.v4();
     const insertMongo = {
       _id,
@@ -70,6 +75,14 @@ const update = async (req, res) => {
   try {
     const body = req.body;
     const _id = body._id;
+    const proyek = body.proyek;
+    const isExist = await Telusur.exists({
+      proyek: { $regex: `^${proyek}$`, $options: "i" },
+      _id: { $ne: _id }
+    });
+    if(isExist){
+      throw new Error("Proyek sudah pernah dibuat");
+    }
     // send data
     const result = await telusur.update({
       body: {

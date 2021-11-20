@@ -60,9 +60,7 @@
           color="primary"
           class="mt-1 mb-3"
           nuxt
-          to="/"
           :loading="loadingSubmit"
-          @click="submitTelusur"
         >
           {{ !idTelusur ? "Generate" : "Edit" }}
         </v-btn>
@@ -117,7 +115,7 @@ export default {
           this.rev = item.rev;
         }
       } catch (err) {
-        this.$swal(err?.response?.data || err?.message, "", "error");
+        this.$swal(err?.response?.data || err?.message, "", "warning");
       }
     }
   },
@@ -154,7 +152,7 @@ export default {
           this.$swal("Edit Berhasil", "", "success");
         }
       } catch (err) {
-        this.$swal(err?.response?.data || err?.message, "", "error");
+        this.$swal(err?.response?.data || err?.message, "", "warning");
       }
       this.loadingSubmit = false;
     },
