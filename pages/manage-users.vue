@@ -266,7 +266,6 @@ export default {
         confirmButtonColor: "#ED2939",
         confirmButtonText: "Iya, hapus saja!",
       });
-      console.log(item._id);
       if (!resultSwal.value) return;
       try {
         const query = { _id: item._id };

@@ -142,9 +142,8 @@ export default {
             },
           })
           .then((res) => res?.data?.result);
-        if (result.length >= 1) {
-          const item = result?.[0] || {};
-          if (!item) return;
+        const item = result?.[0];
+        if (item) {
           const items = item?.items || [];
           this.listNoKendaraan = items.map((item) => item.noKendaraan);
         }
