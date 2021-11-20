@@ -3269,10 +3269,11 @@
             </tr>
           </table>
         </div>
-        <div v-for="item in detail.hasilTest" id="section" :key="item._id">
+        <div v-for="(item, idx) in detail.hasilTest" id="section" :key="item._id">
+          <p>Lampiran {{ idx + 1 }} : {{ item.judul }}</p>
           <img
             style="
-              max-height: 18.5cm;
+              max-height: 18cm;
             "
             :src="item.gambar"
           />
