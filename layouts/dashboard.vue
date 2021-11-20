@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app v-if="!loadingMount" dark>
     <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" fixed app>
       <v-list-item v-if="!miniVariant">
         <v-list-item-content class="text-center">
@@ -122,13 +122,21 @@ export default {
       email: "",
       fullName: "",
       roles: [],
+      // loading
+      loadingMount: true,
     };
   },
   async beforeMount() {
-    const isLogin = await this.$isLogin();
-    if (!isLogin) {
-      this.$logout();
+    this.loadingMount = true;
+    try {
+      const isLogin = await this.$isLogin();
+      if (!isLogin) {
+        this.$logout();
+      }
+    } catch (err) {
+      this.$swal(err?.response?.data?.message || err?.message, "", "warning");
     }
+    this.loadingMount = false;
   },
   async mounted() {
     const user = this.$getUserData();

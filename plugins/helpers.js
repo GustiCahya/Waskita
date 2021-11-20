@@ -35,6 +35,7 @@ Vue.mixin({
         .then((res) => res?.data?.result)
         .catch(() => false);
       return isLogin;
+      // throw new Error("anjay")
     },
     $logout() {
       this.$cookies.remove("token");

@@ -1,16 +1,28 @@
 <template>
-  <Nuxt />
+  <Nuxt v-if="!loadingMount" />
 </template>
 
 <script>
 export default {
-  async beforeMount() {
-    const isLogin = await this.$isLogin();
-    if (isLogin) {
-      this.$router.replace("/telusur");
-    }else{
-      this.$logout();
+  data() {
+    return {
+      loadingMount: true,
     }
+  },
+  async beforeMount() {
+    this.loadingMount = true;
+    try {
+      const isLogin = await this.$isLogin();
+      if (isLogin) {
+        this.$router.replace("/telusur");
+        return;
+      }else{
+        this.$logout();
+      }
+    } catch (err) {
+      this.$swal(err?.response?.data?.message || err?.message, "", "warning");
+    }
+    this.loadingMount = false;
   },
 };
 </script>
