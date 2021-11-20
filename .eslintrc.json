@@ -53,6 +53,8 @@
     "vue/no-mutating-props": "off",
     "curly": "off",
     "vue/no-unused-components": "warn",
-    "no-useless-escape": "off"
+    "no-useless-escape": "off",
+    "vue/component-definition-name-casing": "off",
+    "require-await": "warn"
   }
 }

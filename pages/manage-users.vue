@@ -9,30 +9,33 @@
         <v-card-title>
           <h3>Kelola Akun</h3>
         </v-card-title>
-        <v-form @submit.prevent="searchUser">
-          <v-text-field
-            v-model="search.email"
-            placeholder="Cari Email"
-            class="ml-auto mr-5 mt-n4 mb-2"
-            color="secondary"
-            hide-details
-            style="max-width: 250px"
-          >
-            <template v-slot:append-outer>
-              <v-btn
-                type="submit"
-                class="mt-n2"
-                fab
-                small
-                elevation="2"
-                height="44"
-                width="44"
-              >
-                <v-icon>mdi-magnify</v-icon>
-              </v-btn>
-            </template>
-          </v-text-field>
-        </v-form>
+        <div class="d-flex justify-space-between">
+          <tambah-user @refreshUsers="getUsers" />
+          <v-form @submit.prevent="searchUser">
+            <v-text-field
+              v-model="search.email"
+              placeholder="Cari Email"
+              class="ml-auto mr-5 mt-n4 mb-2"
+              color="secondary"
+              hide-details
+              style="max-width: 250px"
+            >
+              <template v-slot:append-outer>
+                <v-btn
+                  type="submit"
+                  class="mt-n2"
+                  fab
+                  small
+                  elevation="2"
+                  height="44"
+                  width="44"
+                >
+                  <v-icon>mdi-magnify</v-icon>
+                </v-btn>
+              </template>
+            </v-text-field>
+          </v-form>
+        </div>
         <v-simple-table>
           <thead>
             <tr>
@@ -62,6 +65,14 @@
                   @click.native="selectUser(item)"
                 >
                   <v-icon>mdi-pencil</v-icon>
+                </v-btn>
+                <v-btn
+                  color="red"
+                  :icon="true"
+                  :loading="loadingRemove === item._id"
+                  @click.native="removeUser(item)"
+                >
+                  <v-icon>mdi-delete</v-icon>
                 </v-btn>
               </td>
             </tr>
@@ -139,7 +150,11 @@
   </div>
 </template>
 <script>
+import TambahUser from "../components/organisms/TambahUser.vue";
 export default {
+  components: {
+    TambahUser,
+  },
   layout: "dashboard",
   data() {
     return {
@@ -154,15 +169,13 @@ export default {
       },
       // Item
       dialog: false,
-      listRoles: [
-          "Super Admin",
-          "Admin"
-      ],
+      listRoles: require("@/static/constants/roles.json"),
       selectedUser: {
         _id: "",
         email: "",
         roles: [],
       },
+      loadingRemove: false,
       isLoadingSubmit: false,
     };
   },
@@ -173,8 +186,8 @@ export default {
   },
   async beforeMount() {
     const roles = await this.$getUserRoles();
-    if(!roles?.includes('Super Admin')){
-      this.$router.replace('/telusur')
+    if (!roles?.includes("Super Admin")) {
+      this.$router.replace("/telusur");
     }
   },
   async mounted() {
@@ -185,18 +198,14 @@ export default {
       this.isLoading = true;
       try {
         this.users = [];
-        const response = await this.$axios.get(
-          `api/Users/getUsers`,
-          {
-            params: {
-              page: this.page,
-              limit: this.limit,
-            },
-          }
-        );
+        const response = await this.$axios.get(`api/Users/getUsers`, {
+          params: {
+            page: this.page,
+            limit: this.limit,
+          },
+        });
         const result = response.data.result;
         this.pagesLength = response.data.pagesLength;
-        console.log(result);
         this.users = result;
       } catch (err) {
         this.$swal(err?.response?.data?.message || err?.message);
@@ -207,18 +216,15 @@ export default {
       this.isLoading = true;
       try {
         this.users = [];
-        const response = await this.$axios.get(
-          `api/Users/getUsers`,
-          {
-            params: {
-              jsonQuery: JSON.stringify({
-                email: { $regex: this.search.email },
-              }),
-              page: this.page,
-              limit: this.limit,
-            },
-          }
-        );
+        const response = await this.$axios.get(`api/Users/getUsers`, {
+          params: {
+            jsonQuery: JSON.stringify({
+              email: { $regex: this.search.email },
+            }),
+            page: this.page,
+            limit: this.limit,
+          },
+        });
         const result = response.data.result;
         this.pagesLength = response.data.pagesLength;
         this.users = result;
@@ -235,10 +241,7 @@ export default {
       this.isLoadingSubmit = true;
       try {
         const body = this.selectedUser;
-        const response = await this.$axios.put(
-          `api/Users/setRoles`,
-          body
-        );
+        const response = await this.$axios.put(`api/Users/setRoles`, body);
         if (response?.data?.success) {
           this.users = this.users.map((user) =>
             user?._id === body?._id ? { ...user, roles: body?.roles } : user
@@ -251,6 +254,34 @@ export default {
         this.$swal(err?.response?.data?.message || err?.message, "", "error");
       }
       this.isLoadingSubmit = false;
+    },
+    async removeUser(item) {
+      const resultSwal = await this.$swal({
+        title: "Yakin ingin dihapus?",
+        text: "Anda tidak akan bisa mengembalikan ini!",
+        icon: "warning",
+        showCancelButton: true,
+        focusCancel: true,
+        cancelButtonColor: "grey",
+        confirmButtonColor: "#ED2939",
+        confirmButtonText: "Iya, hapus saja!",
+      });
+      console.log(item._id);
+      if (!resultSwal.value) return;
+      try {
+        const query = { _id: item._id };
+        const response = await this.$axios.delete(`api/Users/remove`, {
+          params: query
+        });
+        if (response?.data?.success) {
+          await this.getUsers();
+        } else {
+          this.$swal("Gagal Hapus, Coba Lagi", "", "error");
+        }
+      } catch (err) {
+        this.$swal(err?.response?.data?.message || err?.message, "", "error");
+      }
+      this.loadingRemove = false;
     },
   },
 };

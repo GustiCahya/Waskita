@@ -21,17 +21,17 @@ const createToken = (account) => {
   return { accessToken };
 };
 
-const register = async (req, res) => {
+const save = async (req, res) => {
   try {
     const email = req.body.email.toLowerCase();
     const fullName = req.body.fullName;
     const password = req.body.password;
-    const role = req.body.role;
+    const roles = req.body.roles;
     // Check if user exist
     const user = await Users.findOne({
       email: new RegExp(email, "gi"),
     });
-    if (user && user.roles.includes(role)) {
+    if (user) {
       return res.status(400).send({
         success: false,
         message: "Akun sudah terdaftar",
@@ -39,7 +39,6 @@ const register = async (req, res) => {
     }
     // Register user
     const hashedPassword = await bcrypt.hash(password, 10);
-    const roles = [role];
     const saveUser = {
       email: email,
       fullName: fullName,
@@ -147,8 +146,8 @@ const resetPassword = async (req, res) => {
     const token = req.body.token;
     const email = req.body.email;
     const password = req.body.password;
-    const hashPassword = await bcrypt.hash(password, 10);
     const oldPassword = req.body.oldPassword;
+    const hashPassword = await bcrypt.hash(password, 10);
     if (oldPassword) {
       // Reset Password using old password
       const result = await Users.findOne({ email });
@@ -286,8 +285,30 @@ const setRoles = async (req, res) => {
   }
 };
 
+const remove = async (req, res) => {
+  try {
+    const query = req.query;
+    const _id = query._id;
+    const user = await Users.findByIdAndDelete(_id);
+    res.json({
+      success: true,
+      result: {
+        _id: user._id,
+        email: user.email,
+        roles: user.roles,
+      },
+      message: "",
+    });
+  } catch (err) {
+    res.status(500).send({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
 module.exports = {
-  register,
+  save,
   login,
   resetPassword,
   isLogin,
@@ -295,4 +316,5 @@ module.exports = {
   getUsers,
   getRoles,
   setRoles,
+  remove,
 };

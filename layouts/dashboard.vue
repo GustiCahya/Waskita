@@ -11,7 +11,7 @@
               alt="waskita icon"
             />
           </v-list-item-title>
-          <v-list-item-subtitle style="word-wrap: break-word;">
+          <v-list-item-subtitle style="word-wrap: break-word">
             <p class="text-body-1 white--text pa-0 ma-0">{{ fullName }}</p>
             <p class="text-caption pa-0 ma-0">{{ email }}</p>
           </v-list-item-subtitle>
@@ -20,12 +20,7 @@
       <v-divider></v-divider>
       <v-list>
         <div v-for="(item, i) in items" :key="i">
-          <v-list-item
-            v-if="item.show()"
-            :to="item.to"
-            router
-            exact
-          >
+          <v-list-item v-if="item.show()" :to="item.to" router exact>
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
@@ -36,16 +31,32 @@
         </div>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar fixed app>
+    <v-app-bar fixed app class="pr-md-4">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon>mdi-{{ `chevron-${miniVariant ? "right" : "left"}` }}</v-icon>
       </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer></v-spacer>
-      <v-btn icon title="Logout" @click="logout">
-        <v-icon>mdi-door-open</v-icon>
-      </v-btn>
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn icon v-bind="attrs" v-on="on">
+            <v-icon>mdi-account</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <div v-for="(item, i) in userNavs" :key="i">
+            <v-list-item @click="item.handleClick">
+              <v-list-item-icon>
+                <v-icon v-text="item.icon"></v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title v-text="item.text"></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </div>
+        </v-list>
+      </v-menu>
     </v-app-bar>
     <v-main>
       <v-container style="min-height: 100vh">
@@ -70,7 +81,7 @@ export default {
           to: "/telusur",
           show: () => {
             return true;
-          }
+          },
         },
         {
           icon: "mdi-chart-bubble",
@@ -78,7 +89,7 @@ export default {
           to: "/review",
           show: () => {
             return true;
-          }
+          },
         },
         {
           icon: "mdi-account-multiple",
@@ -86,6 +97,22 @@ export default {
           to: "/manage-users",
           show: () => {
             return this.roles?.includes("Super Admin");
+          },
+        },
+      ],
+      userNavs: [
+        {
+          icon: "mdi-key",
+          text: "Reset Password",
+          handleClick: () => {
+            this.$router.push("/user/reset-password");
+          }
+        },
+        {
+          icon: "mdi-door-open",
+          text: "logout",
+          handleClick: () => {
+            this.$logout();
           }
         },
       ],
@@ -94,12 +121,12 @@ export default {
       // user profile
       email: "",
       fullName: "",
-      roles: []
+      roles: [],
     };
   },
   async beforeMount() {
     const isLogin = await this.$isLogin();
-    if(!isLogin){
+    if (!isLogin) {
       this.$logout();
     }
   },
@@ -110,10 +137,6 @@ export default {
     const roles = await this.$getUserRoles();
     this.roles = roles;
   },
-  methods: {
-    logout() {
-      this.$logout();
-    }
-  }
+  methods: {},
 };
 </script>

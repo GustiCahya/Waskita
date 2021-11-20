@@ -7,8 +7,9 @@ router.get("/getRoles", Users.getRoles);
 router.get("/isLogin", Users.isLogin);
 router.get("/isExist", Users.isExist);
 router.post("/resetPassword", Users.resetPassword);
-router.post("/register", Users.register);
+router.post("/save", Users.save);
 router.post("/login", Users.login);
 router.put("/setRoles", Users.setRoles);
+router.delete("/remove", Users.remove);
 
 module.exports = router;
