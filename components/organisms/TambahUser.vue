@@ -98,10 +98,10 @@ export default {
   watch: {},
   methods: {
     async addUser() {
+      this.$refs.addUserForm.validate();
+      if(!this.addUserForm) return;
       this.addUserLoading = true;
       try{
-        this.$refs.addUserForm.validate();
-        if(!this.addUserForm) return;
         const data = await this.$axios.post("/api/Users/save", {
           fullName: this.fullName,
           email: this.email,

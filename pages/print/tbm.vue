@@ -3730,7 +3730,7 @@ export default {
   },
   computed: {
     icon() {
-      return this.baseUrl + require("~/static/icon.png");
+      return require("./logo.json")?.image;
     },
   },
   async mounted() {

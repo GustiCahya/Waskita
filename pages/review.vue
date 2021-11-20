@@ -264,10 +264,10 @@ export default {
       this.isLoading = false;
     },
     openTelusur(item) {
-      window.open(`/telusur?id=${item._id}`);
+      this.$router.push(`/telusur?id=${item._id}`);
     },
     redirectTelusur(item, step) {
-      window.open(`/telusur?id=${item._id}&step=${step}`);
+      this.$router.push(`/telusur?id=${item._id}&step=${step}`);
     },
     async removeTelusur(item) {
       const result = await this.$swal({

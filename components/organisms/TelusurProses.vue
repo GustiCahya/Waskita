@@ -209,6 +209,10 @@ export default {
       this.dibuatOlehTtd = await this.$toBase64(val);
     },
   },
+  beforeMount() {
+    const fullName = this.$getUserData()?.fullName;
+    this.dibuatOlehNama = fullName;
+  },
   async mounted() {
     // fetch telusur data
     const id = this.$route.query.id || this.idTelusur;
@@ -317,7 +321,7 @@ export default {
     },
     async redirectPrint() {
       await this.generate();
-      window.open(`print/tp?id=${this.idTelusur}`, "_blank");
+      this.$router.push(`print/tp?id=${this.idTelusur}`);
     },
   },
 };
