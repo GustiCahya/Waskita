@@ -145,6 +145,7 @@ export default {
     AppTimePicker,
   },
   props: {
+    idTelusur: String,
     items: Array,
   },
   data() {

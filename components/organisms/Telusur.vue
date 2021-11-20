@@ -95,7 +95,7 @@ export default {
   },
   async mounted() {
     // fetch telusur data
-    const id = this.$route.query.id;
+    const id = this.$route.query.id || this.idTelusur;
     if (id) {
       try {
         const result = await this.$axios

@@ -69,7 +69,7 @@
           <v-col cols="12" md="6" class="py-0"></v-col>
         </v-row>
         <!-- items -->
-        <tht-items-form :items="items" />
+        <tht-items-form :id-telusur="idTelusur" :items="items" />
         <!-- footer input -->
         <v-row justify="end">
           <v-col cols="12" md="6">
@@ -236,7 +236,7 @@ export default {
   },
   async mounted() {
     // fetch telusur data
-    const id = this.$route.query.id;
+    const id = this.$route.query.id || this.idTelusur;
     if (id) {
       try {
         const result = await this.$axios

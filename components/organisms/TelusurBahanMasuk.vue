@@ -89,7 +89,7 @@
           <v-col cols="12" md="6" class="py-0"> </v-col>
         </v-row>
         <!-- items -->
-        <tbm-items-form :items="items" />
+        <tbm-items-form :id-telusur="idTelusur" :items="items" />
         <!-- footer input -->
         <v-row>
           <v-col cols="12" md="6">
@@ -313,7 +313,7 @@ export default {
   },
   async mounted() {
     // fetch telusur data
-    const id = this.$route.query.id;
+    const id = this.$route.query.id || this.idTelusur;
     if (id) {
       try {
         const result = await this.$axios
