@@ -4,7 +4,7 @@
       <telusur :id-telusur="idTelusur" @updateIdTelusur="updateIdTelusur" />
     </v-col>
     <v-col v-if="idTelusur" cols="12">
-      <v-card>
+      <v-card min-height="70vh">
         <v-stepper v-model="step">
           <v-stepper-header>
             <v-stepper-step step="1" :editable="true" edit-icon="mdi-check">

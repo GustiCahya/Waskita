@@ -1,7 +1,13 @@
 <template>
   <div>
     <v-card-title class="headline"> Telusur Benda Uji </v-card-title>
-    <v-form ref="form" v-model="form" @submit.prevent="generate">
+    <v-row v-if="loadingFetch" justify="center">
+      <v-progress-circular
+        indeterminate
+        color="primary"
+      ></v-progress-circular>
+    </v-row>
+    <v-form v-else ref="form" v-model="form" @submit.prevent="generate">
       <v-card-text>
         <v-row>
           <v-col cols="12" md="6" class="py-0">
@@ -201,6 +207,7 @@ export default {
       // validity form
       form: false,
       // others
+      loadingFetch: false,
       loadingGenerate: false,
     };
   },
@@ -222,6 +229,7 @@ export default {
     // fetch telusur data
     const id = this.$route.query.id || this.idTelusur;
     if (id) {
+      this.loadingFetch = true;
       try {
         const result = await this.$axios
           .get("/api/Telusur/get", {
@@ -242,9 +250,8 @@ export default {
             },
           })
           .then((res) => res?.data?.result);
-        if (result.length >= 1) {
-          const item = result?.[0]?.tbu?.[0];
-          if (!item) return;
+        const item = result?.[0]?.tbu?.[0];
+        if (item) {
           this.localId = item._id;
           this.no = item.no;
           this.jumlahBendaUji = item.jumlahBendaUji;
@@ -260,6 +267,7 @@ export default {
       } catch (err) {
         this.$swal(err?.response?.data || err?.message, "", "error");
       }
+      this.loadingFetch = false;
     }
   },
   methods: {
