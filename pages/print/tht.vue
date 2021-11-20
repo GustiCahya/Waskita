@@ -18,7 +18,7 @@
           color: black;
         "
       >
-        <div class="WordSection1">
+        <div id="section" class="WordSection1">
           <table
             class="MsoTableGrid"
             border="0"
@@ -2167,7 +2167,11 @@
               </td>
             </tr>
             <!-- main content -->
-            <tr v-for="(item) in items" :key="item._id" style="height: 1.25pt; text-align: center;">
+            <tr
+              v-for="item in items"
+              :key="item._id"
+              style="height: 1.25pt; text-align: center"
+            >
               <td
                 width="114"
                 style="
@@ -2203,15 +2207,16 @@
               >
                 <p
                   class="MsoNormal"
-                  style="
-                    margin-bottom: 0cm;
-                    line-height: normal;
-                  "
+                  style="margin-bottom: 0cm; line-height: normal"
                 >
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ item.tanggalPembuatan ? $moment(item.tanggalPembuatan).format("DD-MMM-YY") : "" }}</span
+                    >{{
+                      item.tanggalPembuatan
+                        ? $moment(item.tanggalPembuatan).format("DD-MMM-YY")
+                        : ""
+                    }}</span
                   >
                 </p>
               </td>
@@ -2227,15 +2232,16 @@
               >
                 <p
                   class="MsoNormal"
-                  style="
-                    margin-bottom: 0cm;
-                    line-height: normal;
-                  "
+                  style="margin-bottom: 0cm; line-height: normal"
                 >
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ item.tanggalPengetesan ? $moment(item.tanggalPengetesan).format("DD-MMM-YY") : "" }}</span
+                    >{{
+                      item.tanggalPengetesan
+                        ? $moment(item.tanggalPengetesan).format("DD-MMM-YY")
+                        : ""
+                    }}</span
                   >
                 </p>
               </td>
@@ -2329,10 +2335,7 @@
               >
                 <p
                   class="MsoNormal"
-                  style="
-                    margin-bottom: 0cm;
-                    line-height: normal;
-                  "
+                  style="margin-bottom: 0cm; line-height: normal"
                 >
                   <span
                     lang="EN-US"
@@ -3186,7 +3189,12 @@
                 <p
                   class="MsoNormal"
                   align="center"
-                  style="margin: 0; text-align: center; line-height: normal: min-height: 62px"
+                  style="
+                    margin: 0;
+                    text-align: center;
+                    line-height: normal;
+                    min-height: 62px;
+                  "
                 >
                   <img
                     v-if="dibuatOleh.ttd"
@@ -3261,6 +3269,14 @@
             </tr>
           </table>
         </div>
+        <div v-for="item in detail.hasilTest" id="section" :key="item._id">
+          <img
+            style="
+              max-height: 18.5cm;
+            "
+            :src="item.gambar"
+          />
+        </div>
       </div>
     </v-card-text>
   </v-card>
@@ -3330,7 +3346,10 @@ export default {
           this.items = tht?.items?.map((item, idx) => {
             return {
               ...item,
-              txtHasilTest: idx === 0 && tht?.hasilTest?.length >= 1 ? "Hasil Tes Terlampir" : "",
+              txtHasilTest:
+                idx === 0 && tht?.hasilTest?.length >= 1
+                  ? "Hasil Tes Terlampir"
+                  : "",
               laboratoriumNama: tht?.laboratorium?.[idx]?.nama,
               laboratoriumAlamat: tht?.laboratorium?.[idx]?.alamat,
               saksiWaskitaNama: tht?.saksiWaskita?.[idx]?.nama,
@@ -3367,6 +3386,11 @@ export default {
 @font-face {
   font-family: Calibri;
   panose-1: 2 15 5 2 2 2 4 3 2 4;
+}
+@media print {
+  #section {
+    page-break-after: always;
+  }
 }
 /* Style Definitions */
 p.MsoNormal,

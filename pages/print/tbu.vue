@@ -2393,7 +2393,7 @@
                 <p
                   class="MsoNormal"
                   align="center"
-                  style="margin: 0; text-align: center; line-height: normal: min-height: 62px"
+                  style="margin: 0; text-align: center; line-height: normal; min-height: 62px;"
                 >
                   <img
                     v-if="dibuatOleh.ttd"
