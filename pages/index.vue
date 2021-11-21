@@ -80,10 +80,12 @@ export default {
       if (!this.authForm) return;
       this.isLoading = true;
       try {
-        const result = await this.$axios.post("/api/Users/login", {
-          email: this.email,
-          password: this.password
-        }).then((res) => res?.data?.result);
+        const result = await this.$axios
+          .post("/api/Users/login", {
+            email: this.email,
+            password: this.password,
+          })
+          .then((res) => res?.data?.result);
         this.$cookies.set("token", result?.key?.accessToken);
         this.$router.replace("/telusur");
       } catch (err) {
@@ -94,11 +96,10 @@ export default {
   },
 };
 </script>
-
 <style>
 #app {
-  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('@/static/images/background_3.jpeg')
-    no-repeat center fixed !important;
+  background: linear-gradient(to right bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    url("@/static/images/background_3.jpeg") no-repeat center fixed !important;
   background-size: cover;
   background-size: 100%;
 }
