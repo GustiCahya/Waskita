@@ -97,4 +97,8 @@ export default {
     '~/api/index.js'
   ],
 
+  server: {
+    host: process.env.HOST,
+    port: process.env.PORT,
+  },
 }
