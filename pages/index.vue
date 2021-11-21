@@ -86,7 +86,7 @@ export default {
             password: this.password,
           })
           .then((res) => res?.data?.result);
-        this.$cookies.set("token", result?.key?.accessToken);
+        this.$secureStorage.setItem("token", result?.key?.accessToken);
         this.$router.replace("/telusur");
       } catch (err) {
         this.$swal(err?.response?.data?.message || err.message, "", "warning");
@@ -98,7 +98,11 @@ export default {
 </script>
 <style>
 #app {
-  background: linear-gradient(to right bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+  background: linear-gradient(
+      to right bottom,
+      rgba(0, 0, 0, 0.9),
+      rgba(0, 0, 0, 0.9)
+    ),
     url("@/static/images/background_3.jpeg") no-repeat center fixed !important;
   background-size: cover;
   background-size: 100%;

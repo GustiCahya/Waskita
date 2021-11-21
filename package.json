@@ -19,6 +19,7 @@
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "core-js": "^3.15.1",
+    "crypto-js": "^4.1.1",
     "express": "^4.17.1",
     "express-validator": "^6.13.0",
     "fawn": "^2.1.5",
@@ -29,9 +30,9 @@
     "multer-gridfs-storage": "^5.0.2",
     "nuxt": "^2.15.7",
     "nuxt-sweetalert2": "^1.0.0",
+    "secure-web-storage": "^1.0.2",
     "uuid": "^8.3.2",
     "v-mask": "^2.3.0",
-    "vue-cookies": "^1.7.4",
     "vue-jwt-decode": "^0.1.0",
     "vuetify": "^2.5.5"
   },
