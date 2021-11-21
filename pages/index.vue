@@ -94,3 +94,12 @@ export default {
   },
 };
 </script>
+
+<style>
+#app {
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('@/static/images/background_3.jpeg')
+    no-repeat center fixed !important;
+  background-size: cover;
+  background-size: 100%;
+}
+</style>
