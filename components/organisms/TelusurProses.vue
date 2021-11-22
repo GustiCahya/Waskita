@@ -252,6 +252,7 @@ export default {
           this.tanggalPengecoran = item.tanggalPengecoran;
           this.noDetail = item.noDetail;
           this.personil = item.personil;
+          this.items = item.items;
           this.dibuatOlehLokasi = item.dibuatOleh?.lokasi;
           this.dibuatOlehTanggal = item.dibuatOleh?.tanggal;
           this.dibuatOlehJabatan = item.dibuatOleh?.jabatan;
