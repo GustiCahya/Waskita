@@ -115,6 +115,7 @@
             <tr>
               <th class="text-left">No. Kendaraan</th>
               <th class="text-left">No. Docket</th>
+              <th class="text-left">Jam Dituang</th>
               <th class="text-left">Aksi</th>
             </tr>
           </thead>
@@ -122,6 +123,7 @@
             <tr v-for="(item, idx) in items" :key="item._id">
               <td>{{ item.noKendaraan }}</td>
               <td>{{ item.noDocket }}</td>
+              <td>{{ item.jamDituang }}</td>
               <td>
                 <v-btn color="yellow darken-3" icon @click="select(item)">
                   <v-icon>mdi-pencil</v-icon>

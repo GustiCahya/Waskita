@@ -25,6 +25,24 @@
                 dense
                 outlined
               />
+              <v-text-field
+                v-model.trim="filter.lokasiPengecoran"
+                label="Lokasi Pengecoran"
+                dense
+                outlined
+              />
+              <app-date-picker
+                v-model="filter.tanggalMasukAwal"
+                label="Tanggal Pengecoran Mulai"
+                outlined
+                dense
+              />
+              <app-date-picker
+                v-model="filter.tanggalMasukAkhir"
+                label="Tanggal Pengecoran Selesai"
+                outlined
+                dense
+              />
               <v-btn
                 type="submit"
                 class="mr-0"
@@ -61,7 +79,7 @@
                       </h4>
                       <h5
                         class="text-caption ma-0 pa-0 mb-2 ml-2"
-                        style="cursor:pointer;"
+                        style="cursor: pointer"
                         @click="redirectTelusur(item, 1)"
                       >
                         {{ item.tbmNo }}
@@ -75,7 +93,7 @@
                       </h4>
                       <h5
                         class="text-caption ma-0 pa-0 mb-2 ml-2"
-                        style="cursor:pointer;"
+                        style="cursor: pointer"
                         @click="redirectTelusur(item, 2)"
                       >
                         {{ item.tbuNo }}
@@ -89,7 +107,7 @@
                       </h4>
                       <h5
                         class="text-caption ma-0 pa-0 mb-2 ml-2"
-                        style="cursor:pointer;"
+                        style="cursor: pointer"
                         @click="redirectTelusur(item, 3)"
                       >
                         {{ item.thtNo }}
@@ -103,7 +121,7 @@
                       </h4>
                       <h5
                         class="text-caption ma-0 pa-0 mb-2 ml-2"
-                        style="cursor:pointer;"
+                        style="cursor: pointer"
                         @click="redirectTelusur(item, 4)"
                       >
                         {{ item.tpNo }}
@@ -111,8 +129,30 @@
                     </div>
                   </v-col>
                 </v-row>
-                <v-divider class="my-3" />
-                <v-row class="d-flex py-1 px-3">
+                <v-divider class="mb-3 mt-6" />
+                <v-row class="d-flex pt-1 px-3">
+                  <div class="d-block text-left">
+                    <h6 class="pa-0 ma-0">Lokasi Pengecoran :</h6>
+                  </div>
+                  <v-spacer></v-spacer>
+                  <div class="d-block text-right">
+                    <h6 class="pa-0 ma-0">
+                      {{ item.lokasiPengecoran }}
+                    </h6>
+                  </div>
+                </v-row>
+                <v-row class="d-flex px-3">
+                  <div class="d-block text-left">
+                    <h6 class="pa-0 ma-0">Tanggal Pengecoran :</h6>
+                  </div>
+                  <v-spacer></v-spacer>
+                  <div class="d-block text-right">
+                    <h6 class="pa-0 ma-0">
+                      {{ $moment(item.tanggalPengecoran).format("dddd, DD MMMM YYYY") }}
+                    </h6>
+                  </div>
+                </v-row>
+                <v-row class="d-flex pb-1 px-3">
                   <div class="d-block text-left">
                     <h6 class="pa-0 ma-0">Tanggal Dibuat :</h6>
                   </div>
@@ -162,13 +202,20 @@
   </div>
 </template>
 <script>
+import AppDatePicker from "@/components/atoms/AppDatePicker.vue";
 export default {
+  components: {
+    AppDatePicker
+  },
   layout: "dashboard",
   data() {
     return {
       filter: {
         businessUnit: "",
         proyek: "",
+        lokasiPengecoran: "",
+        tanggalMasukAwal: null,
+        tanggalMasukAkhir: null,
       },
       items: [],
       filterTelusurValid: false,
@@ -193,6 +240,15 @@ export default {
       this.$refs.filterTelusur.validate();
       if (!this.filterTelusurValid) return;
       this.isLoading = true;
+      const queryTbm = {
+        "tbm.lokasiPengecoran": { $regex: this.filter?.lokasiPengecoran || "", $options: "i" },
+      };
+      if(this.filter?.tanggalMasukAwal && this.filter?.tanggalMasukAkhir) {
+        queryTbm["tbm.tanggalMasuk"] = {
+          $gte: this.filter?.tanggalMasukAwal,
+          $lte: this.filter?.tanggalMasukAkhir
+        };
+      }
       try {
         this.items = [];
         const filterMongo = {
@@ -212,6 +268,12 @@ export default {
                 foreignField: "_id",
                 as: "tbm",
               },
+            },
+            {
+              $unwind: "$tbm"
+            },
+            {
+              $match: queryTbm
             },
             {
               $lookup: {
@@ -252,7 +314,9 @@ export default {
         this.items = data.result.map((item) => {
           return {
             ...item,
-            tbmNo: item?.tbm?.[0]?.no || "Belum ada",
+            lokasiPengecoran: item?.tbm?.lokasiPengecoran || "Belum ada",
+            tanggalPengecoran: item?.tbm?.tanggalMasuk || "Belum ada",
+            tbmNo: item?.tbm?.no || "Belum ada",
             tbuNo: item?.tbu?.[0]?.no || "Belum ada",
             thtNo: item?.tht?.[0]?.no || "Belum ada",
             tpNo: item?.tp?.[0]?.no || "Belum ada",
