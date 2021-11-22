@@ -33,13 +33,13 @@
               />
               <app-date-picker
                 v-model="filter.tanggalMasukAwal"
-                label="Tanggal Pengecoran Mulai"
+                label="Tanggal Mulai Pengecoran"
                 outlined
                 dense
               />
               <app-date-picker
                 v-model="filter.tanggalMasukAkhir"
-                label="Tanggal Pengecoran Selesai"
+                label="Tanggal Selesai Pengecoran"
                 outlined
                 dense
               />
