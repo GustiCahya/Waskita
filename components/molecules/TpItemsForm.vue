@@ -5,16 +5,18 @@
       <v-form ref="form" v-model="form" @submit.prevent="submit">
         <v-row>
           <v-col cols="12" md="6" class="py-0">
-            <app-time-picker
+            <v-select
               v-model="jamMulai"
+              :items="listJamMulai"
+              :menu-props="{ offsetY: true }"
               label="Jam Mulai"
-              :rules="rules.jamMulai"
-              outlined
+              placeholder="Jam Mulai"
               dense
+              outlined
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
-            <app-time-picker
+            <v-text-field
               v-model="jamSelesai"
               label="Jam Selesai"
               :rules="rules.jamSelesai"
@@ -138,11 +140,8 @@
 </template>
 <script>
 import { v4 as uuidv4 } from "uuid";
-import AppTimePicker from "../atoms/AppTimePicker.vue";
 export default {
-  components: {
-    AppTimePicker,
-  },
+  components: {},
   props: {
     idTelusur: String,
     items: Array,
@@ -158,6 +157,7 @@ export default {
       finishing: "",
       curingSistem: "",
       curingLama: "",
+      listJamMulai: [],
       rules: {
         jamMulai: [
           (v) => !!v || "Harap diisi",
@@ -186,6 +186,30 @@ export default {
       id: undefined,
       form: false,
     };
+  },
+  async mounted() {
+    // fetch telusur data
+    const id = this.$route.query.id || this.idTelusur;
+    if (id) {
+      try {
+        const result = await this.$axios
+          .get("/api/TelusurBahanMasuk/get", {
+            params: {
+              jsonQuery: JSON.stringify({
+                idTelusur: id,
+              }),
+            },
+          })
+          .then((res) => res?.data?.result);
+        const item = result?.[0];
+        if (item) {
+          const items = item?.items || [];
+          this.listJamMulai = items.map((item) => item.jamDituang);
+        }
+      } catch (err) {
+        this.$swal(err?.response?.data || err?.message, "", "error");
+      }
+    }
   },
   methods: {
     submit() {

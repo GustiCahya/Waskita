@@ -25,7 +25,7 @@
         </v-row>
         <v-row>
           <v-col cols="12" md="6" class="py-0">
-            <app-time-picker
+            <v-text-field
               v-model="jamKeluar"
               label="Jam Keluar"
               :rules="rules.jamKeluar"
@@ -34,7 +34,7 @@
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
-            <app-time-picker
+            <v-text-field
               v-model="jamDituang"
               label="Jam Dituang"
               :rules="rules.jamDituang"
@@ -139,11 +139,8 @@
 </template>
 <script>
 import { v4 as uuidv4 } from "uuid";
-import AppTimePicker from "../atoms/AppTimePicker.vue";
 export default {
-  components: {
-    AppTimePicker,
-  },
+  components: {},
   props: {
     idTelusur: String,
     items: Array,
