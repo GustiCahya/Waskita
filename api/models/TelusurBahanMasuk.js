@@ -15,12 +15,7 @@ const TelusurBahanMasuk = new mongoose.Schema(
       }
     ],
     lokasiPengecoran: { type: String },
-    mutuBeton: [
-      {
-        _id: { type: String },
-        value: { type: String },
-      }
-    ],
+    mutuBeton: { type: String },
     personil: [
       {
         _id: { type: String },

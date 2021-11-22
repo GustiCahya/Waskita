@@ -67,16 +67,14 @@
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
-            <app-bulk-input
+            <v-text-field
               v-model="mutuBeton"
               :rules="rules.mutuBeton"
               label="Mutu Beton"
               placeholder="Mutu Beton"
               outlined
               dense
-            >
-              <regular-bulk-form label="Mutu Beton" :items="mutuBeton" />
-            </app-bulk-input>
+            />
           </v-col>
         </v-row>
         <v-row>
@@ -234,7 +232,6 @@
 <script>
 import AppBulkInput from "../atoms/AppBulkInput.vue";
 import AppDatePicker from "../atoms/AppDatePicker.vue";
-import RegularBulkForm from "../molecules/RegularBulkForm.vue";
 import LocationBulkForm from "../molecules/LocationBulkForm.vue";
 import PersonilForm from "../molecules/PersonilForm.vue";
 import TbmItemsForm from "../molecules/TbmItemsForm.vue";
@@ -243,7 +240,6 @@ export default {
     AppDatePicker,
     AppBulkInput,
     LocationBulkForm,
-    RegularBulkForm,
     PersonilForm,
     TbmItemsForm,
   },
@@ -259,7 +255,7 @@ export default {
       tanggalMasuk: null,
       pemasok: [],
       lokasiPengecoran: "",
-      mutuBeton: [],
+      mutuBeton: "",
       personil: [],
       rules: {
         no: [(v) => !!v || "Harap diisi"],
@@ -267,7 +263,7 @@ export default {
         tanggalMasuk: [(v) => !!v || "Harap diisi"],
         pemasok: [(v) => v.length >= 1 || "Harap diisi"],
         lokasiPengecoran: [(v) => !!v || "Harap diisi"],
-        mutuBeton: [(v) => v.length >= 1 || "Harap diisi"],
+        mutuBeton: [(v) => !!v || "Harap diisi"],
         personil: [(v) => v.length >= 1 || "Harap diisi"],
         mengetahuiJabatan: [(v) => !!v || "Harap diisi"],
         mengetahuiNama: [(v) => !!v || "Harap diisi"],

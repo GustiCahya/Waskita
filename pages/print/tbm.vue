@@ -3773,7 +3773,7 @@ export default {
               tanggalMasuk: tbm?.tanggalMasuk && idx === 0 ? this.$moment(tbm.tanggalMasuk).format("DD-MMM-YYYY") : null,
               pemasokNama: tbm?.pemasok?.[idx]?.nama,
               pemasokAlamat: tbm?.pemasok?.[idx]?.alamat,
-              mutuBeton: tbm?.mutuBeton?.[idx]?.value,
+              mutuBeton: tbm?.mutuBeton && idx === 0 ? tbm?.mutuBeton : null,
               personilNama: tbm?.personil?.[idx]?.nama,
               personilTtd: tbm?.personil?.[idx]?.ttd,
             }
