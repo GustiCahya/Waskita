@@ -45,7 +45,7 @@
                 <v-select
                   v-model="roles"
                   :items="listRoles"
-                  :rules="rules.listRoles"
+                  :rules="rules.roles"
                   :menu-props="{ offsetY: true }"
                   label="Roles"
                   dense
@@ -87,7 +87,7 @@ export default {
           (v) => !!v || "Harus diisi",
           (v) => v?.length >= 8 || "Minimal 8 karakter",
         ],
-        roles: [(v) => !!v || "Harus diisi"],
+        roles: [(v) => v.length >= 1 || "Harus diisi"],
       },
       // etc
       addUserForm: false,
