@@ -267,6 +267,7 @@ export default {
         confirmButtonText: "Iya, hapus saja!",
       });
       if (!resultSwal.value) return;
+      this.loadingRemove = item._id;
       try {
         const query = { _id: item._id };
         const response = await this.$axios.delete(`api/Users/remove`, {
