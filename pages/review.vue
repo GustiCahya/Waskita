@@ -31,18 +31,28 @@
                 dense
                 outlined
               />
-              <app-date-picker
-                v-model="filter.tanggalMasukAwal"
-                label="Tanggal Mulai Pengecoran"
-                outlined
-                dense
-              />
-              <app-date-picker
-                v-model="filter.tanggalMasukAkhir"
-                label="Tanggal Selesai Pengecoran"
-                outlined
-                dense
-              />
+              <div class="d-flex justify-center align-center">
+               <v-switch
+                  v-model="filter.isUseDate"
+                  class="ma-0 pa-0"
+                  color="success"
+                  :label="`Cari berdasarkan tanggal`"
+                ></v-switch>
+              </div>
+              <div v-if="filter.isUseDate">
+                <app-date-picker
+                  v-model="filter.tanggalMasukAwal"
+                  label="Tanggal Mulai Pengecoran"
+                  outlined
+                  dense
+                />
+                <app-date-picker
+                  v-model="filter.tanggalMasukAkhir"
+                  label="Tanggal Selesai Pengecoran"
+                  outlined
+                  dense
+                />
+              </div>
               <v-btn
                 type="submit"
                 class="mr-0"
@@ -214,6 +224,7 @@ export default {
         businessUnit: "",
         proyek: "",
         lokasiPengecoran: "",
+        isUseDate: false,
         tanggalMasukAwal: null,
         tanggalMasukAkhir: null,
       },
@@ -240,14 +251,17 @@ export default {
       this.$refs.filterTelusur.validate();
       if (!this.filterTelusurValid) return;
       this.isLoading = true;
-      const queryTbm = {
-        "tbm.lokasiPengecoran": { $regex: this.filter?.lokasiPengecoran || "", $options: "i" },
-      };
-      if(this.filter?.tanggalMasukAwal && this.filter?.tanggalMasukAkhir) {
-        queryTbm["tbm.tanggalMasuk"] = {
-          $gte: this.filter?.tanggalMasukAwal,
-          $lte: this.filter?.tanggalMasukAkhir
-        };
+      const queryTbm = {};
+      if(this.filter?.lokasiPengecoran){
+        queryTbm["tbm.lokasiPengecoran"] = { $regex: this.filter?.lokasiPengecoran || "", $options: "i" };
+      }
+      if(this.filter?.isUseDate){
+        if(this.filter?.tanggalMasukAwal && this.filter?.tanggalMasukAkhir) {
+          queryTbm["tbm.tanggalMasuk"] = {
+            $gte: this.filter?.tanggalMasukAwal,
+            $lte: this.filter?.tanggalMasukAkhir
+          };
+        }
       }
       try {
         this.items = [];
@@ -270,7 +284,7 @@ export default {
               },
             },
             {
-              $unwind: "$tbm"
+              $unwind: { path: "$tbm", preserveNullAndEmptyArrays: true }
             },
             {
               $match: queryTbm
