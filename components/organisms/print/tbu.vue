@@ -1,7 +1,7 @@
 <template>
-  <v-card :loading="loadingFetch" class="pa-3">
+  <v-card :loading="loadingFetch" class="pa-3 d-none">
     <v-card-title>
-      Telusur Proses
+      Telusur Benda Uji
       <v-spacer />
       <v-btn color="grey darken-3" nuxt @click="print">
         <v-icon left dark> mdi-printer </v-icon>
@@ -451,10 +451,10 @@
           >
             <tr style="height: 12.75pt">
               <td
-                width="1028"
-                colspan="16"
+                width="1052"
+                colspan="18"
                 style="
-                  width: 770.7pt;
+                  width: 789.15pt;
                   border: solid black 1pt;
                   border-bottom: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
@@ -475,19 +475,26 @@
                 >
                   <b
                     ><span lang="EN-US" style="font-family: 'Arial', sans-serif"
-                      >MAMPU TELUSUR PROSES</span
+                      >MAMPU TELUSUR BENDA UJI</span
                     ></b
                   >
                 </p>
               </td>
+              <td
+                style="height: 12.75pt; border: none"
+                width="0"
+                height="26"
+              ></td>
             </tr>
+            <!-- real header main content -->
             <tr style="height: 12.75pt">
               <td
-                width="1028"
-                colspan="16"
+                width="1023"
+                colspan="10"
                 style="
-                  width: 770.7pt;
-                  border: none;
+                  width: 767pt;
+                  border: solid black 1pt;
+                  border-top: none;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 12.75pt;
                 "
@@ -512,15 +519,18 @@
                 </p>
               </td>
             </tr>
-            <tr style="height: 12.75pt">
+            <tr style="height: 13.2pt">
               <td
-                width="91"
+                width="50"
                 rowspan="2"
                 style="
-                  width: 68.6pt;
-                  border: solid windowtext 1pt;
+                  width: 37.35pt;
+                  border-top: none;
+                  border-left: solid black 1pt;
+                  border-bottom: none;
+                  border-right: solid black 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
+                  height: 13.2pt;
                 "
               >
                 <p
@@ -535,14 +545,113 @@
                   <span
                     lang="EN-US"
                     style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Nomor</span
+                    >No.</span
+                  >
+                </p>
+              </td>
+              <td
+                width="162"
+                rowspan="2"
+                style="
+                  width: 121.35pt;
+                  border: none;
+                  border-right: solid black 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 13.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
+                    >Nomor Kendaraan /</span
                   >
                 </p>
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
+                    >Truck Mixer /</span
+                  >
+                </p>
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
+                    >Nomor adukan Molen</span
+                  >
+                </p>
+              </td>
+              <td
+                width="132"
+                rowspan="2"
+                style="
+                  width: 99pt;
+                  border: none;
+                  border-right: solid black 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 13.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
+                    >Nomor
+                  </span>
+                </p>
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -557,7 +666,10 @@
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -570,21 +682,24 @@
                 </p>
               </td>
               <td
-                width="90"
-                rowspan="2"
+                width="150"
+                colspan="2"
                 style="
-                  width: 67.4pt;
-                  border: solid windowtext 1pt;
-                  border-left: none;
+                  width: 112.5pt;
+                  border: none;
+                  border-right: solid black 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
+                  height: 13.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -592,14 +707,17 @@
                   <span
                     lang="EN-US"
                     style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Nomor</span
+                    >Pembuatan</span
                   >
                 </p>
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -607,41 +725,188 @@
                   <span
                     lang="EN-US"
                     style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Formulir</span
-                  >
-                </p>
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >PW-QTY-01-02-02</span
+                    >Benda Uji</span
                   >
                 </p>
               </td>
               <td
-                width="60"
+                width="78"
                 rowspan="2"
                 style="
-                  width: 44.95pt;
-                  border: solid windowtext 1pt;
-                  border-left: none;
+                  width: 58.5pt;
+                  border: none;
+                  border-right: solid black 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
+                  height: 13.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
+                    >Jumlah Benda Uji</span
+                  >
+                </p>
+              </td>
+              <td
+                width="174"
+                rowspan="2"
+                style="
+                  width: 130.5pt;
+                  border: none;
+                  border-right: solid black 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 13.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
+                    >Kode
+                  </span>
+                </p>
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
+                    >Silider/
+                  </span>
+                </p>
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
+                    >Kubus</span
+                  >
+                </p>
+              </td>
+              <td
+                width="84"
+                rowspan="2"
+                style="
+                  width: 63pt;
+                  border: none;
+                  border-right: solid black 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 13.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
+                    >Dimensi Benda Uji *)</span
+                  >
+                </p>
+              </td>
+              <td
+                width="193"
+                colspan="2"
+                style="
+                  width: 144.8pt;
+                  border: none;
+                  border-right: solid black 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 13.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
+                    >Petugas Pembuat Benda Uji</span
+                  >
+                </p>
+              </td>
+            </tr>
+            <tr style="height: 13.2pt">
+              <td
+                width="84"
+                style="
+                  width: 63pt;
+                  border-top: solid black 1pt;
+                  border-left: none;
+                  border-bottom: none;
+                  border-right: solid black 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 13.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -652,236 +917,27 @@
                     >Tanggal</span
                   >
                 </p>
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Pengecoran</span
-                  >
-                </p>
-              </td>
-              <td
-                width="78"
-                rowspan="2"
-                style="
-                  width: 58.75pt;
-                  border: solid windowtext 1pt;
-                  border-left: none;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Detail</span
-                  >
-                </p>
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Lokasi</span
-                  >
-                </p>
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Pengecoran</span
-                  >
-                </p>
-              </td>
-              <td
-                width="78"
-                rowspan="2"
-                style="
-                  width: 58.5pt;
-                  border: solid windowtext 1pt;
-                  border-left: none;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Detail No./Kode</span
-                  >
-                </p>
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Gambar Lokasi</span
-                  >
-                </p>
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Pengecoran</span
-                  >
-                </p>
-              </td>
-              <td
-                width="114"
-                colspan="2"
-                style="
-                  width: 85.5pt;
-                  border: solid windowtext 1pt;
-                  border-left: none;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Personil</span
-                  >
-                </p>
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Pelaksana</span
-                  >
-                </p>
-              </td>
-              <td
-                width="102"
-                colspan="2"
-                style="
-                  width: 76.5pt;
-                  border: solid windowtext 1pt;
-                  border-left: none;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Jam Pengecoran</span
-                  >
-                </p>
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >/ Bongkar</span
-                  >
-                </p>
               </td>
               <td
                 width="66"
-                rowspan="2"
                 style="
                   width: 49.5pt;
-                  border: solid windowtext 1pt;
+                  border-top: solid black 1pt;
                   border-left: none;
+                  border-bottom: none;
+                  border-right: solid black 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
+                  height: 13.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -889,167 +945,30 @@
                   <span
                     lang="EN-US"
                     style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Jumlah</span
-                  >
-                </p>
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Pekerja</span
+                    >Jam</span
                   >
                 </p>
               </td>
               <td
-                width="54"
-                rowspan="2"
+                width="84"
                 style="
-                  width: 40.5pt;
-                  border: solid windowtext 1pt;
+                  width: 63pt;
+                  border-top: solid black 1pt;
                   border-left: none;
+                  border-bottom: none;
+                  border-right: solid black 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
+                  height: 13.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Cuaca</span
-                  >
-                </p>
-              </td>
-              <td
-                width="102"
-                colspan="2"
-                style="
-                  width: 76.5pt;
-                  border: solid windowtext 1pt;
-                  border-left: none;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Penggetar</span
-                  >
-                </p>
-              </td>
-              <td
-                width="78"
-                rowspan="2"
-                style="
-                  width: 58.5pt;
-                  border: solid windowtext 1pt;
-                  border-left: none;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Finishing</span
-                  >
-                </p>
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >*)</span
-                  >
-                </p>
-              </td>
-              <td
-                width="114"
-                colspan="2"
-                style="
-                  width: 85.5pt;
-                  border: solid windowtext 1pt;
-                  border-left: none;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Curing</span
-                  >
-                </p>
-              </td>
-            </tr>
-            <tr style="height: 12.75pt">
-              <td
-                width="54"
-                style="
-                  width: 40.5pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -1062,20 +981,25 @@
                 </p>
               </td>
               <td
-                width="60"
+                width="109"
                 style="
-                  width: 45pt;
-                  border: solid windowtext 1pt;
+                  width: 81.8pt;
+                  border-top: solid black 1pt;
                   border-left: none;
+                  border-bottom: none;
+                  border-right: solid black 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
+                  height: 13.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -1087,178 +1011,14 @@
                   >
                 </p>
               </td>
-              <td
-                width="48"
-                style="
-                  width: 36pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Mulai</span
-                  >
-                </p>
-              </td>
-              <td
-                width="54"
-                style="
-                  width: 40.5pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Selesai</span
-                  >
-                </p>
-              </td>
-              <td
-                width="48"
-                style="
-                  width: 36pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Tipe</span
-                  >
-                </p>
-              </td>
-              <td
-                width="54"
-                style="
-                  width: 40.5pt;
-                  border: solid windowtext 1pt;
-                  border-left: none;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Jumlah</span
-                  >
-                </p>
-              </td>
-              <td
-                width="60"
-                style="
-                  width: 45pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Sistem **)</span
-                  >
-                </p>
-              </td>
-              <td
-                width="54"
-                style="
-                  width: 40.5pt;
-                  border: solid windowtext 1pt;
-                  border-left: none;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >Lama ***)</span
-                  >
-                </p>
-              </td>
             </tr>
             <tr style="height: 12.75pt">
               <td
-                width="91"
+                width="50"
                 style="
-                  width: 68.6pt;
-                  border: solid windowtext 1pt;
-                  border-top: none;
+                  width: 37.35pt;
+                  border: solid black 1pt;
+                  border-bottom: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 12.75pt;
                 "
@@ -1267,7 +1027,10 @@
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -1282,13 +1045,13 @@
                 </p>
               </td>
               <td
-                width="90"
+                width="162"
                 style="
-                  width: 67.4pt;
-                  border-top: none;
+                  width: 121.35pt;
+                  border-top: solid black 1pt;
                   border-left: none;
                   border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
+                  border-right: solid black 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 12.75pt;
                 "
@@ -1297,7 +1060,10 @@
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -1312,13 +1078,13 @@
                 </p>
               </td>
               <td
-                width="60"
+                width="132"
                 style="
-                  width: 44.95pt;
-                  border-top: none;
+                  width: 99pt;
+                  border-top: solid black 1pt;
                   border-left: none;
                   border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
+                  border-right: solid black 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 12.75pt;
                 "
@@ -1327,7 +1093,10 @@
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -1342,13 +1111,13 @@
                 </p>
               </td>
               <td
-                width="78"
+                width="84"
                 style="
-                  width: 58.75pt;
-                  border-top: none;
+                  width: 63pt;
+                  border-top: solid black 1pt;
                   border-left: none;
                   border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
+                  border-right: solid black 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 12.75pt;
                 "
@@ -1357,7 +1126,10 @@
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -1372,13 +1144,13 @@
                 </p>
               </td>
               <td
-                width="78"
+                width="66"
                 style="
-                  width: 58.5pt;
-                  border-top: none;
+                  width: 49.5pt;
+                  border-top: solid black 1pt;
                   border-left: none;
                   border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
+                  border-right: solid black 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 12.75pt;
                 "
@@ -1387,7 +1159,10 @@
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -1402,13 +1177,13 @@
                 </p>
               </td>
               <td
-                width="54"
+                width="78"
                 style="
-                  width: 40.5pt;
-                  border-top: none;
+                  width: 58.5pt;
+                  border-top: solid black 1pt;
                   border-left: none;
                   border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
+                  border-right: solid black 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 12.75pt;
                 "
@@ -1417,7 +1192,10 @@
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -1432,13 +1210,13 @@
                 </p>
               </td>
               <td
-                width="60"
+                width="174"
                 style="
-                  width: 45pt;
-                  border-top: none;
+                  width: 130.5pt;
+                  border-top: solid black 1pt;
                   border-left: none;
                   border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
+                  border-right: solid black 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 12.75pt;
                 "
@@ -1447,7 +1225,10 @@
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -1462,13 +1243,13 @@
                 </p>
               </td>
               <td
-                width="48"
+                width="84"
                 style="
-                  width: 36pt;
-                  border-top: none;
+                  width: 63pt;
+                  border-top: solid black 1pt;
                   border-left: none;
                   border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
+                  border-right: solid black 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 12.75pt;
                 "
@@ -1477,7 +1258,10 @@
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -1492,13 +1276,13 @@
                 </p>
               </td>
               <td
-                width="54"
+                width="84"
                 style="
-                  width: 40.5pt;
-                  border-top: none;
+                  width: 63pt;
+                  border-top: solid black 1pt;
                   border-left: none;
                   border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
+                  border-right: solid black 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 12.75pt;
                 "
@@ -1507,7 +1291,10 @@
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -1522,13 +1309,13 @@
                 </p>
               </td>
               <td
-                width="66"
+                width="109"
                 style="
-                  width: 49.5pt;
-                  border-top: none;
+                  width: 81.8pt;
+                  border-top: solid black 1pt;
                   border-left: none;
                   border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
+                  border-right: solid black 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 12.75pt;
                 "
@@ -1537,7 +1324,10 @@
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -1551,205 +1341,90 @@
                   >
                 </p>
               </td>
-              <td
-                width="54"
-                style="
-                  width: 40.5pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <b
-                    ><span
-                      lang="EN-US"
-                      style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                      >11</span
-                    ></b
-                  >
-                </p>
-              </td>
-              <td
-                width="48"
-                style="
-                  width: 36pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <b
-                    ><span
-                      lang="EN-US"
-                      style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                      >12</span
-                    ></b
-                  >
-                </p>
-              </td>
-              <td
-                width="54"
-                style="
-                  width: 40.5pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <b
-                    ><span
-                      lang="EN-US"
-                      style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                      >13</span
-                    ></b
-                  >
-                </p>
-              </td>
-              <td
-                width="78"
-                style="
-                  width: 58.5pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <b
-                    ><span
-                      lang="EN-US"
-                      style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                      >14</span
-                    ></b
-                  >
-                </p>
-              </td>
-              <td
-                width="60"
-                style="
-                  width: 45pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <b
-                    ><span
-                      lang="EN-US"
-                      style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                      >15</span
-                    ></b
-                  >
-                </p>
-              </td>
-              <td
-                width="54"
-                style="
-                  width: 40.5pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 12.75pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <b
-                    ><span
-                      lang="EN-US"
-                      style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                      >16</span
-                    ></b
-                  >
-                </p>
-              </td>
             </tr>
             <!-- header main content -->
-            <tr style="height: 1pt">
+            <tr style="height: 7.2pt">
               <td
-                width="91"
-                rowspan="999999999"
+                width="50"
                 style="
-                  width: 68.6pt;
-                  border: solid windowtext 1pt;
+                  width: 37.35pt;
                   border-top: none;
+                  border-left: solid windowtext 1pt;
+                  border-bottom: none;
+                  border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
+                  height: 7.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >&nbsp;</span
+                  >
+                </p>
+              </td>
+              <td
+                width="162"
+                style="
+                  width: 121.35pt;
+                  border: none;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 7.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >&nbsp;</span
+                  >
+                </p>
+              </td>
+              <td
+                width="132"
+                rowspan="999999999"
+                style="
+                  width: 99pt;
+                  border-top: none;
+                  border-left: none;
+                  border-bottom: solid windowtext 1pt;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 7.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -1762,211 +1437,23 @@
                 </p>
               </td>
               <td
-                width="90"
-                rowspan="999999999"
+                width="84"
                 style="
-                  width: 67.4pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ tbu.no }}</span
-                  >
-                </p>
-              </td>
-              <td
-                width="60"
-                style="
-                  width: 44.95pt;
+                  width: 63pt;
                   border: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
+                  height: 7.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >&nbsp;</span
-                  >
-                </p>
-              </td>
-              <td
-                width="78"
-                rowspan="999999999"
-                style="
-                  width: 58.75pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ tbm.lokasiPengecoran }}</span
-                  >
-                </p>
-              </td>
-              <td
-                width="78"
-                rowspan="999999999"
-                style="
-                  width: 58.5pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ detail.noDetail }}</span
-                  >
-                </p>
-              </td>
-              <td
-                width="54"
-                style="
-                  width: 40.5pt;
-                  border: none;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >&nbsp;</span
-                  >
-                </p>
-              </td>
-              <td
-                width="60"
-                style="
-                  width: 45pt;
-                  border: none;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >&nbsp;</span
-                  >
-                </p>
-              </td>
-              <td
-                width="48"
-                style="
-                  width: 36pt;
-                  border: none;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >&nbsp;</span
-                  >
-                </p>
-              </td>
-              <td
-                width="54"
-                style="
-                  width: 40.5pt;
-                  border: none;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -1985,92 +1472,17 @@
                   border: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
+                  height: 7.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >&nbsp;</span
-                  >
-                </p>
-              </td>
-              <td
-                width="54"
-                style="
-                  width: 40.5pt;
-                  border: none;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >&nbsp;</span
-                  >
-                </p>
-              </td>
-              <td
-                width="48"
-                style="
-                  width: 36pt;
-                  border: none;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >&nbsp;</span
-                  >
-                </p>
-              </td>
-              <td
-                width="54"
-                style="
-                  width: 40.5pt;
-                  border: none;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -2089,14 +1501,17 @@
                   border: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
+                  height: 7.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -2109,20 +1524,23 @@
                 </p>
               </td>
               <td
-                width="60"
+                width="174"
                 style="
-                  width: 45pt;
+                  width: 130.5pt;
                   border: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
+                  height: 7.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -2135,20 +1553,81 @@
                 </p>
               </td>
               <td
-                width="54"
+                width="84"
                 style="
-                  width: 40.5pt;
+                  width: 63pt;
                   border: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
+                  height: 7.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >&nbsp;</span
+                  >
+                </p>
+              </td>
+              <td
+                width="84"
+                style="
+                  width: 63pt;
+                  border: none;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 7.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >&nbsp;</span
+                  >
+                </p>
+              </td>
+              <td
+                width="84"
+                style="
+                  width: 63pt;
+                  border: none;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 7.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -2162,22 +1641,27 @@
               </td>
             </tr>
             <!-- main content -->
-            <tr v-for="item in items" :key="item._id" style="height: 1pt">
+            <tr v-for="(item, idx) in items" :key="item._id" style="height: 7.2pt">
               <td
-                width="60"
+                width="50"
                 style="
-                  width: 44.95pt;
-                  border: none;
+                  width: 37.35pt;
+                  border-top: none;
+                  border-left: solid windowtext 1pt;
+                  border-bottom: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
+                  height: 7.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -2185,25 +1669,206 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ item.tanggalPengecoran }}</span
+                    >{{ idx + 1 }}</span
                   >
                 </p>
               </td>
               <td
-                width="54"
+                width="162"
                 style="
-                  width: 40.5pt;
+                  width: 121.35pt;
                   border: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
+                  height: 7.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >
+                    {{ item.noKendaraan }}
+                  </span
+                  >
+                </p>
+              </td>
+              <td
+                width="84"
+                style="
+                  width: 63pt;
+                  border: none;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 7.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >{{ item.tanggalPembuatan ? $moment(item.tanggalPembuatan).format("DD-MMM-YY") : "" }}</span
+                  >
+                </p>
+              </td>
+              <td
+                width="66"
+                style="
+                  width: 49.5pt;
+                  border: none;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 7.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >{{ item.jamPembuatan }}</span
+                  >
+                </p>
+              </td>
+              <td
+                width="78"
+                style="
+                  width: 58.5pt;
+                  border: none;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 7.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >{{ item.jumlahBendaUji }}</span
+                  >
+                </p>
+              </td>
+              <td
+                width="174"
+                style="
+                  width: 130.5pt;
+                  border: none;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 7.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >{{ item.kodeSilinder }}</span
+                  >
+                </p>
+              </td>
+              <td
+                width="84"
+                style="
+                  width: 63pt;
+                  border: none;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 7.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >
+                    {{ item.dimensi }}
+                  </span
+                  >
+                </p>
+              </td>
+              <td
+                width="84"
+                style="
+                  width: 63pt;
+                  border: none;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 7.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -2216,42 +1881,40 @@
                 </p>
               </td>
               <td
-                width="60"
-                valign="top"
+                width="84"
                 style="
-                  width: 45pt;
+                  position: relative;
+                  width: 63pt;
                   border: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
+                  height: 7.2pt;
+                  text-align: center;
                 "
               >
                 <p
                   class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
                 >
                   <span lang="EN-US"
                     ><img
                       v-if="item.personilTtd"
-                      id="Picture 1788"
+                      id="Picture 13324"
                       width="45"
                       :src="item.personilTtd"
                   /></span>
                 </p>
               </td>
+            </tr>
+            <!-- footer main content -->
+            <tr style="height: 7.2pt">
               <td
-                width="48"
+                width="50"
                 style="
-                  width: 36pt;
-                  border: none;
-                  border-right: solid windowtext 1pt;
+                  width: 37.35pt;
+                  border: solid windowtext 1pt;
+                  border-top: none;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
+                  height: 7.2pt;
                 "
               >
                 <p
@@ -2266,25 +1929,31 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ item.jamMulai }}</span
+                    >
+                    </span
                   >
                 </p>
               </td>
               <td
-                width="54"
+                width="162"
                 style="
-                  width: 40.5pt;
-                  border: none;
+                  width: 121.35pt;
+                  border-top: none;
+                  border-left: none;
+                  border-bottom: solid windowtext 1pt;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
+                  height: 7.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -2292,7 +1961,38 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ item.jamSelesai }}</span
+                    >&nbsp;</span
+                  >
+                </p>
+              </td>
+              <td
+                width="84"
+                style="
+                  width: 63pt;
+                  border-top: none;
+                  border-left: none;
+                  border-bottom: solid windowtext 1pt;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 7.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >&nbsp;</span
                   >
                 </p>
               </td>
@@ -2300,428 +2000,22 @@
                 width="66"
                 style="
                   width: 49.5pt;
-                  border: none;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ item.jumlahPekerja }}</span
-                  >
-                </p>
-              </td>
-              <td
-                width="54"
-                style="
-                  width: 40.5pt;
-                  border: none;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ item.cuaca }}</span
-                  >
-                </p>
-              </td>
-              <td
-                width="48"
-                style="
-                  width: 36pt;
-                  border: none;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ item.penggetarTipe }}</span
-                  >
-                </p>
-              </td>
-              <td
-                width="54"
-                style="
-                  width: 40.5pt;
-                  border: none;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ item.penggetarJumlah }}</span
-                  >
-                </p>
-              </td>
-              <td
-                width="78"
-                style="
-                  width: 58.5pt;
-                  border: none;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ item.finishing }}</span
-                  >
-                </p>
-              </td>
-              <td
-                width="60"
-                style="
-                  width: 45pt;
-                  border: none;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ item.curingSistem }}</span
-                  >
-                </p>
-              </td>
-              <td
-                width="54"
-                style="
-                  width: 40.5pt;
-                  border: none;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ item.curingLama }}</span
-                  >
-                </p>
-              </td>
-            </tr>
-            <!-- footer of main content -->
-            <tr style="height: 1pt">
-              <td
-                width="60"
-                style="
-                  width: 44.95pt;
                   border-top: none;
                   border-left: none;
                   border-bottom: solid windowtext 1pt;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
+                  height: 7.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >&nbsp;</span
-                  >
-                </p>
-              </td>
-              <td
-                width="54"
-                style="
-                  width: 40.5pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >&nbsp;</span
-                  >
-                </p>
-              </td>
-              <td
-                width="60"
-                style="
-                  width: 45pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >&nbsp;</span
-                  >
-                </p>
-              </td>
-              <td
-                width="60"
-                style="
-                  width: 45pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >&nbsp;</span
-                  >
-                </p>
-              </td>
-              <td
-                width="48"
-                style="
-                  width: 36pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >&nbsp;</span
-                  >
-                </p>
-              </td>
-              <td
-                width="54"
-                style="
-                  width: 40.5pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >&nbsp;</span
-                  >
-                </p>
-              </td>
-              <td
-                width="54"
-                style="
-                  width: 40.5pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >&nbsp;</span
-                  >
-                </p>
-              </td>
-              <td
-                width="48"
-                style="
-                  width: 36pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
-                >
-                  <span
-                    lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >&nbsp;</span
-                  >
-                </p>
-              </td>
-              <td
-                width="54"
-                style="
-                  width: 40.5pt;
-                  border-top: none;
-                  border-left: none;
-                  border-bottom: solid windowtext 1pt;
-                  border-right: solid windowtext 1pt;
-                  padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
-                "
-              >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -2742,14 +2036,17 @@
                   border-bottom: solid windowtext 1pt;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
+                  height: 7.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -2762,22 +2059,56 @@
                 </p>
               </td>
               <td
-                width="60"
+                width="174"
                 style="
-                  width: 45pt;
+                  width: 130.5pt;
                   border-top: none;
                   border-left: none;
                   border-bottom: solid windowtext 1pt;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
+                  height: 7.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    ></span
+                  >
+                </p>
+              </td>
+              <td
+                width="84"
+                style="
+                  width: 63pt;
+                  border-top: none;
+                  border-left: none;
+                  border-bottom: solid windowtext 1pt;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 7.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -2790,22 +2121,56 @@
                 </p>
               </td>
               <td
-                width="54"
+                width="84"
                 style="
-                  width: 40.5pt;
+                  width: 63pt;
                   border-top: none;
                   border-left: none;
                   border-bottom: solid windowtext 1pt;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
-                  height: 1pt;
+                  height: 7.2pt;
                 "
               >
                 <p
                   class="MsoNormal"
                   align="center"
                   style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
                     margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >&nbsp;</span
+                  >
+                </p>
+              </td>
+              <td
+                width="84"
+                style="
+                  width: 63pt;
+                  border-top: none;
+                  border-left: none;
+                  border-bottom: solid windowtext 1pt;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 7.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -2821,51 +2186,88 @@
           </table>
 
           <table style="margin-top: 10px; margin-bottom: 10px">
-            <tr>
-              <p
-                class="MsoNormal"
+            <p
+              class="MsoNormal"
+              style="
+                margin-top: 0cm;
+                margin-right: 43.85pt;
+                margin-bottom: 0.15pt;
+                margin-left: 0cm;
+              "
+            >
+              <span
+                lang="EN-US"
                 style="
-                  margin-top: 0cm;
-                  margin-right: 43.85pt;
-                  margin-bottom: 0.15pt;
-                  margin-left: 0cm;
-                  line-height: 150%;
+                  font-size: 7pt;
+                  line-height: 107%;
+                  font-family: 'Arial', sans-serif;
                 "
+                >
+                Keterangan :</span
               >
-                <span
-                  lang="EN-US"
-                  style="
-                    font-size: 7pt;
-                    line-height: 150%;
-                    font-family: 'Arial', sans-serif;
-                  "
-                >
-                  Keterangan</span
-                >
-              </p>
+            </p>
 
-              <p
-                class="MsoNormal"
+            <p
+              class="MsoNormal"
+              style="
+                margin-top: 0cm;
+                margin-right: 43.85pt;
+                margin-bottom: 0.15pt;
+                margin-left: 0cm;
+              "
+            >
+              <span
+                lang="EN-US"
                 style="
-                  margin-top: 0cm;
-                  margin-right: 43.85pt;
-                  margin-bottom: 0.15pt;
-                  margin-left: 0cm;
-                  line-height: 150%;
+                  font-size: 7pt;
+                  line-height: 107%;
+                  font-family: 'Arial', sans-serif;
                 "
+                >*) Benda Uji silinder ukuran Ø15 x 30 cm</span
               >
-                <span
-                  lang="EN-US"
-                  style="
-                    font-size: 7pt;
-                    line-height: 150%;
-                    font-family: 'Arial', sans-serif;
-                  "
-                  >*) Finishing kasar (untuk beton) : adalah pengecoran lantai
-                  tanpa hardener</span
-                >
-              </p>
-            </tr>
+            </p>
+
+            <p
+              class="MsoNormal"
+              style="
+                margin-top: 0cm;
+                margin-right: 43.85pt;
+                margin-bottom: 0.15pt;
+                margin-left: 0cm;
+              "
+            >
+              <span
+                lang="EN-US"
+                style="
+                  font-size: 7pt;
+                  line-height: 107%;
+                  font-family: 'Arial', sans-serif;
+                "
+                >&nbsp;&nbsp;&nbsp;Benda Uji Kubus ukuran 15 x 15 cm, 20 x 20 cm, 25 x 25
+                cm</span
+              >
+            </p>
+
+            <p
+              class="MsoNormal"
+              style="
+                margin-top: 0cm;
+                margin-right: 43.85pt;
+                margin-bottom: 0.15pt;
+                margin-left: 0cm;
+              "
+            >
+              <span
+                lang="EN-US"
+                style="
+                  font-size: 7pt;
+                  line-height: 107%;
+                  font-family: 'Arial', sans-serif;
+                "
+                >Penulisan kode benda uji mengikuti aturan di
+                IK.PW-QTY-07-02</span
+              >
+            </p>
           </table>
 
           <table
@@ -2891,7 +2293,8 @@
                   padding: 0cm 5.4pt 0cm 5.4pt;
                   height: 13.5pt;
                 "
-              ></td>
+              >
+              </td>
               <td
                 width="690"
                 valign="top"
@@ -2953,7 +2356,8 @@
                   padding: 0cm 5.4pt 0cm 5.4pt;
                   height: 2.05pt;
                 "
-              ></td>
+              >
+              </td>
               <td
                 width="690"
                 valign="top"
@@ -3010,7 +2414,8 @@
                   padding: 0cm 5.4pt 0cm 5.4pt;
                   height: 13.5pt;
                 "
-              ></td>
+              >
+              </td>
               <td
                 width="690"
                 valign="top"
@@ -3071,13 +2476,15 @@
 <script>
 export default {
   layout: "dashboard",
+  props: {
+    idTelusur: String,
+  },
   data() {
     return {
       baseUrl: "",
       data: {},
       detail: {},
       tbm: {},
-      tbu: {},
       items: [],
       dibuatOleh: {},
       loadingFetch: false,
@@ -3092,7 +2499,7 @@ export default {
     // handle baseUrl
     this.baseUrl = window.location.origin;
     // handle data telusur
-    const id = this.$route.query.id;
+    const id = this.$route.query.id || this.idTelusur;
     if (id) {
       this.loadingFetch = true;
       try {
@@ -3104,10 +2511,10 @@ export default {
                 pipeline: [
                   {
                     $lookup: {
-                      from: "TelusurProses",
-                      localField: "idTp",
+                      from: "TelusurBendaUji",
+                      localField: "idTbu",
                       foreignField: "_id",
-                      as: "tp",
+                      as: "tbu",
                     },
                   },
                   {
@@ -3118,14 +2525,6 @@ export default {
                       as: "tbm",
                     },
                   },
-                  {
-                    $lookup: {
-                      from: "TelusurBendaUji",
-                      localField: "idTbu",
-                      foreignField: "_id",
-                      as: "tbu",
-                    },
-                  },
                 ],
               }),
             },
@@ -3133,24 +2532,20 @@ export default {
           .then((res) => res?.data?.result);
         if (result.length >= 1) {
           const telusur = result[0];
-          const tp = telusur?.tp?.[0] || {};
-          const tbm = telusur?.tbm?.[0] || {};
           const tbu = telusur?.tbu?.[0] || {};
+          const tbm = telusur?.tbm?.[0] || {};
           this.data = telusur;
-          this.detail = tp;
+          this.detail = tbu;
           this.tbm = tbm;
-          this.tbu = tbu;
-          this.dibuatOleh = tp?.dibuatOleh || {};
-          this.items = tp?.items?.map((item, idx) => {
+          this.mengetahui = tbu?.mengetahui || {};
+          this.dibuatOleh = tbu?.dibuatOleh || {};
+          this.items = tbu?.items?.map((item, idx) => {
             return {
               ...item,
-              tanggalPengecoran:
-                tp?.tanggalPengecoran && idx === 0
-                  ? this.$moment(tp.tanggalPengecoran).format("DD-MMM-YY")
-                  : null,
-              noDetail: tp?.noDetail,
-              personilNama: tp?.personil?.[idx]?.nama,
-              personilTtd: tp?.personil?.[idx]?.ttd,
+              jumlahBendaUji: tbu?.jumlahBendaUji,
+              dimensi: tbu?.dimensi?.[idx]?.value,
+              personilNama: tbu?.personil?.[idx]?.nama,
+              personilTtd: tbu?.personil?.[idx]?.ttd,
             };
           });
         }

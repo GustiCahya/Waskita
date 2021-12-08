@@ -1,4 +1,5 @@
 <template>
+<div>
   <div>
     <v-card-title class="headline"> Telusur Proses </v-card-title>
     <v-row v-if="loadingFetch" justify="center">
@@ -149,18 +150,22 @@
       </v-card-actions>
     </v-form>
   </div>
+  <tp ref="printDoc" :id-telusur="idTelusur" />
+</div>
 </template>
 <script>
 import AppBulkInput from "../atoms/AppBulkInput.vue";
 import AppDatePicker from "../atoms/AppDatePicker.vue";
 import PersonilForm from "../molecules/PersonilForm.vue";
 import TpItemsForm from "../molecules/TpItemsForm.vue";
+import tp from "./print/tp.vue";
 export default {
   components: {
     AppDatePicker,
     AppBulkInput,
     PersonilForm,
     TpItemsForm,
+    tp,
   },
   props: {
     idTelusur: String,
@@ -330,7 +335,7 @@ export default {
     },
     async redirectPrint() {
       await this.generate();
-      this.$router.push(`print/tp?id=${this.idTelusur}`);
+      this.$refs.printDoc.print();
     },
   },
 };

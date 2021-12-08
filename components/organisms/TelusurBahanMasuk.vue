@@ -1,232 +1,235 @@
 <template>
   <div>
-    <v-card-title class="headline"> Telusur Bahan Masuk </v-card-title>
-    <v-row v-if="loadingFetch" justify="center">
-      <v-progress-circular
-        indeterminate
-        color="primary"
-      ></v-progress-circular>
-    </v-row>
-    <v-form v-else ref="form" v-model="form" @submit.prevent="generate">
-      <v-card-text>
-        <v-row>
-          <v-col cols="12" md="6" class="py-0">
-            <v-text-field
-              v-model="no"
-              :rules="rules.no"
-              label="No. Formulir"
-              placeholder="No. Formulir"
-              outlined
-              dense
-            />
-          </v-col>
-          <v-col cols="12" md="6" class="py-0">
-            <v-text-field
-              v-model="noIzin"
-              :rules="rules.noIzin"
-              label="No. Izin"
-              placeholder="No. Izin"
-              outlined
-              dense
-            />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" md="6" class="py-0">
-            <app-date-picker
-              v-model="tanggalMasuk"
-              :rules="rules.tanggalMasuk"
-              label="Tanggal Masuk"
-              placeholder="Tanggal Masuk"
-              outlined
-              dense
-            />
-          </v-col>
-          <v-col cols="12" md="6" class="py-0">
-            <app-bulk-input
-              v-model="pemasok"
-              :rules="rules.pemasok"
-              label="Pemasok"
-              placeholder="Pemasok"
-              outlined
-              dense
-            >
-              <location-bulk-form :items="pemasok" />
-            </app-bulk-input>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" md="6" class="py-0">
-            <v-text-field
-              v-model="lokasiPengecoran"
-              :rules="rules.lokasiPengecoran"
-              label="Lokasi Pengecoran"
-              placeholder="Lokasi Pengecoran"
-              outlined
-              dense
-            />
-          </v-col>
-          <v-col cols="12" md="6" class="py-0">
-            <v-text-field
-              v-model="mutuBeton"
-              :rules="rules.mutuBeton"
-              label="Mutu Beton"
-              placeholder="Mutu Beton"
-              outlined
-              dense
-            />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" md="6" class="py-0">
-            <app-bulk-input
-              v-model="personil"
-              :rules="rules.personil"
-              label="Personil"
-              placeholder="Personil"
-              outlined
-              dense
-            >
-              <personil-form :items="personil" />
-            </app-bulk-input>
-          </v-col>
-          <v-col cols="12" md="6" class="py-0"> </v-col>
-        </v-row>
-        <!-- items -->
-        <tbm-items-form :id-telusur="idTelusur" :items="items" />
-        <!-- footer input -->
-        <v-row>
-          <v-col cols="12" md="6">
-            <v-card class="mt-3" color="grey darken-4">
-              <h5 class="pa-3">Mengetahui</h5>
-              <div class="px-3 pt-0 pb-5">
-                <v-text-field
-                  v-model="mengetahuiJabatan"
-                  :rules="rules.mengetahuiJabatan"
-                  label="Jabatan"
-                  placeholder="Jabatan"
-                  outlined
-                  dense
-                />
-                <v-text-field
-                  v-model="mengetahuiNama"
-                  :rules="rules.mengetahuiNama"
-                  label="Nama"
-                  placeholder="Nama"
-                  outlined
-                  dense
-                />
-                <v-file-input
-                  v-model="mengetahuiTtdFile"
-                  :rules="rules.mengetahuiTtdFile"
-                  accept="image/png, image/jpeg, image/bmp"
-                  label="TTD (max: 3mb)"
-                  prepend-icon="mdi-image"
-                  outlined
-                  dense
-                ></v-file-input>
-                <div class="d-flex justify-center">
-                  <v-img
-                    v-if="mengetahuiTtd"
-                    class="white rounded-sm"
-                    max-width="150"
-                    max-height="150"
-                    contain
-                    :src="mengetahuiTtd"
+    <div>
+      <v-card-title class="headline"> Telusur Bahan Masuk </v-card-title>
+      <v-row v-if="loadingFetch" justify="center">
+        <v-progress-circular
+          indeterminate
+          color="primary"
+        ></v-progress-circular>
+      </v-row>
+      <v-form v-else ref="form" v-model="form" @submit.prevent="generate">
+        <v-card-text>
+          <v-row>
+            <v-col cols="12" md="6" class="py-0">
+              <v-text-field
+                v-model="no"
+                :rules="rules.no"
+                label="No. Formulir"
+                placeholder="No. Formulir"
+                outlined
+                dense
+              />
+            </v-col>
+            <v-col cols="12" md="6" class="py-0">
+              <v-text-field
+                v-model="noIzin"
+                :rules="rules.noIzin"
+                label="No. Izin"
+                placeholder="No. Izin"
+                outlined
+                dense
+              />
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" md="6" class="py-0">
+              <app-date-picker
+                v-model="tanggalMasuk"
+                :rules="rules.tanggalMasuk"
+                label="Tanggal Masuk"
+                placeholder="Tanggal Masuk"
+                outlined
+                dense
+              />
+            </v-col>
+            <v-col cols="12" md="6" class="py-0">
+              <app-bulk-input
+                v-model="pemasok"
+                :rules="rules.pemasok"
+                label="Pemasok"
+                placeholder="Pemasok"
+                outlined
+                dense
+              >
+                <location-bulk-form :items="pemasok" />
+              </app-bulk-input>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" md="6" class="py-0">
+              <v-text-field
+                v-model="lokasiPengecoran"
+                :rules="rules.lokasiPengecoran"
+                label="Lokasi Pengecoran"
+                placeholder="Lokasi Pengecoran"
+                outlined
+                dense
+              />
+            </v-col>
+            <v-col cols="12" md="6" class="py-0">
+              <v-text-field
+                v-model="mutuBeton"
+                :rules="rules.mutuBeton"
+                label="Mutu Beton"
+                placeholder="Mutu Beton"
+                outlined
+                dense
+              />
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" md="6" class="py-0">
+              <app-bulk-input
+                v-model="personil"
+                :rules="rules.personil"
+                label="Personil"
+                placeholder="Personil"
+                outlined
+                dense
+              >
+                <personil-form :items="personil" />
+              </app-bulk-input>
+            </v-col>
+            <v-col cols="12" md="6" class="py-0"> </v-col>
+          </v-row>
+          <!-- items -->
+          <tbm-items-form :id-telusur="idTelusur" :items="items" />
+          <!-- footer input -->
+          <v-row>
+            <v-col cols="12" md="6">
+              <v-card class="mt-3" color="grey darken-4">
+                <h5 class="pa-3">Mengetahui</h5>
+                <div class="px-3 pt-0 pb-5">
+                  <v-text-field
+                    v-model="mengetahuiJabatan"
+                    :rules="rules.mengetahuiJabatan"
+                    label="Jabatan"
+                    placeholder="Jabatan"
+                    outlined
+                    dense
                   />
-                </div>
-              </div>
-            </v-card>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-card class="mt-3" color="grey darken-4">
-              <h5 class="pa-3">Dibuat oleh</h5>
-              <div class="px-3 pt-0 pb-5">
-                <v-row>
-                  <v-col cols="12" md="6" class="pb-0">
-                    <v-text-field
-                      v-model="dibuatOlehLokasi"
-                      :rules="rules.dibuatOlehLokasi"
-                      label="Lokasi"
-                      placeholder="Lokasi"
-                      outlined
-                      dense
-                    />
-                  </v-col>
-                  <v-col cols="12" md="6">
-                    <app-date-picker
-                      v-model="dibuatOlehTanggal"
-                      :rules="rules.dibuatOlehTanggal"
-                      label="Tanggal"
-                      placeholder="Tanggal"
-                      outlined
-                      dense
-                    />
-                  </v-col>
-                </v-row>
-                <v-text-field
-                  v-model="dibuatOlehJabatan"
-                  :rules="rules.dibuatOlehJabatan"
-                  label="Jabatan"
-                  placeholder="Jabatan"
-                  outlined
-                  dense
-                />
-                <v-text-field
-                  v-model="dibuatOlehNama"
-                  :rules="rules.dibuatOlehNama"
-                  label="Nama"
-                  placeholder="Nama"
-                  outlined
-                  dense
-                />
-                <v-file-input
-                  v-model="dibuatOlehTtdFile"
-                  :rules="rules.dibuatOlehTtdFile"
-                  accept="image/png, image/jpeg, image/bmp"
-                  label="TTD (max: 3mb)"
-                  prepend-icon="mdi-image"
-                  outlined
-                  dense
-                ></v-file-input>
-                <div class="d-flex justify-center">
-                  <v-img
-                    v-if="dibuatOlehTtd"
-                    class="white darken-2 rounded-sm"
-                    max-width="150"
-                    max-height="150"
-                    contain
-                    :src="dibuatOlehTtd"
+                  <v-text-field
+                    v-model="mengetahuiNama"
+                    :rules="rules.mengetahuiNama"
+                    label="Nama"
+                    placeholder="Nama"
+                    outlined
+                    dense
                   />
+                  <v-file-input
+                    v-model="mengetahuiTtdFile"
+                    :rules="rules.mengetahuiTtdFile"
+                    accept="image/png, image/jpeg, image/bmp"
+                    label="TTD (max: 3mb)"
+                    prepend-icon="mdi-image"
+                    outlined
+                    dense
+                  ></v-file-input>
+                  <div class="d-flex justify-center">
+                    <v-img
+                      v-if="mengetahuiTtd"
+                      class="white rounded-sm"
+                      max-width="150"
+                      max-height="150"
+                      contain
+                      :src="mengetahuiTtd"
+                    />
+                  </div>
                 </div>
-              </div>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-card-text>
-      <v-card-actions class="d-block">
-        <div class="d-flex justify-center" style="width: 100%">
-          <v-btn
-            type="submit"
-            color="blue darken-3"
-            nuxt
-            :loading="loadingGenerate"
+              </v-card>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-card class="mt-3" color="grey darken-4">
+                <h5 class="pa-3">Dibuat oleh</h5>
+                <div class="px-3 pt-0 pb-5">
+                  <v-row>
+                    <v-col cols="12" md="6" class="pb-0">
+                      <v-text-field
+                        v-model="dibuatOlehLokasi"
+                        :rules="rules.dibuatOlehLokasi"
+                        label="Lokasi"
+                        placeholder="Lokasi"
+                        outlined
+                        dense
+                      />
+                    </v-col>
+                    <v-col cols="12" md="6">
+                      <app-date-picker
+                        v-model="dibuatOlehTanggal"
+                        :rules="rules.dibuatOlehTanggal"
+                        label="Tanggal"
+                        placeholder="Tanggal"
+                        outlined
+                        dense
+                      />
+                    </v-col>
+                  </v-row>
+                  <v-text-field
+                    v-model="dibuatOlehJabatan"
+                    :rules="rules.dibuatOlehJabatan"
+                    label="Jabatan"
+                    placeholder="Jabatan"
+                    outlined
+                    dense
+                  />
+                  <v-text-field
+                    v-model="dibuatOlehNama"
+                    :rules="rules.dibuatOlehNama"
+                    label="Nama"
+                    placeholder="Nama"
+                    outlined
+                    dense
+                  />
+                  <v-file-input
+                    v-model="dibuatOlehTtdFile"
+                    :rules="rules.dibuatOlehTtdFile"
+                    accept="image/png, image/jpeg, image/bmp"
+                    label="TTD (max: 3mb)"
+                    prepend-icon="mdi-image"
+                    outlined
+                    dense
+                  ></v-file-input>
+                  <div class="d-flex justify-center">
+                    <v-img
+                      v-if="dibuatOlehTtd"
+                      class="white darken-2 rounded-sm"
+                      max-width="150"
+                      max-height="150"
+                      contain
+                      :src="dibuatOlehTtd"
+                    />
+                  </div>
+                </div>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-card-text>
+        <v-card-actions class="d-block">
+          <div class="d-flex justify-center" style="width: 100%">
+            <v-btn
+              type="submit"
+              color="blue darken-3"
+              nuxt
+              :loading="loadingGenerate"
+            >
+              {{ !localId ? "Generate" : "Edit" }}
+            </v-btn>
+          </div>
+          <div
+            v-if="localId"
+            class="d-flex justify-center mt-3"
+            style="width: 100%"
           >
-            {{ !localId ? "Generate" : "Edit" }}
-          </v-btn>
-        </div>
-        <div
-          v-if="localId"
-          class="d-flex justify-center mt-3"
-          style="width: 100%"
-        >
-          <v-btn color="grey darken-3" nuxt @click="redirectPrint">
-            <v-icon left dark> mdi-printer </v-icon>
-            print / download pdf
-          </v-btn>
-        </div>
-      </v-card-actions>
-    </v-form>
+            <v-btn color="grey darken-3" nuxt @click="redirectPrint">
+              <v-icon left dark> mdi-printer </v-icon>
+              print / download pdf
+            </v-btn>
+          </div>
+        </v-card-actions>
+      </v-form>
+    </div>
+    <tbm ref="printDoc" :id-telusur="idTelusur" />
   </div>
 </template>
 <script>
@@ -235,6 +238,7 @@ import AppDatePicker from "../atoms/AppDatePicker.vue";
 import LocationBulkForm from "../molecules/LocationBulkForm.vue";
 import PersonilForm from "../molecules/PersonilForm.vue";
 import TbmItemsForm from "../molecules/TbmItemsForm.vue";
+import tbm from "./print/tbm.vue";
 export default {
   components: {
     AppDatePicker,
@@ -242,6 +246,7 @@ export default {
     LocationBulkForm,
     PersonilForm,
     TbmItemsForm,
+    tbm,
   },
   props: {
     idTelusur: String,
@@ -442,7 +447,7 @@ export default {
     },
     async redirectPrint() {
       await this.generate();
-      this.$router.push(`print/tbm?id=${this.idTelusur}`);
+      this.$refs.printDoc.print();
     },
   },
 };
