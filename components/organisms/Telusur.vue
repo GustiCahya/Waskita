@@ -94,10 +94,30 @@ export default {
     };
   },
   async mounted() {
-    // fetch telusur data
     const id = this.$route.query.id || this.idTelusur;
-    if (id) {
-      try {
+    try {
+      // fetch previous telusur data
+      const prevItem = await this.$axios
+        .get("/api/Telusur/get", {
+          params: {
+            jsonQuery: JSON.stringify({
+              pipeline: [
+                {
+                  $sort: {
+                    _createdDate: -1,
+                  },
+                },
+              ],
+            }),
+          },
+        })
+        .then((res) => res?.data?.result?.[0]);
+      if (prevItem) {
+        this.businessUnit = prevItem?.businessUnit;
+        this.proyek = prevItem?.proyek;
+      }
+      // fetch telusur data
+      if (id) {
         const result = await this.$axios
           .get("/api/Telusur/get", {
             params: {
@@ -114,9 +134,9 @@ export default {
           this.form = item.form;
           this.rev = item.rev;
         }
-      } catch (err) {
-        this.$swal(err?.response?.data || err?.message, "", "warning");
       }
+    } catch (err) {
+      this.$swal(err?.response?.data || err?.message, "", "warning");
     }
   },
   methods: {

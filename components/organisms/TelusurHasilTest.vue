@@ -162,7 +162,7 @@
         >
           <v-btn color="grey darken-3" nuxt @click="redirectPrint">
             <v-icon left dark> mdi-printer </v-icon>
-            Printout
+            print / download pdf
           </v-btn>
         </div>
       </v-card-actions>

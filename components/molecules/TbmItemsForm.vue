@@ -116,6 +116,8 @@
               <th class="text-left">No. Kendaraan</th>
               <th class="text-left">No. Docket</th>
               <th class="text-left">Jam Dituang</th>
+              <th class="text-left">Vol Aktual</th>
+              <th class="text-left">Vol Kumulatif</th>
               <th class="text-left">Aksi</th>
             </tr>
           </thead>
@@ -124,6 +126,8 @@
               <td>{{ item.noKendaraan }}</td>
               <td>{{ item.noDocket }}</td>
               <td>{{ item.jamDituang }}</td>
+              <td>{{ item.volAktual }}</td>
+              <td>{{ item.volKumulatif }}</td>
               <td>
                 <v-btn color="yellow darken-3" icon @click="select(item)">
                   <v-icon>mdi-pencil</v-icon>
@@ -188,6 +192,14 @@ export default {
       id: undefined,
       form: false,
     };
+  },
+  watch: {
+    volAktual() {
+      this.autoFillVolKumulatif();
+    }
+  },
+  mounted() {
+    this.autoFillVolKumulatif();
   },
   methods: {
     submit() {
@@ -254,7 +266,17 @@ export default {
       this.slumpBeton = "";
       //   this.syaratSlump = "";
       this.$refs.form.resetValidation();
+      this.autoFillVolKumulatif();
     },
+    autoFillVolKumulatif() {
+      if(!this.id){
+        const prefVol = this.items?.[this.items.length - 1]?.volKumulatif?.replace(",", ".") || 0;
+        const volAktual = this?.volAktual?.replace(",", ".") || 0;
+        const result = String(+prefVol + +volAktual);
+        this.volKumulatif = result?.replace(".", ",") || 0;
+        this.$refs.form.resetValidation();
+      }
+    }
   },
 };
 </script>

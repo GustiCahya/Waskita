@@ -43,11 +43,16 @@ Vue.mixin({
       return VueJwtDecode.decode(token);
     },
     async $getUserRoles() {
-      const email = this.$getUserData()?.email;
-      const roles = await this.$axios.get("api/Users/getRoles", {
-        params: { email: email.toLowerCase() }
-      }).then(res => res?.data?.result);
-      return roles;
+      try{
+        const email = this.$getUserData()?.email;
+        const roles = await this.$axios.get("api/Users/getRoles", {
+          params: { email: email.toLowerCase() }
+        }).then(res => res?.data?.result);
+        return roles;
+      }catch(err){
+        this.$swal(err?.response?.data?.message || err?.message);
+        this.$logout();
+      }
     },
     async $isLogin() {
       const token = this.$secureStorage.getItem("token");
