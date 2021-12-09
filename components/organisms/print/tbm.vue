@@ -94,7 +94,7 @@
                           line-height: normal;
                         "
                       >
-                        <span lang="EN-US">Form. {{ data.form }}</span>
+                        <span lang="EN-US">Form. {{ detail.mainForm }}</span>
                       </p>
                     </td>
                   </tr>

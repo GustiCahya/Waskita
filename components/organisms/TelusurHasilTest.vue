@@ -376,7 +376,9 @@ export default {
         const item = result?.[0]?.tht?.[0];
         if (item) {
           this.localId = item._id;
-          this.mainForm = item.mainForm;
+          if(item?.mainForm){
+            this.mainForm = item.mainForm;
+          }
           this.no = item.no;
           this.hasilTest = item.hasilTest;
           this.laboratorium = item.laboratorium;

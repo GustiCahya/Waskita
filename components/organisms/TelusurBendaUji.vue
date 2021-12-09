@@ -298,7 +298,9 @@ export default {
         const item = result?.[0]?.tbu?.[0];
         if (item) {
           this.localId = item._id;
-          this.mainForm = item.mainForm;
+          if(item?.mainForm){
+            this.mainForm = item.mainForm;
+          }
           this.no = item.no;
           this.jumlahBendaUji = item.jumlahBendaUji;
           this.dimensi = item.dimensi;
