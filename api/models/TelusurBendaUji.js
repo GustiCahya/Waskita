@@ -19,11 +19,11 @@ const TelusurBendaUji = new mongoose.Schema(
         ttd: { type: String }, // image
       }
     ],
+    tanggalPembuatan: { type: Date },
     items: [
       {
         _id: { type: String },
         noKendaraan: { type: String },
-        tanggalPembuatan: { type: Date },
         jamPembuatan: { type: String },
         kodeSilinder: { type: String },
       }

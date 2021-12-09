@@ -245,11 +245,23 @@ export default {
                       as: "tp",
                     },
                   },
+                  {
+                    $lookup: {
+                      from: "TelusurBahanMasuk",
+                      localField: "idTbm",
+                      foreignField: "_id",
+                      as: "tbm",
+                    },
+                  },
                 ],
               }),
             },
           })
           .then((res) => res?.data?.result);
+        const tbm = result?.[0]?.tbm?.[0];
+        if (tbm) {
+          this.tanggalPengecoran = tbm?.tanggalMasuk;
+        }
         const item = result?.[0]?.tp?.[0];
         if (item) {
           this.localId = item._id;

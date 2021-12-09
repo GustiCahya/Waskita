@@ -58,6 +58,19 @@
             </app-bulk-input>
           </v-col>
         </v-row>
+        <v-row>
+          <v-col cols="12" md="6" class="py-0">
+            <app-date-picker
+              v-model="tanggalPembuatan"
+              :rules="rules.tanggalPembuatan"
+              label="Tanggal Pembuatan"
+              placeholder="Tanggal Pembuatan"
+              outlined
+              dense
+            />
+          </v-col>
+          <v-col cols="12" md="6" class="py-0"></v-col>
+        </v-row>
         <!-- items -->
         <tbu-items-form :id-telusur="idTelusur" :items="items" />
         <!-- footer input -->
@@ -182,6 +195,7 @@ export default {
       jumlahBendaUji: "",
       dimensi: [],
       personil: [],
+      tanggalPembuatan: null,
       rules: {
         no: [(v) => !!v || "Harap diisi"],
         jumlahBendaUji: [
@@ -191,6 +205,7 @@ export default {
         ],
         dimensi: [(v) => v.length >= 1 || "Harap diisi"],
         personil: [(v) => v.length >= 1 || "Harap diisi"],
+        tanggalPembuatan: [(v) => !!v || "Harap diisi"],
         dibuatOlehLokasi: [(v) => !!v || "Harap diisi"],
         dibuatOlehTanggal: [(v) => !!v || "Harap diisi"],
         dibuatOlehJabatan: [(v) => !!v || "Harap diisi"],
@@ -250,11 +265,23 @@ export default {
                       as: "tbu",
                     },
                   },
+                  {
+                    $lookup: {
+                      from: "TelusurBahanMasuk",
+                      localField: "idTbm",
+                      foreignField: "_id",
+                      as: "tbm",
+                    },
+                  },
                 ],
               }),
             },
           })
           .then((res) => res?.data?.result);
+        const tbm = result?.[0]?.tbm?.[0];
+        if(tbm){
+          this.tanggalPembuatan = tbm?.tanggalMasuk;
+        }
         const item = result?.[0]?.tbu?.[0];
         if (item) {
           this.localId = item._id;
@@ -262,6 +289,7 @@ export default {
           this.jumlahBendaUji = item.jumlahBendaUji;
           this.dimensi = item.dimensi;
           this.personil = item.personil;
+          this.tanggalPembuatan = item?.tanggalPembuatan;
           this.items = item.items;
           this.dibuatOlehLokasi = item.dibuatOleh?.lokasi;
           this.dibuatOlehTanggal = item.dibuatOleh?.tanggal;
@@ -302,6 +330,7 @@ export default {
           jumlahBendaUji: this.jumlahBendaUji,
           dimensi: this.dimensi,
           personil: this.personil,
+          tanggalPembuatan: this.tanggalPembuatan,
           items: this.items,
           dibuatOleh: {
             lokasi: this.dibuatOlehLokasi,

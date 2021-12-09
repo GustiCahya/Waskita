@@ -355,8 +355,11 @@ export default {
             },
           })
           .then((res) => res?.data?.result);
-        const item = result?.[0]?.tht?.[0];
         const tbm = result?.[0]?.tbm?.[0];
+        if(tbm){
+          this.tanggalPembuatan = tbm?.tanggalMasuk;
+        }
+        const item = result?.[0]?.tht?.[0];
         if (item) {
           this.localId = item._id;
           this.no = item.no;
@@ -364,11 +367,11 @@ export default {
           this.laboratorium = item.laboratorium;
           this.saksiWaskita = item.saksiWaskita;
           this.saksiPemberiKerja = item.saksiPemberiKerja;
-          this.tanggalPembuatan = item.tanggalPembuatan || tbm?.tanggalMasuk;
+          this.tanggalPembuatan = item.tanggalPembuatan;
           this.tanggalPengetesan = item.tanggalPengetesan;
           this.umurHari = item.umurHari;
-          this.perkiraanDensity = item.perkiraanDensity || "Min 2,2";
-          this.perkiraanTekan = item.perkiraanTekan || "Min 65%";
+          this.perkiraanDensity = item.perkiraanDensity;
+          this.perkiraanTekan = item.perkiraanTekan;
           this.items = item.items;
           this.dibuatOlehLokasi = item.dibuatOleh?.lokasi;
           this.dibuatOlehTanggal = item.dibuatOleh?.tanggal;

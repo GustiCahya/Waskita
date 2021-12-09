@@ -1734,8 +1734,8 @@
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
                     >{{
-                      tbm.tanggalMasuk
-                        ? $moment(tbm.tanggalMasuk).format("DD-MMM-YY")
+                      detail.tanggalPembuatan
+                        ? $moment(detail.tanggalPembuatan).format("DD-MMM-YY")
                         : ""
                     }}</span
                   >
