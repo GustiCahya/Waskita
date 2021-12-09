@@ -2989,7 +2989,12 @@
                 <p
                   class="MsoNormal"
                   align="center"
-                  style="margin: 0; text-align: center; line-height: normal; min-height: 62px;"
+                  style="
+                    margin: 0;
+                    text-align: center;
+                    line-height: normal;
+                    min-height: 62px;
+                  "
                 >
                   <img
                     v-if="dibuatOleh.ttd"
@@ -3092,79 +3097,83 @@ export default {
     },
   },
   async mounted() {
-    // handle baseUrl
-    this.baseUrl = window.location.origin;
-    // handle data telusur
-    const id = this.$route.query.id || this.idTelusur;
-    if (id) {
-      this.loadingFetch = true;
-      try {
-        const result = await this.$axios
-          .get("/api/Telusur/get", {
-            params: {
-              jsonQuery: JSON.stringify({
-                _id: id,
-                pipeline: [
-                  {
-                    $lookup: {
-                      from: "TelusurProses",
-                      localField: "idTp",
-                      foreignField: "_id",
-                      as: "tp",
-                    },
-                  },
-                  {
-                    $lookup: {
-                      from: "TelusurBahanMasuk",
-                      localField: "idTbm",
-                      foreignField: "_id",
-                      as: "tbm",
-                    },
-                  },
-                  {
-                    $lookup: {
-                      from: "TelusurBendaUji",
-                      localField: "idTbu",
-                      foreignField: "_id",
-                      as: "tbu",
-                    },
-                  },
-                ],
-              }),
-            },
-          })
-          .then((res) => res?.data?.result);
-        if (result.length >= 1) {
-          const telusur = result[0];
-          const tp = telusur?.tp?.[0] || {};
-          const tbm = telusur?.tbm?.[0] || {};
-          const tbu = telusur?.tbu?.[0] || {};
-          this.data = telusur;
-          this.detail = tp;
-          this.tbm = tbm;
-          this.tbu = tbu;
-          this.dibuatOleh = tp?.dibuatOleh || {};
-          this.items = tp?.items?.map((item, idx) => {
-            return {
-              ...item,
-              tanggalPengecoran:
-                tp?.tanggalPengecoran && idx === 0
-                  ? this.$moment(tp.tanggalPengecoran).format("DD-MMM-YY")
-                  : null,
-              noDetail: tp?.noDetail,
-              personilNama: tp?.personil?.[idx]?.nama,
-              personilTtd: tp?.personil?.[idx]?.ttd,
-            };
-          });
-        }
-      } catch (err) {
-        this.$swal(err?.response?.data || err?.message, "", "error");
-      }
-      this.loadingFetch = false;
-    }
+    await this.fetchData();
   },
   methods: {
-    print() {
+    async fetchData() {
+      // handle baseUrl
+      this.baseUrl = window.location.origin;
+      // handle data telusur
+      const id = this.$route.query.id || this.idTelusur;
+      if (id) {
+        this.loadingFetch = true;
+        try {
+          const result = await this.$axios
+            .get("/api/Telusur/get", {
+              params: {
+                jsonQuery: JSON.stringify({
+                  _id: id,
+                  pipeline: [
+                    {
+                      $lookup: {
+                        from: "TelusurProses",
+                        localField: "idTp",
+                        foreignField: "_id",
+                        as: "tp",
+                      },
+                    },
+                    {
+                      $lookup: {
+                        from: "TelusurBahanMasuk",
+                        localField: "idTbm",
+                        foreignField: "_id",
+                        as: "tbm",
+                      },
+                    },
+                    {
+                      $lookup: {
+                        from: "TelusurBendaUji",
+                        localField: "idTbu",
+                        foreignField: "_id",
+                        as: "tbu",
+                      },
+                    },
+                  ],
+                }),
+              },
+            })
+            .then((res) => res?.data?.result);
+          if (result.length >= 1) {
+            const telusur = result[0];
+            const tp = telusur?.tp?.[0] || {};
+            const tbm = telusur?.tbm?.[0] || {};
+            const tbu = telusur?.tbu?.[0] || {};
+            this.data = telusur;
+            this.detail = tp;
+            this.tbm = tbm;
+            this.tbu = tbu;
+            this.dibuatOleh = tp?.dibuatOleh || {};
+            this.items = tp?.items?.map((item, idx) => {
+              return {
+                ...item,
+                tanggalPengecoran:
+                  tp?.tanggalPengecoran && idx === 0
+                    ? this.$moment(tp.tanggalPengecoran).format("DD-MMM-YY")
+                    : null,
+                noDetail: tp?.noDetail,
+                personilNama: tp?.personil?.[idx]?.nama,
+                personilTtd: tp?.personil?.[idx]?.ttd,
+              };
+            });
+          }
+        } catch (err) {
+          this.$swal(err?.response?.data || err?.message, "", "error");
+        }
+        this.loadingFetch = false;
+      }
+    },
+    async print() {
+      await this.fetchData();
       const content = document.getElementById("printPaper").cloneNode(true);
       const w = window.open("", "", "width=1123,height=794");
       w.document.head.innerHTML =

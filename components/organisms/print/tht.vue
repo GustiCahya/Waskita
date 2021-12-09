@@ -3269,14 +3269,13 @@
             </tr>
           </table>
         </div>
-        <div v-for="(item, idx) in detail.hasilTest" id="section" :key="item._id">
+        <div
+          v-for="(item, idx) in detail.hasilTest"
+          id="section"
+          :key="item._id"
+        >
           <p>Lampiran {{ idx + 1 }} : {{ item.judul }}</p>
-          <img
-            style="
-              max-height: 18cm;
-            "
-            :src="item.gambar"
-          />
+          <img style="max-height: 18cm" :src="item.gambar" />
         </div>
       </div>
     </v-card-text>
@@ -3305,72 +3304,76 @@ export default {
     },
   },
   async mounted() {
-    // handle baseUrl
-    this.baseUrl = window.location.origin;
-    // handle data telusur
-    const id = this.$route.query.id || this.idTelusur;
-    if (id) {
-      this.loadingFetch = true;
-      try {
-        const result = await this.$axios
-          .get("/api/Telusur/get", {
-            params: {
-              jsonQuery: JSON.stringify({
-                _id: id,
-                pipeline: [
-                  {
-                    $lookup: {
-                      from: "TelusurHasilTest",
-                      localField: "idTht",
-                      foreignField: "_id",
-                      as: "tht",
-                    },
-                  },
-                  {
-                    $lookup: {
-                      from: "TelusurBendaUji",
-                      localField: "idTbu",
-                      foreignField: "_id",
-                      as: "tbu",
-                    },
-                  },
-                ],
-              }),
-            },
-          })
-          .then((res) => res?.data?.result);
-        if (result.length >= 1) {
-          const telusur = result[0];
-          const tht = telusur?.tht?.[0] || {};
-          const tbu = telusur?.tbu?.[0] || {};
-          this.data = telusur;
-          this.detail = tht;
-          this.tbu = tbu;
-          this.dibuatOleh = tht?.dibuatOleh || {};
-          this.items = tht?.items?.map((item, idx) => {
-            return {
-              ...item,
-              txtHasilTest:
-                idx === 0 && tht?.hasilTest?.length >= 1
-                  ? "Hasil Tes Terlampir"
-                  : "",
-              laboratoriumNama: tht?.laboratorium?.[idx]?.nama,
-              laboratoriumAlamat: tht?.laboratorium?.[idx]?.alamat,
-              saksiWaskitaNama: tht?.saksiWaskita?.[idx]?.nama,
-              saksiWaskitaTtd: tht?.saksiWaskita?.[idx]?.ttd,
-              saksiPemberiKerjaNama: tht?.saksiPemberiKerja?.[idx]?.nama,
-              saksiPemberiKerjaTtd: tht?.saksiPemberiKerja?.[idx]?.ttd,
-            };
-          });
-        }
-      } catch (err) {
-        this.$swal(err?.response?.data || err?.message, "", "error");
-      }
-      this.loadingFetch = false;
-    }
+    await this.fetchData();
   },
   methods: {
-    print() {
+    async fetchData() {
+      // handle baseUrl
+      this.baseUrl = window.location.origin;
+      // handle data telusur
+      const id = this.$route.query.id || this.idTelusur;
+      if (id) {
+        this.loadingFetch = true;
+        try {
+          const result = await this.$axios
+            .get("/api/Telusur/get", {
+              params: {
+                jsonQuery: JSON.stringify({
+                  _id: id,
+                  pipeline: [
+                    {
+                      $lookup: {
+                        from: "TelusurHasilTest",
+                        localField: "idTht",
+                        foreignField: "_id",
+                        as: "tht",
+                      },
+                    },
+                    {
+                      $lookup: {
+                        from: "TelusurBendaUji",
+                        localField: "idTbu",
+                        foreignField: "_id",
+                        as: "tbu",
+                      },
+                    },
+                  ],
+                }),
+              },
+            })
+            .then((res) => res?.data?.result);
+          if (result.length >= 1) {
+            const telusur = result[0];
+            const tht = telusur?.tht?.[0] || {};
+            const tbu = telusur?.tbu?.[0] || {};
+            this.data = telusur;
+            this.detail = tht;
+            this.tbu = tbu;
+            this.dibuatOleh = tht?.dibuatOleh || {};
+            this.items = tht?.items?.map((item, idx) => {
+              return {
+                ...item,
+                txtHasilTest:
+                  idx === 0 && tht?.hasilTest?.length >= 1
+                    ? "Hasil Tes Terlampir"
+                    : "",
+                laboratoriumNama: tht?.laboratorium?.[idx]?.nama,
+                laboratoriumAlamat: tht?.laboratorium?.[idx]?.alamat,
+                saksiWaskitaNama: tht?.saksiWaskita?.[idx]?.nama,
+                saksiWaskitaTtd: tht?.saksiWaskita?.[idx]?.ttd,
+                saksiPemberiKerjaNama: tht?.saksiPemberiKerja?.[idx]?.nama,
+                saksiPemberiKerjaTtd: tht?.saksiPemberiKerja?.[idx]?.ttd,
+              };
+            });
+          }
+        } catch (err) {
+          this.$swal(err?.response?.data || err?.message, "", "error");
+        }
+        this.loadingFetch = false;
+      }
+    },
+    async print() {
+      await this.fetchData();
       const content = document.getElementById("printPaper").cloneNode(true);
       const w = window.open("", "", "width=1123,height=794");
       w.document.head.innerHTML =

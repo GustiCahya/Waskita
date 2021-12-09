@@ -119,7 +119,10 @@
                           line-height: normal;
                         "
                       >
-                        <span lang="EN-US">Rev. {{ $moment(data.rev).format("DD, MMMM YYYY") }}</span>
+                        <span lang="EN-US"
+                          >Rev.
+                          {{ $moment(data.rev).format("DD, MMMM YYYY") }}</span
+                        >
                       </p>
                     </td>
                   </tr>
@@ -234,9 +237,9 @@
                         class="MsoNormal"
                         style="margin-bottom: 0cm; line-height: normal"
                       >
-                        <span lang="EN-US" style="font-size: 9pt"
-                          >{{ data.businessUnit }}</span
-                        >
+                        <span lang="EN-US" style="font-size: 9pt">{{
+                          data.businessUnit
+                        }}</span>
                       </p>
                     </td>
                   </tr>
@@ -307,9 +310,9 @@
                         class="MsoNormal"
                         style="margin-bottom: 0cm; line-height: normal"
                       >
-                        <span lang="EN-US" style="font-size: 9pt"
-                          >{{ data.proyek }}</span
-                        >
+                        <span lang="EN-US" style="font-size: 9pt">{{
+                          data.proyek
+                        }}</span>
                       </p>
                     </td>
                   </tr>
@@ -375,9 +378,9 @@
                         class="MsoNormal"
                         style="margin-bottom: 0cm; line-height: normal"
                       >
-                        <span lang="EN-US" style="font-size: 9pt"
-                          >{{ detail.no }}</span
-                        >
+                        <span lang="EN-US" style="font-size: 9pt">{{
+                          detail.no
+                        }}</span>
                       </p>
                     </td>
                   </tr>
@@ -2506,7 +2509,7 @@
                 "
                 width="1"
               >
-                <p style="margin-bottom: 0; text-align: center;">&nbsp;</p>
+                <p style="margin-bottom: 0; text-align: center">&nbsp;</p>
               </td>
               <td style="height: 2.3pt; border: none" width="0" height="5"></td>
             </tr>
@@ -2566,7 +2569,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >
+                  >
                     {{ item.tanggalMasuk }}
                   </span>
                 </p>
@@ -2625,10 +2628,9 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >
-                    {{ item.pemasokNama }}
-                  </span
                   >
+                    {{ item.pemasokNama }}
+                  </span>
                 </p>
               </td>
               <td
@@ -2932,9 +2934,7 @@
                 "
                 width="1"
               >
-                <p
-                  class="MsoNormal"
-                >
+                <p class="MsoNormal">
                   <span lang="EN-US"
                     ><img
                       v-if="item.personilTtd"
@@ -3554,7 +3554,9 @@
                   <span
                     lang="EN-US"
                     style="font-size: 7pt; font-family: 'Arial', sans-serif"
-                    >{{ dibuatOleh.lokasi }}, {{ $moment(dibuatOleh.tanggal).format("DD MMMM YYYY") }}<br />
+                    >{{ dibuatOleh.lokasi }},
+                    {{ $moment(dibuatOleh.tanggal).format("DD MMMM YYYY")
+                    }}<br />
                     Dibuat oleh,</span
                   >
                 </p>
@@ -3572,7 +3574,12 @@
                 <p
                   class="MsoNormal"
                   align="center"
-                  style="margin: 0; text-align: center; line-height: normal; min-height: 62px;"
+                  style="
+                    margin: 0;
+                    text-align: center;
+                    line-height: normal;
+                    min-height: 62px;
+                  "
                 >
                   <img
                     v-if="mengetahui.ttd"
@@ -3619,7 +3626,12 @@
                 <p
                   class="MsoNormal"
                   align="center"
-                  style="margin: 0; text-align: center; line-height: normal; min-height: 62px;"
+                  style="
+                    margin: 0;
+                    text-align: center;
+                    line-height: normal;
+                    min-height: 62px;
+                  "
                 >
                   <img
                     v-if="dibuatOleh.ttd"
@@ -3737,59 +3749,66 @@ export default {
     },
   },
   async mounted() {
-    // handle baseUrl
-    this.baseUrl = window.location.origin;
-    // handle data telusur
-    const id = this.$route.query.id || this.idTelusur;
-    if (id) {
-      this.loadingFetch = true;
-      try {
-        const result = await this.$axios
-          .get("/api/Telusur/get", {
-            params: {
-              jsonQuery: JSON.stringify({
-                _id: id,
-                pipeline: [
-                  {
-                    $lookup: {
-                      from: "TelusurBahanMasuk",
-                      localField: "idTbm",
-                      foreignField: "_id",
-                      as: "tbm"
-                    }
-                  }
-                ]
-              }),
-            },
-          })
-          .then((res) => res?.data?.result);
-        if (result.length >= 1) {
-          const telusur = result[0];
-          const tbm = telusur?.tbm?.[0] || {};
-          this.data = telusur;
-          this.detail = tbm;
-          this.mengetahui = tbm?.mengetahui || {};
-          this.dibuatOleh = tbm?.dibuatOleh || {};
-          this.items = tbm?.items?.map((item, idx) => {
-            return {
-              ...item,
-              tanggalMasuk: tbm?.tanggalMasuk && idx === 0 ? this.$moment(tbm.tanggalMasuk).format("DD-MMM-YYYY") : null,
-              pemasokNama: tbm?.pemasok?.[idx]?.nama,
-              pemasokAlamat: tbm?.pemasok?.[idx]?.alamat,
-              mutuBeton: tbm?.mutuBeton && idx === 0 ? tbm?.mutuBeton : null,
-              personilNama: tbm?.personil?.[idx]?.nama,
-              personilTtd: tbm?.personil?.[idx]?.ttd,
-            }
-          });
-        }
-      } catch (err) {
-        this.$swal(err?.response?.data || err?.message, "", "error");
-      }
-      this.loadingFetch = false;
-    }
+    await this.fetchData();
   },
   methods: {
-    print() {
+    async fetchData() {
+      // handle baseUrl
+      this.baseUrl = window.location.origin;
+      // handle data telusur
+      const id = this.$route.query.id || this.idTelusur;
+      if (id) {
+        this.loadingFetch = true;
+        try {
+          const result = await this.$axios
+            .get("/api/Telusur/get", {
+              params: {
+                jsonQuery: JSON.stringify({
+                  _id: id,
+                  pipeline: [
+                    {
+                      $lookup: {
+                        from: "TelusurBahanMasuk",
+                        localField: "idTbm",
+                        foreignField: "_id",
+                        as: "tbm",
+                      },
+                    },
+                  ],
+                }),
+              },
+            })
+            .then((res) => res?.data?.result);
+          if (result.length >= 1) {
+            const telusur = result[0];
+            const tbm = telusur?.tbm?.[0] || {};
+            this.data = telusur;
+            this.detail = tbm;
+            this.mengetahui = tbm?.mengetahui || {};
+            this.dibuatOleh = tbm?.dibuatOleh || {};
+            this.items = tbm?.items?.map((item, idx) => {
+              return {
+                ...item,
+                tanggalMasuk:
+                  tbm?.tanggalMasuk && idx === 0
+                    ? this.$moment(tbm.tanggalMasuk).format("DD-MMM-YYYY")
+                    : null,
+                pemasokNama: tbm?.pemasok?.[idx]?.nama,
+                pemasokAlamat: tbm?.pemasok?.[idx]?.alamat,
+                mutuBeton: tbm?.mutuBeton && idx === 0 ? tbm?.mutuBeton : null,
+                personilNama: tbm?.personil?.[idx]?.nama,
+                personilTtd: tbm?.personil?.[idx]?.ttd,
+              };
+            });
+          }
+        } catch (err) {
+          this.$swal(err?.response?.data || err?.message, "", "error");
+        }
+        this.loadingFetch = false;
+      }
+    },
+    async print() {
+      await this.fetchData();
       const content = document.getElementById("printPaper").cloneNode(true);
       const w = window.open("", "", "width=1123,height=794");
       w.document.head.innerHTML =

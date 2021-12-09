@@ -42,7 +42,7 @@
               outlined
               dense
             >
-              <regular-bulk-form label="Dimensi" :items="dimensi" />
+              <dimensi-form :items="dimensi" />
             </app-bulk-input>
           </v-col>
           <v-col cols="12" md="6" class="py-0">
@@ -159,14 +159,14 @@
 import AppBulkInput from "../atoms/AppBulkInput.vue";
 import AppDatePicker from "../atoms/AppDatePicker.vue";
 import PersonilForm from "../molecules/PersonilForm.vue";
-import RegularBulkForm from "../molecules/RegularBulkForm.vue";
+import DimensiForm from "../molecules/DimensiForm.vue";
 import TbuItemsForm from "../molecules/TbuItemsForm.vue";
 import tbu from "./print/tbu";
 export default {
   components: {
     AppDatePicker,
     AppBulkInput,
-    RegularBulkForm,
+    DimensiForm,
     PersonilForm,
     TbuItemsForm,
     tbu,
@@ -340,7 +340,7 @@ export default {
     },
     async redirectPrint() {
       await this.generate();
-      this.$refs.printDoc.print();
+      await this.$refs.printDoc.print();
     },
   },
 };

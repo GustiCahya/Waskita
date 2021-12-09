@@ -447,7 +447,7 @@ export default {
     },
     async redirectPrint() {
       await this.generate();
-      this.$refs.printDoc.print();
+      await this.$refs.printDoc.print();
     },
   },
 };

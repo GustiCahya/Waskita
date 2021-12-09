@@ -27,16 +27,6 @@
         </v-row>
         <v-row>
           <v-col cols="12" md="6" class="py-0">
-            <app-date-picker
-              v-model="tanggalPembuatan"
-              :rules="rules.tanggalPembuatan"
-              label="Tanggal Pembuatan"
-              placeholder="Tanggal Pembuatan"
-              outlined
-              dense
-            />
-          </v-col>
-          <v-col cols="12" md="6" class="py-0">
             <v-text-field
               v-model="jamPembuatan"
               label="Jam Pembuatan"
@@ -45,6 +35,7 @@
               dense
             />
           </v-col>
+          <v-col cols="12" md="6" class="py-0"></v-col>
         </v-row>
         <div class="d-flex justify-end mb-4">
           <v-btn
@@ -90,11 +81,8 @@
 </template>
 <script>
 import { v4 as uuidv4 } from "uuid";
-import AppDatePicker from "../atoms/AppDatePicker.vue";
 export default {
-  components: {
-    AppDatePicker,
-  },
+  components: {},
   props: {
     idTelusur: String,
     items: Array,
@@ -102,12 +90,10 @@ export default {
   data() {
     return {
       noKendaraan: "",
-      tanggalPembuatan: null,
       jamPembuatan: "",
       kodeSilinder: "",
       rules: {
         noKendaraan: [],
-        tanggalPembuatan: [],
         jamPembuatan: [
           (v) => {
             if (v === "" || v === null) {
@@ -156,7 +142,6 @@ export default {
       if (!this.form) return;
       const send = {
         noKendaraan: this.noKendaraan,
-        tanggalPembuatan: this.tanggalPembuatan,
         jamPembuatan: this.jamPembuatan,
         kodeSilinder: this.kodeSilinder,
       };
@@ -171,7 +156,6 @@ export default {
         // if editing
         const idx = this.items.findIndex((item) => item._id === this.id);
         this.items[idx].noKendaraan = send.noKendaraan;
-        this.items[idx].tanggalPembuatan = send.tanggalPembuatan;
         this.items[idx].jamPembuatan = send.jamPembuatan;
         this.items[idx].kodeSilinder = send.kodeSilinder;
       }
@@ -180,7 +164,6 @@ export default {
     select(item) {
       this.id = item._id;
       this.noKendaraan = item.noKendaraan;
-      this.tanggalPembuatan = item.tanggalPembuatan;
       this.jamPembuatan = item.jamPembuatan;
       this.kodeSilinder = item.kodeSilinder;
     },
@@ -191,7 +174,6 @@ export default {
     clearInput() {
       this.id = undefined;
       this.noKendaraan = "";
-      this.tanggalPembuatan = null;
       this.jamPembuatan = "";
       this.kodeSilinder = "";
       this.$refs.form.resetValidation();

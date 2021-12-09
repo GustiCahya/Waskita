@@ -1641,7 +1641,11 @@
               </td>
             </tr>
             <!-- main content -->
-            <tr v-for="(item, idx) in items" :key="item._id" style="height: 7.2pt">
+            <tr
+              v-for="(item, idx) in items"
+              :key="item._id"
+              style="height: 7.2pt"
+            >
               <td
                 width="50"
                 style="
@@ -1698,10 +1702,9 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >
-                    {{ item.noKendaraan }}
-                  </span
                   >
+                    {{ item.noKendaraan }}
+                  </span>
                 </p>
               </td>
               <td
@@ -1727,9 +1730,14 @@
                   "
                 >
                   <span
+                    v-if="idx === 0"
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ item.tanggalPembuatan ? $moment(item.tanggalPembuatan).format("DD-MMM-YY") : "" }}</span
+                    >{{
+                      tbm.tanggalMasuk
+                        ? $moment(tbm.tanggalMasuk).format("DD-MMM-YY")
+                        : ""
+                    }}</span
                   >
                 </p>
               </td>
@@ -1845,10 +1853,9 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >
-                    {{ item.dimensi }}
-                  </span
                   >
+                    {{ item.dimensi }}
+                  </span>
                 </p>
               </td>
               <td
@@ -1892,9 +1899,7 @@
                   text-align: center;
                 "
               >
-                <p
-                  class="MsoNormal"
-                >
+                <p class="MsoNormal">
                   <span lang="EN-US"
                     ><img
                       v-if="item.personilTtd"
@@ -1929,9 +1934,8 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >
-                    </span
                   >
+                  </span>
                 </p>
               </td>
               <td
@@ -2085,8 +2089,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    ></span
-                  >
+                  ></span>
                 </p>
               </td>
               <td
@@ -2202,7 +2205,7 @@
                   line-height: 107%;
                   font-family: 'Arial', sans-serif;
                 "
-                >
+              >
                 Keterangan :</span
               >
             </p>
@@ -2243,8 +2246,8 @@
                   line-height: 107%;
                   font-family: 'Arial', sans-serif;
                 "
-                >&nbsp;&nbsp;&nbsp;Benda Uji Kubus ukuran 15 x 15 cm, 20 x 20 cm, 25 x 25
-                cm</span
+                >&nbsp;&nbsp;&nbsp;Benda Uji Kubus ukuran 15 x 15 cm, 20 x 20
+                cm, 25 x 25 cm</span
               >
             </p>
 
@@ -2293,8 +2296,7 @@
                   padding: 0cm 5.4pt 0cm 5.4pt;
                   height: 13.5pt;
                 "
-              >
-              </td>
+              ></td>
               <td
                 width="690"
                 valign="top"
@@ -2356,8 +2358,7 @@
                   padding: 0cm 5.4pt 0cm 5.4pt;
                   height: 2.05pt;
                 "
-              >
-              </td>
+              ></td>
               <td
                 width="690"
                 valign="top"
@@ -2393,7 +2394,12 @@
                 <p
                   class="MsoNormal"
                   align="center"
-                  style="margin: 0; text-align: center; line-height: normal; min-height: 62px;"
+                  style="
+                    margin: 0;
+                    text-align: center;
+                    line-height: normal;
+                    min-height: 62px;
+                  "
                 >
                   <img
                     v-if="dibuatOleh.ttd"
@@ -2414,8 +2420,7 @@
                   padding: 0cm 5.4pt 0cm 5.4pt;
                   height: 13.5pt;
                 "
-              >
-              </td>
+              ></td>
               <td
                 width="690"
                 valign="top"
@@ -2496,67 +2501,71 @@ export default {
     },
   },
   async mounted() {
-    // handle baseUrl
-    this.baseUrl = window.location.origin;
-    // handle data telusur
-    const id = this.$route.query.id || this.idTelusur;
-    if (id) {
-      this.loadingFetch = true;
-      try {
-        const result = await this.$axios
-          .get("/api/Telusur/get", {
-            params: {
-              jsonQuery: JSON.stringify({
-                _id: id,
-                pipeline: [
-                  {
-                    $lookup: {
-                      from: "TelusurBendaUji",
-                      localField: "idTbu",
-                      foreignField: "_id",
-                      as: "tbu",
-                    },
-                  },
-                  {
-                    $lookup: {
-                      from: "TelusurBahanMasuk",
-                      localField: "idTbm",
-                      foreignField: "_id",
-                      as: "tbm",
-                    },
-                  },
-                ],
-              }),
-            },
-          })
-          .then((res) => res?.data?.result);
-        if (result.length >= 1) {
-          const telusur = result[0];
-          const tbu = telusur?.tbu?.[0] || {};
-          const tbm = telusur?.tbm?.[0] || {};
-          this.data = telusur;
-          this.detail = tbu;
-          this.tbm = tbm;
-          this.mengetahui = tbu?.mengetahui || {};
-          this.dibuatOleh = tbu?.dibuatOleh || {};
-          this.items = tbu?.items?.map((item, idx) => {
-            return {
-              ...item,
-              jumlahBendaUji: tbu?.jumlahBendaUji,
-              dimensi: tbu?.dimensi?.[idx]?.value,
-              personilNama: tbu?.personil?.[idx]?.nama,
-              personilTtd: tbu?.personil?.[idx]?.ttd,
-            };
-          });
-        }
-      } catch (err) {
-        this.$swal(err?.response?.data || err?.message, "", "error");
-      }
-      this.loadingFetch = false;
-    }
+    await this.fetchData();
   },
   methods: {
-    print() {
+    async fetchData() {
+      // handle baseUrl
+      this.baseUrl = window.location.origin;
+      // handle data telusur
+      const id = this.$route.query.id || this.idTelusur;
+      if (id) {
+        this.loadingFetch = true;
+        try {
+          const result = await this.$axios
+            .get("/api/Telusur/get", {
+              params: {
+                jsonQuery: JSON.stringify({
+                  _id: id,
+                  pipeline: [
+                    {
+                      $lookup: {
+                        from: "TelusurBendaUji",
+                        localField: "idTbu",
+                        foreignField: "_id",
+                        as: "tbu",
+                      },
+                    },
+                    {
+                      $lookup: {
+                        from: "TelusurBahanMasuk",
+                        localField: "idTbm",
+                        foreignField: "_id",
+                        as: "tbm",
+                      },
+                    },
+                  ],
+                }),
+              },
+            })
+            .then((res) => res?.data?.result);
+          if (result.length >= 1) {
+            const telusur = result[0];
+            const tbu = telusur?.tbu?.[0] || {};
+            const tbm = telusur?.tbm?.[0] || {};
+            this.data = telusur;
+            this.detail = tbu;
+            this.tbm = tbm;
+            this.mengetahui = tbu?.mengetahui || {};
+            this.dibuatOleh = tbu?.dibuatOleh || {};
+            this.items = tbu?.items?.map((item, idx) => {
+              return {
+                ...item,
+                jumlahBendaUji: tbu?.jumlahBendaUji,
+                dimensi: tbu?.dimensi?.[idx]?.value,
+                personilNama: tbu?.personil?.[idx]?.nama,
+                personilTtd: tbu?.personil?.[idx]?.ttd,
+              };
+            });
+          }
+        } catch (err) {
+          this.$swal(err?.response?.data || err?.message, "", "error");
+        }
+        this.loadingFetch = false;
+      }
+    },
+    async print() {
+      await this.fetchData();
       const content = document.getElementById("printPaper").cloneNode(true);
       const w = window.open("", "", "width=1123,height=794");
       w.document.head.innerHTML =
