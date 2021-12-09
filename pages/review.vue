@@ -153,6 +153,17 @@
                 </v-row>
                 <v-row class="d-flex px-3">
                   <div class="d-block text-left">
+                    <h6 class="pa-0 ma-0">Volume Total :</h6>
+                  </div>
+                  <v-spacer></v-spacer>
+                  <div class="d-block text-right">
+                    <h6 class="pa-0 ma-0">
+                      {{ item.volTotal }}
+                    </h6>
+                  </div>
+                </v-row>
+                <v-row class="d-flex px-3">
+                  <div class="d-block text-left">
                     <h6 class="pa-0 ma-0">Tanggal Pengecoran :</h6>
                   </div>
                   <v-spacer></v-spacer>
@@ -329,6 +340,7 @@ export default {
           return {
             ...item,
             lokasiPengecoran: item?.tbm?.lokasiPengecoran || "Belum ada",
+            volTotal: item?.tbm?.items?.reduce((total, item) => total + +(item?.volAktual?.replace(",", ".") || 0), 0) || "Belum ada",
             tanggalPengecoran: item?.tbm?.tanggalMasuk || "Belum ada",
             tbmNo: item?.tbm?.no || "Belum ada",
             tbuNo: item?.tbu?.[0]?.no || "Belum ada",
