@@ -20,61 +20,6 @@
         </v-row>
         <v-row>
           <v-col cols="12" md="6" class="py-0">
-            <app-date-picker
-              v-model="tanggalPembuatan"
-              :rules="rules.tanggalPembuatan"
-              label="Tanggal Pembuatan"
-              placeholder="Tanggal Pembuatan"
-              outlined
-              dense
-            />
-          </v-col>
-          <v-col cols="12" md="6" class="py-0">
-            <app-date-picker
-              v-model="tanggalPengetesan"
-              :rules="rules.tanggalPengetesan"
-              label="Tanggal Pengetesan"
-              placeholder="Tanggal Pengetesan"
-              outlined
-              dense
-            />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" class="py-0">
-            <v-text-field
-              v-model="umurHari"
-              label="Umur Hari Saat Pengetesan"
-              :rules="rules.umurHari"
-              readonly
-              disabled
-              outlined
-              dense
-            />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" md="6" class="py-0">
-            <v-text-field
-              v-model="perkiraanDensity"
-              label="Perkiraan Density"
-              :rules="rules.perkiraanDensity"
-              outlined
-              dense
-            />
-          </v-col>
-          <v-col cols="12" md="6" class="py-0">
-            <v-text-field
-              v-model="perkiraanTekan"
-              label="Perkiraan Tekan"
-              :rules="rules.perkiraanTekan"
-              outlined
-              dense
-            />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" md="6" class="py-0">
             <v-text-field
               v-model="hasilDensity"
               label="Hasil Density"
@@ -139,11 +84,8 @@
 </template>
 <script>
 import { v4 as uuidv4 } from "uuid";
-import AppDatePicker from "../atoms/AppDatePicker.vue";
 export default {
-  components: {
-    AppDatePicker,
-  },
+  components: {},
   props: {
     idTelusur: String,
     items: Array,
@@ -151,24 +93,13 @@ export default {
   data() {
     return {
       kodeSilinder: "",
-      tanggalPembuatan: null,
-      tanggalPengetesan: null,
-      umurHari: "",
-      perkiraanDensity: "",
-      perkiraanTekan: "",
       hasilDensity: null,
       hasilTekan: null,
       rules: {
         kodeSilinder: [(v) => !!v || "Harap diisi"],
-        tanggalPembuatan: [],
-        tanggalPengetesan: [],
-        umurHari: [],
-        perkiraanDensity: [],
-        perkiraanTekan: [],
         hasilDensity: [
           (v) => !!v || "Harap diisi",
-          (v) =>
-            /^\d*,?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16,5)",
+          (v) => /^\d*,?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16,5)",
         ],
         hasilTekan: [
           (v) => !!v || "Harap diisi",
@@ -179,22 +110,16 @@ export default {
       id: undefined,
       form: false,
       // additional information
-      listKodeSilinder: []
+      listKodeSilinder: [],
     };
   },
-  watch: {
-    tanggalPembuatan() {
-      this.getDaysDiff();
-    },
-    tanggalPengetesan() {
-      this.getDaysDiff();
-    },
-  },
+  watch: {},
   async mounted() {
     // fetch telusur data
     const id = this.$route.query.id || this.idTelusur;
     if (id) {
       try {
+        // telusur benda uji
         const result = await this.$axios
           .get("/api/TelusurBendaUji/get", {
             params: {
@@ -215,25 +140,11 @@ export default {
     }
   },
   methods: {
-    getDaysDiff() {
-      if (this?.tanggalPembuatan && this?.tanggalPengetesan) {
-        const date1 = new Date(this?.tanggalPembuatan);
-        const date2 = new Date(this?.tanggalPengetesan);
-        const difference = date2.getTime() - date1.getTime();
-        const days = Math.ceil(difference / (1000 * 3600 * 24));
-        this.umurHari = `${days} Hari`;
-      }
-    },
     submit() {
       this.$refs.form.validate();
       if (!this.form) return;
       const send = {
         kodeSilinder: this.kodeSilinder,
-        tanggalPembuatan: this.tanggalPembuatan,
-        tanggalPengetesan: this.tanggalPengetesan,
-        umurHari: this.umurHari,
-        perkiraanDensity: this.perkiraanDensity,
-        perkiraanTekan: this.perkiraanTekan,
         hasilDensity: this.hasilDensity,
         hasilTekan: this.hasilTekan,
       };
@@ -248,11 +159,6 @@ export default {
         // if editing
         const idx = this.items.findIndex((item) => item._id === this.id);
         this.items[idx].kodeSilinder = send.kodeSilinder;
-        this.items[idx].tanggalPembuatan = send.tanggalPembuatan;
-        this.items[idx].tanggalPengetesan = send.tanggalPengetesan;
-        this.items[idx].umurHari = send.umurHari;
-        this.items[idx].perkiraanDensity = send.perkiraanDensity;
-        this.items[idx].perkiraanTekan = send.perkiraanTekan;
         this.items[idx].hasilDensity = send.hasilDensity;
         this.items[idx].hasilTekan = send.hasilTekan;
       }
@@ -261,11 +167,6 @@ export default {
     select(item) {
       this.id = item._id;
       this.kodeSilinder = item.kodeSilinder;
-      this.tanggalPembuatan = item.tanggalPembuatan;
-      this.tanggalPengetesan = item.tanggalPengetesan;
-      this.umurHari = item.umurHari;
-      this.perkiraanDensity = item.perkiraanDensity;
-      this.perkiraanTekan = item.perkiraanTekan;
       this.hasilDensity = item.hasilDensity;
       this.hasilTekan = item.hasilTekan;
     },
@@ -276,11 +177,6 @@ export default {
     clearInput() {
       this.id = undefined;
       this.kodeSilinder = "";
-      this.tanggalPembuatan = null;
-      this.tanggalPengetesan = null;
-      this.umurHari = "";
-      this.perkiraanDensity = "";
-      this.perkiraanTekan = "";
       this.hasilDensity = null;
       this.hasilTekan = null;
       this.$refs.form.resetValidation();

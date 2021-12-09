@@ -33,15 +33,15 @@ const TelusurHasilTest = new mongoose.Schema(
         ttd: { type: String }, // image
       }
     ],
+    tanggalPembuatan: { type: Date },
+    tanggalPengetesan: { type: Date },
+    umurHari: { type: String },
+    perkiraanDensity: { type: String },
+    perkiraanTekan: { type: String },
     items: [
       {
         _id: { type: String },
         kodeSilinder: { type: String },
-        tanggalPembuatan: { type: Date },
-        tanggalPengetesan: { type: Date },
-        umurHari: { type: String },
-        perkiraanDensity: { type: String },
-        perkiraanTekan: { type: String },
         hasilDensity: { type: String },
         hasilTekan: { type: String },
       }

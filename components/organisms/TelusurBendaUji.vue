@@ -284,7 +284,7 @@ export default {
           top: +this.$refs.form.$el.offsetTop + 100,
           behavior: "smooth",
         });
-        return;
+        return false;
       }
       if (this.items.length < 1) {
         this.$swal("Harap isi detail minimal satu", "", "warning");
@@ -292,7 +292,7 @@ export default {
           top: +this.$refs.form.$el.offsetTop + 300,
           behavior: "smooth",
         });
-        return;
+        return false;
       }
       this.loadingGenerate = true;
       try {
@@ -337,10 +337,13 @@ export default {
         this.$swal(err?.response?.data || err?.message, "", "error");
       }
       this.loadingGenerate = false;
+      return true;
     },
     async redirectPrint() {
-      await this.generate();
-      await this.$refs.printDoc.print();
+      const isDone = await this.generate();
+      if(isDone){
+        await this.$refs.printDoc.print();
+      }
     },
   },
 };

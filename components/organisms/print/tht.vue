@@ -2168,7 +2168,7 @@
             </tr>
             <!-- main content -->
             <tr
-              v-for="item in items"
+              v-for="(item, idx) in items"
               :key="item._id"
               style="height: 1.25pt; text-align: center"
             >
@@ -2210,11 +2210,12 @@
                   style="margin-bottom: 0cm; line-height: normal"
                 >
                   <span
+                    v-if="idx === 0"
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
                     >{{
-                      item.tanggalPembuatan
-                        ? $moment(item.tanggalPembuatan).format("DD-MMM-YY")
+                      detail.tanggalPembuatan
+                        ? $moment(detail.tanggalPembuatan).format("DD-MMM-YY")
                         : ""
                     }}</span
                   >
@@ -2235,11 +2236,12 @@
                   style="margin-bottom: 0cm; line-height: normal"
                 >
                   <span
+                    v-if="idx === 0"
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
                     >{{
-                      item.tanggalPengetesan
-                        ? $moment(item.tanggalPengetesan).format("DD-MMM-YY")
+                      detail.tanggalPengetesan
+                        ? $moment(detail.tanggalPengetesan).format("DD-MMM-YY")
                         : ""
                     }}</span
                   >
@@ -2265,9 +2267,10 @@
                   "
                 >
                   <span
+                    v-if="idx === 0"
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ item.umurHari }}</span
+                    >{{ detail.umurHari }}</span
                   >
                 </p>
               </td>
@@ -2291,9 +2294,10 @@
                   "
                 >
                   <span
+                    v-if="idx === 0"
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ item.perkiraanDensity }}</span
+                    >{{ detail.perkiraanDensity }}</span
                   >
                 </p>
               </td>
@@ -2317,9 +2321,10 @@
                   "
                 >
                   <span
+                    v-if="idx === 0"
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ item.perkiraanTekan }}</span
+                    >{{ detail.perkiraanTekan }}</span
                   >
                 </p>
               </td>
@@ -3375,7 +3380,7 @@ export default {
     async print() {
       await this.fetchData();
       const content = document.getElementById("printPaper").cloneNode(true);
-      const w = window.open("", "", "width=1123,height=794");
+      const w = window.open("", "", "width=1050,height=794");
       w.document.head.innerHTML =
         document.getElementsByTagName("head")[0].innerHTML;
       w.document.body.append(content);

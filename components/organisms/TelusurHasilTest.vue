@@ -75,6 +75,61 @@
             </v-col>
             <v-col cols="12" md="6" class="py-0"></v-col>
           </v-row>
+          <v-row>
+            <v-col cols="12" md="6" class="py-0">
+              <app-date-picker
+                v-model="tanggalPembuatan"
+                :rules="rules.tanggalPembuatan"
+                label="Tanggal Pembuatan"
+                placeholder="Tanggal Pembuatan"
+                outlined
+                dense
+              />
+            </v-col>
+            <v-col cols="12" md="6" class="py-0">
+              <app-date-picker
+                v-model="tanggalPengetesan"
+                :rules="rules.tanggalPengetesan"
+                label="Tanggal Pengetesan"
+                placeholder="Tanggal Pengetesan"
+                outlined
+                dense
+              />
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" class="py-0">
+              <v-text-field
+                v-model="umurHari"
+                label="Umur Hari Saat Pengetesan"
+                :rules="rules.umurHari"
+                readonly
+                disabled
+                outlined
+                dense
+              />
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" md="6" class="py-0">
+              <v-text-field
+                v-model="perkiraanDensity"
+                label="Perkiraan Density"
+                :rules="rules.perkiraanDensity"
+                outlined
+                dense
+              />
+            </v-col>
+            <v-col cols="12" md="6" class="py-0">
+              <v-text-field
+                v-model="perkiraanTekan"
+                label="Perkiraan Tekan"
+                :rules="rules.perkiraanTekan"
+                outlined
+                dense
+              />
+            </v-col>
+          </v-row>
           <!-- items -->
           <tht-items-form :id-telusur="idTelusur" :items="items" />
           <!-- footer input -->
@@ -202,12 +257,22 @@ export default {
       laboratorium: [],
       saksiWaskita: [],
       saksiPemberiKerja: [],
+      tanggalPembuatan: null,
+      tanggalPengetesan: null,
+      umurHari: "",
+      perkiraanDensity: "Min 2,2",
+      perkiraanTekan: "Min 65%",
       rules: {
         no: [(v) => !!v || "Harap diisi"],
         hasilTest: [(v) => v.length >= 1 || "Harap diisi"],
         laboratorium: [(v) => v.length >= 1 || "Harap diisi"],
         saksiWaskita: [(v) => v.length >= 1 || "Harap diisi"],
         saksiPemberiKerja: [(v) => v.length >= 1 || "Harap diisi"],
+        tanggalPembuatan: [(v) => !!v || "Harap diisi"],
+        tanggalPengetesan: [(v) => !!v || "Harap diisi"],
+        umurHari: [(v) => !!v || "Harap diisi"],
+        perkiraanDensity: [(v) => !!v || "Harap diisi"],
+        perkiraanTekan: [(v) => !!v || "Harap diisi"],
         dibuatOlehLokasi: [(v) => !!v || "Harap diisi"],
         dibuatOlehTanggal: [(v) => !!v || "Harap diisi"],
         dibuatOlehJabatan: [(v) => !!v || "Harap diisi"],
@@ -239,6 +304,13 @@ export default {
     },
   },
   watch: {
+    tanggalPembuatan() {
+      this.getDaysDiff();
+    },
+    tanggalPengetesan() {
+      this.getDaysDiff();
+      this.dibuatOlehTanggal = this.tanggalPengetesan;
+    },
     async mengetahuiTtdFile(val) {
       this.mengetahuiTtd = await this.$toBase64(val);
     },
@@ -270,12 +342,21 @@ export default {
                       as: "tht",
                     },
                   },
+                  {
+                    $lookup: {
+                      from: "TelusurBahanMasuk",
+                      localField: "idTbm",
+                      foreignField: "_id",
+                      as: "tbm",
+                    },
+                  },
                 ],
               }),
             },
           })
           .then((res) => res?.data?.result);
         const item = result?.[0]?.tht?.[0];
+        const tbm = result?.[0]?.tbm?.[0];
         if (item) {
           this.localId = item._id;
           this.no = item.no;
@@ -283,6 +364,11 @@ export default {
           this.laboratorium = item.laboratorium;
           this.saksiWaskita = item.saksiWaskita;
           this.saksiPemberiKerja = item.saksiPemberiKerja;
+          this.tanggalPembuatan = item.tanggalPembuatan || tbm?.tanggalMasuk;
+          this.tanggalPengetesan = item.tanggalPengetesan;
+          this.umurHari = item.umurHari;
+          this.perkiraanDensity = item.perkiraanDensity || "Min 2,2";
+          this.perkiraanTekan = item.perkiraanTekan || "Min 65%";
           this.items = item.items;
           this.dibuatOlehLokasi = item.dibuatOleh?.lokasi;
           this.dibuatOlehTanggal = item.dibuatOleh?.tanggal;
@@ -297,6 +383,15 @@ export default {
     }
   },
   methods: {
+    getDaysDiff() {
+      if (this?.tanggalPembuatan && this?.tanggalPengetesan) {
+        const date1 = new Date(this?.tanggalPembuatan);
+        const date2 = new Date(this?.tanggalPengetesan);
+        const difference = date2.getTime() - date1.getTime();
+        const days = Math.ceil(difference / (1000 * 3600 * 24));
+        this.umurHari = `${days} Hari`;
+      }
+    },
     async generate() {
       this.$refs.form.validate();
       if (!this.form) {
@@ -305,7 +400,7 @@ export default {
           top: +this.$refs.form.$el.offsetTop + 100,
           behavior: "smooth",
         });
-        return;
+        return false;
       }
       if (this.items.length < 1) {
         this.$swal("Harap isi detail minimal satu", "", "warning");
@@ -313,7 +408,7 @@ export default {
           top: +this.$refs.form.$el.offsetTop + 300,
           behavior: "smooth",
         });
-        return;
+        return false;
       }
       this.loadingGenerate = true;
       try {
@@ -324,6 +419,11 @@ export default {
           laboratorium: this.laboratorium,
           saksiWaskita: this.saksiWaskita,
           saksiPemberiKerja: this.saksiPemberiKerja,
+          tanggalPembuatan: this.tanggalPembuatan,
+          tanggalPengetesan: this.tanggalPengetesan,
+          umurHari: this.umurHari,
+          perkiraanDensity: this.perkiraanDensity,
+          perkiraanTekan: this.perkiraanTekan,
           items: this.items,
           dibuatOleh: {
             lokasi: this.dibuatOlehLokasi,
@@ -359,10 +459,13 @@ export default {
         this.$swal(err?.response?.data || err?.message, "", "error");
       }
       this.loadingGenerate = false;
+      return true;
     },
     async redirectPrint() {
-      await this.generate();
-      await this.$refs.printDoc.print();
+      const isDone = await this.generate();
+      if(isDone){
+        await this.$refs.printDoc.print();
+      }
     },
   },
 };
