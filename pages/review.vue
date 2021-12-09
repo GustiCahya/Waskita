@@ -142,23 +142,23 @@
                 <v-divider class="mb-3 mt-6" />
                 <v-row class="d-flex pt-1 px-3">
                   <div class="d-block text-left">
-                    <h6 class="pa-0 ma-0">Lokasi Pengecoran :</h6>
-                  </div>
-                  <v-spacer></v-spacer>
-                  <div class="d-block text-right">
-                    <h6 class="pa-0 ma-0">
-                      {{ item.lokasiPengecoran }}
-                    </h6>
-                  </div>
-                </v-row>
-                <v-row class="d-flex px-3">
-                  <div class="d-block text-left">
                     <h6 class="pa-0 ma-0">Volume Total :</h6>
                   </div>
                   <v-spacer></v-spacer>
                   <div class="d-block text-right">
                     <h6 class="pa-0 ma-0">
                       {{ item.volTotal }}
+                    </h6>
+                  </div>
+                </v-row>
+                <v-row class="d-flex px-3">
+                  <div class="d-block text-left">
+                    <h6 class="pa-0 ma-0">Lokasi Pengecoran :</h6>
+                  </div>
+                  <v-spacer></v-spacer>
+                  <div class="d-block text-right">
+                    <h6 class="pa-0 ma-0">
+                      {{ item.lokasiPengecoran }}
                     </h6>
                   </div>
                 </v-row>
