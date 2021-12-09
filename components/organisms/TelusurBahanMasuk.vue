@@ -13,6 +13,18 @@
           <v-row>
             <v-col cols="12" md="6" class="py-0">
               <v-text-field
+                v-model="mainForm"
+                label="Form"
+                :rules="rules.mainForm"
+                outlined
+                dense
+              />
+            </v-col>
+            <v-col cols="12" md="6" class="py-0"></v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" md="6" class="py-0">
+              <v-text-field
                 v-model="no"
                 :rules="rules.no"
                 label="No. Formulir"
@@ -254,6 +266,7 @@ export default {
   data() {
     return {
       // form
+      mainForm: "PW-QTY-07-02-01",
       localId: "",
       no: "",
       noIzin: "",
@@ -263,6 +276,7 @@ export default {
       mutuBeton: "",
       personil: [],
       rules: {
+        mainForm: [(v) => !!v || "Harap diisi"],
         no: [(v) => !!v || "Harap diisi"],
         noIzin: [(v) => !!v || "Harap diisi"],
         tanggalMasuk: [(v) => !!v || "Harap diisi"],
@@ -351,6 +365,7 @@ export default {
         const item = result?.[0]?.tbm?.[0];
         if (item) {
           this.localId = item._id;
+          this.mainForm = item.mainForm;
           this.no = item.no;
           this.noIzin = item.noIzin;
           this.tanggalMasuk = item.tanggalMasuk;
@@ -397,6 +412,7 @@ export default {
       try {
         const sendData = {
           idTelusur: this.idTelusur,
+          mainForm: this.mainForm,
           no: this.no,
           noIzin: this.noIzin,
           tanggalMasuk: this.tanggalMasuk,

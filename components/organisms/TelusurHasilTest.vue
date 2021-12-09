@@ -13,6 +13,18 @@
           <v-row>
             <v-col cols="12" md="6" class="py-0">
               <v-text-field
+                v-model="mainForm"
+                label="Form"
+                :rules="rules.mainForm"
+                outlined
+                dense
+              />
+            </v-col>
+            <v-col cols="12" md="6" class="py-0"></v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" md="6" class="py-0">
+              <v-text-field
                 v-model="no"
                 :rules="rules.no"
                 label="No. Formulir"
@@ -251,6 +263,7 @@ export default {
   data() {
     return {
       // form
+      mainForm: "PW-QTY-07-02-03",
       localId: "",
       no: "",
       hasilTest: [],
@@ -263,6 +276,7 @@ export default {
       perkiraanDensity: "Min 2,2",
       perkiraanTekan: "Min 65%",
       rules: {
+        mainForm: [(v) => !!v || "Harap diisi"],
         no: [(v) => !!v || "Harap diisi"],
         hasilTest: [(v) => v.length >= 1 || "Harap diisi"],
         laboratorium: [(v) => v.length >= 1 || "Harap diisi"],
@@ -356,12 +370,13 @@ export default {
           })
           .then((res) => res?.data?.result);
         const tbm = result?.[0]?.tbm?.[0];
-        if(tbm){
+        if (tbm) {
           this.tanggalPembuatan = tbm?.tanggalMasuk;
         }
         const item = result?.[0]?.tht?.[0];
         if (item) {
           this.localId = item._id;
+          this.mainForm = item.mainForm;
           this.no = item.no;
           this.hasilTest = item.hasilTest;
           this.laboratorium = item.laboratorium;
@@ -417,6 +432,7 @@ export default {
       try {
         const sendData = {
           idTelusur: this.idTelusur,
+          mainForm: this.mainForm,
           no: this.no,
           hasilTest: this.hasilTest,
           laboratorium: this.laboratorium,
@@ -466,7 +482,7 @@ export default {
     },
     async redirectPrint() {
       const isDone = await this.generate();
-      if(isDone){
+      if (isDone) {
         await this.$refs.printDoc.print();
       }
     },

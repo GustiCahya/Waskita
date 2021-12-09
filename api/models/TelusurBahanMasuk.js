@@ -4,6 +4,7 @@ const TelusurBahanMasuk = new mongoose.Schema(
   {
     _id: { type: String },
     idTelusur: { type: String },
+    mainForm: { type: String },
     no: { type: String },
     noIzin: { type: String },
     tanggalMasuk: { type: Date },

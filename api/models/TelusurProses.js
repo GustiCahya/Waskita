@@ -4,6 +4,7 @@ const TelusurProses = new mongoose.Schema(
   {
     _id: { type: String }, // nomor identitas
     idTelusur: { type: String },
+    mainForm: { type: String },
     no: { type: String },
     tanggalPengecoran: { type: Date },
     noDetail: { type: String },

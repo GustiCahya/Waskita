@@ -5,7 +5,6 @@ const Telusur = new mongoose.Schema(
     _id: { type: String }, // Based on uuid.v4()
     businessUnit: { type: String },
     proyek: { type: String },
-    form: { type: String },
     rev: { type: Date },
     idTbm: { type: String }, // reference to Telusur Bahan Masuk
     idTbu: { type: String }, // reference to Telusur Benda Uji

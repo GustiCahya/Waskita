@@ -30,17 +30,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="12" md="6" class="py-0">
-            <v-text-field
-              v-model="form"
-              label="Form"
-              placeholder="Contoh: PW-QTY-07-02-01"
-              :rules="rules.form"
-              outlined
-              dense
-            />
-          </v-col>
-          <v-col cols="12" md="6" class="py-0">
+          <v-col cols="12" class="py-0">
             <app-date-picker
               v-model="rev"
               label="Rev"
