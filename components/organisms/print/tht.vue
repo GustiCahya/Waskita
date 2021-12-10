@@ -420,7 +420,7 @@
                       >
                         <u
                           ><span lang="EN-US" style="font-size: 9pt"
-                            >1 dari {{ 1 + (detail.hasilTest.length || 0) }}</span
+                            >1 dari {{ totalPages }}</span
                           ></u
                         >
                       </p>
@@ -3279,7 +3279,7 @@
           id="section"
           :key="item._id"
         >
-          <p>Lampiran {{ idx + 1 }} : {{ item.judul }}</p>
+          <p style="margin-bottom:20px">Lampiran {{ idx + 1 }} : {{ item.judul }}</p>
           <img style="max-height: 18cm" :src="item.gambar" />
         </div>
       </div>
@@ -3307,6 +3307,9 @@ export default {
     icon() {
       return require("./logo.json")?.image;
     },
+    totalPages() {
+      return 1 + (this?.detail?.hasilTest?.length || 0)
+    }
   },
   async mounted() {
     await this.fetchData();

@@ -42,7 +42,7 @@
                 outlined
                 dense
               >
-                <hasil-test-form :items="hasilTest" />
+                <lampiran-form :items="hasilTest" />
               </app-bulk-input>
             </v-col>
           </v-row>
@@ -244,7 +244,7 @@ import AppBulkInput from "../atoms/AppBulkInput.vue";
 import AppDatePicker from "../atoms/AppDatePicker.vue";
 import PersonilForm from "../molecules/PersonilForm.vue";
 import LocationBulkForm from "../molecules/LocationBulkForm.vue";
-import HasilTestForm from "../molecules/HasilTestForm.vue";
+import LampiranForm from "../molecules/LampiranForm.vue";
 import ThtItemsForm from "../molecules/ThtItemsForm.vue";
 import tht from "./print/tht";
 export default {
@@ -253,7 +253,7 @@ export default {
     AppBulkInput,
     PersonilForm,
     LocationBulkForm,
-    HasilTestForm,
+    LampiranForm,
     ThtItemsForm,
     tht,
   },
