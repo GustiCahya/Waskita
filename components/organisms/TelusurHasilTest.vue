@@ -380,7 +380,7 @@ export default {
             this.mainForm = item.mainForm;
           }
           this.no = item.no;
-          this.hasilTest = item.hasilTest;
+          this.hasilTest = item?.hasilTest || [];
           this.laboratorium = item.laboratorium;
           this.saksiWaskita = item.saksiWaskita;
           this.saksiPemberiKerja = item.saksiPemberiKerja;

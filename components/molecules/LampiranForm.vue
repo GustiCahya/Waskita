@@ -65,7 +65,10 @@ import { v4 as uuidv4 } from "uuid";
 export default {
   name: "LampiranForm",
   props: {
-    items: Array,
+    items: {
+      type: Array,
+      default: () => [],
+    },
   },
   data() {
     return {

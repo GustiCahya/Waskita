@@ -420,7 +420,7 @@
                       >
                         <u
                           ><span lang="EN-US" style="font-size: 9pt"
-                            >1 dari 1</span
+                            >1 dari {{ totalPages }}</span
                           ></u
                         >
                       </p>
@@ -2474,6 +2474,14 @@
             </tr>
           </table>
         </div>
+      <div
+        v-for="(item, idx) in detail.lampiran"
+        id="section"
+        :key="item._id"
+      >
+        <p style="margin-bottom:20px">Lampiran {{ idx + 1 }} : {{ item.judul }}</p>
+        <img style="max-height: 18cm" :src="item.gambar" />
+      </div>
       </div>
     </v-card-text>
   </v-card>
@@ -2498,6 +2506,9 @@ export default {
   computed: {
     icon() {
       return require("./logo.json")?.image;
+    },
+    totalPages() {
+      return 1 + (this?.detail?.lampiran?.length || 0)
     },
   },
   async mounted() {
@@ -2567,7 +2578,7 @@ export default {
     async print() {
       await this.fetchData();
       const content = document.getElementById("printPaper").cloneNode(true);
-      const w = window.open("", "", "width=1123,height=794");
+      const w = window.open("", "", "width=1050,height=794");
       w.document.head.innerHTML =
         document.getElementsByTagName("head")[0].innerHTML;
       w.document.body.append(content);
@@ -2585,6 +2596,11 @@ export default {
 @font-face {
   font-family: Calibri;
   panose-1: 2 15 5 2 2 2 4 3 2 4;
+}
+@media print {
+  #section {
+    page-break-after: always;
+  }
 }
 /* Style Definitions */
 p.MsoNormal,

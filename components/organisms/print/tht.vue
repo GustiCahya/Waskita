@@ -3309,7 +3309,7 @@ export default {
     },
     totalPages() {
       return 1 + (this?.detail?.hasilTest?.length || 0)
-    }
+    },
   },
   async mounted() {
     await this.fetchData();

@@ -103,7 +103,18 @@
                 <personil-form :items="personil" />
               </app-bulk-input>
             </v-col>
-            <v-col cols="12" md="6" class="py-0"> </v-col>
+            <v-col cols="12" md="6" class="py-0">
+              <app-bulk-input
+                v-model="lampiran"
+                :rules="rules.lampiran"
+                label="Lampiran"
+                placeholder="Lampiran"
+                outlined
+                dense
+              >
+                <lampiran-form :items="lampiran" />
+              </app-bulk-input>
+            </v-col>
           </v-row>
           <!-- items -->
           <tbm-items-form :id-telusur="idTelusur" :items="items" />
@@ -250,6 +261,7 @@ import AppDatePicker from "../atoms/AppDatePicker.vue";
 import LocationBulkForm from "../molecules/LocationBulkForm.vue";
 import PersonilForm from "../molecules/PersonilForm.vue";
 import TbmItemsForm from "../molecules/TbmItemsForm.vue";
+import LampiranForm from "../molecules/LampiranForm.vue";
 import tbm from "./print/tbm.vue";
 export default {
   components: {
@@ -258,6 +270,7 @@ export default {
     LocationBulkForm,
     PersonilForm,
     TbmItemsForm,
+    LampiranForm,
     tbm,
   },
   props: {
@@ -275,6 +288,7 @@ export default {
       lokasiPengecoran: "",
       mutuBeton: "",
       personil: [],
+      lampiran: [],
       rules: {
         mainForm: [(v) => !!v || "Harap diisi"],
         no: [(v) => !!v || "Harap diisi"],
@@ -284,6 +298,7 @@ export default {
         lokasiPengecoran: [(v) => !!v || "Harap diisi"],
         mutuBeton: [(v) => !!v || "Harap diisi"],
         personil: [(v) => v.length >= 1 || "Harap diisi"],
+        lampiran: [],
         mengetahuiJabatan: [(v) => !!v || "Harap diisi"],
         mengetahuiNama: [(v) => !!v || "Harap diisi"],
         mengetahuiTtdFile: [
@@ -375,6 +390,7 @@ export default {
           this.lokasiPengecoran = item.lokasiPengecoran;
           this.mutuBeton = item.mutuBeton;
           this.personil = item.personil;
+          this.lampiran = item?.lampiran || [];
           this.items = item.items;
           this.mengetahuiJabatan = item.mengetahui?.jabatan;
           this.mengetahuiNama = item.mengetahui?.nama;
@@ -422,6 +438,7 @@ export default {
           lokasiPengecoran: this.lokasiPengecoran,
           mutuBeton: this.mutuBeton,
           personil: this.personil,
+          lampiran: this.lampiran,
           items: this.items,
           mengetahui: {
             nama: this.mengetahuiNama,
