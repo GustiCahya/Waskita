@@ -29,6 +29,13 @@ const TelusurProses = new mongoose.Schema(
         curingLama: { type: String },
       }
     ],
+    lampiran: [
+      {
+        _id: { type: String },
+        judul: { type: String },
+        gambar: { type: String },
+      }
+    ],
     dibuatOleh: Object,
     _createdDate: { type: Date },
     _updatedDate: { type: Date },

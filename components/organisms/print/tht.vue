@@ -420,7 +420,7 @@
                       >
                         <u
                           ><span lang="EN-US" style="font-size: 9pt"
-                            >1 dari 1</span
+                            >1 dari {{ 1 + (detail.hasilTest.length || 0) }}</span
                           ></u
                         >
                       </p>
