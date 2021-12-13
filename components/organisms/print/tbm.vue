@@ -2514,7 +2514,7 @@
               <td style="height: 2.3pt; border: none" width="0" height="5"></td>
             </tr>
             <!-- main content -->
-            <tr v-for="item in items" :key="item._id" style="height: 1pt">
+            <tr v-for="(item, idx) in items" :key="item._id" style="height: 1pt">
               <td
                 width="100"
                 style="
@@ -2934,15 +2934,38 @@
                 "
                 width="1"
               >
-                <p class="MsoNormal">
-                  <span lang="EN-US"
-                    ><img
-                      v-if="item.personilTtd"
-                      id="Picture 13324"
-                      width="45"
-                      :src="item.personilTtd"
-                  /></span>
-                </p>
+                <span
+                  v-if="idx === 0"
+                  lang="EN-US"
+                  style="
+                    position: absolute;
+                    top: -12px;
+                    left: 3px;
+                  "
+                >
+                  <img
+                    v-if="item.personilTtd"
+                    id="Picture 13324"
+                    width="45"
+                    :src="item.personilTtd"
+                  />
+                </span>
+                <span
+                  v-else
+                  lang="EN-US"
+                  style="
+                    position: absolute;
+                    top: 13px;
+                    left: 3px;
+                  "
+                >
+                  <img
+                    v-if="item.personilTtd"
+                    id="Picture 13324"
+                    width="45"
+                    :src="item.personilTtd"
+                  />
+                </span>
               </td>
               <td style="height: 1pt; border: none" width="0" height="2"></td>
             </tr>
@@ -3727,7 +3750,9 @@
           id="section"
           :key="item._id"
         >
-          <p style="margin-bottom:20px">Lampiran {{ idx + 1 }} : {{ item.judul }}</p>
+          <p style="margin-bottom: 20px">
+            Lampiran {{ idx + 1 }} : {{ item.judul }}
+          </p>
           <img style="max-height: 18cm" :src="item.gambar" />
         </div>
       </div>
@@ -3756,7 +3781,7 @@ export default {
       return require("./logo.json")?.image;
     },
     totalPages() {
-      return 1 + (this?.detail?.lampiran?.length || 0)
+      return 1 + (this?.detail?.lampiran?.length || 0);
     },
   },
   async mounted() {
@@ -3845,6 +3870,9 @@ export default {
   #section {
     page-break-after: always;
   }
+}
+@page {
+  size: landscape;
 }
 /* Style Definitions */
 p.MsoNormal,

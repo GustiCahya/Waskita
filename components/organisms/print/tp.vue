@@ -3210,6 +3210,9 @@ export default {
     page-break-after: always;
   }
 }
+@page {
+  size: landscape;
+}
 /* Style Definitions */
 p.MsoNormal,
 li.MsoNormal,

@@ -1899,15 +1899,38 @@
                   text-align: center;
                 "
               >
-                <p class="MsoNormal">
-                  <span lang="EN-US"
-                    ><img
-                      v-if="item.personilTtd"
-                      id="Picture 13324"
-                      width="45"
-                      :src="item.personilTtd"
-                  /></span>
-                </p>
+                <span
+                  v-if="idx === 0"
+                  lang="EN-US"
+                  style="
+                    position: absolute;
+                    top: -12px;
+                    left: 3px;
+                  "
+                >
+                  <img
+                    v-if="item.personilTtd"
+                    id="Picture 13324"
+                    width="45"
+                    :src="item.personilTtd"
+                  />
+                </span>
+                <span
+                  v-else
+                  lang="EN-US"
+                  style="
+                    position: absolute;
+                    top: 13px;
+                    left: 3px;
+                  "
+                >
+                  <img
+                    v-if="item.personilTtd"
+                    id="Picture 13324"
+                    width="45"
+                    :src="item.personilTtd"
+                  />
+                </span>
               </td>
             </tr>
             <!-- footer main content -->
@@ -2601,6 +2624,9 @@ export default {
   #section {
     page-break-after: always;
   }
+}
+@page {
+  size: landscape;
 }
 /* Style Definitions */
 p.MsoNormal,

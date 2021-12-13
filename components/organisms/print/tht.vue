@@ -2498,14 +2498,30 @@
                     line-height: normal;
                   "
                 >
-                  <span lang="EN-US"
-                    ><img
+                  <span
+                    v-if="idx === 0"
+                    lang="EN-US"
+                    style="position: absolute; top: -12px; left: 3px"
+                  >
+                    <img
                       v-if="item.saksiWaskitaTtd"
-                      id="Picture 1767"
-                      width="44"
-                      height="39"
+                      id="Picture 13324"
+                      width="45"
                       :src="item.saksiWaskitaTtd"
-                  /></span>
+                    />
+                  </span>
+                  <span
+                    v-else
+                    lang="EN-US"
+                    style="position: absolute; top: 13px; left: 3px"
+                  >
+                    <img
+                      v-if="item.saksiWaskitaTtd"
+                      id="Picture 13324"
+                      width="45"
+                      :src="item.saksiWaskitaTtd"
+                    />
+                  </span>
                 </p>
               </td>
               <td
@@ -2544,24 +2560,30 @@
                   height: 1.25pt;
                 "
               >
-                <p
-                  class="MsoNormal"
-                  align="center"
-                  style="
-                    margin-bottom: 0cm;
-                    text-align: center;
-                    line-height: normal;
-                  "
+                <span
+                  v-if="idx === 0"
+                  lang="EN-US"
+                  style="position: absolute; top: -12px; left: 3px"
                 >
-                  <span lang="EN-US"
-                    ><img
-                      v-if="item.saksiPemberiKerjaTtd"
-                      id="Picture 1769"
-                      width="53"
-                      height="45"
-                      :src="item.saksiPemberiKerjaTtd"
-                  /></span>
-                </p>
+                  <img
+                    v-if="item.saksiPemberiKerjaTtd"
+                    id="Picture 13324"
+                    width="45"
+                    :src="item.saksiPemberiKerjaTtd"
+                  />
+                </span>
+                <span
+                  v-else
+                  lang="EN-US"
+                  style="position: absolute; top: 13px; left: 3px"
+                >
+                  <img
+                    v-if="item.saksiPemberiKerjaTtd"
+                    id="Picture 13324"
+                    width="45"
+                    :src="item.saksiPemberiKerjaTtd"
+                  />
+                </span>
               </td>
             </tr>
             <!-- footer of main content -->
@@ -3279,7 +3301,9 @@
           id="section"
           :key="item._id"
         >
-          <p style="margin-bottom:20px">Lampiran {{ idx + 1 }} : {{ item.judul }}</p>
+          <p style="margin-bottom: 20px">
+            Lampiran {{ idx + 1 }} : {{ item.judul }}
+          </p>
           <img style="max-height: 18cm" :src="item.gambar" />
         </div>
       </div>
@@ -3308,7 +3332,7 @@ export default {
       return require("./logo.json")?.image;
     },
     totalPages() {
-      return 1 + (this?.detail?.hasilTest?.length || 0)
+      return 1 + (this?.detail?.hasilTest?.length || 0);
     },
   },
   async mounted() {
@@ -3406,6 +3430,9 @@ export default {
   #section {
     page-break-after: always;
   }
+}
+@page {
+  size: landscape;
 }
 /* Style Definitions */
 p.MsoNormal,
