@@ -270,12 +270,10 @@ export default {
         queryTbm["tbm.lokasiPengecoran"] = { $regex: this.filter?.lokasiPengecoran || "", $options: "i" };
       }
       if(this.filter?.isUseDate){
-        if(this.filter?.tanggalMasukAwal && this.filter?.tanggalMasukAkhir) {
-          queryTbm["tbm.tanggalMasuk"] = {
-            $gte: this.filter?.tanggalMasukAwal,
-            $lte: this.filter?.tanggalMasukAkhir || new Date()
-          };
-        }
+        queryTbm["tbm.tanggalMasuk"] = {
+          $gte: this.filter?.tanggalMasukAwal,
+          $lte: this.filter?.tanggalMasukAkhir || new Date()
+        };
       }
       try {
         this.items = [];
