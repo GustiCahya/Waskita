@@ -169,7 +169,7 @@
                   <v-spacer></v-spacer>
                   <div class="d-block text-right">
                     <h6 class="pa-0 ma-0">
-                      {{ $moment(item.tanggalPengecoran).format("dddd, DD MMMM YYYY") }}
+                      {{ item.tanggalPengecoran ? $moment(item.tanggalPengecoran).format("dddd, DD MMMM YYYY") : "Belum Ada" }}
                     </h6>
                   </div>
                 </v-row>
@@ -270,7 +270,7 @@ export default {
         if(this.filter?.tanggalMasukAwal && this.filter?.tanggalMasukAkhir) {
           queryTbm["tbm.tanggalMasuk"] = {
             $gte: this.filter?.tanggalMasukAwal,
-            $lte: this.filter?.tanggalMasukAkhir
+            $lte: this.filter?.tanggalMasukAkhir || new Date()
           };
         }
       }
@@ -341,7 +341,7 @@ export default {
             ...item,
             lokasiPengecoran: item?.tbm?.lokasiPengecoran || "Belum ada",
             volTotal: item?.tbm?.items?.reduce((total, item) => total + +(item?.volAktual?.replace(",", ".") || 0), 0) || "Belum ada",
-            tanggalPengecoran: item?.tbm?.tanggalMasuk || "Belum ada",
+            tanggalPengecoran: item?.tbm?.tanggalMasuk,
             tbmNo: item?.tbm?.no || "Belum ada",
             tbuNo: item?.tbu?.[0]?.no || "Belum ada",
             thtNo: item?.tht?.[0]?.no || "Belum ada",
