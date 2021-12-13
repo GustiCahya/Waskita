@@ -11,7 +11,10 @@
             <v-form
               ref="filterTelusur"
               v-model="filterTelusurValid"
-              @submit.prevent="getTelusur"
+              @submit.prevent="() => {
+                page = 1;
+                getTelusur();
+              }"
             >
               <v-text-field
                 v-model.trim="filter.businessUnit"
