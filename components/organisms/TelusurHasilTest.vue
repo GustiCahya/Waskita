@@ -37,8 +37,8 @@
               <app-bulk-input
                 v-model="hasilTest"
                 :rules="rules.hasilTest"
-                label="Hasil Test"
-                placeholder="Hasil Test"
+                label="Hasil Test & Dokumentasi Test"
+                placeholder="Hasil Test & Dokumentasi Test"
                 outlined
                 dense
               >
