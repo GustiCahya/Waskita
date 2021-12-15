@@ -26,6 +26,7 @@
               :rules="rules.hasilDensity"
               outlined
               dense
+              @dblclick="fetchHasilDensity"
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
@@ -35,6 +36,7 @@
               :rules="rules.hasilTekan"
               outlined
               dense
+              @dblclick="fetchHasilTekan"
             />
           </v-col>
         </v-row>
@@ -180,6 +182,12 @@ export default {
       this.hasilDensity = null;
       this.hasilTekan = null;
       this.$refs.form.resetValidation();
+    },
+    fetchHasilDensity() {
+      this.hasilDensity = this.items?.[this.items.length - 1]?.hasilDensity
+    },
+    fetchHasilTekan() {
+      this.hasilTekan = this.items?.[this.items.length - 1]?.hasilTekan
     },
   },
 };

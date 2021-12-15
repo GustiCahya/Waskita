@@ -22,6 +22,7 @@
               :rules="rules.jamSelesai"
               outlined
               dense
+              @dblclick="fetchJamSelesai"
             />
           </v-col>
         </v-row>
@@ -33,6 +34,7 @@
               :rules="rules.jumlahPekerja"
               outlined
               dense
+              @dblclick="fetchJumlahPekerja"
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
@@ -42,6 +44,7 @@
               :rules="rules.cuaca"
               outlined
               dense
+              @dblclick="fetchCuaca"
             />
           </v-col>
         </v-row>
@@ -53,6 +56,7 @@
               :rules="rules.penggetarTipe"
               outlined
               dense
+              @dblclick="fetchPenggetarTipe"
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
@@ -62,6 +66,7 @@
               :rules="rules.penggetarJumlah"
               outlined
               dense
+              @dblclick="fetchPenggetarJumlah"
             />
           </v-col>
         </v-row>
@@ -73,6 +78,7 @@
               :rules="rules.finishing"
               outlined
               dense
+              @dblclick="fetchFinishing"
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
@@ -82,6 +88,7 @@
               :rules="rules.curingSistem"
               outlined
               dense
+              @dblclick="fetchCuringSistem"
             />
           </v-col>
         </v-row>
@@ -93,6 +100,7 @@
               :rules="rules.curingLama"
               outlined
               dense
+              @dblclick="fetchCuringLama"
             />
           </v-col>
         </v-row>
@@ -276,6 +284,30 @@ export default {
       this.curingSistem = "";
       this.curingLama = "";
       this.$refs.form.resetValidation();
+    },
+    fetchJamSelesai() {
+      this.jamSelesai = this.items?.[this.items.length - 1]?.jamSelesai
+    },
+    fetchJumlahPekerja() {
+      this.jumlahPekerja = this.items?.[this.items.length - 1]?.jumlahPekerja
+    },
+    fetchCuaca() {
+      this.cuaca = this.items?.[this.items.length - 1]?.cuaca
+    },
+    fetchPenggetarTipe() {
+      this.penggetarTipe = this.items?.[this.items.length - 1]?.penggetarTipe
+    },
+    fetchPenggetarJumlah() {
+      this.penggetarJumlah = this.items?.[this.items.length - 1]?.penggetarJumlah
+    },
+    fetchFinishing() {
+      this.finishing = this.items?.[this.items.length - 1]?.finishing
+    },
+    fetchCuringSistem() {
+      this.curingSistem = this.items?.[this.items.length - 1]?.curingSistem
+    },
+    fetchCuringLama() {
+      this.curingLama = this.items?.[this.items.length - 1]?.curingLama
     },
   },
 };

@@ -22,6 +22,7 @@
               :rules="rules.kodeSilinder"
               outlined
               dense
+              @dblclick="fetchKodeSilinder"
             />
           </v-col>
         </v-row>
@@ -33,6 +34,7 @@
               :rules="rules.jamPembuatan"
               outlined
               dense
+              @dblclick="fetchJamPembuatan"
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0"></v-col>
@@ -57,6 +59,7 @@
             <tr>
               <th class="text-left">No. Kendaraan</th>
               <th class="text-left">Kode Silinder</th>
+              <th class="text-left">Jam Pembuatan</th>
               <th class="text-left">Aksi</th>
             </tr>
           </thead>
@@ -64,6 +67,7 @@
             <tr v-for="(item, idx) in items" :key="item._id">
               <td>{{ item.noKendaraan }}</td>
               <td>{{ item.kodeSilinder }}</td>
+              <td>{{ item.jamPembuatan }}</td>
               <td>
                 <v-btn color="yellow darken-3" icon @click="select(item)">
                   <v-icon>mdi-pencil</v-icon>
@@ -177,6 +181,12 @@ export default {
       this.jamPembuatan = "";
       this.kodeSilinder = "";
       this.$refs.form.resetValidation();
+    },
+    fetchJamPembuatan() {
+      this.jamPembuatan = this.items?.[this.items.length - 1]?.jamPembuatan
+    },
+    fetchKodeSilinder() {
+      this.kodeSilinder = this.items?.[this.items.length - 1]?.kodeSilinder
     },
   },
 };

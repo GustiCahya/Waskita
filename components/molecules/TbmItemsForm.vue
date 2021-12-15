@@ -11,6 +11,7 @@
               :rules="rules.noKendaraan"
               outlined
               dense
+              @dblclick="fetchNoKendaraan"
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
@@ -20,6 +21,7 @@
               :rules="rules.noDocket"
               outlined
               dense
+              @dblclick="fetchNoDocket"
             />
           </v-col>
         </v-row>
@@ -31,6 +33,7 @@
               :rules="rules.jamKeluar"
               outlined
               dense
+              @dblclick="fetchJamKeluar"
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
@@ -40,6 +43,7 @@
               :rules="rules.jamDituang"
               outlined
               dense
+              @dblclick="fetchJamDituang"
             />
           </v-col>
         </v-row>
@@ -51,6 +55,7 @@
               :rules="rules.volAktual"
               outlined
               dense
+              @dblclick="fetchVolAktual"
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
@@ -71,6 +76,7 @@
               :rules="rules.tempMasuk"
               outlined
               dense
+              @dblclick="fetchTempMasuk"
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
@@ -80,6 +86,7 @@
               :rules="rules.slumpBeton"
               outlined
               dense
+              @dblclick="fetchSlumpBeton"
             />
           </v-col>
         </v-row>
@@ -276,7 +283,28 @@ export default {
         this.volKumulatif = result?.replace(".", ",") || 0;
         this.$refs.form.resetValidation();
       }
-    }
+    },
+    fetchNoKendaraan() {
+      this.noKendaraan = this.items?.[this.items.length - 1]?.noKendaraan
+    },
+    fetchNoDocket() {
+      this.noDocket = this.items?.[this.items.length - 1]?.noDocket
+    },
+    fetchJamKeluar() {
+      this.jamKeluar = this.items?.[this.items.length - 1]?.jamKeluar
+    },
+    fetchJamDituang() {
+      this.jamDituang = this.items?.[this.items.length - 1]?.jamDituang
+    },
+    fetchVolAktual() {
+      this.volAktual = this.items?.[this.items.length - 1]?.volAktual
+    },
+    fetchTempMasuk() {
+      this.tempMasuk = this.items?.[this.items.length - 1]?.tempMasuk
+    },
+    fetchSlumpBeton() {
+      this.slumpBeton = this.items?.[this.items.length - 1]?.slumpBeton
+    },
   },
 };
 </script>
