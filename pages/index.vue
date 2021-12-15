@@ -100,8 +100,8 @@ export default {
 #app {
   background: linear-gradient(
       to right bottom,
-      rgba(0, 0, 0, 0.9),
-      rgba(0, 0, 0, 0.9)
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0.8)
     ),
     url("@/static/images/background_3.jpeg") no-repeat center fixed !important;
   background-size: cover;
