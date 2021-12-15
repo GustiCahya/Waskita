@@ -2502,8 +2502,10 @@
         id="section"
         :key="item._id"
       >
-        <p style="margin-bottom:20px">Lampiran {{ idx + 1 }} : {{ item.judul }}</p>
-        <img style="max-height: 18cm" :src="item.gambar" />
+          <p style="margin-bottom:50px">Lampiran {{ idx + 1 }} : {{ item.judul }}</p>
+          <div style="display:flex; justify-content:center; align-items:center;">
+            <img style="max-height: 13cm" :src="item.gambar" />
+          </div>
       </div>
       </div>
     </v-card-text>
@@ -2621,12 +2623,25 @@ export default {
   panose-1: 2 15 5 2 2 2 4 3 2 4;
 }
 @media print {
-  #section {
+  .WordSection1 {
+    page-break-after: always;
+  }
+  #section:not(:last-of-type) {
     page-break-after: always;
   }
 }
 @page {
   size: landscape;
+}
+@page WordSection1 {
+  size: 841.8pt 595.2pt;
+  margin: 36pt 36pt 36pt 36pt;
+}
+div.WordSection1 {
+  page: WordSection1;
+}
+div#section{
+  page: WordSection1;
 }
 /* Style Definitions */
 p.MsoNormal,
@@ -2647,12 +2662,5 @@ div.MsoNormal {
 .MsoPapDefault {
   margin-bottom: 8pt;
   line-height: 107%;
-}
-@page WordSection1 {
-  size: 841.8pt 595.2pt;
-  margin: 36pt 36pt 36pt 36pt;
-}
-div.WordSection1 {
-  page: WordSection1;
 }
 </style>
