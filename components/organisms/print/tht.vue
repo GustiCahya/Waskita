@@ -2210,12 +2210,11 @@
                   style="margin-bottom: 0cm; line-height: normal"
                 >
                   <span
-                    v-if="idx === 0"
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
                     >{{
-                      detail.tanggalPembuatan
-                        ? $moment(detail.tanggalPembuatan).format("DD-MMM-YY")
+                      item.tanggalPembuatan
+                        ? $moment(item.tanggalPembuatan).format("DD-MMM-YY")
                         : ""
                     }}</span
                   >
@@ -2236,12 +2235,11 @@
                   style="margin-bottom: 0cm; line-height: normal"
                 >
                   <span
-                    v-if="idx === 0"
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
                     >{{
-                      detail.tanggalPengetesan
-                        ? $moment(detail.tanggalPengetesan).format("DD-MMM-YY")
+                      item.tanggalPengetesan
+                        ? $moment(item.tanggalPengetesan).format("DD-MMM-YY")
                         : ""
                     }}</span
                   >
@@ -2267,10 +2265,9 @@
                   "
                 >
                   <span
-                    v-if="idx === 0"
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ detail.umurHari }}</span
+                    >{{ item.umurHari }}</span
                   >
                 </p>
               </td>
@@ -2294,10 +2291,9 @@
                   "
                 >
                   <span
-                    v-if="idx === 0"
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ detail.perkiraanDensity }}</span
+                    >{{ item.perkiraanDensity }}</span
                   >
                 </p>
               </td>
@@ -2321,10 +2317,9 @@
                   "
                 >
                   <span
-                    v-if="idx === 0"
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ detail.perkiraanTekan }}</span
+                    >{{ item.perkiraanTekan }}</span
                   >
                 </p>
               </td>
