@@ -259,6 +259,14 @@ export default {
     async dibuatOlehTtdFile(val) {
       this.dibuatOlehTtd = await this.$toBase64(val);
     },
+    items: {
+      handler(items) {
+        const lastDate =
+          items?.[items.length - 1]?.tanggalPengetesan || new Date();
+        this.dibuatOlehTanggal = lastDate;
+      },
+      deep: true,
+    },
   },
   beforeMount() {
     const fullName = this.$getUserData()?.fullName;
