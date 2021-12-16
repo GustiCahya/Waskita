@@ -306,11 +306,11 @@ export default {
     clearInput() {
       this.id = undefined;
       this.kodeSilinder = "";
-      this.tanggalPembuatan = null;
+      // this.tanggalPembuatan = null;
       this.tanggalPengetesan = null;
       this.umurHari = "";
-      this.perkiraanDensity = "";
-      this.perkiraanTekan = "";
+      this.perkiraanDensity = "Min 2,2";
+      this.perkiraanTekan = "Min 65%";
       this.hasilDensity = null;
       this.hasilTekan = null;
       this.$refs.form.resetValidation();
