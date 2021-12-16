@@ -409,6 +409,11 @@ export default {
         const date2 = new Date(this?.tanggalPengetesan);
         const difference = date2.getTime() - date1.getTime();
         const days = Math.ceil(difference / (1000 * 3600 * 24));
+        if(days >= 28){
+          this.perkiraanTekan = "Min 100%";
+        }else{
+          this.perkiraanTekan = "Min 65%";
+        }
         this.umurHari = `${days} Hari`;
       }
     },
