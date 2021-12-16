@@ -376,7 +376,7 @@ export default {
         const item = result?.[0]?.tht?.[0];
         if (item) {
           this.localId = item._id;
-          if(item?.mainForm){
+          if (item?.mainForm) {
             this.mainForm = item.mainForm;
           }
           this.no = item.no;
@@ -409,9 +409,9 @@ export default {
         const date2 = new Date(this?.tanggalPengetesan);
         const difference = date2.getTime() - date1.getTime();
         const days = Math.ceil(difference / (1000 * 3600 * 24));
-        if(days >= 28){
+        if (days >= 28) {
           this.perkiraanTekan = "Min 100%";
-        }else{
+        } else {
           this.perkiraanTekan = "Min 65%";
         }
         this.umurHari = `${days} Hari`;
