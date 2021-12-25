@@ -13,8 +13,6 @@ const connection = mongoose.connection;
 
 // Declare gfs
 connection.on("error", console.error.bind(console, "connection error:"));
-connection.once("open", function() {
-  console.log("open");
-});
+connection.once("open", function() {});
 
 module.exports = connection;
