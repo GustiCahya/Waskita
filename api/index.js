@@ -15,7 +15,6 @@ const TelusurBendaUji = require("./routes/TelusurBendaUji");
 const TelusurHasilTest = require("./routes/TelusurHasilTest");
 const TelusurProses = require("./routes/TelusurProses");
 const Users = require("./routes/Users");
-const Uploads = require("./routes/Uploads");
 
 // Use API Routes
 app.use("/Telusur", Telusur);
@@ -24,7 +23,6 @@ app.use("/TelusurBendaUji", TelusurBendaUji);
 app.use("/TelusurHasilTest", TelusurHasilTest);
 app.use("/TelusurProses", TelusurProses);
 app.use("/Users", Users);
-app.use("/Uploads", Uploads);
 
 // Export the server middleware
 module.exports = {
