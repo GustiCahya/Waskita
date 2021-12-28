@@ -244,7 +244,7 @@
             class="d-flex justify-center mt-3"
             style="width: 100%"
           >
-            <v-btn color="grey darken-3" nuxt @click="redirectPrint">
+            <v-btn color="grey darken-3" nuxt :loading="loadingPrint" @click="redirectPrint">
               <v-icon left dark> mdi-printer </v-icon>
               print / download pdf
             </v-btn>
@@ -333,6 +333,7 @@ export default {
       // loading
       loadingFetch: false,
       loadingGenerate: false,
+      loadingPrint: false,
     };
   },
   computed: {
@@ -482,10 +483,12 @@ export default {
       return true;
     },
     async redirectPrint() {
+      this.loadingPrint = true;
       const isDone = await this.generate();
       if(isDone){
         await this.$refs.printDoc.print();
       }
+      this.loadingPrint = false;
     },
   },
 };
