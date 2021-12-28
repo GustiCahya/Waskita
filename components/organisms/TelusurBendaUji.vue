@@ -301,6 +301,12 @@ export default {
                       as: "tbm",
                     },
                   },
+                  {
+                    $project: {
+                      "tbm.tanggalMasuk": 1,
+                      "tbu": 1
+                    }
+                  }
                 ],
               }),
             },
