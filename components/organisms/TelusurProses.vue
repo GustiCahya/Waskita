@@ -272,6 +272,14 @@ export default {
                 pipeline: [
                   {
                     $lookup: {
+                      from: "TelusurBahanMasuk",
+                      localField: "idTbm",
+                      foreignField: "_id",
+                      as: "tbm",
+                    },
+                  },
+                  {
+                    $lookup: {
                       from: "TelusurProses",
                       localField: "idTp",
                       foreignField: "_id",
@@ -279,13 +287,11 @@ export default {
                     },
                   },
                   {
-                    $lookup: {
-                      from: "TelusurBahanMasuk",
-                      localField: "idTbm",
-                      foreignField: "_id",
-                      as: "tbm",
-                    },
-                  },
+                    $project: {
+                      "tbm.tanggalMasuk": 1,
+                      "tp": 1,
+                    }
+                  }
                 ],
               }),
             },

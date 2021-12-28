@@ -126,14 +126,20 @@ export default {
             params: {
               jsonQuery: JSON.stringify({
                 idTelusur: id,
+                pipeline: [
+                  {
+                    $project: {
+                      "items.noKendaraan": 1
+                    }
+                  }
+                ]
               }),
             },
           })
           .then((res) => res?.data?.result);
-        const item = result?.[0];
-        if (item) {
-          const items = item?.items || [];
-          this.listNoKendaraan = items.map((item) => item.noKendaraan);
+        const tbm = result?.[0];
+        if (tbm) {
+          this.listNoKendaraan = tbm?.items?.map((item) => item.noKendaraan) || [];
         }
       } catch (err) {
         this.$swal(err?.response?.data || err?.message, "", "error");

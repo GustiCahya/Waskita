@@ -205,6 +205,13 @@ export default {
             params: {
               jsonQuery: JSON.stringify({
                 idTelusur: id,
+                pipeline: [
+                  {
+                    $project: {
+                      "items.jamDituang": 1
+                    }
+                  }
+                ]
               }),
             },
           })

@@ -225,6 +225,12 @@ export default {
                   {
                     $unwind: { path: "$tbm", preserveNullAndEmptyArrays: true }
                   },
+                  {
+                    $project: {
+                      "tbm.tanggalMasuk": 1,
+                      "tbu.items.kodeSilinder": 1,
+                    }
+                  }
                 ],
               }),
             },
