@@ -11,10 +11,12 @@
             <v-form
               ref="filterTelusur"
               v-model="filterTelusurValid"
-              @submit.prevent="() => {
-                page = 1;
-                getTelusur();
-              }"
+              @submit.prevent="
+                () => {
+                  page = 1;
+                  getTelusur();
+                }
+              "
             >
               <v-text-field
                 v-model.trim="filter.businessUnit"
@@ -35,7 +37,7 @@
                 outlined
               />
               <div class="d-flex justify-center align-center">
-               <v-switch
+                <v-switch
                   v-model="filter.isUseDate"
                   class="ma-0 pa-0"
                   color="success"
@@ -77,137 +79,64 @@
           Kosong
         </p>
         <v-row v-else>
-          <v-col v-for="(item, i) in items" :key="i" cols="12" sm="6">
-            <v-card class="grey darken-4">
-              <v-card-text class="pb-0 white--text">
-                <v-row>
-                  <v-col class="py-0 text-center mb-5" cols="12">
-                    <h2 class="pt-4 pb-2">{{ item.businessUnit }}</h2>
-                    <h4 class="font-weight-medium">{{ item.proyek }}</h4>
-                  </v-col>
-                  <v-col class="py-0 text-left" cols="12">
+          <v-col cols="12">
+            <v-simple-table class="text-caption">
+              <thead>
+                <tr>
+                  <th class="text-left">Bisnis Unit</th>
+                  <th class="text-left">Proyek</th>
+                  <th class="text-left">Tanggal</th>
+                  <th class="text-left">Lokasi</th>
+                  <th class="text-left">Volume Total</th>
+                  <th class="text-left">Telusur Bahan Masuk</th>
+                  <th class="text-left">Telusur Benda Uji</th>
+                  <th class="text-left">Telusur Hasil Test</th>
+                  <th class="text-left">Telusur Proses</th>
+                  <th class="text-left">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in items" :key="item._id" class="py-2">
+                  <td style="white-space: nowrap">{{ item.businessUnit }}</td>
+                  <td style="white-space: nowrap">{{ item.proyek }}</td>
+                  <td style="white-space: nowrap">
+                    {{
+                      item.tanggalPengecoran
+                        ? $moment(item.tanggalPengecoran).format(
+                            "dddd, DD MMMM YYYY"
+                          )
+                        : "Belum Ada"
+                    }}
+                  </td>
+                  <td style="white-space: nowrap">{{ item.lokasiPengecoran }}</td>
+                  <td>{{ item.volTotal }}</td>
+                  <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 1)">{{ item.tbmNo }}</td>
+                  <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 2)">{{ item.tbuNo }}</td>
+                  <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 3)">{{ item.thtNo }}</td>
+                  <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 4)">{{ item.tpNo }}</td>
+                  <td style="white-space: nowrap">
                     <div>
-                      <h4 class="font-weight-medium ma-0 pa-0">
-                        Telusur Bahan Masuk :
-                      </h4>
-                      <h5
-                        class="text-caption ma-0 pa-0 mb-2 ml-2"
-                        style="cursor: pointer"
-                        @click="redirectTelusur(item, 1)"
+                      <v-btn
+                        v-if="isSuperAdmin"
+                        icon
+                        color="red darken-2"
+                        @click.native="() => removeTelusur(item)"
                       >
-                        {{ item.tbmNo }}
-                      </h5>
-                    </div>
-                  </v-col>
-                  <v-col class="py-0 text-left" cols="12">
-                    <div>
-                      <h4 class="font-weight-medium ma-0 pa-0">
-                        Telusur Benda Uji :
-                      </h4>
-                      <h5
-                        class="text-caption ma-0 pa-0 mb-2 ml-2"
-                        style="cursor: pointer"
-                        @click="redirectTelusur(item, 2)"
+                        <v-icon>mdi-delete</v-icon>
+                      </v-btn>
+                      <v-spacer />
+                      <v-btn
+                        icon
+                        color="grey lighten-2"
+                        @click.native="() => openTelusur(item)"
                       >
-                        {{ item.tbuNo }}
-                      </h5>
+                        <v-icon>mdi-monitor</v-icon>
+                      </v-btn>
                     </div>
-                  </v-col>
-                  <v-col class="py-0 text-left" cols="12">
-                    <div>
-                      <h4 class="font-weight-medium ma-0 pa-0">
-                        Telusur Hasil Test :
-                      </h4>
-                      <h5
-                        class="text-caption ma-0 pa-0 mb-2 ml-2"
-                        style="cursor: pointer"
-                        @click="redirectTelusur(item, 3)"
-                      >
-                        {{ item.thtNo }}
-                      </h5>
-                    </div>
-                  </v-col>
-                  <v-col class="py-0 text-left" cols="12">
-                    <div>
-                      <h4 class="font-weight-medium ma-0 pa-0">
-                        Telusur Proses :
-                      </h4>
-                      <h5
-                        class="text-caption ma-0 pa-0 mb-2 ml-2"
-                        style="cursor: pointer"
-                        @click="redirectTelusur(item, 4)"
-                      >
-                        {{ item.tpNo }}
-                      </h5>
-                    </div>
-                  </v-col>
-                </v-row>
-                <v-divider class="mb-3 mt-6" />
-                <v-row class="d-flex pt-1 px-3">
-                  <div class="d-block text-left">
-                    <h6 class="pa-0 ma-0">Volume Total :</h6>
-                  </div>
-                  <v-spacer></v-spacer>
-                  <div class="d-block text-right">
-                    <h6 class="pa-0 ma-0">
-                      {{ item.volTotal }}
-                    </h6>
-                  </div>
-                </v-row>
-                <v-row class="d-flex px-3">
-                  <div class="d-block text-left">
-                    <h6 class="pa-0 ma-0">Lokasi Pengecoran :</h6>
-                  </div>
-                  <v-spacer></v-spacer>
-                  <div class="d-block text-right">
-                    <h6 class="pa-0 ma-0">
-                      {{ item.lokasiPengecoran }}
-                    </h6>
-                  </div>
-                </v-row>
-                <v-row class="d-flex px-3">
-                  <div class="d-block text-left">
-                    <h6 class="pa-0 ma-0">Tanggal Pengecoran :</h6>
-                  </div>
-                  <v-spacer></v-spacer>
-                  <div class="d-block text-right">
-                    <h6 class="pa-0 ma-0">
-                      {{ item.tanggalPengecoran ? $moment(item.tanggalPengecoran).format("dddd, DD MMMM YYYY") : "Belum Ada" }}
-                    </h6>
-                  </div>
-                </v-row>
-                <v-row class="d-flex pb-1 px-3">
-                  <div class="d-block text-left">
-                    <h6 class="pa-0 ma-0">Tanggal Dibuat :</h6>
-                  </div>
-                  <v-spacer></v-spacer>
-                  <div class="d-block text-right">
-                    <h6 class="pa-0 ma-0">
-                      {{ $moment(item._createdDate).fromNow() }}
-                    </h6>
-                  </div>
-                </v-row>
-                <v-divider class="my-3" />
-              </v-card-text>
-              <v-card-actions style="padding-top: 0">
-                <v-btn
-                  v-if="isSuperAdmin"
-                  icon
-                  color="red darken-2"
-                  @click.native="() => removeTelusur(item)"
-                >
-                  <v-icon>mdi-delete</v-icon>
-                </v-btn>
-                <v-spacer />
-                <v-btn
-                  icon
-                  color="grey lighten-2"
-                  @click.native="() => openTelusur(item)"
-                >
-                  <v-icon>mdi-monitor</v-icon>
-                </v-btn>
-              </v-card-actions>
-            </v-card>
+                  </td>
+                </tr>
+              </tbody>
+            </v-simple-table>
           </v-col>
         </v-row>
       </div>
@@ -229,7 +158,7 @@
 import AppDatePicker from "@/components/atoms/AppDatePicker.vue";
 export default {
   components: {
-    AppDatePicker
+    AppDatePicker,
   },
   layout: "dashboard",
   data() {
@@ -249,7 +178,7 @@ export default {
       limit: 10,
       pagesLength: 1,
       // roles
-      isSuperAdmin: false
+      isSuperAdmin: false,
     };
   },
   async beforeMount() {
@@ -266,13 +195,16 @@ export default {
       if (!this.filterTelusurValid) return;
       this.isLoading = true;
       const queryTbm = {};
-      if(this.filter?.lokasiPengecoran){
-        queryTbm["tbm.lokasiPengecoran"] = { $regex: this.filter?.lokasiPengecoran || "", $options: "i" };
+      if (this.filter?.lokasiPengecoran) {
+        queryTbm["tbm.lokasiPengecoran"] = {
+          $regex: this.filter?.lokasiPengecoran || "",
+          $options: "i",
+        };
       }
-      if(this.filter?.isUseDate){
+      if (this.filter?.isUseDate) {
         queryTbm["tbm.tanggalMasuk"] = {
           $gte: this.filter?.tanggalMasukAwal,
-          $lte: this.filter?.tanggalMasukAkhir || new Date()
+          $lte: this.filter?.tanggalMasukAkhir || new Date(),
         };
       }
       try {
@@ -296,10 +228,10 @@ export default {
               },
             },
             {
-              $unwind: { path: "$tbm", preserveNullAndEmptyArrays: true }
+              $unwind: { path: "$tbm", preserveNullAndEmptyArrays: true },
             },
             {
-              $match: queryTbm
+              $match: queryTbm,
             },
             {
               $lookup: {
@@ -310,7 +242,7 @@ export default {
               },
             },
             {
-              $unwind: { path: "$tbu", preserveNullAndEmptyArrays: true }
+              $unwind: { path: "$tbu", preserveNullAndEmptyArrays: true },
             },
             {
               $lookup: {
@@ -321,7 +253,7 @@ export default {
               },
             },
             {
-              $unwind: { path: "$tht", preserveNullAndEmptyArrays: true }
+              $unwind: { path: "$tht", preserveNullAndEmptyArrays: true },
             },
             {
               $lookup: {
@@ -332,12 +264,13 @@ export default {
               },
             },
             {
-              $unwind: { path: "$tp", preserveNullAndEmptyArrays: true }
+              $unwind: { path: "$tp", preserveNullAndEmptyArrays: true },
             },
             {
               $project: {
-                "businessUnit": 1,
-                "proyek": 1,
+                _id: 1,
+                businessUnit: 1,
+                proyek: 1,
                 "tbm.lokasiPengecoran": 1,
                 "tbm.items.volAktual": 1,
                 "tbm.tanggalMasuk": 1,
@@ -345,8 +278,8 @@ export default {
                 "tbu.no": 1,
                 "tht.no": 1,
                 "tp.no": 1,
-              }
-            }
+              },
+            },
           ],
         };
         const data = await this.$axios
@@ -364,7 +297,12 @@ export default {
           return {
             ...item,
             lokasiPengecoran: item?.tbm?.lokasiPengecoran || "Belum ada",
-            volTotal: item?.tbm?.items?.reduce((total, item) => total + +(item?.volAktual?.replace(",", ".") || 0), 0) || "Belum ada",
+            volTotal:
+              item?.tbm?.items?.reduce(
+                (total, item) =>
+                  total + +(item?.volAktual?.replace(",", ".") || 0),
+                0
+              ) || "Belum ada",
             tanggalPengecoran: item?.tbm?.tanggalMasuk,
             tbmNo: item?.tbm?.no || "Belum ada",
             tbuNo: item?.tbu?.no || "Belum ada",
