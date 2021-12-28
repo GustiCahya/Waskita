@@ -83,6 +83,7 @@
             <v-simple-table class="text-caption">
               <thead>
                 <tr>
+                  <th class="text-left">Aksi</th>
                   <th class="text-left">Bisnis Unit</th>
                   <th class="text-left">Proyek</th>
                   <th class="text-left">Tanggal</th>
@@ -92,28 +93,10 @@
                   <th class="text-left">Telusur Benda Uji</th>
                   <th class="text-left">Telusur Hasil Test</th>
                   <th class="text-left">Telusur Proses</th>
-                  <th class="text-left">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="item in items" :key="item._id" class="py-2">
-                  <td style="white-space: nowrap">{{ item.businessUnit }}</td>
-                  <td style="white-space: nowrap">{{ item.proyek }}</td>
-                  <td style="white-space: nowrap">
-                    {{
-                      item.tanggalPengecoran
-                        ? $moment(item.tanggalPengecoran).format(
-                            "dddd, DD MMMM YYYY"
-                          )
-                        : "Belum Ada"
-                    }}
-                  </td>
-                  <td style="white-space: nowrap">{{ item.lokasiPengecoran }}</td>
-                  <td>{{ item.volTotal }}</td>
-                  <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 1)">{{ item.tbmNo }}</td>
-                  <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 2)">{{ item.tbuNo }}</td>
-                  <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 3)">{{ item.thtNo }}</td>
-                  <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 4)">{{ item.tpNo }}</td>
                   <td style="white-space: nowrap">
                     <div>
                       <v-btn
@@ -134,6 +117,23 @@
                       </v-btn>
                     </div>
                   </td>
+                  <td style="white-space: nowrap">{{ item.businessUnit }}</td>
+                  <td style="white-space: nowrap">{{ item.proyek }}</td>
+                  <td style="white-space: nowrap">
+                    {{
+                      item.tanggalPengecoran
+                        ? $moment(item.tanggalPengecoran).format(
+                            "dddd, DD MMMM YYYY"
+                          )
+                        : "Belum Ada"
+                    }}
+                  </td>
+                  <td style="white-space: nowrap">{{ item.lokasiPengecoran }}</td>
+                  <td>{{ item.volTotal }}</td>
+                  <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 1)">{{ item.tbmNo }}</td>
+                  <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 2)">{{ item.tbuNo }}</td>
+                  <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 3)">{{ item.thtNo }}</td>
+                  <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 4)">{{ item.tpNo }}</td>
                 </tr>
               </tbody>
             </v-simple-table>
