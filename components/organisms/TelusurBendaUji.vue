@@ -228,7 +228,7 @@ export default {
         no: [(v) => !!v || "Harap diisi"],
         jumlahBendaUji: [
           // (v) => !!v || "Harap diisi",
-          (v) => /^\d*,?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16,5)",
+          // (v) => /^\d*,?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16,5)",
         ],
         dimensi: [(v) => v.length >= 1 || "Harap diisi"],
         personil: [(v) => v.length >= 1 || "Harap diisi"],
