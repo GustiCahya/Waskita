@@ -205,11 +205,14 @@ export default {
                 pipeline: [
                   {
                     $lookup: {
-                      from: "TelusurHasilTest",
-                      localField: "idTht",
+                      from: "TelusurBendaUji",
+                      localField: "idTbu",
                       foreignField: "_id",
-                      as: "tht",
+                      as: "tbu",
                     },
+                  },
+                  {
+                    $unwind: { path: "$tbu", preserveNullAndEmptyArrays: true }
                   },
                   {
                     $lookup: {
@@ -219,19 +222,21 @@ export default {
                       as: "tbm",
                     },
                   },
+                  {
+                    $unwind: { path: "$tbm", preserveNullAndEmptyArrays: true }
+                  },
                 ],
               }),
             },
           })
           .then((res) => res?.data?.result);
-        const tbm = result?.[0]?.tbm?.[0];
+        const tbm = result?.[0]?.tbm;
         if (tbm) {
           this.tanggalPembuatan = tbm?.tanggalMasuk;
         }
-        const item = result?.[0]?.tht?.[0];
-        console.log(result);
-        if (item) {
-          const items = item?.items || [];
+        const tbu = result?.[0]?.tbu;
+        if (tbu) {
+          const items = tbu?.items || [];
           this.listKodeSilinder = items.map((item) => item.kodeSilinder);
         }
       } catch (err) {

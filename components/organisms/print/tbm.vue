@@ -3822,7 +3822,6 @@ export default {
             const tbm = telusur?.tbm?.[0] || {};
             this.data = telusur;
             this.detail = tbm;
-            console.log(this.detail);
             this.mengetahui = tbm?.mengetahui || {};
             this.dibuatOleh = tbm?.dibuatOleh || {};
             this.items = tbm?.items?.map((item, idx) => {
