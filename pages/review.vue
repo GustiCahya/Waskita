@@ -310,12 +310,18 @@ export default {
               },
             },
             {
+              $unwind: { path: "$tbu", preserveNullAndEmptyArrays: true }
+            },
+            {
               $lookup: {
                 from: "TelusurHasilTest",
                 localField: "idTht",
                 foreignField: "_id",
                 as: "tht",
               },
+            },
+            {
+              $unwind: { path: "$tht", preserveNullAndEmptyArrays: true }
             },
             {
               $lookup: {
@@ -325,6 +331,22 @@ export default {
                 as: "tp",
               },
             },
+            {
+              $unwind: { path: "$tp", preserveNullAndEmptyArrays: true }
+            },
+            {
+              $project: {
+                "businessUnit": 1,
+                "proyek": 1,
+                "tbm.lokasiPengecoran": 1,
+                "tbm.items": 1,
+                "tbm.tanggalMasuk": 1,
+                "tbm.no": 1,
+                "tbu.no": 1,
+                "tht.no": 1,
+                "tp.no": 1,
+              }
+            }
           ],
         };
         const data = await this.$axios
@@ -337,6 +359,7 @@ export default {
           })
           .then((res) => res?.data || {});
         this.pagesLength = data.pagesLength;
+        console.log(data.result);
         this.items = data.result.map((item) => {
           return {
             ...item,
@@ -344,9 +367,9 @@ export default {
             volTotal: item?.tbm?.items?.reduce((total, item) => total + +(item?.volAktual?.replace(",", ".") || 0), 0) || "Belum ada",
             tanggalPengecoran: item?.tbm?.tanggalMasuk,
             tbmNo: item?.tbm?.no || "Belum ada",
-            tbuNo: item?.tbu?.[0]?.no || "Belum ada",
-            thtNo: item?.tht?.[0]?.no || "Belum ada",
-            tpNo: item?.tp?.[0]?.no || "Belum ada",
+            tbuNo: item?.tbu?.no || "Belum ada",
+            thtNo: item?.tht?.no || "Belum ada",
+            tpNo: item?.tp?.no || "Belum ada",
           };
         });
       } catch (err) {
