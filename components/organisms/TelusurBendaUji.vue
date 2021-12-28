@@ -270,7 +270,7 @@ export default {
       this.dibuatOlehTtd = await this.$toBase64(val);
     },
     items: {
-      handler: function() {
+      handler() {
         const lastKodeSilinder = this?.items?.[this.items.length - 1]?.kodeSilinder || "";
         this.jumlahBendaUji = lastKodeSilinder?.split("/")?.reverse()?.[0] || this.jumlahBendaUji;
       },
