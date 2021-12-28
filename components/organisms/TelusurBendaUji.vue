@@ -227,7 +227,7 @@ export default {
         mainForm: [(v) => !!v || "Harap diisi"],
         no: [(v) => !!v || "Harap diisi"],
         jumlahBendaUji: [
-          (v) => !!v || "Harap diisi",
+          // (v) => !!v || "Harap diisi",
           (v) => /^\d*,?\d*$/gi.test(v) || "Harus Angka (contoh: 16 atau 16,5)",
         ],
         dimensi: [(v) => v.length >= 1 || "Harap diisi"],

@@ -1793,6 +1793,7 @@
                   "
                 >
                   <span
+                    v-if="idx === 0"
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
                     >{{ item.jumlahBendaUji }}</span
