@@ -292,7 +292,6 @@ export default {
           })
           .then((res) => res?.data || {});
         this.pagesLength = data.pagesLength;
-        console.log(data.result);
         this.items = data.result.map((item) => {
           return {
             ...item,
