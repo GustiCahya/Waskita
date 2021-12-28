@@ -268,6 +268,13 @@ export default {
     async dibuatOlehTtdFile(val) {
       this.dibuatOlehTtd = await this.$toBase64(val);
     },
+    items: {
+      handler: function() {
+        const lastKodeSilinder = this?.items?.[this.items.length - 1]?.kodeSilinder || "";
+        this.jumlahBendaUji = lastKodeSilinder?.split("/")?.reverse()?.[0] || this.jumlahBendaUji;
+      },
+      deep: true,
+    }
   },
   beforeMount() {
     const fullName = this.$getUserData()?.fullName;
