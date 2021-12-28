@@ -339,7 +339,7 @@ export default {
                 "businessUnit": 1,
                 "proyek": 1,
                 "tbm.lokasiPengecoran": 1,
-                "tbm.items": 1,
+                "tbm.items.volAktual": 1,
                 "tbm.tanggalMasuk": 1,
                 "tbm.no": 1,
                 "tbu.no": 1,
