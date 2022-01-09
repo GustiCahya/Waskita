@@ -95,6 +95,7 @@
                   <th class="text-left">Tanggal</th>
                   <th class="text-left">Lokasi</th>
                   <th class="text-left">Volume Total</th>
+                  <th class="text-left">Mutu Beton</th>
                   <th class="text-left">Telusur Bahan Masuk</th>
                   <th class="text-left">Telusur Benda Uji</th>
                   <th class="text-left">Telusur Hasil Test</th>
@@ -136,6 +137,7 @@
                   </td>
                   <td style="white-space: nowrap">{{ item.lokasiPengecoran }}</td>
                   <td>{{ item.volTotal }}</td>
+                  <td>{{ item.mutuBeton }}</td>
                   <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 1)">{{ item.tbmNo }}</td>
                   <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 2)">{{ item.tbuNo }}</td>
                   <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 3)">{{ item.thtNo }}</td>
@@ -314,6 +316,7 @@ export default {
                   total + +(item?.volAktual?.replace(",", ".") || 0),
                 0
               ) || "Belum ada",
+            mutuBeton: item?.tbm?.mutuBeton,
             tanggalPengecoran: item?.tbm?.tanggalMasuk,
             tbmNo: item?.tbm?.no || "Belum ada",
             tbuNo: item?.tbu?.no || "Belum ada",
