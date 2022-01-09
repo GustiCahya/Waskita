@@ -36,6 +36,12 @@
                 dense
                 outlined
               />
+              <v-text-field
+                v-model.trim="filter.mutuBeton"
+                label="Mutu Beton"
+                dense
+                outlined
+              />
               <div class="d-flex justify-center align-center">
                 <v-switch
                   v-model="filter.isUseDate"
@@ -198,6 +204,12 @@ export default {
       if (this.filter?.lokasiPengecoran) {
         queryTbm["tbm.lokasiPengecoran"] = {
           $regex: this.filter?.lokasiPengecoran || "",
+          $options: "i",
+        };
+      }
+      if (this.filter?.mutuBeton) {
+        queryTbm["tbm.mutuBeton"] = {
+          $regex: this.filter?.mutuBeton || "",
           $options: "i",
         };
       }
