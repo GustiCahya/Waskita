@@ -2292,7 +2292,10 @@
                 >
                   <span
                     lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    :style="{
+                      'font-size': '6pt',
+                      'font-family': `'Arial', sans-serif`,
+                    }"
                     >{{ item.perkiraanDensity }}</span
                   >
                 </p>
@@ -2318,7 +2321,10 @@
                 >
                   <span
                     lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    :style="{
+                      'font-size': '6pt',
+                      'font-family': `'Arial', sans-serif`,
+                    }"
                     >{{ item.perkiraanTekan }}</span
                   >
                 </p>
@@ -2339,7 +2345,11 @@
                 >
                   <span
                     lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    :style="{
+                      'font-size': '6pt',
+                      'font-family': `'Arial', sans-serif`,
+                      'color': isStandard(item) ? 'inherit' : 'crimson'
+                    }"
                     >{{ item.hasilDensity }}</span
                   >
                 </p>
@@ -2365,7 +2375,11 @@
                 >
                   <span
                     lang="EN-US"
-                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    :style="{
+                      'font-size': '6pt',
+                      'font-family': `'Arial', sans-serif`,
+                      'color': isStandard(item) ? 'inherit' : 'crimson'
+                    }"
                     >{{ item.hasilTekan }}</span
                   >
                 </p>
@@ -2497,7 +2511,7 @@
                   <span
                     v-if="idx === 0"
                     lang="EN-US"
-                    style="position: absolute; top: -12px; left: 3px"
+                    style="position: absolute; top: -13px; left: 3px"
                   >
                     <img
                       v-if="item.saksiWaskitaTtd"
@@ -2547,40 +2561,50 @@
                 </p>
               </td>
               <td
-                width="48"
+                width="42"
                 style="
-                  position: relative;
-                  width: 36pt;
+                  width: 31.5pt;
                   border: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.7pt 0cm 0cm 0cm;
                   height: 1.25pt;
                 "
               >
-                <span
-                  v-if="idx === 0"
-                  lang="EN-US"
-                  style="position: absolute; top: -12px; left: 3px"
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    position: relative;
+                    margin-bottom: 0cm;
+                    text-align: center;
+                    line-height: normal;
+                  "
                 >
-                  <img
-                    v-if="item.saksiPemberiKerjaTtd"
-                    id="Picture 13324"
-                    width="45"
-                    :src="item.saksiPemberiKerjaTtd"
-                  />
-                </span>
-                <span
-                  v-else
-                  lang="EN-US"
-                  style="position: absolute; top: 13px; left: 3px"
-                >
-                  <img
-                    v-if="item.saksiPemberiKerjaTtd"
-                    id="Picture 13324"
-                    width="45"
-                    :src="item.saksiPemberiKerjaTtd"
-                  />
-                </span>
+                  <span
+                    v-if="idx === 0"
+                    lang="EN-US"
+                    style="position: absolute; top: -13px; left: 3px"
+                  >
+                    <img
+                      v-if="item.saksiPemberiKerjaTtd"
+                      id="Picture 13324"
+                      width="45"
+                      :src="item.saksiPemberiKerjaTtd"
+                    />
+                  </span>
+                  <span
+                    v-else
+                    lang="EN-US"
+                    style="position: absolute; top: 13px; left: 3px"
+                  >
+                    <img
+                      v-if="item.saksiPemberiKerjaTtd"
+                      id="Picture 13324"
+                      width="45"
+                      :src="item.saksiPemberiKerjaTtd"
+                    />
+                  </span>
+                </p>
               </td>
             </tr>
             <!-- footer of main content -->
@@ -3301,7 +3325,9 @@
           <p style="margin-bottom: 50px">
             Lampiran {{ idx + 1 }} : {{ item.judul }}
           </p>
-          <div style="display:flex; justify-content:center; align-items:center;">
+          <div
+            style="display: flex; justify-content: center; align-items: center"
+          >
             <img style="max-height: 13cm" :src="item.gambar" />
           </div>
         </div>
@@ -3332,7 +3358,7 @@ export default {
     },
     totalPages() {
       return 1 + (this?.detail?.hasilTest?.length || 0);
-    },
+    }
   },
   async mounted() {
     await this.fetchData();
@@ -3403,6 +3429,20 @@ export default {
         this.loadingFetch = false;
       }
     },
+    isStandard(item) {
+      let isDensity = false;
+      let isTekan = false;
+      if(new RegExp("Min 2,2", 'gi').test(item.perkiraanDensity)){
+        isDensity = true;
+      }
+      if(new RegExp("Min 65%", 'gi').test(item.perkiraanTekan)){
+        isTekan = true;
+      }
+      if(new RegExp("Min 100%", 'gi').test(item.perkiraanTekan)){
+        isTekan = true;
+      }
+      return isDensity && isTekan;
+    },
     async print() {
       await this.fetchData();
       const content = document.getElementById("printPaper").cloneNode(true);
@@ -3443,7 +3483,7 @@ export default {
 div.WordSection1 {
   page: WordSection1;
 }
-div#section{
+div#section {
   page: WordSection1;
 }
 /* Style Definitions */
