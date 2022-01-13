@@ -189,6 +189,11 @@ export default {
       isSuperAdmin: false,
     };
   },
+  watch: {
+    async page() {
+      await this.getTelusur();
+    }
+  },
   async beforeMount() {
     const roles = await this.$getUserRoles();
     this.isSuperAdmin = roles?.includes("Super Admin");
