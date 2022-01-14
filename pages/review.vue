@@ -100,29 +100,19 @@
                   <th class="text-left">Telusur Benda Uji</th>
                   <th class="text-left">Telusur Hasil Test</th>
                   <th class="text-left">Telusur Proses</th>
+                  <th class="text-left">Hapus</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="item in items" :key="item._id" class="py-2">
                   <td style="white-space: nowrap">
-                    <div>
-                      <v-btn
-                        v-if="isSuperAdmin"
-                        icon
-                        color="red darken-2"
-                        @click.native="() => removeTelusur(item)"
-                      >
-                        <v-icon>mdi-delete</v-icon>
-                      </v-btn>
-                      <v-spacer />
-                      <v-btn
-                        icon
-                        color="grey lighten-2"
-                        @click.native="() => openTelusur(item)"
-                      >
-                        <v-icon>mdi-monitor</v-icon>
-                      </v-btn>
-                    </div>
+                    <v-btn
+                      icon
+                      color="grey lighten-2"
+                      @click.native="() => openTelusur(item)"
+                    >
+                      <v-icon>mdi-monitor</v-icon>
+                    </v-btn>
                   </td>
                   <td style="white-space: nowrap">{{ item.businessUnit }}</td>
                   <td style="white-space: nowrap">{{ item.proyek }}</td>
@@ -142,6 +132,16 @@
                   <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 2)">{{ item.tbuNo }}</td>
                   <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 3)">{{ item.thtNo }}</td>
                   <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 4)">{{ item.tpNo }}</td>
+                  <td>
+                    <v-btn
+                      v-if="isSuperAdmin"
+                      icon
+                      color="red darken-2"
+                      @click.native="() => removeTelusur(item)"
+                    >
+                      <v-icon>mdi-delete</v-icon>
+                    </v-btn>
+                  </td>
                 </tr>
               </tbody>
             </v-simple-table>
