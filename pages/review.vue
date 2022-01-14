@@ -100,7 +100,7 @@
                   <th class="text-left">Telusur Benda Uji</th>
                   <th class="text-left">Telusur Hasil Test</th>
                   <th class="text-left">Telusur Proses</th>
-                  <th class="text-left">Hapus</th>
+                  <th v-if="isSuperAdmin" class="text-left">Hapus</th>
                 </tr>
               </thead>
               <tbody>
@@ -132,9 +132,8 @@
                   <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 2)">{{ item.tbuNo }}</td>
                   <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 3)">{{ item.thtNo }}</td>
                   <td style="white-space: nowrap; cursor:pointer;" @click="redirectTelusur(item, 4)">{{ item.tpNo }}</td>
-                  <td>
+                  <td v-if="isSuperAdmin">
                     <v-btn
-                      v-if="isSuperAdmin"
                       icon
                       color="red darken-2"
                       @click.native="() => removeTelusur(item)"
