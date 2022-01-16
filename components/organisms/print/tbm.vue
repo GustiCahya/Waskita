@@ -3854,6 +3854,35 @@ export default {
       w.document.body.append(content);
       w.print();
     },
+    async convertDocx() {
+      try{
+        await this.fetchData();
+        const content = document.getElementById("printPaper").cloneNode(true);
+        const header = document.getElementsByTagName("head")[0].innerHTML;
+        await this.$axios
+            .post(
+              `/api/TelusurBahanMasuk/exportDocx`,
+              {
+                content,
+                header
+              },
+              {
+                responseType: "blob",
+              }
+            )
+            .then(response => {
+              const url = window.URL.createObjectURL(new Blob([response.data]));
+              const link = document.createElement("a");
+              link.href = url;
+              link.setAttribute("download", "Telusur Bahan Masuk.docx");
+              document.body.appendChild(link);
+              link.click();
+              this.loadingXlsxPercentage = 0;
+            });
+      }catch(err){
+        this.$swal(err?.response?.data?.message || err?.message);
+      }
+    },
   },
 };
 </script>

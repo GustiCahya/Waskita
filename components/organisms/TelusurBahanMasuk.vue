@@ -249,6 +249,16 @@
               print / download pdf
             </v-btn>
           </div>
+          <div
+            v-if="localId"
+            class="d-flex justify-center mt-3"
+            style="width: 100%"
+          >
+            <v-btn color="blue darken-1" nuxt :loading="loadingDocx" @click="redirectDocx">
+              <v-icon left dark> mdi-note-text-outline </v-icon>
+              Download DOCX
+            </v-btn>
+          </div>
         </v-card-actions>
       </v-form>
     </div>
@@ -334,6 +344,7 @@ export default {
       loadingFetch: false,
       loadingGenerate: false,
       loadingPrint: false,
+      loadingDocx: false,
     };
   },
   computed: {
@@ -489,6 +500,14 @@ export default {
         await this.$refs.printDoc.print();
       }
       this.loadingPrint = false;
+    },
+    async redirectDocx() {
+      this.loadingDocx = true;
+      const isDone = await this.generate();
+      if(isDone){
+        await this.$refs.printDoc.convertDocx();
+      }
+      this.loadingDocx = false;
     },
   },
 };
