@@ -249,7 +249,7 @@
               print / download pdf
             </v-btn>
           </div>
-          <div
+          <!-- <div
             v-if="localId"
             class="d-flex justify-center mt-3"
             style="width: 100%"
@@ -258,7 +258,7 @@
               <v-icon left dark> mdi-note-text-outline </v-icon>
               Download DOCX
             </v-btn>
-          </div>
+          </div> -->
         </v-card-actions>
       </v-form>
     </div>
