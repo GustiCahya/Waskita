@@ -3194,6 +3194,65 @@ export default {
       w.document.body.append(content);
       w.print();
     },
+    async convertDocx(element = "printPaper", filename = "IMTP04") {
+      try {
+        await this.fetchData();
+        const preHtml =
+          `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+            <head>
+              <meta charset='utf-8'>
+              <title>${ filename }</title>
+              <style>
+                @page WordSection1 {
+                  size: 841.8pt 595.2pt;
+                  margin: 36pt 36pt 36pt 36pt;
+                  mso-page-orientation:landscape;
+                  mso-header-margin:35.4pt;
+                  mso-footer-margin:35.4pt;
+                  mso-paper-source:0;
+                }
+                div.WordSection1 {
+                  page: WordSection1;
+                }
+                div#section {
+                  page: WordSection1;
+                }
+              </style>
+            </head>
+          <body>`;
+        const postHtml = "</body></html>";
+        const html =
+          preHtml + document.getElementById(element).innerHTML + postHtml;
+
+        const blob = new Blob(["\ufeff", html], {
+          type: "application/msword",
+        });
+
+        const url =
+          "data:application/vnd.ms-word;charset=utf-8," +
+          encodeURIComponent(html);
+
+        filename = filename ? filename + ".doc" : "document.doc";
+
+        const downloadLink = document.createElement("a");
+
+        document.body.appendChild(downloadLink);
+
+        if (navigator.msSaveOrOpenBlob) {
+          navigator.msSaveOrOpenBlob(blob, filename);
+        } else {
+          downloadLink.href = url;
+
+          downloadLink.download = filename;
+
+          downloadLink.click();
+        }
+
+        document.body.removeChild(downloadLink);
+      } catch (err) {
+        this.$swal(err?.response?.data?.message || err?.message);
+      }
+    },
   },
 };
 </script>
