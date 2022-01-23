@@ -1,5 +1,5 @@
 <template>
-  <v-card :loading="loadingFetch" class="pa-3 d-none">
+  <v-card :loading="loadingFetch" class="pa-3">
     <v-card-title>
       Telusur Bahan Masuk
       <v-spacer />
@@ -42,16 +42,19 @@
                   style="margin-bottom: 0cm; line-height: normal"
                 >
                   <img
+                    style="background:white;"
                     width="54"
                     height="51"
                     :src="icon"
                     align="left"
                     hspace="12"
-                  /><b
-                    ><span lang="EN-US" style="font-size: 14pt"
-                      >PT. WASKITA KARYA (Persero) Tbk</span
-                    ></b
-                  >
+                    v:shapes="Picture_x0020_1"
+                  />
+                  <b>
+                    <span lang="EN-US" style="font-size: 14pt">
+                      PT. WASKITA KARYA (Persero) Tbk
+                    </span>
+                  </b>
                 </p>
               </td>
               <td
@@ -2514,7 +2517,11 @@
               <td style="height: 2.3pt; border: none" width="0" height="5"></td>
             </tr>
             <!-- main content -->
-            <tr v-for="(item, idx) in items" :key="item._id" style="height: 1pt">
+            <tr
+              v-for="(item, idx) in items"
+              :key="item._id"
+              style="height: 1pt"
+            >
               <td
                 width="100"
                 style="
@@ -2937,11 +2944,7 @@
                 <span
                   v-if="idx === 0"
                   lang="EN-US"
-                  style="
-                    position: absolute;
-                    top: -12px;
-                    left: 3px;
-                  "
+                  style="position: absolute; top: -12px; left: 3px"
                 >
                   <img
                     v-if="item.personilTtd"
@@ -2953,11 +2956,7 @@
                 <span
                   v-else
                   lang="EN-US"
-                  style="
-                    position: absolute;
-                    top: 13px;
-                    left: 3px;
-                  "
+                  style="position: absolute; top: 13px; left: 3px"
                 >
                   <img
                     v-if="item.personilTtd"
@@ -3753,7 +3752,9 @@
           <p style="margin-bottom: 50px">
             Lampiran {{ idx + 1 }} : {{ item.judul }}
           </p>
-          <div style="display:flex; justify-content:center; align-items:center;">
+          <div
+            style="display: flex; justify-content: center; align-items: center"
+          >
             <img style="max-height: 13cm" :src="item.gambar" />
           </div>
         </div>
@@ -3854,32 +3855,62 @@ export default {
       w.document.body.append(content);
       w.print();
     },
-    async convertDocx() {
-      try{
+    async convertDocx(element = "printPaper", filename = "IMTP01") {
+      try {
         await this.fetchData();
-        const content = document.getElementById("printPaper").cloneNode(true);
-        const header = document.getElementsByTagName("head")[0].innerHTML;
-        await this.$axios
-            .post(
-              `/api/TelusurBahanMasuk/exportDocx`,
-              {
-                content,
-                header
-              },
-              {
-                responseType: "blob",
-              }
-            )
-            .then(response => {
-              const url = window.URL.createObjectURL(new Blob([response.data]));
-              const link = document.createElement("a");
-              link.href = url;
-              link.setAttribute("download", "Telusur Bahan Masuk.docx");
-              document.body.appendChild(link);
-              link.click();
-              this.loadingXlsxPercentage = 0;
-            });
-      }catch(err){
+        const preHtml =
+          `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+            <head>
+              <meta charset='utf-8'>
+              <title>${ filename }</title>
+              <style>
+                @page WordSection1 {
+                  size: 841.8pt 595.2pt;
+                  margin: 36pt 36pt 36pt 36pt;
+                  mso-page-orientation:landscape;
+                  mso-header-margin:35.4pt;
+                  mso-footer-margin:35.4pt;
+                  mso-paper-source:0;
+                }
+                div.WordSection1 {
+                  page: WordSection1;
+                }
+                div#section {
+                  page: WordSection1;
+                }
+              </style>
+            </head>
+          <body>`;
+        const postHtml = "</body></html>";
+        const html =
+          preHtml + document.getElementById(element).innerHTML + postHtml;
+
+        const blob = new Blob(["\ufeff", html], {
+          type: "application/msword",
+        });
+
+        const url =
+          "data:application/vnd.ms-word;charset=utf-8," +
+          encodeURIComponent(html);
+
+        filename = filename ? filename + ".doc" : "document.doc";
+
+        const downloadLink = document.createElement("a");
+
+        document.body.appendChild(downloadLink);
+
+        if (navigator.msSaveOrOpenBlob) {
+          navigator.msSaveOrOpenBlob(blob, filename);
+        } else {
+          downloadLink.href = url;
+
+          downloadLink.download = filename;
+
+          downloadLink.click();
+        }
+
+        document.body.removeChild(downloadLink);
+      } catch (err) {
         this.$swal(err?.response?.data?.message || err?.message);
       }
     },
@@ -3914,7 +3945,7 @@ export default {
 div.WordSection1 {
   page: WordSection1;
 }
-div#section{
+div#section {
   page: WordSection1;
 }
 /* Style Definitions */

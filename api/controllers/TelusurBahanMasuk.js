@@ -1,5 +1,4 @@
 const uuid = require("uuid");
-const HTMLtoDOCX = require("html-to-docx/dist/html-to-docx.umd");
 // const Fawn = require("fawn");
 const { pagination } = require("../utils/pagination");
 const parseJsonQuery = require("../utils/parseJsonQuery");
@@ -101,25 +100,6 @@ const remove = async (req, res) => {
     res.status(500).send(err.message);
   }
 };
-const exportDocx = async (req, res) => {
-  try {
-    const {content, header} = req.body;
-    const buffer = await HTMLtoDOCX(content, header, {
-      table: { row: { cantSplit: true } },
-      footer: true,
-      pageNumber: true,
-    });
-    console.log(buffer);
-    res.attachment("Telusur Bahan Masuk.docx");
-    res.status(200).send(buffer);
-  } catch (err) {
-    console.log(err);
-    res.status(500).send({
-      success: false,
-      message: err.message,
-    });
-  }
-};
 
 module.exports = {
   get,
@@ -127,5 +107,4 @@ module.exports = {
   update,
   remove,
   count,
-  exportDocx,
 };
