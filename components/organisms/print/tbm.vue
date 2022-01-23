@@ -1,5 +1,5 @@
 <template>
-  <v-card :loading="loadingFetch" class="pa-3">
+  <v-card :loading="loadingFetch" class="pa-3 d-none">
     <v-card-title>
       Telusur Bahan Masuk
       <v-spacer />
