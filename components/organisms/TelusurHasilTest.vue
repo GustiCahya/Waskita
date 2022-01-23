@@ -256,6 +256,7 @@ export default {
       loadingFetch: false,
       loadingGenerate: false,
       loadingPrint: false,
+      loadingDocx: false,
     };
   },
   computed: {
