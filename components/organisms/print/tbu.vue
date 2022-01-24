@@ -1406,12 +1406,11 @@
               </td>
               <td
                 width="132"
-                rowspan="999999999"
                 style="
                   width: 99pt;
                   border-top: none;
                   border-left: none;
-                  border-bottom: solid windowtext 1pt;
+                  border-bottom: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 7.2pt;
@@ -1432,8 +1431,9 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ tbm.no }}</span
                   >
+                    &nbsp;
+                  </span>
                 </p>
               </td>
               <td
@@ -1708,6 +1708,37 @@
                 </p>
               </td>
               <td
+                width="162"
+                style="
+                  width: 121.35pt;
+                  border: none;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 7.2pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 15.85pt;
+                    margin-bottom: 0cm;
+                    margin-left: 17pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    v-if="idx === Math.round((items.length - 1) / 2)"
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                  >
+                    {{ tbm.no }}
+                  </span>
+                </p>
+              </td>
+              <td
                 width="84"
                 style="
                   width: 63pt;
@@ -1903,11 +1934,7 @@
                 <span
                   v-if="idx === 0"
                   lang="EN-US"
-                  style="
-                    position: absolute;
-                    top: -12px;
-                    left: 3px;
-                  "
+                  style="position: absolute; top: -12px; left: 3px"
                 >
                   <img
                     v-if="item.personilTtd"
@@ -1919,11 +1946,7 @@
                 <span
                   v-else
                   lang="EN-US"
-                  style="
-                    position: absolute;
-                    top: 13px;
-                    left: 3px;
-                  "
+                  style="position: absolute; top: 13px; left: 3px"
                 >
                   <img
                     v-if="item.personilTtd"
@@ -2498,16 +2521,20 @@
             </tr>
           </table>
         </div>
-      <div
-        v-for="(item, idx) in detail.lampiran"
-        id="section"
-        :key="item._id"
-      >
-          <p style="margin-bottom:50px">Lampiran {{ idx + 1 }} : {{ item.judul }}</p>
-          <div style="display:flex; justify-content:center; align-items:center;">
+        <div
+          v-for="(item, idx) in detail.lampiran"
+          id="section"
+          :key="item._id"
+        >
+          <p style="margin-bottom: 50px">
+            Lampiran {{ idx + 1 }} : {{ item.judul }}
+          </p>
+          <div
+            style="display: flex; justify-content: center; align-items: center"
+          >
             <img style="max-height: 13cm" :src="item.gambar" />
           </div>
-      </div>
+        </div>
       </div>
     </v-card-text>
   </v-card>
@@ -2534,7 +2561,7 @@ export default {
       return require("./logo.json")?.image;
     },
     totalPages() {
-      return 1 + (this?.detail?.lampiran?.length || 0)
+      return 1 + (this?.detail?.lampiran?.length || 0);
     },
   },
   async mounted() {
@@ -2613,11 +2640,10 @@ export default {
     async convertDocx(element = "printPaper", filename = "IMTP02") {
       try {
         await this.fetchData();
-        const preHtml =
-          `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        const preHtml = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
             <head>
               <meta charset='utf-8'>
-              <title>${ filename }</title>
+              <title>${filename}</title>
               <style>
                 @page WordSection1 {
                   size: 841.8pt 595.2pt;
@@ -2700,7 +2726,7 @@ export default {
 div.WordSection1 {
   page: WordSection1;
 }
-div#section{
+div#section {
   page: WordSection1;
 }
 /* Style Definitions */
