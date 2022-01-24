@@ -1736,11 +1736,11 @@
             <tr style="height: 1pt">
               <td
                 width="91"
-                rowspan="999999999"
                 style="
                   width: 68.6pt;
                   border: solid windowtext 1pt;
                   border-top: none;
+                  border-bottom: none;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 1pt;
                 "
@@ -1757,18 +1757,17 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ tbm.no }}</span
+                    ></span
                   >
                 </p>
               </td>
               <td
                 width="90"
-                rowspan="999999999"
                 style="
                   width: 67.4pt;
                   border-top: none;
                   border-left: none;
-                  border-bottom: solid windowtext 1pt;
+                  border-bottom: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 1pt;
@@ -1786,7 +1785,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ tbu.no }}</span
+                    ></span
                   >
                 </p>
               </td>
@@ -1818,12 +1817,11 @@
               </td>
               <td
                 width="78"
-                rowspan="999999999"
                 style="
                   width: 58.75pt;
                   border-top: none;
                   border-left: none;
-                  border-bottom: solid windowtext 1pt;
+                  border-bottom: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 1pt;
@@ -1841,18 +1839,17 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ tbm.lokasiPengecoran }}</span
+                    ></span
                   >
                 </p>
               </td>
               <td
                 width="78"
-                rowspan="999999999"
                 style="
                   width: 58.5pt;
                   border-top: none;
                   border-left: none;
-                  border-bottom: solid windowtext 1pt;
+                  border-bottom: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 1pt;
@@ -1870,7 +1867,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ detail.noDetail }}</span
+                    ></span
                   >
                 </p>
               </td>
@@ -2162,7 +2159,63 @@
               </td>
             </tr>
             <!-- main content -->
-            <tr v-for="item in items" :key="item._id" style="height: 1pt">
+            <tr v-for="(item, idx) in items" :key="item._id" style="height: 1pt">
+              <td
+                width="60"
+                style="
+                  width: 44.95pt;
+                  border: none;
+                  border-left: solid windowtext 1pt;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 1pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-bottom: 0cm;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    v-if="idx === Math.round((items.length - 1) / 2)"
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >{{ tbm.no }}</span
+                  >
+                </p>
+              </td>
+              <td
+                width="60"
+                style="
+                  width: 44.95pt;
+                  border: none;
+                  border-left: none;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 1pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-bottom: 0cm;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    v-if="idx === Math.round((items.length - 1) / 2)"
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >{{ tbu.no }}</span
+                  >
+                </p>
+              </td>
               <td
                 width="60"
                 style="
@@ -2186,6 +2239,60 @@
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
                     >{{ item.tanggalPengecoran }}</span
+                  >
+                </p>
+              </td>
+              <td
+                width="60"
+                style="
+                  width: 44.95pt;
+                  border: none;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 1pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-bottom: 0cm;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    v-if="idx === Math.round((items.length - 1) / 2)"
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >{{ tbm.lokasiPengecoran }}</span
+                  >
+                </p>
+              </td>
+              <td
+                width="60"
+                style="
+                  width: 44.95pt;
+                  border: none;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 1pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-bottom: 0cm;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    v-if="idx === Math.round((items.length - 1) / 2)"
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >{{ detail.noDetail }}</span
                   >
                 </p>
               </td>
@@ -2486,6 +2593,34 @@
                 style="
                   width: 44.95pt;
                   border-top: none;
+                  border-left: solid windowtext 1pt;
+                  border-bottom: solid windowtext 1pt;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 1pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-bottom: 0cm;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >&nbsp;</span
+                  >
+                </p>
+              </td>
+              <td
+                width="60"
+                style="
+                  width: 44.95pt;
+                  border-top: none;
                   border-left: none;
                   border-bottom: solid windowtext 1pt;
                   border-right: solid windowtext 1pt;
@@ -2765,6 +2900,90 @@
                 width="60"
                 style="
                   width: 45pt;
+                  border-top: none;
+                  border-left: none;
+                  border-bottom: solid windowtext 1pt;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 1pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-bottom: 0cm;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >&nbsp;</span
+                  >
+                </p>
+              </td>
+              <td
+                width="54"
+                style="
+                  width: 40.5pt;
+                  border-top: none;
+                  border-left: none;
+                  border-bottom: solid windowtext 1pt;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 1pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-bottom: 0cm;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >&nbsp;</span
+                  >
+                </p>
+              </td>
+              <td
+                width="54"
+                style="
+                  width: 40.5pt;
+                  border-top: none;
+                  border-left: none;
+                  border-bottom: solid windowtext 1pt;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 1pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-bottom: 0cm;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >&nbsp;</span
+                  >
+                </p>
+              </td>
+              <td
+                width="54"
+                style="
+                  width: 40.5pt;
                   border-top: none;
                   border-left: none;
                   border-bottom: solid windowtext 1pt;

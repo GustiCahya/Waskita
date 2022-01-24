@@ -1776,12 +1776,11 @@
               </td>
               <td
                 width="78"
-                rowspan="999999999"
                 style="
                   width: 99pt;
                   border-top: none;
                   border-left: none;
-                  border-bottom: solid windowtext 1pt;
+                  border-bottom: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 7.2pt;
@@ -1802,7 +1801,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ tbu.no }}</span
+                    ></span
                   >
                 </p>
               </td>
@@ -2192,6 +2191,28 @@
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
                     >{{ item.kodeSilinder }}</span
+                  >
+                </p>
+              </td>
+              <td
+                width="54"
+                style="
+                  width: 40.5pt;
+                  border: none;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.7pt 0cm 0cm 0cm;
+                  height: 1.25pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  style="margin-bottom: 0cm; line-height: normal"
+                >
+                  <span
+                    v-if="idx === Math.round((items.length - 1) / 2)"
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >{{ tbu.no }}</span
                   >
                 </p>
               </td>
@@ -2947,6 +2968,34 @@
                 width="48"
                 style="
                   width: 36pt;
+                  border-top: none;
+                  border-left: none;
+                  border-bottom: solid windowtext 1pt;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.7pt 0cm 0cm 0cm;
+                  height: 1.25pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-bottom: 0cm;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >&nbsp;</span
+                  >
+                </p>
+              </td>
+              <td
+                width="61"
+                style="
+                  width: 45.5pt;
                   border-top: none;
                   border-left: none;
                   border-bottom: solid windowtext 1pt;
