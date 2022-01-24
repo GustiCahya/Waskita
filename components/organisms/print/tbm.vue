@@ -42,13 +42,11 @@
                   style="margin-bottom: 0cm; line-height: normal"
                 >
                   <img
-                    style="background:white;"
                     width="54"
                     height="51"
                     :src="icon"
                     align="left"
                     hspace="12"
-                    v:shapes="Picture_x0020_1"
                   />
                   <b>
                     <span lang="EN-US" style="font-size: 14pt">
@@ -2038,12 +2036,12 @@
             <!-- header main content -->
             <tr style="height: 2.3pt">
               <td
-                width="74"
-                rowspan="999999999"
+                width="100"
                 style="
-                  width: 55.85pt;
-                  border: solid windowtext 1pt;
-                  border-top: none;
+                  width: 75.15pt;
+                  border: none;
+                  border-left: solid windowtext 1pt;
+                  border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 2.3pt;
                 "
@@ -2055,7 +2053,7 @@
                     margin-top: 0cm;
                     margin-right: 0cm;
                     margin-bottom: 0cm;
-                    margin-left: 0.75pt;
+                    margin-left: 0.95pt;
                     text-align: center;
                     line-height: normal;
                   "
@@ -2063,7 +2061,7 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ detail.noIzin }}</span
+                    >&nbsp;</span
                   >
                 </p>
               </td>
@@ -2272,12 +2270,11 @@
               </td>
               <td
                 width="93"
-                rowspan="999999999"
                 style="
                   width: 69.9pt;
                   border-top: none;
                   border-left: none;
-                  border-bottom: solid windowtext 1pt;
+                  border-bottom: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 2.3pt;
@@ -2298,7 +2295,8 @@
                   <span
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
-                    >{{ detail.lokasiPengecoran }}</span
+                    >
+                  </span
                   >
                 </p>
               </td>
@@ -2527,6 +2525,37 @@
                 style="
                   width: 75.15pt;
                   border: none;
+                  border-left: solid windowtext 1pt;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 1pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 0cm;
+                    margin-bottom: 0cm;
+                    margin-left: 0.95pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    v-if="idx === Math.round((items.length - 1) / 2)"
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >{{ detail.noIzin }}</span
+                  >
+                </p>
+              </td>
+              <td
+                width="100"
+                style="
+                  width: 75.15pt;
+                  border: none;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
                   height: 1pt;
@@ -2724,6 +2753,36 @@
                     lang="EN-US"
                     style="font-size: 6pt; font-family: 'Arial', sans-serif"
                     >{{ item.jamDituang }}</span
+                  >
+                </p>
+              </td>
+              <td
+                width="51"
+                style="
+                  width: 38.55pt;
+                  border: none;
+                  border-right: solid windowtext 1pt;
+                  padding: 0.4pt 0cm 0cm 0cm;
+                  height: 1pt;
+                "
+              >
+                <p
+                  class="MsoNormal"
+                  align="center"
+                  style="
+                    margin-top: 0cm;
+                    margin-right: 0cm;
+                    margin-bottom: 0cm;
+                    margin-left: 0.75pt;
+                    text-align: center;
+                    line-height: normal;
+                  "
+                >
+                  <span
+                    v-if="idx === Math.round((items.length - 1) / 2)"
+                    lang="EN-US"
+                    style="font-size: 6pt; font-family: 'Arial', sans-serif"
+                    >{{ detail.lokasiPengecoran }}</span
                   >
                 </p>
               </td>
@@ -2975,7 +3034,7 @@
                 style="
                   width: 75.15pt;
                   border-top: none;
-                  border-left: none;
+                  border-left: solid windowtext 1pt;
                   border-bottom: solid windowtext 1pt;
                   border-right: solid windowtext 1pt;
                   padding: 0.4pt 0cm 0cm 0cm;
@@ -3415,7 +3474,28 @@
               >
                 <p class="MsoNormal">&nbsp;</p>
               </td>
-              <td style="height: 1pt; border: none" width="0" height="2"></td>
+              <td
+                style="
+                  border: none;
+                  padding: 0cm 0cm 0cm 0cm;
+                  border-right: solid windowtext 1pt;
+                  border-bottom: solid windowtext 1pt;
+                "
+                width="1"
+              >
+                <p class="MsoNormal">&nbsp;</p>
+              </td>
+              <td
+                style="
+                  border: none;
+                  padding: 0cm 0cm 0cm 0cm;
+                  border-right: solid windowtext 1pt;
+                  border-bottom: solid windowtext 1pt;
+                "
+                width="1"
+              >
+                <p class="MsoNormal">&nbsp;</p>
+              </td>
             </tr>
           </table>
 

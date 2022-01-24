@@ -70,7 +70,7 @@
                 color="primary"
                 min-width="100"
                 rounded
-                :loading="isLoading"
+                :disabled="isLoading"
               >
                 Cari
               </v-btn>
