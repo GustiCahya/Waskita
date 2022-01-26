@@ -9,13 +9,21 @@
       <v-card-text class="pt-3" style="padding-bottom: 0">
         <v-row>
           <v-col cols="12" md="6" class="py-0">
-            <v-text-field
+            <v-select
               v-model="businessUnit"
-              label="Business Unit"
-              placeholder="Contoh: Infrastructure 2 Division"
+              :items="[
+                'Infrastructure I Division',
+                'Infrastructure II Division',
+                'EPC Division',
+                'Building Division',
+                'Overseas Division',
+              ]"
+              :menu-props="{ offsetY: true }"
               :rules="rules.businessUnit"
-              outlined
+              label="Business Unit"
+              placeholder="Business Unit"
               dense
+              outlined
             />
           </v-col>
           <v-col cols="12" md="6" class="py-0">
