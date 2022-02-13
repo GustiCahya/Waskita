@@ -76,6 +76,14 @@ export default {
       drawer: true,
       items: [
         {
+          icon: "mdi-view-dashboard",
+          title: "Dashboard",
+          to: "/home",
+          show: () => {
+            return true;
+          },
+        },
+        {
           icon: "mdi-truck",
           title: "Telusur",
           to: "/telusur",
