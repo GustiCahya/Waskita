@@ -25,6 +25,10 @@ Vue.mixin({
       });
       return secureStorage;
     },
+    $user() {
+      const token = this.$secureStorage.getItem("token");
+      return VueJwtDecode.decode(token);
+    },
   },
   methods: {
     $toBase64(file) {
@@ -70,5 +74,8 @@ Vue.mixin({
       this.$secureStorage.removeItem("token");
       this.$router.replace("/");
     },
+    $convertPercenttoDecimal(percent){
+      return (+percent.replace(",", ".").replace("%", "") / 100) || 0
+    }
   },
 });
