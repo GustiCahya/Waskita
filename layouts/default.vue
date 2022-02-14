@@ -14,7 +14,7 @@ export default {
     try {
       const isLogin = await this.$isLogin();
       if (isLogin) {
-        this.$router.replace("/telusur");
+        this.$router.replace("/home");
         return;
       }else{
         this.$logout();
