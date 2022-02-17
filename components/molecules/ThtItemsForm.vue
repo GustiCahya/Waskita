@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mt-3" color="grey darken-4">
+  <v-card class="mt-3" color="$isDark ? 'grey darken-4' : ''">
     <v-card-title class="my-2 mb-3"> Kelola Detail </v-card-title>
     <v-card-text>
       <v-form ref="form" v-model="form" @submit.prevent="submit">

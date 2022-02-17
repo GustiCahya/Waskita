@@ -11,8 +11,11 @@
               alt="waskita icon"
             />
           </v-list-item-title>
-          <v-list-item-subtitle style="word-wrap: break-word">
-            <p class="text-body-1 white--text pa-0 ma-0">{{ fullName }}</p>
+          <v-list-item-subtitle
+            style="word-wrap: break-word"
+            :style="{ color: $isDark ? 'white' : 'black' }"
+          >
+            <p class="text-body-1 pa-0 ma-0">{{ fullName }}</p>
             <p class="text-caption pa-0 ma-0">{{ email }}</p>
           </v-list-item-subtitle>
         </v-list-item-content>
@@ -59,7 +62,13 @@
       </v-menu>
     </v-app-bar>
     <v-main>
-      <v-container style="min-height: 100vh">
+      <v-container
+        style="min-height: 100vh"
+        :class="{
+          'darkHero': $isDark === true,
+          'lightHero': $isDark === false
+        }"
+      >
         <Nuxt />
       </v-container>
       <v-footer>
@@ -108,22 +117,6 @@ export default {
           },
         },
       ],
-      userNavs: [
-        {
-          icon: "mdi-key",
-          text: "Reset Password",
-          handleClick: () => {
-            this.$router.push("/user/reset-password");
-          }
-        },
-        {
-          icon: "mdi-door-open",
-          text: "logout",
-          handleClick: () => {
-            this.$logout();
-          }
-        },
-      ],
       miniVariant: false,
       title: "Waskita",
       // user profile
@@ -133,6 +126,37 @@ export default {
       // loading
       loadingMount: true,
     };
+  },
+  computed: {
+    userNavs() {
+      return [
+        {
+          icon: "mdi-key",
+          text: "Reset Password",
+          handleClick: () => {
+            this.$router.push("/user/reset-password");
+          },
+        },
+        {
+          icon: this.$isDark ? "mdi-weather-sunny" : "mdi-moon-waning-crescent",
+          text: this.$isDark ? "Light Mode" : "Dark Mode",
+          handleClick: () => {
+            this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+            localStorage.setItem(
+              "useDarkTheme",
+              this.$vuetify.theme.dark.toString()
+            );
+          },
+        },
+        {
+          icon: "mdi-door-open",
+          text: "logout",
+          handleClick: () => {
+            this.$logout();
+          },
+        },
+      ];
+    }
   },
   async beforeMount() {
     this.loadingMount = true;
@@ -147,11 +171,21 @@ export default {
     this.loadingMount = false;
   },
   async mounted() {
+    // handle user
     const user = this.$getUserData();
     this.email = user?.email;
     this.fullName = user?.fullName;
     const roles = await this.$getUserRoles();
     this.roles = roles;
+    // handle theme
+    const theme = localStorage.getItem("useDarkTheme");
+    if (theme) {
+      if (theme == "true") {
+        this.$vuetify.theme.dark = true;
+      } else {
+        this.$vuetify.theme.dark = false;
+      }
+    }
   },
   methods: {},
 };

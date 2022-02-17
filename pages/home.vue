@@ -2,7 +2,10 @@
   <div>
     <v-card class="py-5 px-4">
       <h3>Halo, {{ $user.fullName }}</h3>
-      <p class="pa-0 ma-0">Berikut rangkuman dari telusur yang sudah dibuat berdasarkan tanggal pengecoran</p>
+      <p class="pa-0 ma-0">
+        Berikut rangkuman dari telusur yang sudah dibuat berdasarkan tanggal
+        pengecoran
+      </p>
     </v-card>
     <v-card class="pa-3 my-3">
       <v-row justify="center" align="center" class="px-3 pt-4 pb-6">
@@ -44,7 +47,7 @@
           ></v-skeleton-loader>
         </div>
         <div v-else>
-          <bar-chart :chart-data="mutuBetonData" :options="mutuBetonOptions" />
+          <bar-chart :key="labelColor" :chart-data="mutuBetonData" :options="mutuBetonOptions" />
         </div>
       </div>
     </v-card>
@@ -61,54 +64,7 @@ export default {
   data() {
     return {
       // chart
-      mutuBetonFilter: "month",
-      mutuBetonOptions: {
-        maintainAspectRatio: false,
-        responsive: true,
-        legend: {
-          labels: {
-            fontColor: "#f9f9f9",
-          },
-        },
-        scales: {
-          yAxes: [
-            {
-              gridLines: {
-                color: "rgba(42,55,70,0.255)",
-              },
-              scaleLabel: {
-                display: true,
-                labelString: "Kuat Tekan (%)",
-                fontColor: "#f9f9f9",
-              },
-              ticks: {
-                min: 0,
-                max: 100, // Your absolute max value
-                callback: function (value) {
-                  return value + "%"; // convert it to percentage
-                },
-                beginAtZero: true,
-                fontColor: "#f9f9f9",
-              },
-            },
-          ],
-          xAxes: [
-            {
-              gridLines: {
-                color: "rgba(42,55,70,0.255)",
-              },
-              scaleLabel: {
-                display: true,
-                labelString: "Lokasi",
-                fontColor: "#f9f9f9",
-              },
-              ticks: {
-                fontColor: "#f9f9f9",
-              },
-            },
-          ],
-        },
-      },
+      mutuBetonFilter: "year",
       // chartData
       locations: [],
       items7Hari: [],
@@ -140,11 +96,63 @@ export default {
         ],
       };
     },
+    mutuBetonOptions() {
+      return {
+        maintainAspectRatio: false,
+        responsive: true,
+        legend: {
+          labels: {
+            fontColor: this.labelColor,
+          },
+        },
+        scales: {
+          yAxes: [
+            {
+              gridLines: {
+                color: "rgba(42,55,70,0.255)",
+              },
+              scaleLabel: {
+                display: true,
+                labelString: "Kuat Tekan (%)",
+                fontColor: this.labelColor,
+              },
+              ticks: {
+                min: 0,
+                max: 100, // Your absolute max value
+                callback: function (value) {
+                  return value + "%"; // convert it to percentage
+                },
+                beginAtZero: true,
+                fontColor: this.labelColor,
+              },
+            },
+          ],
+          xAxes: [
+            {
+              gridLines: {
+                color: "rgba(42,55,70,0.255)",
+              },
+              scaleLabel: {
+                display: true,
+                labelString: "Lokasi",
+                fontColor: this.labelColor,
+              },
+              ticks: {
+                fontColor: this.labelColor,
+              },
+            },
+          ],
+        },
+      };
+    },
+    labelColor() {
+      return this.$isDark ? "#f9f9f9" : "black";
+    }
   },
   watch: {
     mutuBetonFilter() {
       this.getChartMutuBeton();
-    }
+    },
   },
   async beforeMount() {},
   async mounted() {
@@ -217,9 +225,9 @@ export default {
                   },
                   {
                     $match: {
-                      "tbm.tanggalMasuk": tanggalMasuk
-                    }
-                  }
+                      "tbm.tanggalMasuk": tanggalMasuk,
+                    },
+                  },
                 ],
               }),
             },

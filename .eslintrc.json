@@ -57,6 +57,7 @@
     "vue/component-definition-name-casing": "off",
     "require-await": "warn",
     "prefer-regex-literals": "off", 
-    "unicorn/escape-case": "off" 
+    "unicorn/escape-case": "off",
+    "eqeqeq": "off"
   }
 }

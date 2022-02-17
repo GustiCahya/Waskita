@@ -21,7 +21,7 @@
       </template>
 
       <v-card>
-        <v-card-title class="text-h5 blue darken-4">
+        <v-card-title class="text-h5 blue darken-4 white--text">
           Kelola {{ label }}
         </v-card-title>
 

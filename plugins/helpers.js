@@ -29,6 +29,9 @@ Vue.mixin({
       const token = this.$secureStorage.getItem("token");
       return VueJwtDecode.decode(token);
     },
+    $isDark() {
+      return this.$vuetify.theme.dark;
+    }
   },
   methods: {
     $toBase64(file) {

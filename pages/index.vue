@@ -1,7 +1,11 @@
 <template>
   <v-app>
     <v-main>
-      <v-container class="fill-height" fluid>
+      <v-container :class="{
+        'darkHero': $isDark === true,
+        'lightHero': $isDark === false,
+        'fill-height': true,
+      }" fluid>
         <v-row align="center" justify="center">
           <v-col cols="12" sm="8" md="4">
             <v-card class="elevation-12">
@@ -97,13 +101,23 @@ export default {
 };
 </script>
 <style>
-#app {
+.darkHero {
   background: linear-gradient(
-      to right bottom,
-      rgba(0, 0, 0, 0.8),
-      rgba(0, 0, 0, 0.8)
-    ),
-    url("@/static/images/background_3.jpeg") no-repeat center fixed !important;
+    to right bottom,
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.8)
+  ),
+  url('@/static/images/background_3.jpeg') no-repeat center fixed !important;
+  background-size: cover;
+  background-size: 100%;
+}
+.lightHero {
+  background: linear-gradient(
+    to right bottom,
+    rgba(233, 233, 233, 0.8),
+    rgba(233, 233, 233, 0.8)
+  ),
+  url('@/static/images/background_3.jpeg') no-repeat center fixed !important;
   background-size: cover;
   background-size: 100%;
 }

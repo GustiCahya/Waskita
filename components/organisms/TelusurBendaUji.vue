@@ -99,7 +99,7 @@
           <!-- footer input -->
           <v-row justify="end">
             <v-col cols="12" md="6">
-              <v-card class="mt-3" color="grey darken-4">
+              <v-card class="mt-3" color="$isDark ? 'grey darken-4' : ''">
                 <h5 class="pa-3">Dibuat oleh</h5>
                 <div class="px-3 pt-0 pb-5">
                   <v-row>
@@ -168,7 +168,7 @@
           <div class="d-flex justify-center" style="width: 100%">
             <v-btn
               type="submit"
-              color="blue darken-3"
+              color="blue darken-3 white--text"
               nuxt
               :loading="loadingGenerate"
             >
@@ -180,7 +180,7 @@
             class="d-flex justify-center mt-3"
             style="width: 100%"
           >
-            <v-btn color="grey darken-3" nuxt :loading="loadingPrint" @click="redirectPrint">
+            <v-btn color="grey darken-3 white--text" nuxt :loading="loadingPrint" @click="redirectPrint">
               <v-icon left dark> mdi-printer </v-icon>
               print / download pdf
             </v-btn>
@@ -190,7 +190,7 @@
             class="d-flex justify-center mt-3"
             style="width: 100%"
           >
-            <v-btn color="blue darken-1" nuxt :loading="loadingDocx" @click="redirectDocx">
+            <v-btn color="blue darken-1 white--text" nuxt :loading="loadingDocx" @click="redirectDocx">
               <v-icon left dark> mdi-note-text-outline </v-icon>
               Download DOCX
             </v-btn>
