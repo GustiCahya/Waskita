@@ -108,7 +108,7 @@
                   <td style="white-space: nowrap">
                     <v-btn
                       icon
-                      color="grey lighten-2"
+                      :color="$isDark ? 'grey lighten-2' : 'grey darken-2'"
                       @click.native="() => openTelusur(item)"
                     >
                       <v-icon>mdi-monitor</v-icon>
